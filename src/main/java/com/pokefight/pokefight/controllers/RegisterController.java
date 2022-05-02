@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 public class RegisterController {
     @GetMapping("/register")
     public String registerGet(){
-        return "register";
+        return "temporary/register";
     }
 
     @PostMapping("/register")
     public String registerPost(){
-        return "register";
+        return "temporary/register";
     }
 }
