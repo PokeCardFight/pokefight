@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ProfileController {
-    @GetMapping("/")
+    @GetMapping("/profile")
     public String profileGet(){
         return "temporary/profile";
     }
 
-    @PostMapping("/")
+    @PostMapping("/profile")
     public String profilePost(){
         return "temporary/profile";
     }

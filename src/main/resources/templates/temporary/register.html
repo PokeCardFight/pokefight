@@ -5,7 +5,7 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no">
 
-        <title>Splash</title>
+        <title>Register</title>
 
         <!-- Delete these later -->
         <!-- Font Awesome -->
@@ -16,24 +16,33 @@
     </head>
     <body>
 
-
-        <form class="w-25">
+        <form class="w-25" th:action="@{/register}" method="POST" th:object="${user}">
             <div class="form-group">
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-user"></i></span>
-                    <input type="text" class="form-control" name="username" placeholder="Username">
+                    <input type="text" class="form-control" name="username" placeholder="Username" th:field="*{username}">
                 </div>
             </div>
             <div class="form-group">
                 <div class="input-group mb-3">
                     <span class="input-group-text"><i class="fa fa-key"></i></span>
-                    <input type="text" class="form-control" name="password" placeholder="Password">
+                    <input type="email" class="form-control" name="email" placeholder="Email" th:field="*{email}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                    <input type="password" class="form-control" name="password" placeholder="Password" th:field="*{password}">
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="input-group mb-3">
+                    <span class="input-group-text"><i class="fa fa-key"></i></span>
+                    <input type="password" class="form-control" name="password-confirm" placeholder="Confirm Password">
                 </div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-
-        <a href="/register" class="link-dark">Register</a>
 
         <!-- Delete these later -->
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.min.js"></script>
