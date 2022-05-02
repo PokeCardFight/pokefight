@@ -23,47 +23,47 @@ public class Pouch {
 
     @ManyToMany(mappedBy = "user_pouches")
     private List<User> user_pouches;
-//
-//    public Pouch(long id, int quantity, Pouch pouch,List<Items> pouch_items ){
-//        this.id =id;
-//        this.quantity=quantity;
-//        this.pouch=pouch;
-//        this.pouch_items=pouch_items;
-//    }
-//
-//    public Pouch() {
-//
-//    }
-//
-//    public int getQuantity() {
-//        return quantity;
-//    }
-//
-//    public void setQuantity(int quantity) {
-//        this.quantity = quantity;
-//    }
-//
-//    public long getId() {
-//        return id;
-//    }
-//
-//    public void setId(long id) {
-//        this.id = id;
-//    }
-//
-//    public List<Items> getPouch_items() {
-//        return pouch_items;
-//    }
-//
-//    public void setPouch_items(List<Items> pouch_items) {
-//        this.pouch_items = pouch_items;
-//    }
-//
-//    public Pouch getPouch() {
-//        return pouch;
-//    }
-//
-//    public void setPouch(Pouch pouch) {
-//        this.pouch = pouch;
-//    }
+
+    public Pouch(long id, int quantity, List<Items> pouch_items, List<User> user_pouches) {
+        this.id = id;
+        this.quantity = quantity;
+        this.pouch_items = pouch_items;
+        this.user_pouches = user_pouches;
+    }
+
+    public Pouch() {
+
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
+    public List<Items> getPouch_items() {
+        return pouch_items;
+    }
+
+    public void setPouch_items(List<Items> pouch_items) {
+        this.pouch_items = pouch_items;
+    }
+
+    public List<User> getUser_pouches() {
+        return user_pouches;
+    }
+
+    public void setUser_pouches(List<User> user_pouches) {
+        this.user_pouches = user_pouches;
+    }
 }
