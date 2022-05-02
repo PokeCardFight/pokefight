@@ -4,14 +4,14 @@ import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class SplashController {
+public class HomeController {
     @GetMapping("/")
-    public String splashGet(){
-        return "temporary/splash";
+    public String homeGet(){
+        return "temporary/home";
     }
 
     @PostMapping("/")
-    public String splashPost(){
-        return "temporary/splash";
+    public String homePost(){
+        return "temporary/home";
     }
 }
