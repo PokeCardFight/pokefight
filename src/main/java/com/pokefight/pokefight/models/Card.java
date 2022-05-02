@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name="cards")
-public class Cards {
+public class Card {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -28,7 +28,7 @@ public class Cards {
     @ManyToMany(mappedBy = "user_cards")
     private List<User> user_cards;
 
-    public Cards(long id, String name, String type, int attack, int hp, String image, List<User> user_cards) {
+    public Card(long id, String name, String type, int attack, int hp, String image, List<User> user_cards) {
         this.id = id;
         this.name = name;
         this.type = type;
@@ -38,7 +38,7 @@ public class Cards {
         this.user_cards = user_cards;
     }
 
-    public Cards() {
+    public Card() {
 
     }
 

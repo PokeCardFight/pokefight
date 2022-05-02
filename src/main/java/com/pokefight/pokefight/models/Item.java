@@ -5,7 +5,7 @@ import java.util.List;
 
 @Entity
 @Table(name="items")
-public class Items {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -25,7 +25,7 @@ public class Items {
     @ManyToMany(mappedBy = "pouch_items")
     private List<Pouch> items_in_pouch;
 
-    public Items(long id, String name, int value, int rounds, int cost, List<Pouch> items_in_pouch) {
+    public Item(long id, String name, int value, int rounds, int cost, List<Pouch> items_in_pouch) {
         this.id = id;
         this.name = name;
         this.value = value;
@@ -34,7 +34,7 @@ public class Items {
         this.items_in_pouch = items_in_pouch;
     }
 
-    public Items() {
+    public Item() {
 
     }
 

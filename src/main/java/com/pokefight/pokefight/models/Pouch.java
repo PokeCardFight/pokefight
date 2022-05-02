@@ -19,12 +19,12 @@ public class Pouch {
             joinColumns={@JoinColumn(name="pouch_id")},
             inverseJoinColumns={@JoinColumn(name="item_id")}
     )
-    private List<Items> pouch_items;
+    private List<Item> pouch_items;
 
     @ManyToMany(mappedBy = "user_pouches")
     private List<User> user_pouches;
 
-    public Pouch(long id, int quantity, List<Items> pouch_items, List<User> user_pouches) {
+    public Pouch(long id, int quantity, List<Item> pouch_items, List<User> user_pouches) {
         this.id = id;
         this.quantity = quantity;
         this.pouch_items = pouch_items;
@@ -51,11 +51,11 @@ public class Pouch {
         this.quantity = quantity;
     }
 
-    public List<Items> getPouch_items() {
+    public List<Item> getPouch_items() {
         return pouch_items;
     }
 
-    public void setPouch_items(List<Items> pouch_items) {
+    public void setPouch_items(List<Item> pouch_items) {
         this.pouch_items = pouch_items;
     }
 
