@@ -46,9 +46,9 @@ public class User {
             joinColumns={@JoinColumn(name="user_id")},
             inverseJoinColumns={@JoinColumn(name="card_id")}
     )
-    private List<Cards> user_cards;
+    private List<Card> user_cards;
 
-    public User(long id, String username, String email, String password, String profile_pic, int gold, int xp, int level, List<Pouch> user_pouches, List<Cards> user_cards) {
+    public User(long id, String username, String email, String password, String profile_pic, int gold, int xp, int level, List<Pouch> user_pouches, List<Card> user_cards) {
         this.id = id;
         this.username = username;
         this.email = email;
@@ -59,6 +59,19 @@ public class User {
         this.level = level;
         this.user_pouches = user_pouches;
         this.user_cards = user_cards;
+    }
+
+    public User(User user) {
+        this.id = user.id;
+        this.username = user.username;
+        this.email = user.email;
+        this.password = user.password;
+        this.profile_pic = user.profile_pic;
+        this.gold = user.gold;
+        this.xp = user.xp;
+        this.level = user.level;
+        this.user_pouches = user.user_pouches;
+        this.user_cards = user.user_cards;
     }
 
     public User() {
@@ -137,11 +150,11 @@ public class User {
         this.user_pouches = user_pouches;
     }
 
-    public List<Cards> getUser_cards() {
+    public List<Card> getUser_cards() {
         return user_cards;
     }
 
-    public void setUser_cards(List<Cards> user_cards) {
+    public void setUser_cards(List<Card> user_cards) {
         this.user_cards = user_cards;
     }
 }
