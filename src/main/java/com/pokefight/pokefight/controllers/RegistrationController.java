@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class RegistrationController {
-    @GetMapping("/")
+    @GetMapping("/register")
     public String registerGet(){
         return "temporary/registration";
     }
 
-    @PostMapping("/")
+    @PostMapping("/register")
     public String registerPost(){
         return "temporary/registration";
     }
