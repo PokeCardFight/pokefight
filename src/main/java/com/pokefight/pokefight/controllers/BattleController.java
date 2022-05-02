@@ -5,13 +5,13 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class BattleController {
-    @GetMapping("/")
-    public String battleGet(){
-        return "temporary/about";
+    @GetMapping("/battle")
+    public String aboutGet(){
+        return "temporary/battle";
     }
 
-    @PostMapping("/")
-    public String battlePost(){
-        return "temporary/about";
+    @PostMapping("/battle")
+    public String aboutPost(){
+        return "temporary/battle";
     }
 }

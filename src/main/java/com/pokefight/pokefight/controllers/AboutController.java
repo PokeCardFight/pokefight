@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class AboutController {
-    @GetMapping("/")
+    @GetMapping("/about")
     public String aboutGet(){
         return "temporary/about";
     }
 
-    @PostMapping("/")
+    @PostMapping("/about")
     public String aboutPost(){
         return "temporary/about";
     }
