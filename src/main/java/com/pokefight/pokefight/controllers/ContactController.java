@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class ContactController {
-    @GetMapping("/")
+    @GetMapping("/contact")
     public String contactGet(){
         return "temporary/contact";
     }
 
-    @PostMapping("/")
+    @PostMapping("/contact")
     public String contactPost(){
         return "temporary/contact";
     }
