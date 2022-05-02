@@ -1,7 +1,7 @@
 package com.pokefight.pokefight.services;
 
+import com.pokefight.pokefight.models.*;
 import com.pokefight.pokefight.models.User;
-import com.pokefight.pokefight.models.UserWithRoles;
 import com.pokefight.pokefight.repositories.*;
 import org.springframework.security.core.userdetails.*;
 import org.springframework.stereotype.*;
