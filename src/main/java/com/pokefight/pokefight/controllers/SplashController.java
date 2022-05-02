@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class SplashController {
-    @GetMapping("/splash")
+    @GetMapping("/")
     public String splashGet(){
         return "temporary/splash";
     }
 
-    @PostMapping("/splash")
+    @PostMapping("/")
     public String splashPost(){
         return "temporary/splash";
     }
