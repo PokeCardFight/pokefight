@@ -4,8 +4,23 @@
     <meta charset="UTF-8">
     <title>Title</title>
 </head>
+<style>
+    div {
+        border: 2px solid blue;
+    }
+    p {
+        background: yellow;
+        margin: 4px;
+    }
+</style>
 <body>
 <h1>this should become the splash page</h1>
-
+<p>this is</p>
+<p>A</p>
+<p>test</p>
+<script th:include="fragment :: footer"></script>
+<script>
+    $( "p" ).wrapAll( "<div></div>" );
+</script>
 </body>
 </html>
