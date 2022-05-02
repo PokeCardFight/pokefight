@@ -1,6 +1,7 @@
 package com.pokefight.pokefight.models;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name="cards")
@@ -23,5 +24,8 @@ public class Cards {
 
     @Column(nullable = false)
     private String image;
+
+    @ManyToMany(mappedBy = "user_cards")
+    private List<User> user_cards;
 
 }
