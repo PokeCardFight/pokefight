@@ -31,11 +31,22 @@ public class User {
     @Column(nullable=false)
     private int level;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "pouch")
-    private List<Pouch> pouches;
 
-    @OneToOne
-    private User deck;
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="user_pouches",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns={@JoinColumn(name="pouch_id")}
+    )
+    private List<Pouch> user_pouches;
+
+    @ManyToMany(cascade = CascadeType.ALL)
+    @JoinTable(
+            name="user_cards",
+            joinColumns={@JoinColumn(name="user_id")},
+            inverseJoinColumns={@JoinColumn(name="card_id")}
+    )
+    private List<Cards> user_cards;
 
 
 
