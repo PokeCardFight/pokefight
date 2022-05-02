@@ -4,14 +4,14 @@ import org.springframework.stereotype.*;
 import org.springframework.web.bind.annotation.*;
 
 @Controller
-public class RegistrationController {
+public class RegisterController {
     @GetMapping("/register")
     public String registerGet(){
-        return "temporary/registration";
+        return "register";
     }
 
     @PostMapping("/register")
     public String registerPost(){
-        return "temporary/registration";
+        return "register";
     }
 }
