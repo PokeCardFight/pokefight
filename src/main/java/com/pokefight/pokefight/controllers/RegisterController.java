@@ -24,10 +24,16 @@ public class RegisterController {
     }
 
     @PostMapping("/register")
-    public String registerPost(@ModelAttribute User user){
+    public String registerPost(@ModelAttribute User user, @RequestParam(name = "password-confirm") String passwordConfirm){
+        String password = user.getPassword();
+        if (!password.equals(passwordConfirm)) {
+            System.out.println("Passwords do not match.");
+            return "temporary/register";
+        }
+
         String hash = passwordEncoder.encode(user.getPassword());
         userDao.save(new User(
-            user.getUsername(),
+                user.getUsername(),
                 user.getEmail(),
                 hash,
                 "http:\\",
