@@ -8,6 +8,15 @@
         <title>Profile</title>
     </head>
     <body>
-
+    <h1>Hello, <span th:text="${username}"></span>!</h1>
+    <form th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
+        Username:
+        <input th:field="*{username}" />
+        <br />
+        Enter your new password:
+        <input th:field="*{password}" />
+        <br />
+        <input type="submit" />
+    </form>
     </body>
 </html>
