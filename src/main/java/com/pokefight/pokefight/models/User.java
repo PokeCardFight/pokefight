@@ -48,7 +48,7 @@ public class User {
     )
     private List<Card> user_cards;
 
-    public User(String username, String email, String password, String profile_pic, int gold, int xp, int level) {
+    public User( String username, String email, String password, String profile_pic, int gold, int xp, int level) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -56,6 +56,7 @@ public class User {
         this.gold = gold;
         this.xp = xp;
         this.level = level;
+
     }
 
     public User(User user) {

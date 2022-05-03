@@ -24,22 +24,27 @@ public class ProfileController {
 //    @PostMapping("/profile")
 //    public String profilePost(){ return "temporary/profile"; }
 
-    @GetMapping("/profile/{username}")
-    public String gUsers(@PathVariable String username ,Model model) {
-        User user = userDao.findByUsername(username);
-        model.addAttribute("username",user);
+    @GetMapping("/profile")
+    public String gUsers(Model model) {
+//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getById(2L);
+        model.addAttribute("user",user);
+
+        System.out.println(user.getId());
         return"temporary/profile";
 }
-    @GetMapping("/profile/edit")
-    public String editProfile( Model model) {
-        model.addAttribute("user", new User());
-        return"temporary/profile";
-    }
 
-    @PostMapping("/profile/edit")
+    @PostMapping("/profile/{id}")
     public String submitEdit(@ModelAttribute User user) {
-        userDao.save(user);
-        return "redirect:temporary/profile";
+
+        User oldUser = userDao.getById(user.getId());
+        oldUser.setUsername(user.getUsername());
+        oldUser.setPassword(user.getPassword());
+        System.out.println(user.getId());
+        System.out.println(user.getUsername());
+        userDao.save(oldUser);
+
+        return "redirect:/profile";
     }
 
 }

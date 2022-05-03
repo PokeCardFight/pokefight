@@ -16,8 +16,8 @@
     </head>
     <body>
 
-    <h1>Hello, <span th:text="${username}"></span>!</h1>
-    <form th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
+
+    <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">
         Username:
         <input th:field="*{username}" />
         <br />
