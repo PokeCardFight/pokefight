@@ -35,6 +35,6 @@ public class RegisterController {
                 0,
                 0
         ));
-        return "redirect:/splash";
+        return "redirect:/";
     }
 }
