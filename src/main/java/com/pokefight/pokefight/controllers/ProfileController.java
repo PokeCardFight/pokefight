@@ -26,8 +26,7 @@ public class ProfileController {
 
     @GetMapping("/profile")
     public String gUsers(Model model) {
-//        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        User user = userDao.getById(2L);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user",user);
 
         System.out.println(user.getId());
@@ -40,11 +39,9 @@ public class ProfileController {
         User oldUser = userDao.getById(user.getId());
         oldUser.setUsername(user.getUsername());
         oldUser.setPassword(user.getPassword());
-        System.out.println(user.getId());
-        System.out.println(user.getUsername());
         userDao.save(oldUser);
 
-        return "redirect:/profile";
+        return "redirect:/";
     }
 
 }
