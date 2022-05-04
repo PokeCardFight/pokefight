@@ -21,7 +21,7 @@ public class ContactController {
 
     @GetMapping("/contact")
     public String contactGet(){
-        return "temporary/contact";
+        return "/contactUs";
     }
 
     @PostMapping("/contact")

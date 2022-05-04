@@ -20,7 +20,7 @@ public class RegisterController {
     @GetMapping("/register")
     public String registerGet(Model model){
         model.addAttribute("user", new User());
-        return "temporary/register";
+        return "/registration";
     }
 
     @PostMapping("/register")

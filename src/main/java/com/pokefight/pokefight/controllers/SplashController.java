@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 public class SplashController {
     @GetMapping("/")
     public String splashGet(){
-        return "temporary/splash";
+        return "/index";
     }
+
 }
