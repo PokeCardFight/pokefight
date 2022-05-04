@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
     @GetMapping("/home")
     public String homeGet(){
-        return "temporary/home";
+        return "/home";
     }
 
     @PostMapping("/home")
     public String homePost(){
-        return "temporary/home";
+        return "/home";
     }
 }

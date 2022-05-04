@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 public class AboutController {
     @GetMapping("/about")
     public String aboutGet(){
-        return "temporary/about";
+        return "/aboutUs";
     }
 
     @PostMapping("/about")
     public String aboutPost(){
-        return "temporary/about";
+        return "/aboutUs";
     }
 }

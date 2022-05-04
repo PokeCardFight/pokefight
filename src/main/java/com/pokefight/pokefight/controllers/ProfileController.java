@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 public class ProfileController {
     @GetMapping("/profile")
     public String profileGet(){
-        return "temporary/profile";
+        return "/profile";
     }
 
     @PostMapping("/profile")
     public String profilePost(){
-        return "temporary/profile";
+        return "/profile";
     }
 }

@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 public class ContactController {
     @GetMapping("/contact")
     public String contactGet(){
-        return "temporary/contact";
+        return "/contactUs";
     }
 
     @PostMapping("/contact")
     public String contactPost(){
-        return "temporary/contact";
+        return "/contactUs";
     }
 }

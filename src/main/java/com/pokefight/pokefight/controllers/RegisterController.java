@@ -20,7 +20,7 @@ public class RegisterController {
     @GetMapping("/register")
     public String registerGet(Model model){
         model.addAttribute("user", new User());
-        return "temporary/register";
+        return "/registration";
     }
 
     @PostMapping("/register")
@@ -35,6 +35,6 @@ public class RegisterController {
                 0,
                 0
         ));
-        return "redirect:temporary/splash";
+        return "redirect:/index";
     }
 }
