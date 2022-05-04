@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/fragments :: header(title='splash')" ></head>
+<head>
+    <div th:include="partials/fragments :: header(title='Battle!')"></div>
+</head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
 
