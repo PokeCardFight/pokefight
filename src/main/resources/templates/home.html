@@ -3,30 +3,31 @@
 <head>
     <div th:include="partials/fragments :: header(title='Home')"></div>
 </head>
-<body>
+<body style="background-color:lightslategray ">
 <nav th:replace="partials/fragments :: navbar"></nav>
 
-<h1>this will become our home page</h1>
+
 <!-- Home page basic shell V1-->
 <div class="container">
     <div class="row">
 
         <div id="myProfile" class="col-4 border-success">
             <div class="card" style="width: 18rem;">
-<!--                <img src="..." class="card-img-top" alt="...">-->
+                <img src="..." class="card-img-top" alt="Profile Pic">
                 <div class="card-body">
                     <h5 class="card-title">USER NAME HERE</h5>
 
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Wins/losses </li>
-                    <li class="list-group-item">XP(use a bar here if possible) </li>
+                    <li class="list-group-item">Wins/losses</li>
+                    <li class="list-group-item">XP(use a bar here if possible)</li>
                     <li class="list-group-item">Level</li>
+                    <li class="list-group-item">Gold</li>
                 </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
+                <!--                <div class="card-body">-->
+                <!--                    <a href="#" class="card-link">Card link</a>-->
+                <!--                    <a href="#" class="card-link">Another link</a>-->
+                <!--                </div>-->
             </div>
 
         </div>
@@ -34,23 +35,81 @@
 
         <div id="myCards" class="col col-4 border border-2">
             <div class="col">
+                <!--                card template for pokemon cards -->
+                <div>INSERT CARD FROM API</div>
+                <button type="button" class="btn btn-primary">I CHOSE YOU</button>
 
-                CARDS ARE HERE
-                CARDS ARE HERE
-                CARDS ARE HERE
-                CARDS ARE HERE
             </div>
 
         </div>
         <!--        store and pouch section V1-->
 
         <div class="col border border-2 col">
-            <div id= "items" >
-                <div class="row" id="store">
-                    items for sale go here
-                </div>
-                <div class="row"   id="pouches">
-                    pouches go here
+            <div class="container" id="items">
+                <div>
+                    <h5 class="text">Store</h5>
+                    <div class="row" id="store">
+                        <div class="col-4 border border-2"><a href="#">Item will here</a>
+                            <input  type=number min=1 max=10>
+                            <button onclick="increment()">+</button>
+                            <button onclick="decrement()">-</button>
+                        </div>
+                        <div class="col-4 border border-2"><a href="#">Item will here</a>
+                            <input  type=number min=1 max=10>
+                            <button onclick="increment()">+</button>
+                            <button onclick="decrement()">-</button>
+                        </div>
+                        <div class="col-4 border border-2"><a href="#">Item will here</a>
+                            <input id=demoInput type=number min=1 max=10>
+                            <button onclick="increment()">+</button>
+                            <button onclick="decrement()">-</button></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-4 border border-2"><a href="#">Item will here</a>
+                            <input  type=number min=1 max=10>
+                            <button onclick="increment()">+</button>
+                            <button onclick="decrement()">-</button>
+                        </div>
+                        <div class="col-4 border border-2"><a href="#">Item will here</a>
+                            <input  type=number min=1 max=10>
+                            <button onclick="increment()">+</button>
+                            <button onclick="decrement()">-</button>
+                        </div>
+                        <div class="col-4 border border-2"><a href="#">Item will here</a>
+                            <input  type=number min=1 max=10>
+                            <button onclick="increment()">+</button>
+                            <button onclick="decrement()">-</button>
+                        </div>
+                    </div>
+                    <div class="row justify-content-md-center">
+                        total (insert total cost of selected items)
+                    </div>
+                    <div class="row justify-content-md-center">
+                        <input type="submit" value="BUY">
+                    </div>
+
+
+                    <hr>
+                    <h5>Pouches</h5>
+                    <div class="row" id="pouches">
+                        <div class=" col border border-2">
+                            <div class="col">ROCK</div>
+                            <div class="col">STICK</div>
+                            <div class="col">TREAT</div>
+                        </div>
+                        <div class="col-4 border border-2">
+                            <div class="col">PROTEIN BAR</div>
+                            <div class="col">Bandage</div>
+                            <div class="col">Potion</div>
+                        </div>
+                        <div class="col border border-2">
+                            <div class="col">Stick</div>
+                            <div class="col">Treat</div>
+                            <div class="col">Potion</div>
+                        </div>
+
+
+                    </div>
                 </div>
             </div>
 
@@ -67,6 +126,7 @@
 </div>
 
 <div th:include="partials/fragments :: footer"></div>
+
 </body>
 
 </html>

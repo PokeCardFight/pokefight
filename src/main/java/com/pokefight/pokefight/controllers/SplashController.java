@@ -10,8 +10,4 @@ public class SplashController {
         return "/index";
     }
 
-    @PostMapping("/")
-    public String splashPost(){
-        return "/index";
-    }
 }

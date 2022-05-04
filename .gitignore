@@ -1,3 +1,4 @@
+
 HELP.md
 target/
 !.mvn/wrapper/maven-wrapper.jar
@@ -5,6 +6,7 @@ target/
 !**/src/test/**/target/
 src/main/resources/application.properties
 src/main/resources/static/js/APIKEY.js
+
 ### STS ###
 .apt_generated
 .classpath
