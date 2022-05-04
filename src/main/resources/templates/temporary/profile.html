@@ -60,18 +60,38 @@
 //     });
 // });
 
-$("#submit").click(function () {
-    const image = {image:"string"};
-    $.ajax({
-        type: "POST",
-        url: '/profile/{id}',
-        dataType : "JSON",
-        data : {image:"image"},
+// $("#submit").click(function () {
+//     const image = {image:"string"};
+//     $.ajax({
+//         type: "POST",
+//         url: '/profile/{id}',
+//         dataType : "JSON",
+//         data : {image:"image"},
+//
+//         success: function(response) {
+//             console.log(response.Name);
+//         }
+//     });
+// });
 
-        success: function(response) {
-            console.log(response.Name);
-        }
+    $("#submit").click(function () {
+        $.ajax({
+            let imageURL = 'http://';
+
+            type : "POST",
+            url : "/search/api/getSearchResult",
+            data : { url: imageURL},
+            timeout : 100000,
+            success : function(imageURL) {
+                console.log("SUCCESS: ", imageURL);
+            },
+            error : function(e) {
+                console.log("ERROR: ", e);
+            },
+            done : function(e) {
+                console.log("DONE");
+            }
+        });
     });
-});
     </script>
 </html>
