@@ -1,14 +1,12 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-<div th:include="partials/fragments :: header(title='Profile')"></div>
-    <link rel="stylesheet" href="/static/css/profile.css" >
+    <div th:include="partials/fragments :: header(title='Profile')"></div>
+    <link rel="stylesheet" href="/static/css/profile.css">
 </head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
 
-<h1>this will become our profile page</h1>
-<br>
 <!--base profile card-->
 <div class="container container-fluid border border-warning p-5 profile-card text-center">
     <div class="top container col-12 align-items-center">
@@ -18,37 +16,59 @@
         <button id="edit-pic">edit picture</button>
     </div>
     <div class="w-100 my-5"></div>
-    <div class="col-12 my-5"><h4>username here</h4></div>
-    <div class="col-12 my-3"><h4>password here</h4></div>
+    <div class="col-12 my-5">
+        <h4>username here</h4>
+    </div>
+    <div class="col-12 my-3">
+        <h4>password here</h4>
+    </div>
     <div class="col-12 my-3">
         <button id="edit-prof">edit profile</button>
     </div>
 </div>
 
+
 <!--edit profile form-->
 <div id="edit-profile" class="hidden">
-    <div class="container container-fluid border border-warning p-5 profile-card text-center">
+    <div class="formBackground"></div>
+    <div class="container container-fluid border border-warning p-5 profile-card popup_form text-center">
         <div class="top container col-12 align-items-center">
-            <div id="close-edit" class="X p-2 float-right">X</div><!--close button will change-->
+            <button id="close-edit" class="X p-2 float-right">X</button><!--close button will change-->
             <img src="/static/img/ph300.png" alt="profile image">
         </div>
         <div class="col-12 my-2">
-            <button id="">edit picture</button>
+            <button id="pic-from-edit">edit picture</button>
         </div>
         <div class="w-100 my-5"></div>
-        <div class="col-12 my-5"><h4>username here</h4></div>
-        <div class="col-12 my-3"><h4>password here</h4></div>
-        <div class="col-12 my-3">
-            <button>submit</button>
+        <form method="post"> <!--replace with thymeleaf that is in comments th:action="@{/profile/edit}" th:method="post" th:object="@{User}"-->
+            <label for="username">Username:</label>
+            <!--<input th:field="*{username}" />-->
+            <label for="username"></label>
+            <input name="username" id="username" />
+            <br>
+            <label for="password">Password:</label>
+            <!--<input th:field="*{Password}" />-->
+            <input  name="password" id="password" />
+            <br>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input  name="confirmPassword" id="confirmPassword" />
+            <br>
+            <label for="email">Email:</label>
+            <!--<input th:field="*{email}" />-->
+            <input  name="email" id="email" />
+            <br>
+            <input type="submit" />
+        </form>
         </div>
     </div>
 </div>
 
 <!--edit picture form-->
 <div id="edit-picture" class="hidden">
-    <div class="container container-fluid border border-warning p-5 profile-card text-center">
+    <div class="formBackground"></div>
+    <div class="container container-fluid border border-warning popup_form p-5 profile-card text-center">
         <div class="top container col-12 align-items-center">
-            <div id="close-pic" class="X p-2 float-right">X</div><!--close button will change-->
+            <button id="close-pic" class="X p-2 float-right">X</button><!--close button will change-->
             <img src="/static/img/ph300.png" alt="profile image">
         </div>
         <div class="box">
