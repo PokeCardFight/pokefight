@@ -1,30 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="pokefight/partials/fragments :: header(title='splash')" ></head>
+<head th:replace="/partials/fragments :: header(title='splash')"></head>
 <body>
-<nav th:replace="pokefight/partials/fragments :: navbar"></nav>
+<nav th:replace="/partials/fragments :: navbar"></nav>
 
-<h1>this will become our home page</h1>
+
 <!-- Home page basic shell V1-->
 <div class="container">
     <div class="row">
 
         <div id="myProfile" class="col-4 border-success">
             <div class="card" style="width: 18rem;">
-                <img src="..." class="card-img-top" alt="...">
+                <img src="..." class="card-img-top" alt="Profile Pic">
                 <div class="card-body">
                     <h5 class="card-title">USER NAME HERE</h5>
 
                 </div>
                 <ul class="list-group list-group-flush">
-                    <li class="list-group-item">Wins/losses </li>
-                    <li class="list-group-item">XP(use a bar here if possible) </li>
+                    <li class="list-group-item">Wins/losses</li>
+                    <li class="list-group-item">XP(use a bar here if possible)</li>
                     <li class="list-group-item">Level</li>
+                    <li class="list-group-item">Gold</li>
                 </ul>
-                <div class="card-body">
-                    <a href="#" class="card-link">Card link</a>
-                    <a href="#" class="card-link">Another link</a>
-                </div>
+                <!--                <div class="card-body">-->
+                <!--                    <a href="#" class="card-link">Card link</a>-->
+                <!--                    <a href="#" class="card-link">Another link</a>-->
+                <!--                </div>-->
             </div>
 
         </div>
@@ -32,11 +33,11 @@
 
         <div id="myCards" class="col col-4 border border-2">
             <div class="col">
-<!--                card template for pokemon cards -->
+                <!--                card template for pokemon cards -->
                 <div class="card" style="width: 18rem;">
                     <img src="..." class="card-img-top" alt="pokemon card from api">
                     <div class="card-body">
-<!--                            used to select card for battle-->
+                        <!--                            used to select card for battle-->
                         <a href="#" class="btn btn-primary">I choose you</a>
                     </div>
                 </div>
@@ -48,15 +49,17 @@
 
         <div class="col border border-2 col">
             <div class="container" id="items">
-                <div class="col">
-                    <h5>Store</h5>
+                <div>
+                    <h5 class="text">Store</h5>
                     <div class="row" id="store">
-                        <div><a href="#">Item will here</a></div>
-                        <div><a href="#">Item will here</a></div>
-                        <div><a href="#">Item will here</a></div>
-                        <div><a href="#">Item will here</a></div>
-                        <div><a href="#">Item will here</a></div>
-                        <div><a href="#">Item will here</a></div>
+                        <div class="col-4"><a href="#">Item will here</a></div>
+                        <div class="col-4"><a href="#">Item will here</a></div>
+                        <div class="col-4"><a href="#">Item will here</a></div>
+                        <div class="row">
+                            <div class="col-4"><a href="#">Item will here</a></div>
+                            <div class="col-4"><a href="#">Item will here</a></div>
+                            <div class="col-4"><a href="#">Item will here</a></div>
+                        </div>
 
 
                     </div>
@@ -66,7 +69,7 @@
                         <div class=" col border border-2">
                             <div class="col">ROCK</div>
                             <div class="col">STICK</div>
-                            <div class="col" >TREAT</div>
+                            <div class="col">TREAT</div>
                         </div>
                         <div class="col border border-2">
                             <div class="col">PROTEIN BAR</div>
@@ -96,7 +99,7 @@
     </div>
 </div>
 
-<div th:include="pokefight/partials/fragments :: footer"></div>
+<div th:include="/partials/fragments :: footer"></div>
 </body>
 
 </html>
