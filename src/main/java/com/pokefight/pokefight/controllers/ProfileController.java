@@ -36,7 +36,7 @@ public class ProfileController {
 
     @PostMapping("/profile/{id}")
     public String submitEdit(@ModelAttribute User user) {
-        System.out.println(image);
+//        System.out.println(image);
         User oldUser = userDao.getById(user.getId());
         oldUser.setUsername(user.getUsername());
         oldUser.setPassword(user.getPassword());
@@ -45,7 +45,13 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-
+    // Receives String from JavaScript
+    @ResponseBody
+    @PostMapping("/search/api/getSearchResult")
+    public String getSearchResultViaAjax(@RequestParam(value = "url") String url) {
+        System.out.println("Picture URL: "+ url);
+        return "hello";
+    }
 
 
 }
