@@ -10,7 +10,6 @@ public class HomeController {
     @GetMapping("/home")
     public String homeGet(){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("user.getUsername() = " + user.getUsername());
         return "temporary/home";
     }
 
