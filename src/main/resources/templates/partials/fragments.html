@@ -1,18 +1,17 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
-<div th:fragment="header(title)">
-    <meta charset="UTF-8" />
-    <title th:text="${title}">title</title>
-    <!-- add title tag to your html page to make the unique title -->
-    <!-- include stylesheets, etc here -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
-</div>
+    <div th:fragment="header(title)">
+        <meta charset="UTF-8"/>
+        <title th:text="${title}">title</title>
+        <!-- add title tag to your html page to make the unique title -->
+        <!-- include stylesheets, etc here -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+              integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
+              crossorigin="anonymous">
+    </div>
 </head>
 <body>
-
-
-
 
 
 <nav th:fragment="navbar" class="navbar navbar-default">
@@ -20,8 +19,9 @@
     <div class="container-fluid">
         <!--Brand and toggle get grouped for better mobile display-->
         <div class="navbar-header">
-            <a class="navbar-brand" th:href="@{/}"  style = "font-family:'Orbitron',sans-serif; font-size: 25px; color:#483112">
-            <img src="#" width="50px" height="50px" alt="logo.jpg">
+            <a class="navbar-brand" th:href="@{/}"
+               style="font-family:'Orbitron',sans-serif; font-size: 25px; color:#483112">
+                <img src="#" width="50px" height="50px" alt="logo.jpg">
             </a>
         </div>
 
@@ -30,11 +30,23 @@
             <a th:href="@{/contact}">Contact us</a>
             <a th:href="@{/battle}">Battle</a>
             <a th:href="@{/home}">Home</a>
-            <a th:href="@{/profile}">Profile</a>
+            <div sec:authorize="isAnonymous()"> <!--if  not logged in show. might need "spring dialect"-->
             <a th:href="@{/register}">Sign up</a>
-            <form th:action="@{/logout}" th:method="post">
-                <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-            </form>
+                </div>
+            <div sec:authorize="isAuthenticated()"> <!--only shows up after security login-->
+                <a th:href="@{/profile}"><span th:text="${#authentication.principal.username}"></span></a>
+                <form th:action="@{/logout}" th:method="post">
+                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+                </form>
+            </div>
+
+            <!--                <c:otherwise>-->
+            <!--                    <div class="nav navbar-nav">-->
+            <!--                        <div><a  href="<c:url value="http://localhost:8080/login"/>">Login</a></div>-->
+            <!--                        <div><a  href="<c:url value="http://localhost:8080/register"/>">Sign up</a></div>-->
+            <!--                    </div>-->
+            <!--                </c:otherwise>-->
+
 
         </div>
 
@@ -43,30 +55,13 @@
             This content is only shown to authenticated users.
 
             User ID: <span th:text="${#authentication.principal.id}"/>
-            Username: <span th:text="${#authentication.principal.username}"/>
+            Username:
             Email: <span th:text="${#authentication.principal.email}"/>
         </div>  method of authentication once we include spring security-->
-        <!--        method of showing login / logout and user from previous project to transform after security added
-                    <c:choose>
-                        <c:when test="${sessionScope.user != null}">
-                            <div class="nav navbar-nav">
-                                <a href="<c:url value="http://localhost:8080/profile"/>"><c:out value="${sessionScope.user.username}" /></a>
-                                <a href="<c:url value="http://localhost:8080/logout"/>">Logout</a>
-                            </div>
-                        </c:when>
-                        <c:otherwise>
-                            <div class="nav navbar-nav">
-                                <div><a  href="<c:url value="http://localhost:8080/login"/>">Login</a></div>
-                                <div><a  href="<c:url value="http://localhost:8080/register"/>">Sign up</a></div>
-                            </div>
-                        </c:otherwise>
-                    </c:choose>
-        -->
 
 
     </div> <!--container fluid close-->
 </nav>
-
 
 
 <div th:fragment="footer">
