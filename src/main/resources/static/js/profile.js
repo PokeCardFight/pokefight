@@ -22,3 +22,22 @@ $("#pic-from-edit").click(() => {
     $("#edit-profile").toggleClass("hidden active");
     $("#edit-picture").toggleClass("hidden active");
 })
+
+$("#submit").click(function () {
+    let imageURL = $("#fileupload").val();
+    $.ajax({
+        type: "POST",
+        url: "/search/api/getSearchResult",
+        data: {url: imageURL},
+        timeout: 100000,
+        success: function (imageURL) {
+            console.log("SUCCESS: ", imageURL);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+        },
+        done: function (e) {
+            console.log("DONE");
+        }
+    });
+});

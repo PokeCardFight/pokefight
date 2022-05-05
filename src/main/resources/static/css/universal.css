@@ -1,6 +1,3 @@
-.hidden{
-    visibility: hidden;
-}
-.active{
-    visibility: visible;
+body{
+    background: url("/static/img/samplebackground.png") no-repeat fixed;
 }
