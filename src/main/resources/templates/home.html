@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head th:replace="/partials/fragments :: header(title='splash')"></head>
-<body >
+<body>
 <nav th:replace="/partials/fragments :: navbar"></nav>
 
 
@@ -48,33 +48,34 @@
                     <h5 class="text">Store</h5>
                     <div class="row" id="store">
                         <div class="col-4 border border-2"><a href="#">Item will here</a>
-                            <input  type=number min=1 max=10>
+                            <input type=number min=1 max=10>
                             <button onclick="increment()">+</button>
                             <button onclick="decrement()">-</button>
                         </div>
                         <div class="col-4 border border-2"><a href="#">Item will here</a>
-                            <input  type=number min=1 max=10>
+                            <input type=number min=1 max=10>
                             <button onclick="increment()">+</button>
                             <button onclick="decrement()">-</button>
                         </div>
                         <div class="col-4 border border-2"><a href="#">Item will here</a>
                             <input id=demoInput type=number min=1 max=10>
                             <button onclick="increment()">+</button>
-                            <button onclick="decrement()">-</button></div>
+                            <button onclick="decrement()">-</button>
+                        </div>
                     </div>
                     <div class="row">
                         <div class="col-4 border border-2"><a href="#">Item will here</a>
-                            <input  type=number min=1 max=10>
+                            <input type=number min=1 max=10>
                             <button onclick="increment()">+</button>
                             <button onclick="decrement()">-</button>
                         </div>
                         <div class="col-4 border border-2"><a href="#">Item will here</a>
-                            <input  type=number min=1 max=10>
+                            <input type=number min=1 max=10>
                             <button onclick="increment()">+</button>
                             <button onclick="decrement()">-</button>
                         </div>
                         <div class="col-4 border border-2"><a href="#">Item will here</a>
-                            <input  type=number min=1 max=10>
+                            <input type=number min=1 max=10>
                             <button onclick="increment()">+</button>
                             <button onclick="decrement()">-</button>
                         </div>
@@ -90,20 +91,44 @@
                     <hr>
                     <h5>Pouches</h5>
                     <div class="row" id="pouches">
-                        <div class="  tab bat col border border-2">
-                            <div class="col">ROCK</div>
-                            <div class="col">STICK</div>
-                            <div class="col">TREAT</div>
+                        <div id="pouch1" class="  tab bat col border border-2">
+                            <ul>
+                                <li>
+                                    <div >ROCK</div>
+                                </li>
+                                <li>
+                                    <div >STICK</div>
+                                </li>
+                                <li>
+                                    <div >TREAT</div>
+                                </li>
+                            </ul>
                         </div>
-                        <div class="tab bat col-4 border border-2">
-                            <div class="col">PROTEIN BAR</div>
-                            <div class="col">Bandage</div>
-                            <div class="col">Potion</div>
+                        <div id="pouch2" class="tab bat col-4 border border-2">
+                            <ul>
+                                <li>
+                                    <div >ROCK</div>
+                                </li>
+                                <li>
+                                    <div >STICK</div>
+                                </li>
+                                <li>
+                                    <div >TREAT</div>
+                                </li>
+                            </ul>
                         </div>
-                        <div class=" tab bat col border border-2">
-                            <div class="col">Stick</div>
-                            <div class="col">Treat</div>
-                            <div class="col">Potion</div>
+                        <div id="pouch3" class=" tab bat col border border-2">
+                            <ul>
+                                <li>
+                                    <div >ROCK</div>
+                                </li>
+                                <li>
+                                    <div >STICK</div>
+                                </li>
+                                <li>
+                                    <div >TREAT</div>
+                                </li>
+                            </ul>
                         </div>
 
 
@@ -117,7 +142,7 @@
     </div>
     <!--    place holder battle button-->
     <div class="row">
-        <div id= "battle" class="mx-auto" style="width: 200px;">
+        <div id="battle" class="mx-auto" style="width: 200px;">
             <button>Battle Now</button>
         </div>
     </div>
@@ -129,7 +154,7 @@
         $.ajax({
             type: "POST",
             url: "/home",
-            data: {pouch_id:1,card_id:1},
+            data: {pouch_id: 1, card_id: 1},
             timeout: 100000,
             success: function (imageURL) {
                 console.log("SUCCESS: ", imageURL);
@@ -142,7 +167,7 @@
             }
         });
     });
-    $('.tab').click(function() {
+    $('.tab').click(function () {
         $(this).addClass('active').siblings().removeClass('active');
     });
 </script>
