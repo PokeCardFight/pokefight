@@ -108,6 +108,7 @@ public class User {
     }
 
     public String getProfile_pic() {
+
         return profile_pic;
     }
 

@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="pokefight/partials/fragments :: header(title='Profile')" ></head>
+<head th:replace="partials/fragments :: header(title='Profile')" ></head>
 <body>
-<nav th:replace="pokefight/partials/fragments :: navbar"></nav>
+<nav th:replace="partials/fragments :: navbar"></nav>
 
-<h1>this will become our profile page</h1>
+<h1>Profile Page</h1>
+<form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">
+    Username:
+    <input th:field="*{username}" />
+    <br />
+    Change your password:
+    <input id="pass" name="password" type="password" />
+    <br />
+    Change your Email:
+    <input th:field="*{email}"/>
+    <br />
+    Level:
+    <h3 th:text="*{level}" ></h3>
+    Gold:
+    <h3 th:text="*{gold}" ></h3>
+    XP:
+    <h3 th:text="*{xp}" ></h3>
+
+    <input type="submit" id="submit">
+</form>
+
+
+<a href="/home" class="link-dark">Home</a>
+<a href="/profile" class="link-dark">Profile</a>
+<a href="/contact" class="link-dark">Contact</a>
+<a href="/about" class="link-dark">About</a>
+<form th:action="@{/logout}" th:method="post">
+    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+</form>
+<br><hr>
 
 <div class="box">
     <form id="pick-form">
@@ -27,11 +56,32 @@
 <!--<iframe width="560" height="315" src="../static/js/Filestack.js" allowfullscreen></iframe>-->
 
 
-<div th:include="pokefight/partials/fragments :: footer"></div>
+<div th:include="partials/fragments :: footer"></div>
 <!--<script src="/static/js/jquery-2.x-git.js"></script>-->
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
 <script src="/static/js/APIKEY.js"></script>
 <script src="/static/js/Filestack.js"></script>
+<script>
+$("#submit").click(function () {
+let imageURL = $("#fileupload").val();
+$.ajax({
 
+
+type: "POST",
+url: "/search/api/getSearchResult",
+data: {url:imageURL},
+timeout: 100000,
+success: function (imageURL) {
+console.log("SUCCESS: ", imageURL);
+},
+error: function (e) {
+console.log("ERROR: ", e);
+},
+done: function (e) {
+console.log("DONE");
+}
+});
+});
+</script>
 </body>
 </html>
