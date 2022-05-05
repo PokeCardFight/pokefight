@@ -11,7 +11,7 @@ public class HomeController {
     public String homeGet(){
 
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        return "temporary/home";
+        return "/home";
     }
 
     @PostMapping("/home")
