@@ -7,11 +7,11 @@ import org.springframework.web.bind.annotation.*;
 public class BattleController {
     @GetMapping("/battle")
     public String aboutGet(){
-        return "temporary/battle";
+        return "/battle";
     }
 
     @PostMapping("/battle")
     public String aboutPost(){
-        return "temporary/battle";
+        return "/battle";
     }
 }

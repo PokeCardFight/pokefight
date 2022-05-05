@@ -1,9 +1,84 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/fragments :: header(title='Profile')" ></head>
+
+                  
+<head>
+    <div th:include="partials/fragments :: header(title='Profile')"></div>
+    <link rel="stylesheet" href="/static/css/profile.css">
+</head>
+
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
 
+
+<form th:action="@{/logout}" th:method="post">
+    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+</form>
+<br><hr>
+  
+  
+
+  
+<!--base profile card-->
+<div class="container container-fluid border border-warning p-5 profile-card text-center">
+    <div class="top container col-12 align-items-center">
+        <img src="/static/img/ph300.png" alt="profile image">
+    </div>
+    <div class="col-12 my-2">
+        <button id="edit-pic">edit picture</button>
+    </div>
+    <div class="w-100 my-5"></div>
+    <div class="col-12 my-5">
+        <h4>username here</h4>
+    </div>
+    <div class="col-12 my-3">
+        <h4>password here</h4>
+    </div>
+    <div class="col-12 my-3">
+        <button id="edit-prof">edit profile</button>
+    </div>
+</div>
+
+
+
+<!--edit profile form-->
+<div id="edit-profile" class="hidden">
+    <div class="formBackground"></div>
+    <div class="container container-fluid border border-warning p-5 profile-card popup_form text-center">
+        <div class="top container col-12 align-items-center">
+            <button id="close-edit" class="X p-2 float-right">X</button><!--close button will change-->
+            <img src="/static/img/ph300.png" alt="profile image">
+        </div>
+        <div class="col-12 my-2">
+            <button id="pic-from-edit">edit picture</button>
+        </div>
+        <div class="w-100 my-5"></div>
+        <form method="post"> <!--replace with thymeleaf that is in comments th:action="@{/profile/edit}" th:method="post" th:object="@{User}"-->
+            <label for="username">Username:</label>
+            <!--<input th:field="*{username}" />-->
+            <label for="username"></label>
+            <input name="username" id="username" />
+            <br>
+            <label for="password">Password:</label>
+            <!--<input th:field="*{Password}" />-->
+            <input  name="password" id="password" />
+            <br>
+            <label for="confirmPassword">Confirm Password:</label>
+            <input  name="confirmPassword" id="confirmPassword" />
+            <br>
+            <label for="email">Email:</label>
+            <!--<input th:field="*{email}" />-->
+            <input  name="email" id="email" />
+            <br>
+            <input type="submit" />
+        </form>
+        </div>
+    </div>
+</div>
+
+  
+  <!--noah's form to add into html-->
+ 
 <h1>Profile Page</h1>
 <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">
     Username:
@@ -24,49 +99,110 @@
 
     <input type="submit" id="submit">
 </form>
-
-
-<a href="/home" class="link-dark">Home</a>
-<a href="/profile" class="link-dark">Profile</a>
-<a href="/contact" class="link-dark">Contact</a>
-<a href="/about" class="link-dark">About</a>
-<form th:action="@{/logout}" th:method="post">
-    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-</form>
-<br><hr>
-
-<div class="box">
-    <form id="pick-form">
-        <div class="field">
-            <div class="control">
-                <button class="button" type="button" id="picker">Pick file</button>
-                <input type="hidden" id="fileupload">
-            </div>
-            <div class="control" id="nameBox"></div>
-            <div class="control" id="urlBox"></div>
+  <!--noah's form to add into html-->
+  
+  
+  
+<!--edit picture form-->
+<div id="edit-picture" class="hidden">
+    <div class="formBackground"></div>
+    <div class="container container-fluid border border-warning popup_form p-5 profile-card text-center">
+        <div class="top container col-12 align-items-center">
+            <button id="close-pic" class="X p-2 float-right">X</button><!--close button will change-->
+            <img src="/static/img/ph300.png" alt="profile image">
         </div>
-        <div class="field">
-            <div class="control">
-                <input class="button" type="submit" value="Submit">
-            </div>
+        <div class="box">
+            <form id="pick-form">
+                <div class="field">
+                    <div class="control">
+                        <button class="button" type="button" id="picker">Pick file</button>
+                        <input type="hidden" id="fileupload">
+                    </div>
+                    <div class="control" id="nameBox"></div>
+                    <div class="control" id="urlBox"></div>
+                </div>
+                <div class="field">
+                    <div class="control">
+                        <input class="button" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>
         </div>
-    </form>
+    </div>
 </div>
+
+
+<!--
+<div id="form" class="formBackground none">
+    <div class="popup_form">
+        <button id="close" class="close btn-design"><i class="fa-solid fa-trash-can"></i> Close this form</button>
+        <form>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="input_Title">Title</label>
+                    <input class="form-control" id="input_Title">
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="input_Rating">Rating</label>
+                    <input class="form-control" id="input_Rating">
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="input_Year">Year</label>
+                <input class="form-control" id="input_Year">
+            </div>
+            <div class="form-group">
+                <label for="input_Director">Director</label>
+                <input class="form-control" id="input_Director">
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="input_Plot">Plot</label>
+                    <input class="form-control" id="input_Plot">
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="input_Genre">Genre</label>
+                    <select id="input_Genre" class="form-control">
+                        <option selected>Choose...</option>
+                        <option>Horror</option>
+                        <option>Sci-Fi</option>
+                        <option>ROMCOM</option>
+                        <option>Adventure</option>
+                        <option>Action</option>
+                        <option>Drama</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-2">
+                    <label for="input_Actors">Actors</label>
+                    <input type="text" class="form-control" id="input_Actors">
+                </div>
+            </div>
+            <div class="text-center">
+                <img src='assets/button2.png' alt='Edit' id="Edit_btn" class='edit text-left none' height='50px' width='80px' style="cursor: pointer">
+                &lt;!&ndash;<button id="Edit_btn" class="btn btn-primary none">edit</button>&ndash;&gt;
+                &lt;!&ndash;<button id="add_btn" class="btn btn-primary none">Submit</button>&ndash;&gt;
+                <img src='assets/button3.png' alt='submit' id="add_btn" class='text-left none' height='50px' width='80px' style="cursor: pointer">
+            </div>
+        </form>
+    </div>
+</div>
+
+-->
 
 <!--<iframe width="560" height="315" src="../static/js/Filestack.js" allowfullscreen></iframe>-->
 
 
 <div th:include="partials/fragments :: footer"></div>
-<!--<script src="/static/js/jquery-2.x-git.js"></script>-->
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
 <script src="/static/js/APIKEY.js"></script>
 <script src="/static/js/Filestack.js"></script>
-<script>
+<script src="/static/js/profile.js"></script>
+  
+  <script>
 $("#submit").click(function () {
 let imageURL = $("#fileupload").val();
 $.ajax({
-
-
 type: "POST",
 url: "/search/api/getSearchResult",
 data: {url:imageURL},

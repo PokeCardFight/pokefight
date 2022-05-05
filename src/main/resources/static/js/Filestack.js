@@ -1,5 +1,5 @@
 $(function() {
-console.log("file ran")
+// console.log("file ran")
 // Set up the picker
 const client = filestack.init(APIKEY);
 const options = {
@@ -22,7 +22,7 @@ const urlBox = document.getElementById('urlBox');
 
 btn.addEventListener('click', function (e) {
     e.preventDefault();
-    console.log("you opened the form!!")
+    // console.log("you opened the form!!")
     picker.open();
 });
 
