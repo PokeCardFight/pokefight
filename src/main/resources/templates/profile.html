@@ -29,11 +29,30 @@
     </div>
     <div class="w-100 my-5"></div>
     <div class="col-12 my-5">
-        <h4>username here</h4>
+        Username:
+        <h4 th:text="${user.getUsername()}">username here</h4>
     </div>
     <div class="col-12 my-3">
-        <h4>password here</h4>
+        Password:
+        <h4 th:text="${user.getPassword()}">password here</h4>
     </div>
+    <div class="col-12 my-3">
+        Email:
+        <h4 th:text="${user.getEmail()}">email here</h4>
+    </div>
+    <div class="col-12 my-3">
+        Level:
+        <h3 th:text="*{user.getLevel()}" ></h3>
+    </div>
+    <div class="col-12 my-3">
+        Gold:
+        <h3 th:text="*{user.getGold()}" ></h3>
+    </div>
+    <div class="col-12 my-3">
+        XP:
+        <h3 th:text="*{user.getXp()}" ></h3>
+    </div>
+
     <div class="col-12 my-3">
         <button id="edit-prof">edit profile</button>
     </div>
@@ -53,23 +72,37 @@
             <button id="pic-from-edit">edit picture</button>
         </div>
         <div class="w-100 my-5"></div>
-        <form method="post"> <!--replace with thymeleaf that is in comments th:action="@{/profile/edit}" th:method="post" th:object="@{User}"-->
-            <label for="username">Username:</label>
-            <!--<input th:field="*{username}" />-->
-            <label for="username"></label>
-            <input name="username" id="username" />
+        <!--<form method="post">-->
+        <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">
+<!--            <label for="username">Username:</label>-->
+            Username:
+            <input th:field="*{username}" />
             <br>
-            <label for="password">Password:</label>
-            <!--<input th:field="*{Password}" />-->
-            <input  name="password" id="password" />
+<!--            <label for="username"></label>-->
+<!--            <input name="username" id="username" />-->
+<!--            <br>-->
+            Change your password:
+
+            <input id="pass" name="password" type="password" />
             <br>
-            <label for="confirmPassword">Confirm Password:</label>
-            <input  name="confirmPassword" id="confirmPassword" />
+            Confirm password:
+
+            <input id="confirmPass" name="confirmPassword" type="password" />
             <br>
-            <label for="email">Email:</label>
-            <!--<input th:field="*{email}" />-->
-            <input  name="email" id="email" />
-            <br>
+
+<!--            <label for="password">Password:</label>-->
+<!--            <input  name="password" id="password" />-->
+<!--            <br>-->
+<!--            <label for="confirmPassword">Confirm Password:</label>-->
+<!--            <input  name="confirmPassword" id="confirmPassword" />-->
+<!--            <br>-->
+
+            Change your Email:
+            <input th:field="*{email}"/>
+            <br />
+<!--            <label for="email">Email:</label>-->
+<!--            <input  name="email" id="email" />-->
+
             <input type="submit" />
         </form>
         </div>
@@ -79,27 +112,7 @@
   
   <!--noah's form to add into html-->
  
-<h1>Profile Page</h1>
-<form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">
-    Username:
-    <input th:field="*{username}" />
-    <br />
-    Change your password:
-    <input id="pass" name="password" type="password" />
-    <br />
-    Change your Email:
-    <input th:field="*{email}"/>
-    <br />
-    Level:
-    <h3 th:text="*{level}" ></h3>
-    Gold:
-    <h3 th:text="*{gold}" ></h3>
-    XP:
-    <h3 th:text="*{xp}" ></h3>
-
-    <input type="submit" id="submit">
-</form>
-  <!--noah's form to add into html-->
+<!--noah's form to add into html-->
   
   
   
