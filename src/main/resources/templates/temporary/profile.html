@@ -21,10 +21,20 @@
         Username:
         <input th:field="*{username}" />
         <br />
-        Enter your new password:
-        <input th:field="*{password}" />
+        Change your password:
+        <input id="pass" name="password" type="password" />
         <br />
-        <input type="submit" id="submit"/>
+        Change your Email:
+        <input th:field="*{email}"/>
+        <br />
+        Level:
+        <h3 th:text="*{level}" ></h3>
+        Gold:
+        <h3 th:text="*{gold}" ></h3>
+        XP:
+        <h3 th:text="*{xp}" ></h3>
+
+        <input type="submit" id="submit">
     </form>
 
 
@@ -46,52 +56,26 @@
     </body>
     <script>
 
-// $("#submit").click(function () {
-//     const request = {image: "string"}
-//     $.ajax({
-//         type: "POST",
-//         url: '/profile/{id}',
-//         dataType : "text",
-//         data : "string",
-//
-//         success: function(response) {
-//             console.log(response.Name);
-//         }
-//     });
-// });
+$("#submit").click(function () {
+    let imageURL = "i'm a string";
+    $.ajax({
 
-// $("#submit").click(function () {
-//     const image = {image:"string"};
-//     $.ajax({
-//         type: "POST",
-//         url: '/profile/{id}',
-//         dataType : "JSON",
-//         data : {image:"image"},
-//
-//         success: function(response) {
-//             console.log(response.Name);
-//         }
-//     });
-// });
 
-    $("#submit").click(function () {
-        $.ajax({
-            let imageURL = 'http://';
-
-            type : "POST",
-            url : "/search/api/getSearchResult",
-            data : { url: imageURL},
-            timeout : 100000,
-            success : function(imageURL) {
-                console.log("SUCCESS: ", imageURL);
-            },
-            error : function(e) {
-                console.log("ERROR: ", e);
-            },
-            done : function(e) {
-                console.log("DONE");
-            }
-        });
+        type: "POST",
+        url: "/search/api/getSearchResult",
+        data: {url:imageURL},
+        timeout: 100000,
+        success: function (imageURL) {
+            console.log("SUCCESS: ", imageURL);
+        },
+        error: function (e) {
+            console.log("ERROR: ", e);
+        },
+        done: function (e) {
+            console.log("DONE");
+        }
     });
+});
+
     </script>
 </html>

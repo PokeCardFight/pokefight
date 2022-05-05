@@ -4,6 +4,7 @@ import com.pokefight.pokefight.models.User;
 import com.pokefight.pokefight.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,47 +12,47 @@ import org.springframework.web.bind.annotation.*;
 public class ProfileController {
 
     private UserRepository userDao;
+    private PasswordEncoder passwordEncoder;
 
-    public ProfileController(UserRepository userDao) {
+    public ProfileController(UserRepository userDao, PasswordEncoder passwordEncoder) {
         this.userDao = userDao;
+        this.passwordEncoder = passwordEncoder;
     }
-
-//    @GetMapping("/profile")
-//    public String profileGet(){
-//        return "temporary/profile";
-//    }
-//
-//    @PostMapping("/profile")
-//    public String profilePost(){ return "temporary/profile"; }
 
     @GetMapping("/profile")
-    public String gUsers(Model model) {
+    public String getUsers(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
-
         System.out.println(user.getId());
-        return "temporary/profile";
+        return "/profile";
     }
+
 
 
     @PostMapping("/profile/{id}")
-    public String submitEdit(@ModelAttribute User user) {
-//        System.out.println(image);
+    public String submitEdit(@ModelAttribute User user, @RequestParam("password") String password) {
         User oldUser = userDao.getById(user.getId());
+        String hash = passwordEncoder.encode(password);
+        oldUser.setPassword(hash);
         oldUser.setUsername(user.getUsername());
-        oldUser.setPassword(user.getPassword());
+        oldUser.setEmail(user.getEmail());
         userDao.save(oldUser);
 
         return "redirect:/profile";
     }
-
-    // Receives String from JavaScript
+//
+//     Receives String from JavaScript
     @ResponseBody
     @PostMapping("/search/api/getSearchResult")
-    public String getSearchResultViaAjax(@RequestParam(value = "url") String url) {
+    public String getSearchResultViaAjax( @RequestParam(value = "url") String url) {
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User oldUser = userDao.getById(user.getId());
+        oldUser.setProfile_pic(url);
+        System.out.println(url);
+        userDao.save(oldUser);
         System.out.println("Picture URL: "+ url);
-        return "hello";
-    }
+        return url;
+}
 
 
 }
