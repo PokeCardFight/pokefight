@@ -9,12 +9,13 @@ import org.springframework.web.bind.annotation.*;
 public class HomeController {
     @GetMapping("/home")
     public String homeGet(){
+
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return "temporary/home";
     }
 
     @PostMapping("/home")
     public String homePost(){
-        return "temporary/home";
+        return "/home";
     }
 }

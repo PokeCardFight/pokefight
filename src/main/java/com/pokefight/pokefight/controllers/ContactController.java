@@ -21,13 +21,13 @@ public class ContactController {
 
     @GetMapping("/contact")
     public String contactGet(){
-        return "temporary/contact";
+        return "/contactUs";
     }
 
     @PostMapping("/contact")
     public String contactPost(@RequestParam Map<String, String> params){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        emailService.prepareAndSend(user,  params.get("subject"),  params.get("message"));
+        emailService.sendContactReceivedMessage(user,  params.get("subject"),  params.get("message"));
         return "redirect:/home";
     }
 }
