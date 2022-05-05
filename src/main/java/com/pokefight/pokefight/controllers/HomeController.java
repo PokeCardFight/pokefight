@@ -34,6 +34,7 @@ public class HomeController {
         List<Pouch> pouches = pouchDao.findAll();
         model.addAttribute("pouches", pouches);
         return "/temporary/home";
+
     }
 
 
