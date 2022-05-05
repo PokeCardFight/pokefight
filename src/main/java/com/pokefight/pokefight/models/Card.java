@@ -28,14 +28,22 @@ public class Card {
     @ManyToMany(mappedBy = "user_cards")
     private List<User> user_cards;
 
-    public Card(long id, String name, String type, int attack, int hp, String image, List<User> user_cards) {
-        this.id = id;
+    public Card(String name, String type, int attack, int hp, String image) {
         this.name = name;
         this.type = type;
         this.attack = attack;
         this.hp = hp;
         this.image = image;
-        this.user_cards = user_cards;
+    }
+
+    public Card(Card card) {
+        this.id = card.id;
+        this.name = card.name;
+        this.type = card.type;
+        this.attack = card.attack;
+        this.hp = card.hp;
+        this.image = card.image;
+        this.user_cards = card.user_cards;
     }
 
     public Card() {
