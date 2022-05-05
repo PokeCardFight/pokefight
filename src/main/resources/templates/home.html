@@ -1,10 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <div th:include="partials/fragments :: header(title='Home')"></div>
-</head>
-<body style="background-color:lightslategray ">
-<nav th:replace="partials/fragments :: navbar"></nav>
+<head th:replace="/partials/fragments :: header(title='splash')"></head>
+<body style="background-color:lightslategray " >
+<nav th:replace="/partials/fragments :: navbar"></nav>
 
 
 <!-- Home page basic shell V1-->
@@ -125,8 +123,7 @@
     </div>
 </div>
 
-<div th:include="partials/fragments :: footer"></div>
-
+<div th:include="/partials/fragments :: footer"></div>
 </body>
 
 </html>
