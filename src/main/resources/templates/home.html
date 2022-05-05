@@ -128,7 +128,7 @@
     $("#battle").click(function () {
         $.ajax({
             type: "POST",
-            url: "/home",
+            url: "/pouch_and_card/id",
             data: {pouch_id:1,card_id:1},
             timeout: 100000,
             success: function (imageURL) {
