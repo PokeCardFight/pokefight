@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
-                  
 <head>
     <div th:include="partials/fragments :: header(title='Profile')"></div>
     <link rel="stylesheet" href="/static/css/profile.css">
@@ -9,16 +9,10 @@
 
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
+<br>
+<hr>
 
 
-<form th:action="@{/logout}" th:method="post">
-    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-</form>
-<br><hr>
-  
-  
-
-  
 <!--base profile card-->
 <div class="container container-fluid border border-warning p-5 profile-card text-center">
     <div class="top container col-12 align-items-center">
@@ -32,32 +26,36 @@
         Username:
         <h4 th:text="${user.getUsername()}">username here</h4>
     </div>
-    <div class="col-12 my-3">
-        Password:
-        <h4 th:text="${user.getPassword()}">password here</h4>
-    </div>
-    <div class="col-12 my-3">
-        Email:
-        <h4 th:text="${user.getEmail()}">email here</h4>
+    <div sec:authorize="isAuthenticated()">
+        <div class="col-12 my-3">
+            User ID: <span th:text="${#authentication.principal.id}"></span>
+        </div>
+        <div class="col-12 my-3">
+            Password:
+            <span th:text="${user.getPassword()}">password here</span>  <!-- dont want public to other users-->
+        </div>
+        <div class="col-12 my-3">
+            Email:
+            <span th:text="${#authentication.principal.email}">email here</span> <!-- dont want public to other users-->
+        </div>
+        <div class="col-12 my-3">
+            Gold:
+            <h3 th:text="*{user.getGold()}"></h3>
+        </div>
     </div>
     <div class="col-12 my-3">
         Level:
-        <h3 th:text="*{user.getLevel()}" ></h3>
-    </div>
-    <div class="col-12 my-3">
-        Gold:
-        <h3 th:text="*{user.getGold()}" ></h3>
+        <h3 th:text="*{user.getLevel()}"></h3>
     </div>
     <div class="col-12 my-3">
         XP:
-        <h3 th:text="*{user.getXp()}" ></h3>
+        <h3 th:text="*{user.getXp()}"></h3>
     </div>
 
     <div class="col-12 my-3">
         <button id="edit-prof">edit profile</button>
     </div>
 </div>
-
 
 
 <!--edit profile form-->
@@ -74,48 +72,47 @@
         <div class="w-100 my-5"></div>
         <!--<form method="post">-->
         <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">
-<!--            <label for="username">Username:</label>-->
+            <!--            <label for="username">Username:</label>-->
             Username:
-            <input th:field="*{username}" />
+            <input th:field="*{username}"/>
             <br>
-<!--            <label for="username"></label>-->
-<!--            <input name="username" id="username" />-->
-<!--            <br>-->
+            <!--            <label for="username"></label>-->
+            <!--            <input name="username" id="username" />-->
+            <!--            <br>-->
             Change your password:
 
-            <input id="pass" name="password" type="password" />
+            <input id="pass" name="password" type="password"/>
             <br>
             Confirm password:
 
-            <input id="confirmPass" name="confirmPassword" type="password" />
+            <input id="confirmPass" name="confirmPassword" type="password"/>
             <br>
 
-<!--            <label for="password">Password:</label>-->
-<!--            <input  name="password" id="password" />-->
-<!--            <br>-->
-<!--            <label for="confirmPassword">Confirm Password:</label>-->
-<!--            <input  name="confirmPassword" id="confirmPassword" />-->
-<!--            <br>-->
+            <!--            <label for="password">Password:</label>-->
+            <!--            <input  name="password" id="password" />-->
+            <!--            <br>-->
+            <!--            <label for="confirmPassword">Confirm Password:</label>-->
+            <!--            <input  name="confirmPassword" id="confirmPassword" />-->
+            <!--            <br>-->
 
             Change your Email:
             <input th:field="*{email}"/>
-            <br />
-<!--            <label for="email">Email:</label>-->
-<!--            <input  name="email" id="email" />-->
+            <br/>
+            <!--            <label for="email">Email:</label>-->
+            <!--            <input  name="email" id="email" />-->
 
-            <input type="submit" />
+            <input type="submit"/>
         </form>
-        </div>
     </div>
 </div>
+</div>
 
-  
-  <!--noah's form to add into html-->
- 
+
 <!--noah's form to add into html-->
-  
-  
-  
+
+<!--noah's form to add into html-->
+
+
 <!--edit picture form-->
 <div id="edit-picture" class="hidden">
     <div class="formBackground"></div>
@@ -211,26 +208,26 @@
 <script src="/static/js/APIKEY.js"></script>
 <script src="/static/js/Filestack.js"></script>
 <script src="/static/js/profile.js"></script>
-  
-  <script>
-$("#submit").click(function () {
-let imageURL = $("#fileupload").val();
-$.ajax({
-type: "POST",
-url: "/search/api/getSearchResult",
-data: {url:imageURL},
-timeout: 100000,
-success: function (imageURL) {
-console.log("SUCCESS: ", imageURL);
-},
-error: function (e) {
-console.log("ERROR: ", e);
-},
-done: function (e) {
-console.log("DONE");
-}
-});
-});
+
+<script>
+    $("#submit").click(function () {
+        let imageURL = $("#fileupload").val();
+        $.ajax({
+            type: "POST",
+            url: "/search/api/getSearchResult",
+            data: {url: imageURL},
+            timeout: 100000,
+            success: function (imageURL) {
+                console.log("SUCCESS: ", imageURL);
+            },
+            error: function (e) {
+                console.log("ERROR: ", e);
+            },
+            done: function (e) {
+                console.log("DONE");
+            }
+        });
+    });
 </script>
 </body>
 </html>
