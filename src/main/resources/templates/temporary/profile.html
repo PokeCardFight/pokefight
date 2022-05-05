@@ -16,7 +16,7 @@
     </head>
     <body>
 
-
+    <h2> this is the temp</h2>
     <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">
         Username:
         <input th:field="*{username}" />
