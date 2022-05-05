@@ -2,15 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <div th:include="partials/fragments :: header(title='About us!')"></div>
+
     <!--remove on connection-->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
           integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
           crossorigin="anonymous">
     <link rel="stylesheet" href="/static/css/profile.css">
     <!--remove on connection-->
+
 </head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
+
 
 <!--remove on connection-->
 <nav th:fragment="navbar" class="navbar navbar-default">

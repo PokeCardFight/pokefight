@@ -14,6 +14,11 @@
 <br>
 <hr>
 
+<!-- <form th:action="@{/logout}" th:method="post">
+    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+</form>
+<br>          Moved to navbar
+<hr> -->
 
 <!--base profile card-->
 <div class="container container-fluid border border-warning p-5 profile-card text-center">
@@ -47,11 +52,13 @@
     </div>
     <div class="col-12 my-3">
         Level:
+
 <!--        <h3 th:text="*{user.getLevel()}"></h3>-->
     </div>
     <div class="col-12 my-3">
         XP:
 <!--        <h3 th:text="*{user.getXp()}"></h3>-->
+
     </div>
 
     <div class="col-12 my-3">
@@ -72,6 +79,7 @@
             <button id="pic-from-edit">edit picture</button>
         </div>
         <div class="w-100 my-5"></div>
+
         <form method="post">
 <!--        <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">-->
 <!--                        <label for="username">Username:</label>-->
@@ -90,26 +98,28 @@
             <input id="confirmPass" name="confirmPassword" type="password"/>
             <br>
 
+
 <!--                        <label for="password">Password:</label>-->
 <!--                        <input  name="password" id="password" />-->
+
             <!--            <br>-->
             <!--            <label for="confirmPassword">Confirm Password:</label>-->
             <!--            <input  name="confirmPassword" id="confirmPassword" />-->
             <!--            <br>-->
 
             Change your Email:
+
 <!--            <input th:field="*{email}"/>-->
             <br/>
                         <label for="email">Email:</label>
                         <input  name="email" id="email" />
+
 
             <input type="submit"/>
         </form>
     </div>
 </div>
 </div>
-
-
 
 <!--edit picture form-->
 <div id="edit-picture" class="hidden">
@@ -150,6 +160,5 @@
 <script src="/static/js/APIKEY.js"></script>
 <script src="/static/js/Filestack.js"></script>
 <script src="/static/js/profile.js"></script>
-
 </body>
 </html>
