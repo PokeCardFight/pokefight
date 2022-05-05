@@ -90,17 +90,17 @@
                     <hr>
                     <h5>Pouches</h5>
                     <div class="row" id="pouches">
-                        <div class=" col border border-2">
+                        <div class="  tab bat col border border-2">
                             <div class="col">ROCK</div>
                             <div class="col">STICK</div>
                             <div class="col">TREAT</div>
                         </div>
-                        <div class="col-4 border border-2">
+                        <div class="tab bat col-4 border border-2">
                             <div class="col">PROTEIN BAR</div>
                             <div class="col">Bandage</div>
                             <div class="col">Potion</div>
                         </div>
-                        <div class="col border border-2">
+                        <div class=" tab bat col border border-2">
                             <div class="col">Stick</div>
                             <div class="col">Treat</div>
                             <div class="col">Potion</div>
@@ -141,6 +141,9 @@
                 console.log("DONE");
             }
         });
+    });
+    $('.tab').click(function() {
+        $(this).addClass('active').siblings().removeClass('active');
     });
 </script>
 </body>
