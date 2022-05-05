@@ -32,7 +32,7 @@ public class RegisterController {
         String password = user.getPassword();
         if (!password.equals(passwordConfirm)) {
             System.out.println("Passwords do not match.");
-            return "temporary/register";
+            return "registration";
         }
 
         String hash = passwordEncoder.encode(user.getPassword());
