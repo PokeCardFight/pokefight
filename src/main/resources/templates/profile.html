@@ -1,22 +1,24 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
 
 <head>
     <div th:include="partials/fragments :: header(title='Profile')"></div>
+
     <link rel="stylesheet" href="/static/css/profile.css">
 </head>
 
 <body>
+
 <nav th:replace="partials/fragments :: navbar"></nav>
-
-
-<form th:action="@{/logout}" th:method="post">
-    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-</form>
 <br>
 <hr>
 
+<!-- <form th:action="@{/logout}" th:method="post">
+    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
+</form>
+<br>          Moved to navbar
+<hr> -->
 
 <!--base profile card-->
 <div class="container container-fluid border border-warning p-5 profile-card text-center">
@@ -29,27 +31,34 @@
     <div class="w-100 my-5"></div>
     <div class="col-12 my-5">
         Username:
-        <h4 th:text="${user.getUsername()}">username here</h4>
+<!--        <h4 th:text="${user.getUsername()}">username here</h4>-->
     </div>
-    <div class="col-12 my-3">
-        Password:
-        <h4 th:text="${user.getPassword()}">password here</h4>
-    </div>
-    <div class="col-12 my-3">
-        Email:
-        <h4 th:text="${user.getEmail()}">email here</h4>
+    <div sec:authorize="isAuthenticated()">
+        <div class="col-12 my-3">
+<!--            User ID: <span th:text="${#authentication.principal.id}"></span>-->
+        </div>
+        <div class="col-12 my-3">
+            Password:
+<!--            <span th:text="${user.getPassword()}">password here</span>  &lt;!&ndash; dont want public to other users&ndash;&gt;-->
+        </div>
+        <div class="col-12 my-3">
+            Email:
+<!--            <span th:text="${#authentication.principal.email}">email here</span> &lt;!&ndash; dont want public to other users&ndash;&gt;-->
+        </div>
+        <div class="col-12 my-3">
+            Gold:
+<!--            <h3 th:text="*{user.getGold()}"></h3>-->
+        </div>
     </div>
     <div class="col-12 my-3">
         Level:
-        <h3 th:text="*{user.getLevel()}"></h3>
-    </div>
-    <div class="col-12 my-3">
-        Gold:
-        <h3 th:text="*{user.getGold()}"></h3>
+
+<!--        <h3 th:text="*{user.getLevel()}"></h3>-->
     </div>
     <div class="col-12 my-3">
         XP:
-        <h3 th:text="*{user.getXp()}"></h3>
+<!--        <h3 th:text="*{user.getXp()}"></h3>-->
+
     </div>
 
     <div class="col-12 my-3">
@@ -70,14 +79,15 @@
             <button id="pic-from-edit">edit picture</button>
         </div>
         <div class="w-100 my-5"></div>
-        <!--<form method="post">-->
-        <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">
-            <!--            <label for="username">Username:</label>-->
+
+        <form method="post">
+<!--        <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">-->
+<!--                        <label for="username">Username:</label>-->
             Username:
-            <input th:field="*{username}"/>
+<!--            <input th:field="*{username}"/>-->
             <br>
             <!--            <label for="username"></label>-->
-            <!--            <input name="username" id="username" />-->
+                        <input name="username" id="username" />
             <!--            <br>-->
             Change your password:
 
@@ -88,30 +98,28 @@
             <input id="confirmPass" name="confirmPassword" type="password"/>
             <br>
 
-            <!--            <label for="password">Password:</label>-->
-            <!--            <input  name="password" id="password" />-->
+
+<!--                        <label for="password">Password:</label>-->
+<!--                        <input  name="password" id="password" />-->
+
             <!--            <br>-->
             <!--            <label for="confirmPassword">Confirm Password:</label>-->
             <!--            <input  name="confirmPassword" id="confirmPassword" />-->
             <!--            <br>-->
 
             Change your Email:
-            <input th:field="*{email}"/>
+
+<!--            <input th:field="*{email}"/>-->
             <br/>
-            <!--            <label for="email">Email:</label>-->
-            <!--            <input  name="email" id="email" />-->
+                        <label for="email">Email:</label>
+                        <input  name="email" id="email" />
+
 
             <input type="submit"/>
         </form>
     </div>
 </div>
 </div>
-
-
-<!--noah's form to add into html-->
-
-<!--noah's form to add into html-->
-
 
 <!--edit picture form-->
 <div id="edit-picture" class="hidden">
@@ -142,92 +150,15 @@
 </div>
 
 
-<!--
-<div id="form" class="formBackground none">
-    <div class="popup_form">
-        <button id="close" class="close btn-design"><i class="fa-solid fa-trash-can"></i> Close this form</button>
-        <form>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="input_Title">Title</label>
-                    <input class="form-control" id="input_Title">
-                </div>
-                <div class="form-group col-md-6">
-                    <label for="input_Rating">Rating</label>
-                    <input class="form-control" id="input_Rating">
-                </div>
-            </div>
-            <div class="form-group">
-                <label for="input_Year">Year</label>
-                <input class="form-control" id="input_Year">
-            </div>
-            <div class="form-group">
-                <label for="input_Director">Director</label>
-                <input class="form-control" id="input_Director">
-            </div>
-            <div class="form-row">
-                <div class="form-group col-md-6">
-                    <label for="input_Plot">Plot</label>
-                    <input class="form-control" id="input_Plot">
-                </div>
-                <div class="form-group col-md-4">
-                    <label for="input_Genre">Genre</label>
-                    <select id="input_Genre" class="form-control">
-                        <option selected>Choose...</option>
-                        <option>Horror</option>
-                        <option>Sci-Fi</option>
-                        <option>ROMCOM</option>
-                        <option>Adventure</option>
-                        <option>Action</option>
-                        <option>Drama</option>
-                        <option>Family</option>
-                    </select>
-                </div>
-                <div class="form-group col-md-2">
-                    <label for="input_Actors">Actors</label>
-                    <input type="text" class="form-control" id="input_Actors">
-                </div>
-            </div>
-            <div class="text-center">
-                <img src='assets/button2.png' alt='Edit' id="Edit_btn" class='edit text-left none' height='50px' width='80px' style="cursor: pointer">
-                &lt;!&ndash;<button id="Edit_btn" class="btn btn-primary none">edit</button>&ndash;&gt;
-                &lt;!&ndash;<button id="add_btn" class="btn btn-primary none">Submit</button>&ndash;&gt;
-                <img src='assets/button3.png' alt='submit' id="add_btn" class='text-left none' height='50px' width='80px' style="cursor: pointer">
-            </div>
-        </form>
-    </div>
-</div>
-
--->
 
 <!--<iframe width="560" height="315" src="../static/js/Filestack.js" allowfullscreen></iframe>-->
 
 
 <div th:include="partials/fragments :: footer"></div>
+
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
 <script src="/static/js/APIKEY.js"></script>
 <script src="/static/js/Filestack.js"></script>
 <script src="/static/js/profile.js"></script>
-
-<script>
-    $("#submit").click(function () {
-        let imageURL = $("#fileupload").val();
-        $.ajax({
-            type: "POST",
-            url: "/search/api/getSearchResult",
-            data: {url: imageURL},
-            timeout: 100000,
-            success: function (imageURL) {
-                console.log("SUCCESS: ", imageURL);
-            },
-            error: function (e) {
-                console.log("ERROR: ", e);
-            },
-            done: function (e) {
-                console.log("DONE");
-            }
-        });
-    });
-</script>
 </body>
 </html>
