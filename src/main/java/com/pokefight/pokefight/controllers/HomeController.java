@@ -1,5 +1,6 @@
 package com.pokefight.pokefight.controllers;
 
+import com.pokefight.pokefight.models.Card;
 import com.pokefight.pokefight.models.Item;
 import com.pokefight.pokefight.models.Pouch;
 import com.pokefight.pokefight.models.User;
@@ -33,7 +34,9 @@ public class HomeController {
         model.addAttribute("items", items);
         List<Pouch> pouches = pouchDao.findAll();
         model.addAttribute("pouches", pouches);
-        return "/temporary/home";
+        List<Card>  cards = cardDao.findAll();
+        model.addAttribute("cards" , cards);
+        return "/home";
 
     }
 
