@@ -4,6 +4,15 @@ body{
 .navbar{
     background: black;
     text-decoration: white;
+    height: 110px;
+}
+#logo{
+    transition: all .2s ease-in-out;
+    transform: scaleY(1) scaleX(1);
+}
+#logo:hover{
+    transition: all .2s ease-in-out;
+    transform: scaleY(1.1) scaleX(1.1);
 }
 
 .footer{

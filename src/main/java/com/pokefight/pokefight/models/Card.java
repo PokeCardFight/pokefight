@@ -25,6 +25,12 @@ public class Card {
     @Column(nullable = false)
     private String image;
 
+    @Column(nullable = false)
+    private String rarity;
+
+    @Column(nullable = false)
+    private String subtype;
+
     @ManyToMany(mappedBy = "user_cards")
     private List<User> user_cards;
 
