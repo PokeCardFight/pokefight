@@ -65,17 +65,6 @@ public class HomeController {
         long pouch_id = Long.parseLong(id);
         System.out.println(pouch_id);
         List<Long> items = pouchDao.findItemsInPouchById(pouch_id);
-//        String item1 = itemDao.findItemById(items.get(0));
-//        String item2 = itemDao.findItemById(items.get(1));
-//        String item3 = itemDao.findItemById(items.get(2));
-//        if (item1 ==)
-//        long item1L = Long.
-//        Item item1 = itemDao.getName(items.get(0));
-//        System.out.println(items.get(0));
-        System.out.println("item 1: " + items.get(0));
-//        System.out.println(item1);
-//        System.out.println(item2);
-//        System.out.println(item3);
         return "/temporary/home";
     }
 
