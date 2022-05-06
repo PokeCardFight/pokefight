@@ -6,9 +6,13 @@ body{
     text-decoration: white;
     height: 110px;
 }
+#logo{
+    transition: all .2s ease-in-out;
+    transform: scaleY(1) scaleX(1);
+}
 #logo:hover{
-    width: 387px;
-    height: 90px;
+    transition: all .2s ease-in-out;
+    transform: scaleY(1.1) scaleX(1.1);
 }
 
 .footer{
