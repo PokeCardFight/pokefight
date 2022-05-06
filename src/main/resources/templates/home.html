@@ -144,35 +144,28 @@
 
     </div>
     <!--    place holder battle button-->
-    <div class="row">
-        <div id="battle" class="mx-auto" style="width: 200px;">
-            <button>Battle Now</button>
-        </div>
-    </div>
+<!--    <div class="row">-->
+<!--        <div id="battle" class="mx-auto" style="width: 200px;">-->
+<!--            <button>Battle Now</button>-->
+<!--        </div>-->
+<!--    </div>-->
+
+    <input id="battle-button" type="submit" value="Battle" />
+
 </div>
 
 <div th:include="/partials/fragments :: footer"></div>
 <script>
-    $("#battle").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/pouch_and_card/id",
-            data: {pouch_id:1,card_id:1},
-
-            timeout: 100000,
-            success: function (imageURL) {
-                console.log("SUCCESS: ", imageURL);
-            },
-            error: function (e) {
-                console.log("ERROR: ", e);
-            },
-            done: function (e) {
-                console.log("DONE");
-            }
-        });
-    });
     $('.tab').click(function () {
         $(this).addClass('active').siblings().removeClass('active');
+    });
+
+    let pouchId = 1;
+    let cardId = 1;
+
+    let battleButton = document.querySelector('#battle-button');
+    battleButton.addEventListener('click', function (event) {
+        window.location.replace(`/battle/${cardId}/${pouchId}/`);
     });
 </script>
 </body>

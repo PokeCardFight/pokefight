@@ -39,8 +39,7 @@ public class HomeController {
         return "/home";
 
     }
-
-
+  
     @PostMapping("/home/add")
     public String homePost( @RequestParam("addItem") String add){
         long addItem_id = Long.parseLong(add);
@@ -61,16 +60,5 @@ public class HomeController {
         System.out.println("item 1: " + items.get(0));
         System.out.println(item1);
         return "/temporary/home";
-    }
-
-    @ResponseBody
-    @PostMapping("/pouch_and_card/id")
-    public String getSearchResultViaAjax( @RequestParam(value = "pouch_id") long pouch_id, @RequestParam(value = "card_id") long card_id ) {
-
-        pouchDao.getById(pouch_id);
-        cardDao.getById(card_id);
-        System.out.println("pouch id: "+ pouch_id);
-        System.out.println("card id: "+ card_id);
-        return "got them pouches";
     }
 }
