@@ -40,9 +40,6 @@ public class HomeController {
 
     }
 
-
-
-
     @PostMapping("/home/add")
     public String homePost(@ModelAttribute Pouch pouch, @RequestParam("addItem") String add){
 //        Pouch pouch = pouchDao.getById();
@@ -58,16 +55,5 @@ public class HomeController {
         System.out.println(pouch);
 //        System.out.println("item 1: " + items.get(0));
         return "/temporary/home";
-    }
-
-    @ResponseBody
-    @PostMapping("/pouch_and_card/id")
-    public String getSearchResultViaAjax( @RequestParam(value = "pouch_id") long pouch_id, @RequestParam(value = "card_id") long card_id ) {
-
-        pouchDao.getById(pouch_id);
-        cardDao.getById(card_id);
-        System.out.println("pouch id: "+ pouch_id);
-        System.out.println("card id: "+ card_id);
-        return "got them pouches";
     }
 }
