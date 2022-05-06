@@ -1,5 +1,6 @@
 package com.pokefight.pokefight.controllers;
 
+import com.pokefight.pokefight.models.Card;
 import com.pokefight.pokefight.models.Item;
 import com.pokefight.pokefight.models.Pouch;
 import com.pokefight.pokefight.models.User;
@@ -33,7 +34,9 @@ public class HomeController {
         model.addAttribute("items", items);
         List<Pouch> pouches = pouchDao.findAll();
         model.addAttribute("pouches", pouches);
-        return "/temporary/home";
+        List<Card>  cards = cardDao.findAll();
+        model.addAttribute("cards" , cards);
+        return "/home";
 
     }
 
@@ -48,9 +51,12 @@ public class HomeController {
     }
 
     @PostMapping("/home/items_in_pouch")
-    public String homePost(@ModelAttribute Pouch pouch, @RequestParam("pouchItem") Long id ){
-        List<Pouch> items = pouchDao.findItemsInPouchById(id);
-        System.out.println(items);
+    public String homePost(@RequestParam("pouchId") String id ){
+        long pouch_id = Long.parseLong(id);
+        Pouch pouch = pouchDao.getById(pouch_id);
+//        List<String> items = pouchDao.findItemsInPouchById(pouch);
+        System.out.println(pouch);
+//        System.out.println("item 1: " + items.get(0));
         return "/temporary/home";
     }
 

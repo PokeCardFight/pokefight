@@ -65,11 +65,12 @@
                     <hr>
                     <h5>Pouches</h5>
                     <div class="row" id="pouches">
-                        <div class=" col border border-2" th:each="pouch : ${pouches}">Pouch#<a href="#" id="pouchItem" th:text="${pouch.id}"></a>
-<!--
-                                <form th:action="@{/home/items_in_pouch}" th:method="POST" th:object="${pouches}">-->
-<!--                                <input id="pouchItem" name="pouchItem" th:text="${pouches.id}" />-->
-<!--                            </form>-->
+                        <div class=" col border border-2" th:each="pouch : ${pouches}">Pouch#<a href="#" th:text="${pouch.id}"></a>
+<!--                            <h3 id="pouchId" th:text="${pouch.pouch_items}"></h3>-->
+                            <form th:action="@{/home/items_in_pouch}" th:method="POST" th:object="${pouches}">
+                                <input type="hidden" name="pouchId" th:text="${pouch.id}"/>
+                                <input  type="submit" class="btn btn-sm" />
+                            </form>
                         </div>
                     </div>
                 </div>
