@@ -7,8 +7,9 @@ import org.springframework.data.jpa.repository.Query;
 import java.util.List;
 
 public interface PouchRepository extends JpaRepository<Pouch, Long> {
-//    @Query(value="select pi.item_id from pouch join pouch_items pi on pouch.id = pi.pouch_id where pouch_id = 1",nativeQuery = true)
-//    List<Integer> findItemsInPouchById(Long pouchId);
+    @Query(value="select pi.item_id from pouch join pouch_items pi on pouch.id = pi.pouch_id where pouch_id = ?",nativeQuery = true)
+    List<Long> findItemsInPouchById(Long pouchId);
+
 
 //    @Query(value="select * from pouch join pouch_items pi on pouch.id = pi.pouch_id where pouch_id = ?",nativeQuery = true)
 //    List<String> findAllItemsInPouches();

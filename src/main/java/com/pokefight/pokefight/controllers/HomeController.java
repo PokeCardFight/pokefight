@@ -39,21 +39,26 @@ public class HomeController {
         return "/home";
 
     }
-
+  
     @PostMapping("/home/add")
-    public String homePost(@ModelAttribute Pouch pouch, @RequestParam("addItem") String add){
-//        Pouch pouch = pouchDao.getById();
-//        pouchDao.save()
+    public String homePost( @RequestParam("addItem") String add){
+        long addItem_id = Long.parseLong(add);
+//        Pouch pouch = pouchDao.getById(addItem_id);
+        System.out.println(addItem_id);
         return "/temporary/home";
     }
 
     @PostMapping("/home/items_in_pouch")
-    public String homePost(@RequestParam("pouchId") String id ){
+    public String pouchItemPost(@ModelAttribute Item item , @RequestParam("pouchId") String id ){
         long pouch_id = Long.parseLong(id);
-        Pouch pouch = pouchDao.getById(pouch_id);
-//        List<String> items = pouchDao.findItemsInPouchById(pouch);
-        System.out.println(pouch);
-//        System.out.println("item 1: " + items.get(0));
+        System.out.println(pouch_id);
+        List<Long> items = pouchDao.findItemsInPouchById(pouch_id);
+        Item item1 = itemDao.findItemById(items.get(0));
+//        long item1L = Long.
+//        Item item1 = itemDao.getName(items.get(0));
+//        System.out.println(items.get(0));
+        System.out.println("item 1: " + items.get(0));
+        System.out.println(item1);
         return "/temporary/home";
     }
 }
