@@ -4,6 +4,11 @@ body{
 .navbar{
     background: black;
     text-decoration: white;
+    height: 110px;
+}
+#logo:hover{
+    width: 387px;
+    height: 90px;
 }
 
 .footer{
