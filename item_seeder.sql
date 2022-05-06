@@ -28,7 +28,4 @@ INSERT INTO pouch_items(pouch_id, item_id) VALUES
 (2,8),
 (3,6);
 
-INSERT INTO user_cards(user_id, card_id) VALUES
-(1,3),
-(1,5),
-(1,7);
+
