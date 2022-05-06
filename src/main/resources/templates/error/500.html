@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+  <div th:include="partials/fragments :: header(title='500 ERROR STATUS')"></div>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/static/css/errorCSS/error.css">
+</head>
+<body>
+<nav th:replace="partials/fragments :: navbar"></nav>
+
+<div id="main" class="container container-fluid text-center">
+  <h1>OOPS!</h1>
+  <p>something went wrong!
+  </p>
+</div>
+<div th:include="partials/fragments :: footer"></div>
+</body>
+</html>
