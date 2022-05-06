@@ -1,5 +1,5 @@
-CREATE DATABASE IF NOT EXISTS pokefight;
-USE pokefight;
+CREATE DATABASE IF NOT EXISTS pokefight_db;
+USE pokefight_db;
 
 SET FOREIGN_KEY_CHECKS = 0;
 DROP TABLE IF EXISTS users;
@@ -8,6 +8,9 @@ DROP TABLE IF EXISTS pouch_items;
 DROP TABLE IF EXISTS items;
 DROP TABLE IF EXISTS deck;
 DROP TABLE IF EXISTS cards;
+DROP TABLE IF EXISTS cards;
+DROP TABLE IF EXISTS user_cards;
+DROP TABLE IF EXISTS user_pouches;
 SET FOREIGN_KEY_CHECKS = 1;
 
 CREATE TABLE users
@@ -24,7 +27,6 @@ CREATE TABLE users
     PRIMARY KEY (id)
 );
 
--- FOREIGN KEY (pouch_id) REFERENCES pouch (pouch_id),
 
 CREATE TABLE deck
 (
