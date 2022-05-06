@@ -7,6 +7,7 @@ import com.pokefight.pokefight.models.User;
 import com.pokefight.pokefight.repositories.CardRepository;
 import com.pokefight.pokefight.repositories.ItemRepository;
 import com.pokefight.pokefight.repositories.PouchRepository;
+import com.pokefight.pokefight.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -19,11 +20,13 @@ public class HomeController {
     private CardRepository cardDao;
     private PouchRepository pouchDao;
     private ItemRepository itemDao;
+    private UserRepository userDao;
 
-    public HomeController(CardRepository cardDao, PouchRepository pouchDao, ItemRepository itemDao){
+    public HomeController(CardRepository cardDao, PouchRepository pouchDao, ItemRepository itemDao, UserRepository userDao){
         this.cardDao = cardDao;
         this.pouchDao = pouchDao;
         this.itemDao = itemDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/home")
@@ -36,7 +39,15 @@ public class HomeController {
         model.addAttribute("pouches", pouches);
         List<Card>  cards = cardDao.findAll();
         model.addAttribute("cards" , cards);
-        return "/home";
+        long userId = user.getId();
+        List<Long> userPouchIds = userDao.findUserPouchesById(userId);
+        List<String> itemsInPouch1 = itemDao.findItemById(userPouchIds.get(0));
+        List<String> itemsInPouch2 = itemDao.findItemById(userPouchIds.get(1));
+        List<String> itemsInPouch3 = itemDao.findItemById(userPouchIds.get(2));
+        model.addAttribute("itemsInPouch1", itemsInPouch1);
+        model.addAttribute("itemsInPouch2", itemsInPouch2);
+        model.addAttribute("itemsInPouch3", itemsInPouch3);
+        return "/temporary/home";
 
     }
   
@@ -53,12 +64,17 @@ public class HomeController {
         long pouch_id = Long.parseLong(id);
         System.out.println(pouch_id);
         List<Long> items = pouchDao.findItemsInPouchById(pouch_id);
-        Item item1 = itemDao.findItemById(items.get(0));
+//        String item1 = itemDao.findItemById(items.get(0));
+//        String item2 = itemDao.findItemById(items.get(1));
+//        String item3 = itemDao.findItemById(items.get(2));
+//        if (item1 ==)
 //        long item1L = Long.
 //        Item item1 = itemDao.getName(items.get(0));
 //        System.out.println(items.get(0));
         System.out.println("item 1: " + items.get(0));
-        System.out.println(item1);
+//        System.out.println(item1);
+//        System.out.println(item2);
+//        System.out.println(item3);
         return "/temporary/home";
     }
 }
