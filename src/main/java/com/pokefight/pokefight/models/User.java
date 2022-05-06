@@ -31,12 +31,12 @@ public class User {
     @Column(nullable=false)
     private int level;
 
-
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
             name="user_pouches",
             joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns={@JoinColumn(name="pouch_id")}
+            inverseJoinColumns={@JoinColumn(name="pouch_id")},
+            uniqueConstraints={@UniqueConstraint(columnNames={"user_id","pouch_id"})}
     )
     private List<Pouch> user_pouches;
 
@@ -44,7 +44,8 @@ public class User {
     @JoinTable(
             name="user_cards",
             joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns={@JoinColumn(name="card_id")}
+            inverseJoinColumns={@JoinColumn(name="card_id")},
+            uniqueConstraints={@UniqueConstraint(columnNames={"user_id","card_id"})}
     )
     private List<Card> user_cards;
 
