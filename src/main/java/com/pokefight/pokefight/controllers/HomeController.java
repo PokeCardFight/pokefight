@@ -48,9 +48,12 @@ public class HomeController {
     }
 
     @PostMapping("/home/items_in_pouch")
-    public String homePost(@ModelAttribute Pouch pouch, @RequestParam("pouchItem") Long id ){
-        List<Pouch> items = pouchDao.findItemsInPouchById(id);
-        System.out.println(items);
+    public String homePost(@RequestParam("pouchId") String id ){
+        long pouch_id = Long.parseLong(id);
+        Pouch pouch = pouchDao.getById(pouch_id);
+//        List<String> items = pouchDao.findItemsInPouchById(pouch);
+        System.out.println(pouch);
+//        System.out.println("item 1: " + items.get(0));
         return "/temporary/home";
     }
 
