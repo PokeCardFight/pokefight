@@ -46,30 +46,44 @@
             <div class="container" id="items">
                 <div>
                     <h5 class="text">Store</h5>
-<!--                    <form th:action="@{/home}" th:method="POST" th:object="${items}">-->
                     <div class="row" id="store">
                         <div class="col-4 border border-2" th:each="item : ${items}"><a href="#" th:text="${item.name}"></a>
-                            <form th:action="@{/home/add}" th:method="POST" th:object="${item}">
-                                <input id="addItem" name="addItem" th:value="${item.id}" type="hidden" />
-                                <input type="submit" id="submit" class="btn btn-sm" name="Purchase" />
-                            </form>
+                            <input type="submit" th:id="item + ${item.id}" value="Buy for this pouch" class="btn btn-sm"/>
                         </div>
                     <div class="row justify-content-md-center">
                         total (insert total cost of selected items)
                     </div>
                     <div class="row justify-content-md-center">
-                        <input type="submit" value="BUY">
+                        <input id="buy" type="submit" value="BUY">
                     </div>
 
 
                     <hr>
                     <h5>Pouches</h5>
                     <div class="row" id="pouches">
-                        <div class=" col border border-2" th:each="pouch : ${pouches}">Pouch#<a href="#" id="pouchItem" th:text="${pouch.id}"></a>
-<!--
-                                <form th:action="@{/home/items_in_pouch}" th:method="POST" th:object="${pouches}">-->
-<!--                                <input id="pouchItem" name="pouchItem" th:text="${pouches.id}" />-->
-<!--                            </form>-->
+                        <div class=" col border border-2">
+                            <div class=" col border border-2">
+                                Pouch# 1
+                                <input type="submit" id="pouch1" value="Buy for this pouch" class="btn btn-sm"/>
+                            <div th:each="itemInPouch1 : ${itemsInPouch1}">
+                                    <h5 th:text="${itemInPouch1}"></h5>
+                            </div>
+                            </div>
+                            <div class=" col border border-2">
+                            POUCH# 2
+                                <input type="submit" id="pouch2" value="Buy for this pouch" class="btn btn-sm"/>
+                            <div th:each="itemInPouch2 : ${itemsInPouch2}">
+
+                                <h5 th:text="${itemInPouch2}"></h5>
+                            </div>
+                            </div>
+                            <div class=" col border border-2">
+                            POUCH# 3
+                                <input type="submit" id="pouch3" value="Buy for this pouch" class="btn btn-sm"/>
+                            <div th:each="itemInPouch3 : ${itemsInPouch3}">
+                                <h5 th:text="${itemInPouch3}"></h5>
+                            </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -89,6 +103,43 @@
 
 <div th:include="/partials/fragments :: footer"></div>
 <script>
+    let activeItem = 0;
+    for (let i=1; i < 10; i++){
+        $("#item + i").click(function () {
+            activeItem = i;
+        });
+    }
+
+    let activePouch=0;
+    $("#pouch1").click(function() {
+        activePouch = 1;
+    });
+    $("#pouch2").click(function() {
+        activePouch = 2;
+    });
+    $("#pouch3").click(function() {
+        activePouch = 3;
+    });
+
+
+    $("#buy").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/home/addItems",
+            data: {pouch_id:activePouch,item_id: activeItem},
+            timeout: 100000,
+            success: function (imageURL) {
+                console.log("SUCCESS: ", imageURL);
+            },
+            error: function (e) {
+                console.log("ERROR: ", e);
+            },
+            done: function (e) {
+                console.log("DONE");
+            }
+        });
+    });
+
     $("#battle").click(function () {
         $.ajax({
             type: "POST",
