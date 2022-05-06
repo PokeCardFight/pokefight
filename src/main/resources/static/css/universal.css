@@ -78,3 +78,18 @@ body{
     background: black;
     text-decoration: white;
 }
+
+div.active {
+    background-color: #2e2e2e !important;
+    color:white;
+}
+
+div.bat:hover {
+    background-color: #80a3bb;
+
+}
+/*div.bat{*/
+/*    background-color: orange;*/
+
+/*}*/
+

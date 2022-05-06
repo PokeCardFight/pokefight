@@ -25,6 +25,12 @@ public class Card {
     @Column(nullable = false)
     private String image;
 
+    @Column(nullable = false)
+    private String rarity;
+
+    @Column(nullable = false)
+    private String subtype;
+
     @ManyToMany(mappedBy = "user_cards")
     private List<User> user_cards;
 
@@ -105,4 +111,5 @@ public class Card {
     public void setUser_cards(List<User> user_cards) {
         this.user_cards = user_cards;
     }
+
 }
