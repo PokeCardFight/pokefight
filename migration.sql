@@ -12,7 +12,7 @@ DROP TABLE IF EXISTS cards;
 DROP TABLE IF EXISTS user_cards;
 DROP TABLE IF EXISTS user_pouches;
 SET FOREIGN_KEY_CHECKS = 1;
-
+/*
 CREATE TABLE users
 (
     id          INT UNSIGNED NOT NULL AUTO_INCREMENT,
@@ -83,3 +83,4 @@ CREATE TABLE pouch_items
     PRIMARY KEY (pouch_items_id)
 );
 
+*/

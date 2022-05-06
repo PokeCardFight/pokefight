@@ -1,3 +1,4 @@
+USE pokefight_db;
 INSERT INTO cards (name, hp, attack, image, type) VALUES
                                                       ('Bulbasaur',   40, 20, 'https://images.pokemontcg.io/base4/67.png', 'Grass'),
                                                       ('Ivysaur',     60, 30, 'https://images.pokemontcg.io/base4/44.png', 'Grass'),
