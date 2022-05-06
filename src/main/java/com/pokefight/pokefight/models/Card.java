@@ -111,4 +111,5 @@ public class Card {
     public void setUser_cards(List<User> user_cards) {
         this.user_cards = user_cards;
     }
+
 }
