@@ -4,24 +4,53 @@ body{
 .navbar{
     background: black;
     text-decoration: white;
-    height: 110px;
+    height: 100px;
 }
+.navbar > a{
+    position: relative;
+    text-decoration: none;
+    color: white;
+    font-weight: 300;
+}
+.navbar > a:hover{
+    color: gold;
+    transition: color .4s ease-in-out;
+
+}
+.navbar>a>.indicator{
+    position: absolute;
+    bottom: -18%;
+    left: 30%;
+    width: 42%;
+    height: 0;
+    background: gold;
+    transition: height .2s ease-in-out;
+}
+.navbar >a:hover >.indicator{
+    height: 5px;
+    transition: height .2s ease-in-out;
+}
+
+
 #logo{
+    position: relative;
+    left: 20px;
     transition: all .2s ease-in-out;
-    transform: scaleY(1) scaleX(1);
+    transform: scaleY(1) scaleX(1) translateX(-15px);
 }
 #logo:hover{
     transition: all .2s ease-in-out;
-    transform: scaleY(1.1) scaleX(1.1);
+    transform: scaleY(1.1) scaleX(1.1) translateX(15px);
 }
 
 .footer{
-    background: white;
+    background: black;
+    text-decoration: white;
 }
+
 div.active {
     background-color: #2e2e2e !important;
     color:white;
-
 }
 
 div.bat:hover {
@@ -32,3 +61,4 @@ div.bat:hover {
 /*    background-color: orange;*/
 
 /*}*/
+
