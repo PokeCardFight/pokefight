@@ -2,7 +2,8 @@
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" xmlns="http://www.w3.org/1999/html" lang="en">
 <head>
     <div th:fragment="header(title)">
-        <meta charset="UTF-8"/>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no">
         <title th:text="${title}">title</title>
         <!-- when including fragment, do th:include="header(title ="whatever page you are working on")" -->
         <!-- include universal stylesheets, etc here -->
@@ -17,32 +18,46 @@
 
 
 <div th:fragment="navbar">
-<nav class="p-0 navbar navbar-default mb-5">
+    <nav class="p-0 navbar navbar-default mb-5">
         <!--Brand and toggle get grouped for better mobile display-->
         <div class="navbar-header">
-            <a class="navbar-brand p-1" th:href="@{/}"
+            <a class="navbar-brand p-0" th:href="@{/}"
                style="font-family:'Orbitron',sans-serif; font-size: 25px; color:#483112">
                 <img src="/static/img/Logo.png" height="80" width="344" id="logo" alt="logo.jpg">
             </a>
         </div>
 
-        <div class="navbar nav">
-            <a th:href="@{/about}">About us</a>
-            <a th:href="@{/contact}">Contact us</a>
-            <a th:href="@{/battle}">Battle</a>
-            <a th:href="@{/home}">Home</a>
-            <div sec:authorize="isAnonymous()"> <!--if  not logged in show. might need "spring dialect"-->
-                <a th:href="@{/register}">Sign up</a>
-            </div>
-            <div sec:authorize="isAuthenticated()"> <!--only shows up after security login-->
-                <a th:href="@{/profile}"><span th:text="${#authentication.principal.username}"></span></a>
-                <form th:action="@{/logout}" th:method="post">
-                    <button class="btn-link btn" style="margin-top: 8px">Logout</button>
-                </form>
-            </div>
+        <div id="navLinks" class="navbar nav row d-flex align-items-center justify-content-end text-uppercase">
+            <a id="about" th:href="@{/about}" class="p-4 flex-fill"><span>About us</span>
+            <div class="indicator"></div></a>
+
+            <a id="contact" th:href="@{/contact}" class="p-4 flex-fill">Contact us
+            <div class="indicator"></div></a>
+            <a id="battle" th:href="@{/battle}" class="p-4 flex-fill">Battle
+            <div class="indicator"></div></a>
+            <a id="home" th:href="@{/home}" class="p-4 flex-fill">Home
+            <div class="indicator"></div></a>
+
+            <!--only shows up if not logged in-->
+            <a id="signUp" th:href="@{/register}" class="p-4 flex-fill" sec:authorize="isAnonymous()">Sign up
+            <div class="indicator"></div></a>
+            <a id="logIn" href="#" class="p-4 flex-fill" sec:authorize="isAnonymous()">Log in
+            <div class="indicator"></div></a>
+
+            <!--only shows up after security login-->
+            <a id="profile" th:href="@{/profile}"
+               class="p-4 flex-fill" sec:authorize="isAuthenticated()"><span
+                    th:text="${#authentication.principal.username}"></span>
+                <div class="indicator"></div></a>
+            <form th:action="@{/logout}" th:method="post" sec:authorize="isAuthenticated()">
+                <button class="btn-link btn p-4 flex-fill m-0 text-uppercase" style="margin-top: 8px">Logout
+                    <div class="indicator"></div></button>
+            </form>
+
         </div>
 
-</nav>
+
+    </nav>
 </div> <!--fragment end-->
 
 
