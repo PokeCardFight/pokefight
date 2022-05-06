@@ -51,11 +51,10 @@ public class HomeController {
 
     }
   
-    @PostMapping("/home/add")
-    public String homePost( @RequestParam("addItem") String add){
-        long addItem_id = Long.parseLong(add);
-//        Pouch pouch = pouchDao.getById(addItem_id);
-        System.out.println(addItem_id);
+    @PostMapping("/home/addItems")
+    public String homePost( @RequestParam("pouch_id") int pouchId,@RequestParam("item_id") int itemId ){
+        System.out.println(itemId);
+        System.out.println(pouchId);
         return "/temporary/home";
     }
 
