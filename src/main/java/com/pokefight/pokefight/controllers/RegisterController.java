@@ -41,7 +41,7 @@ public class RegisterController {
                 user.getEmail(),
                 hash,
                 "http:\\",
-                0,
+                15,
                 0,
                 1
         ));

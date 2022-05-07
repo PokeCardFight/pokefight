@@ -34,9 +34,9 @@ public class BattleController {
         else model.addAttribute("turn", "Computer");
 
         Card playerCard = cardDao.getById(playerCardId);
-//        Card computerCard = cardDao.getById(computerCardId);
+        Card computerCard = cardDao.getById(computerCardId);
         model.addAttribute("playerCard", playerCard.getName());
-//        model.addAttribute("computerCard", computerCard.getName());
+        model.addAttribute("computerCard", computerCard.getName());
 
         return "/battle";
     }
@@ -50,10 +50,10 @@ public class BattleController {
         playerCardId = cardId;
         playerPouchId = pouchId;
 
-//        int userLevel = user.getLevel();
-//        if(userLevel >= 1 && userLevel <= 5) computerCardId = cardDao.getRandomCommonCard();
-//        if(userLevel >= 6 && userLevel <= 10) computerCardId = cardDao.getRandomUncommonCard();
-//        if(userLevel >= 11 && userLevel <= 15) computerCardId = cardDao.getRandomRareCard();
+        int userLevel = user.getLevel();
+        if(userLevel >= 1 && userLevel <= 5) computerCardId = cardDao.getRandomCommonCard();
+        else if(userLevel >= 6 && userLevel <= 10) computerCardId = cardDao.getRandomUncommonCard();
+        else if(userLevel >= 11 && userLevel <= 15) computerCardId = cardDao.getRandomRareCard();
 
         return "redirect:/battle";
     }
