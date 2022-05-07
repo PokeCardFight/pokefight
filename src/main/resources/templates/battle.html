@@ -1,16 +1,31 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <head th:replace="/partials/fragments :: header(title='Battle!')"></head>
+    <head th:replace="/partials/fragments :: header(title='Battle!')">
+    </head>
     <body>
         <nav th:replace="partials/fragments :: navbar"></nav>
 
-        <h3 style="color: white">Current Turn: <span th:text="${turn}"></span></h3>
-        <h3 style="color: white">Current Player Card: <span th:text="${playerCard}"></span></h3>
-        <h3 style="color: white">Current Computer Card: <span th:text="${computerCard}"></span></h3>
+        <h3 class="text-white">Current Turn: <span th:text="${turn}"></span></h3>
+        <h3 class="text-white">Current Player Card: <span th:text="${playerCard.getName()}"></span></h3>
+        <h3 class="text-white">Current Computer Card: <span th:text="${computerCard.getName()}"></span></h3>
 
-        <input id="attack-button" type="button" value="Attack!">
-        <input id="use-item-button" type="button" value="Item!">
-        <input id="run-button" type="button" value="Run!">
+        <div class="container bg-primary">
+            <div class="row">
+                <div class="col">
+                    One of three columns
+                </div>
+                <div class="col">
+                    One of three columns
+                </div>
+                <div class="col">
+                    One of three columns
+                </div>
+            </div>
+        </div>
+
+        <input class="btn btn-dark" id="attack-button" type="button" value="Attack!">
+        <input class="btn btn-dark" id="use-item-button" type="button" value="Item!">
+        <input class="btn btn-dark" id="run-button" type="button" value="Run!">
 
         <div th:include="partials/fragments :: footer"></div>
     </body>

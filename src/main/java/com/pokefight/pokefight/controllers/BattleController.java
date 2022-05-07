@@ -2,17 +2,20 @@ package com.pokefight.pokefight.controllers;
 
 import com.pokefight.pokefight.models.*;
 import com.pokefight.pokefight.repositories.CardRepository;
+import com.pokefight.pokefight.repositories.ItemRepository;
 import com.pokefight.pokefight.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
 @Controller
 public class BattleController {
 
+    private ItemRepository itemDao;
     private CardRepository cardDao;
 
     boolean turn;
@@ -23,7 +26,8 @@ public class BattleController {
     private boolean flipCoin() { return ThreadLocalRandom.current().nextBoolean(); }
     private long getRandomCardId() { return (long)(Math.random() * 150) + 1; }
 
-    public BattleController(CardRepository cardDao) {
+    public BattleController(CardRepository cardDao, ItemRepository itemDao) {
+        this.itemDao = itemDao;
         this.cardDao = cardDao;
     }
 
@@ -35,8 +39,11 @@ public class BattleController {
 
         Card playerCard = cardDao.getById(playerCardId);
         Card computerCard = cardDao.getById(computerCardId);
-        model.addAttribute("playerCard", playerCard.getName());
-        model.addAttribute("computerCard", computerCard.getName());
+        model.addAttribute("playerCard", playerCard);
+        model.addAttribute("computerCard", computerCard);
+
+        List<Item> items = itemDao.getItemsbyPouchId(1);
+
 
         return "/battle";
     }

@@ -16,4 +16,7 @@ public interface ItemRepository extends JpaRepository<Item, Long> {
 
     @Query(value="select i.name from pouch join pouch_items pi on pouch.id = pi.pouch_id join items i on pi.item_id = i.id where pouch_id = ?",nativeQuery = true)
     List<String> findItemById(long id);
+
+    @Query(value="select items.id as id, name, value, rounds, cost from items join pouch_items pi on items.id = pi.item_id join pouch p on p.id = pi.pouch_id where p.id = ?",nativeQuery = true)
+    List<Item> getItemsbyPouchId(long id);
 }
