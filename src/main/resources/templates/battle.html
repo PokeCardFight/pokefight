@@ -5,14 +5,23 @@
     <body>
         <nav th:replace="partials/fragments :: navbar"></nav>
 
-        <div class="container bg-primary">
+        <th:block th:switch="${computerCard.type}">
+            <th:block th:case="'Grass'"><div class="container" style="background: url('/static/img/pokemon-grass-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
+            <th:block th:case="'Water'"><div class="container" style="background: url('/static/img/pokemon-water-background.jpg') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
+            <th:block th:case="'Fire'"><div class="container" style="background: url('/static/img/pokemon-fire-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
+            <th:block th:case="'Psychic'"><div class="container" style="background: url('/static/img/pokemon-psychic-background.jpg') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
+            <th:block th:case="'Lightning'"><div class="container" style="background: url('/static/img/pokemon-lightning-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
+            <th:block th:case="'Fighting'"><div class="container" style="background: url('/static/img/pokemon-fighting-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
+            <th:block th:case="'Colorless'"><div class="container" style="background: url('/static/img/pokemon-colorless-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
+            <th:block th:case="*"><div class="container" style="background: white; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
+        </th:block>
             <div class="row">
-                <div class="col">
+               <div class="col">
                     <div class="row h-25"></div>
-                    <div class="row h-75 bg-danger">
+                    <div class="row h-75">
                         <div class="col">
-                            <div class="row h-75 bg-secondary justify-content-center">
-                                <div class="col-10 bg-info" th:object = "${playerCard}">
+                            <div class="row h-75 justify-content-center">
+                                <div class="col-10" th:object = "${playerCard}">
                                     <div class="h-25 row bg-warning">
                                         <div class="col d-flex align-items-center">
                                             <div class="container">
@@ -26,7 +35,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="h-75 row bg-dark">
+                                    <div class="h-75 row" style="background: rgba(24, 24, 24, 0.5)">
                                         <div class="col d-flex justify-content-center">
                                             <img width="250px" height="250px" th:src="*{image}"/>
                                         </div>
@@ -34,19 +43,19 @@
                                 </div>
                             </div>
                             <div class="row justify-content-around">
-                                <button type="button" class="btn btn-info w-25">Item 1</button>
-                                <button type="button" class="btn btn-info w-25">Item 2</button>
-                                <button type="button" class="btn btn-info w-25">Item 3</button>
+                                <button type="button" class="btn btn-dark w-25 mt-3">Item 1</button>
+                                <button type="button" class="btn btn-dark w-25 mt-3">Item 2</button>
+                                <button type="button" class="btn btn-dark w-25 mt-3">Item 3</button>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-4 bg-success" style="height: 700px"></div>
+                <div class="col-4" style="height: 700px"></div>
                 <div class="col">
-                    <div class="row h-75 bg-danger">
+                    <div class="row h-75">
                         <div class="col">
                             <div class="row h-75 justify-content-center">
-                                <div class="col-10 bg-info" th:object = "${computerCard}">
+                                <div class="col-10" th:object = "${computerCard}">
                                     <div class="h-25 row bg-warning">
                                         <div class="col d-flex align-items-center">
                                             <div class="container">
@@ -60,7 +69,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="h-75 row bg-dark">
+                                    <div class="h-75 row" style="background: rgba(24, 24, 24, 0.5)">
                                         <div class="col d-flex justify-content-center">
                                             <img width="250px" height="250px" th:src="*{image}"/>
                                         </div>
@@ -70,10 +79,10 @@
                         </div>
                     </div>
                     <div class="row h-25">
-                        <div class="col-6 bg-secondary"></div>
+                        <div class="col-6"></div>
                         <div class="col-6">
-                            <div class="row"><button type="button" class="btn btn-info btn-lg my-2 w-100">Attack!</button></div>
-                            <div class="row"><button type="button" class="btn btn-info btn-lg my-2 w-100">Run!</button></div>
+                            <div class="row"><button type="button" class="btn btn-dark btn-lg my-2 w-100">Attack!</button></div>
+                            <div class="row"><button type="button" class="btn btn-dark btn-lg my-2 w-100">Run!</button></div>
                         </div>
                     </div>
                 </div>
