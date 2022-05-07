@@ -14,12 +14,15 @@
                             <div class="row h-75 bg-secondary justify-content-center">
                                 <div class="col-10 bg-info" th:object = "${playerCard}">
                                     <div class="h-25 row bg-warning">
-                                        <div class="col">
-                                            <div class="row my-2"><h3><span th:text="*{name}"></span></h3></div>
-                                            <div class="row"><div class="player-health"></div></div>
-                                            <div class="row">
-                                                <h5 class="w-25 my-2">100/<span th:text="*{hp}"></span></h5>
-                                                <h6 class="w-25 my-2">ATK: <span th:text="*{attack}"></span></h6>
+                                        <div class="col d-flex align-items-center">
+                                            <div class="container">
+                                                <div class="row"><h3 class="m-0"><span th:text="*{name}"></span></h3></div>
+                                                <div class="row"><div class="player-health"></div></div>
+                                                <div class="row">
+                                                    <h4 class="w-50 m-0">100/<span th:text="*{hp}"></span></h4>
+                                                    <h6 class="w-25 m-0">ATK: <span th:text="*{attack}"></span></h6>
+                                                    <h6 class="w-25 m-0"><span th:text="*{type}"></span></h6>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -45,13 +48,15 @@
                             <div class="row h-75 justify-content-center">
                                 <div class="col-10 bg-info" th:object = "${computerCard}">
                                     <div class="h-25 row bg-warning">
-                                        <div class="col">
-                                            <div class="row my-2"><h3><span th:text="*{name}"></span></h3></div>
-                                            <div class="row"><div class="computer-health"></div></div>
-                                            <div class="row">
-                                                <h4 class="w-25 my-2">100/<span th:text="*{hp}"></span></h4>
-                                                <h6 class="w-25 my-2">ATK: <span th:text="*{attack}"></span></h6>
-                                                <h6 class="w-20 my-2">Type: <span th:text="*{type}"></span></h6>
+                                        <div class="col d-flex align-items-center">
+                                            <div class="container">
+                                                <div class="row"><h3 class="m-0"><span th:text="*{name}"></span></h3></div>
+                                                <div class="row"><div class="player-health"></div></div>
+                                                <div class="row">
+                                                    <h4 class="w-50 m-0">100/<span th:text="*{hp}"></span></h4>
+                                                    <h6 class="w-25 m-0">ATK: <span th:text="*{attack}"></span></h6>
+                                                    <h6 class="w-25 m-0"><span th:text="*{type}"></span></h6>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -67,8 +72,8 @@
                     <div class="row h-25">
                         <div class="col-6 bg-secondary"></div>
                         <div class="col-6">
-                            <div class="row"><button type="button" class="btn btn-info btn-lg my-2">Attack!</button></div>
-                            <div class="row"><button type="button" class="btn btn-info btn-lg my-2">Run!</button></div>
+                            <div class="row"><button type="button" class="btn btn-info btn-lg my-2 w-100">Attack!</button></div>
+                            <div class="row"><button type="button" class="btn btn-info btn-lg my-2 w-100">Run!</button></div>
                         </div>
                     </div>
                 </div>
