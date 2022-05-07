@@ -25,17 +25,23 @@ public class Item {
     @ManyToMany(mappedBy = "pouch_items")
     private List<Pouch> items_in_pouch;
 
-    public Item(long id, String name, int value, int rounds, int cost, List<Pouch> items_in_pouch) {
+    public Item(String name, int value, int rounds, int cost) {
         this.id = id;
         this.name = name;
         this.value = value;
         this.rounds = rounds;
         this.cost = cost;
-        this.items_in_pouch = items_in_pouch;
+    }
+
+    public Item(Item item) {
+        this.id = item.id;
+        this.name = item.name;
+        this.value = item.value;
+        this.rounds = item.rounds;
+        this.cost = item.cost;
     }
 
     public Item() {
-
     }
 
     public long getId() {
