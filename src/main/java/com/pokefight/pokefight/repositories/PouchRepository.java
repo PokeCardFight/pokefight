@@ -11,6 +11,7 @@ public interface PouchRepository extends JpaRepository<Pouch, Long> {
     List<Long> findItemsInPouchById(Long pouchId);
 
 
+
 //    @Query(value="select * from pouch join pouch_items pi on pouch.id = pi.pouch_id where pouch_id = ?",nativeQuery = true)
 //    List<String> findAllItemsInPouches();
 
