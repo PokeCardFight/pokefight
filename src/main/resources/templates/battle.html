@@ -118,33 +118,58 @@
                 let attackButton = document.querySelector('#attack-button');
                 let itemsContainer = document.querySelector('#items');
 
-                //--| Event Listeners |----------//
-                attackButton.addEventListener('click', () => {
-                    let newWidth, newHp;
-                    let percentDamage = Math.round((player.attack / computer.hp) * 100);
-                    if ((computer.hpPercentage - percentDamage) <= 0){
-                        newWidth = 0;
-                        newHp = 0;
-                    }
-                    else {
-                        computer.hpPercentage -= percentDamage;
-                        newWidth = computer.hpPercentage;
-
-                        computer.currentHp -= player.attack;
-                        newHp = computer.currentHp;
-                    }
-                    computer.healthBar.style = `width: ${newWidth}%`;
-                    computer.healthNumber.innerHTML = newHp;
-                })
-
+                //--| Global Method |----------//
                 let buildItemButtons = () => {
                     let itemsOutput = "";
-                    for(let i = 0; i < items.length; i++) itemsOutput += `<button id="item${i}" type="button" class="btn btn-dark w-25 mt-3">${items[i].name}</button>`;
+                    for(let i = 0; i < items.length; i++) itemsOutput += `<button type="button" class="btn btn-dark w-25 mt-3 item-button">${items[i].name}</button>`;
                     itemsContainer.innerHTML = itemsOutput;
-                    for(let i = 0; i < items.length; i++) document.querySelector(`item${i}`).addEventListener('click', () => { console.log(this.innerHTML); });
+                }
+                buildItemButtons();
+
+
+                let applyStun = (rounds) => {}
+                let adjustHealth = (target, amount) => {
+                    let newWidth, newHp;
+                    let percentDamage = Math.round((amount / target.hp) * 100);
+                    if ((target.hpPercentage - percentDamage) <= 0){
+                        newWidth = 0;
+                        newHp = 0;
+                    } else {
+                        target.hpPercentage -= percentDamage;
+                        newWidth = target.hpPercentage;
+
+                        target.currentHp -= amount;
+                        newHp = target.currentHp;
+                    }
+                    target.healthBar.style = `width: ${newWidth}%`;
+                    target.healthNumber.innerHTML = newHp;
                 }
 
-                buildItemButtons();
+                let playerAttack = () => adjustHealth(computer, player.attack);
+                let computerAttack = () => adjustHealth(player, computer.attack);
+                let useItem = (item) => {
+                    if (item.value < 0) adjustHealth(computer, item.value * -1);
+                    if (item.value === 0) applyStun(item.rounds);
+                    if (item.value > 0) adjustHealth(player, item.value * -1);
+                }
+
+                //--| Event Listeners |----------//
+                attackButton.addEventListener('click', () => {
+                    playerAttack();
+                    let wait = () => {  computerAttack(); };
+                    const myTimeout = setTimeout(wait, 3000);
+                });
+
+                itemsContainer.addEventListener('click', (e) => {
+                    if (e.target.classList.contains('item-button')) {
+                        e.target.style.display ='none';
+                        let item = items.find(element => element.name === e.target.innerHTML);
+                        useItem(item);
+                        let wait = () => {  computerAttack(); };
+                        const myTimeout = setTimeout(wait, 3000);
+                    }
+                });
+
                 console.log(items);
             })();
         </script>
