@@ -11,7 +11,7 @@ public class Pouch {
     private long id;
 
     @Column(nullable = false)
-    private int quantity;
+    private long quantity;
 
     @ManyToMany(cascade = CascadeType.ALL)
     @JoinTable(
@@ -19,16 +19,18 @@ public class Pouch {
             joinColumns={@JoinColumn(name="pouch_id")},
             inverseJoinColumns={@JoinColumn(name="item_id")}
     )
-    private List<Item> pouch_items;
+    private List<Item> items;
 
-    @ManyToMany(mappedBy = "user_pouches")
-    private List<User> user_pouches;
+    @ManyToMany(mappedBy = "pouches")
+    private List<User> users;
 
-    public Pouch(long id, int quantity, List<Item> pouch_items, List<User> user_pouches) {
-        this.id = id;
+    public Pouch(long quantity) {
         this.quantity = quantity;
-        this.pouch_items = pouch_items;
-        this.user_pouches = user_pouches;
+    }
+
+    public Pouch(Pouch pouch) {
+        this.id = pouch.quantity;
+        this.quantity =  pouch.quantity;
     }
 
     public Pouch() {
@@ -43,27 +45,27 @@ public class Pouch {
         this.id = id;
     }
 
-    public int getQuantity() {
+    public long getQuantity() {
         return quantity;
     }
 
-    public void setQuantity(int quantity) {
+    public void setQuantity(long quantity) {
         this.quantity = quantity;
     }
 
-    public List<Item> getPouch_items() {
-        return pouch_items;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setPouch_items(List<Item> pouch_items) {
-        this.pouch_items = pouch_items;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
-    public List<User> getUser_pouches() {
-        return user_pouches;
+    public List<User> getUsers() {
+        return users;
     }
 
-    public void setUser_pouches(List<User> user_pouches) {
-        this.user_pouches = user_pouches;
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 }

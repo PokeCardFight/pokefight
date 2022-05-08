@@ -30,8 +30,8 @@ public class Item {
     private int cost;
 
     @Expose(serialize = false, deserialize = false)
-    @ManyToMany(mappedBy = "pouch_items")
-    private List<Pouch> items_in_pouch;
+    @ManyToMany(mappedBy = "items")
+    private List<Pouch> pouches;
 
     public Item(String name, int value, int rounds, int cost) {
         this.id = id;
@@ -91,11 +91,11 @@ public class Item {
         this.cost = cost;
     }
 
-    public List<Pouch> getItems_in_pouch() {
-        return items_in_pouch;
+    public List<Pouch> getPouches() {
+        return pouches;
     }
 
-    public void setItems_in_pouch(List<Pouch> items_in_pouch) {
-        this.items_in_pouch = items_in_pouch;
+    public void setPouches(List<Pouch> pouches) {
+        this.pouches = pouches;
     }
 }
