@@ -16,7 +16,7 @@
             <th:block th:case="*"><div class="container" style="background: white; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
         </th:block>
             <div class="row">
-               <div class="col">
+                <div class="col">
                     <div class="row h-25"></div>
                     <div class="row h-75">
                         <div class="col">
@@ -42,8 +42,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div id="items" class="row justify-content-around">
-                            </div>
+                            <div id="items" class="row justify-content-around"></div>
                         </div>
                     </div>
                 </div>
@@ -78,8 +77,8 @@
                     <div class="row h-25">
                         <div class="col-6"></div>
                         <div class="col-6">
-                            <div class="row"><button id="attack-button" type="button" class="btn btn-dark btn-lg my-2 w-100">Attack!</button></div>
-                            <div class="row"><button id="run-button" type="button" class="btn btn-dark btn-lg my-2 w-100">Run!</button></div>
+                            <div class="row"><button id="attack-button" type="button" class="btn btn-dark btn-lg my-2 w-100 button">Attack!</button></div>
+                            <div class="row"><button id="run-button" type="button" class="btn btn-dark btn-lg my-2 w-100 button">Run!</button></div>
                         </div>
                     </div>
                 </div>
@@ -91,6 +90,7 @@
         <script th:inline="javascript">
             (() => {
                 //--| Document Accessors |----------//
+                let allButtons = document.getElementsByClassName('button');
                 let attackButton = document.querySelector('#attack-button');
                 let runButton = document.querySelector('#run-button');
                 let itemsContainer = document.querySelector('#items');
@@ -123,28 +123,41 @@
                 let items = JSON.parse([[${items}]]);
                 const buildItemButtons = () => {
                     let itemsOutput = "";
-                    for(let i = 0; i < items.length; i++) itemsOutput += `<button type="button" class="btn btn-dark w-25 mt-3 item-button">${items[i].name}</button>`;
+                    for(let i = 0; i < items.length; i++) itemsOutput += `<button type="button" class="btn btn-dark w-25 mt-3 button item-button">${items[i].name}</button>`;
                     itemsContainer.innerHTML = itemsOutput;
                 }
                 buildItemButtons();
 
                 //--| Game Play Functions |----------//
+                const disableButtons = () => {
+                    for(let i = 0; i < allButtons.length; i++) {
+                        allButtons[i].classList.add('disabled');
+                        allButtons[i].disabled = true;
+                    }
+                }
+                const enableButtons = () => {
+                    for(let i = 0; i < allButtons.length; i++) {
+                        allButtons[i].classList.remove('disabled');
+                        allButtons[i].disabled = false;
+                    }
+                }
+
                 const postItemRemoval = () => {}
                 const postCardAddition = () => {}
                 const getReturnHome = () => {
+                    console.log('Gameover.');
                     let wait = () => {  window.location.replace(`/home`); };
-                    const myTimeout = setTimeout(wait, 4000);
+                    const myTimeout = setTimeout(wait, 3000);
                 }
 
                 const checkAllHealth = () => {
                     if(player.currentHp === 0) {
                         console.log('Player loses.');
                         getReturnHome();
-                    }
-                    if(computer.currentHp === 0) {
+                    } else if(computer.currentHp === 0) {
                         console.log('Computer loses.');
-                        return;
-                    }
+                        getReturnHome();
+                    } else enableButtons();
                 }
                 const applyStun = (rounds) => {}
                 const adjustHealth = (target, amount) => {
@@ -176,8 +189,11 @@
 
                 //--| Event Listeners (Game Logic) |----------//
                 attackButton.addEventListener('click', () => {
+                    disableButtons();
                     playerAttack();
-                    let wait = () => {  computerAttack(); };
+                    let wait = () => {
+                        computerAttack();
+                    }
                     const myTimeout = setTimeout(wait, 3000);
                 });
                 runButton.addEventListener('click', () => {
@@ -186,11 +202,14 @@
                 });
                 itemsContainer.addEventListener('click', (e) => {
                     if (e.target.classList.contains('item-button')) {
+                        disableButtons();
                         console.log(`Item (${e.target.innerHTML}) used.`);
                         e.target.style.display ='none';
                         let item = items.find(element => element.name === e.target.innerHTML);
                         useItem(item);
-                        let wait = () => {  computerAttack(); };
+                        let wait = () => {
+                            computerAttack();
+                        }
                         const myTimeout = setTimeout(wait, 3000);
                     }
                 });
@@ -202,8 +221,11 @@
                         console.log(`Player starts first.`);
                         return;
                     } else {
+                        disableButtons();
                         console.log(`Computer starts first.`);
-                        let wait = () => {  computerAttack(); };
+                        let wait = () => {
+                            computerAttack();
+                        }
                         const myTimeout = setTimeout(wait, 3000);
                     }
                 }
