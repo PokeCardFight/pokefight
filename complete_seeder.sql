@@ -10,17 +10,17 @@ INSERT INTO items(cost,name,rounds,value) VALUES
                                               ('5','Super Potion','1','-50'),
                                               ('8','Hyper Potion','1','-100');
 
-INSERT INTO pouch(quantity) VALUES
+INSERT INTO pouches(quantity) VALUES
                                 (3),
                                 (2),
                                 (1);
 
-INSERT INTO user_pouches(user_id, pouch_id) VALUES
+INSERT INTO user_pouch(user_id, pouch_id) VALUES
                                                 (1,1),
                                                 (1,2),
                                                 (1,3);
 
-INSERT INTO pouch_items(pouch_id, item_id) VALUES
+INSERT INTO pouch_item(pouch_id, item_id) VALUES
                                                (1,1),
                                                (1,4),
                                                (1,7),
@@ -180,7 +180,7 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Dragonite',   100, 40, 'https://images.pokemontcg.io/base3/4.png', 'Colorless', 'Rare', 'Stage 2'),
                                                                        ('Mewtwo',      60, 10, 'https://images.pokemontcg.io/base4/10.png', 'Psychic', 'Rare', 'Basic');
 
-INSERT INTO user_cards(user_id, card_id) VALUES
+INSERT INTO user_card(user_id, card_id) VALUES
                                              (1,3),
                                              (1,5),
                                              (1,7);

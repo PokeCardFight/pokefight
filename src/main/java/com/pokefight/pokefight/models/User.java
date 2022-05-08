@@ -31,18 +31,18 @@ public class User {
     @Column(nullable=false)
     private int level;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
-            name="user_pouches",
+            name="user_pouch",
             joinColumns={@JoinColumn(name="user_id")},
             inverseJoinColumns={@JoinColumn(name="pouch_id")},
             uniqueConstraints={@UniqueConstraint(columnNames={"user_id","pouch_id"})}
     )
     private List<Pouch> pouches;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
-            name="user_cards",
+            name="user_card",
             joinColumns={@JoinColumn(name="user_id")},
             inverseJoinColumns={@JoinColumn(name="card_id")},
             uniqueConstraints={@UniqueConstraint(columnNames={"user_id","card_id"})}
