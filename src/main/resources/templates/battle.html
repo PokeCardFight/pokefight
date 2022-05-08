@@ -86,14 +86,18 @@
             </div>
         </div>
 
-        <p class="text-white">Current Turn: <span th:text="${turn}"></span></p>
-
         <div th:include="partials/fragments :: footer"></div>
 
         <script th:inline="javascript">
             (() => {
-                //--| Setup |----------//
+                //--| Document Accessors |----------//
+                let attackButton = document.querySelector('#attack-button');
+                let runButton = document.querySelector('#run-button');
+                let itemsContainer = document.querySelector('#items');
+
+                //--| Build & Set Player Data |----------//
                 let player = {
+                    name: [[${playerCard.name}]],
                     hp: [[${playerCard.hp}]],
                     currentHp: [[${playerCard.hp}]],
                     hpPercentage: 100,
@@ -101,7 +105,11 @@
                     healthBar: document.querySelector('#player-health-bar'),
                     healthNumber: document.querySelector('#player-health-number')
                 }
+                player.healthNumber.innerHTML = player.currentHp;
+
+                //--| Build & Set Computer Data |----------//
                 let computer = {
+                    name: [[${computerCard.name}]],
                     hp: [[${computerCard.hp}]],
                     currentHp: [[${computerCard.hp}]],
                     hpPercentage: 100,
@@ -109,59 +117,76 @@
                     healthBar: document.querySelector('#computer-health-bar'),
                     healthNumber: document.querySelector('#computer-health-number')
                 }
-                let items = JSON.parse([[${items}]]);
-
-                player.healthNumber.innerHTML = player.currentHp;
                 computer.healthNumber.innerHTML = computer.currentHp;
 
-                //--| Global Variables |----------//
-                let attackButton = document.querySelector('#attack-button');
-                let itemsContainer = document.querySelector('#items');
-
-                //--| Global Method |----------//
-                let buildItemButtons = () => {
+                //--| Build & Set Item Data |----------//
+                let items = JSON.parse([[${items}]]);
+                const buildItemButtons = () => {
                     let itemsOutput = "";
                     for(let i = 0; i < items.length; i++) itemsOutput += `<button type="button" class="btn btn-dark w-25 mt-3 item-button">${items[i].name}</button>`;
                     itemsContainer.innerHTML = itemsOutput;
                 }
                 buildItemButtons();
 
+                //--| Game Play Functions |----------//
+                const postItemRemoval = () => {}
+                const postCardAddition = () => {}
+                const getReturnHome = () => {
+                    let wait = () => {  window.location.replace(`/home`); };
+                    const myTimeout = setTimeout(wait, 4000);
+                }
 
-                let applyStun = (rounds) => {}
-                let adjustHealth = (target, amount) => {
-                    let newWidth, newHp;
-                    let percentDamage = Math.round((amount / target.hp) * 100);
-                    if ((target.hpPercentage - percentDamage) <= 0){
-                        newWidth = 0;
-                        newHp = 0;
-                    } else {
-                        target.hpPercentage -= percentDamage;
-                        newWidth = target.hpPercentage;
-
-                        target.currentHp -= amount;
-                        newHp = target.currentHp;
+                const checkAllHealth = () => {
+                    if(player.currentHp === 0) {
+                        console.log('Player loses.');
+                        getReturnHome();
                     }
-                    target.healthBar.style = `width: ${newWidth}%`;
-                    target.healthNumber.innerHTML = newHp;
+                    if(computer.currentHp === 0) {
+                        console.log('Computer loses.');
+                        return;
+                    }
                 }
+                const applyStun = (rounds) => {}
+                const adjustHealth = (target, amount) => {
+                    console.log(amount > 0 ? `${target.name} loses ${amount} health points.` : `${target.name} gains ${amount * -1} health points.`);
+                    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+                    let percentDamage = Math.round((amount / target.hp) * 100);
+                    target.hpPercentage -= percentDamage;
+                    target.hpPercentage = clamp(target.hpPercentage, 0, 100);
+                    target.currentHp -= amount;
+                    target.currentHp = clamp(target.currentHp, 0, target.hp);
+                    target.healthBar.style = `width: ${target.hpPercentage}%`;
+                    target.healthNumber.innerHTML = target.currentHp;
 
-                let playerAttack = () => adjustHealth(computer, player.attack);
-                let computerAttack = () => adjustHealth(player, computer.attack);
-                let useItem = (item) => {
-                    if (item.value < 0) adjustHealth(computer, item.value * -1);
+                    checkAllHealth();
+                }
+                const playerAttack = () => {
+                    console.log('Player attacked');
+                    adjustHealth(computer, player.attack);
+                }
+                const computerAttack = () => {
+                    console.log('Computer attacked');
+                    adjustHealth(player, computer.attack);
+                }
+                const useItem = (item) => {
+                    if (item.value > 0) adjustHealth(computer, item.value);
                     if (item.value === 0) applyStun(item.rounds);
-                    if (item.value > 0) adjustHealth(player, item.value * -1);
+                    if (item.value < 0) adjustHealth(player, item.value);
                 }
 
-                //--| Event Listeners |----------//
+                //--| Event Listeners (Game Logic) |----------//
                 attackButton.addEventListener('click', () => {
                     playerAttack();
                     let wait = () => {  computerAttack(); };
                     const myTimeout = setTimeout(wait, 3000);
                 });
-
+                runButton.addEventListener('click', () => {
+                    console.log('Player runs away!');
+                    getReturnHome();
+                });
                 itemsContainer.addEventListener('click', (e) => {
                     if (e.target.classList.contains('item-button')) {
+                        console.log(`Item (${e.target.innerHTML}) used.`);
                         e.target.style.display ='none';
                         let item = items.find(element => element.name === e.target.innerHTML);
                         useItem(item);
@@ -170,7 +195,19 @@
                     }
                 });
 
-                console.log(items);
+                //--| Get Starting Turn |----------//
+                const checkFirstTurn = () => {
+                    let firstTurn = [[${turn}]];
+                    if (firstTurn === 'Player') {
+                        console.log(`Player starts first.`);
+                        return;
+                    } else {
+                        console.log(`Computer starts first.`);
+                        let wait = () => {  computerAttack(); };
+                        const myTimeout = setTimeout(wait, 3000);
+                    }
+                }
+                checkFirstTurn();
             })();
         </script>
     </body>
