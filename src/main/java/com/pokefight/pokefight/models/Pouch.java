@@ -4,7 +4,7 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name="pouch")
+@Table(name="pouches")
 public class Pouch {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -13,13 +13,8 @@ public class Pouch {
     @Column(nullable = false)
     private long quantity;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="pouch_items",
-            joinColumns={@JoinColumn(name="pouch_id")},
-            inverseJoinColumns={@JoinColumn(name="item_id")}
-    )
-    private List<Item> items;
+    @OneToMany(mappedBy = "pouch")
+    private List<PouchItem> pouch_item;
 
     @ManyToMany(mappedBy = "pouches")
     private List<User> users;
@@ -53,12 +48,12 @@ public class Pouch {
         this.quantity = quantity;
     }
 
-    public List<Item> getItems() {
-        return items;
+    public List<PouchItem> getPouch_item() {
+        return pouch_item;
     }
 
-    public void setItems(List<Item> items) {
-        this.items = items;
+    public void setPouch_item(List<PouchItem> pouch_item) {
+        this.pouch_item = pouch_item;
     }
 
     public List<User> getUsers() {

@@ -17,7 +17,7 @@ public class BattleController {
 
     private ItemRepository itemDao;
     private CardRepository cardDao;
-    private PouchRepository pouchDao;
+    private PouchItemRepository pouchItemDao;
 
     private boolean turn;
     private long playerCardId;
@@ -26,15 +26,10 @@ public class BattleController {
 
     private boolean flipCoin() { return ThreadLocalRandom.current().nextBoolean(); }
 
-    public class ResponseTransfer {
-        private String text;
-        public ResponseTransfer(String text) { this.text = text; }
-    }
-
-    public BattleController(CardRepository cardDao, ItemRepository itemDao, PouchRepository pouchDao) {
+    public BattleController(CardRepository cardDao, ItemRepository itemDao, PouchItemRepository pouchItemDao) {
         this.itemDao = itemDao;
         this.cardDao = cardDao;
-        this.pouchDao = pouchDao;
+        this.pouchItemDao = pouchItemDao;
     }
 
     @GetMapping("/battle")
@@ -74,7 +69,7 @@ public class BattleController {
 
     @PostMapping("/battle/remove/item")
     ResponseEntity<String> battleItemRemoval(@RequestParam(value = "id") long id){
-        System.out.println("something");
+        pouchItemDao.delete(pouchItemDao.getByPouchIdAndItemId(playerPouchId, id));
         return ResponseEntity.ok().body("Item " + id + " deleted.");
     }
 
