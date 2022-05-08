@@ -86,14 +86,13 @@
             </div>
         </div>
 
-        <p class="text-white">Current Turn: <span th:text="${turn}"></span></p>
-
         <div th:include="partials/fragments :: footer"></div>
 
         <script th:inline="javascript">
             (() => {
                 //--| Document Accessors |----------//
                 let attackButton = document.querySelector('#attack-button');
+                let runButton = document.querySelector('#run-button');
                 let itemsContainer = document.querySelector('#items');
 
                 //--| Build & Set Player Data |----------//
@@ -132,12 +131,15 @@
                 //--| Game Play Functions |----------//
                 const postItemRemoval = () => {}
                 const postCardAddition = () => {}
-                const getReturnHome = () => {}
+                const getReturnHome = () => {
+                    let wait = () => {  window.location.replace(`/home`); };
+                    const myTimeout = setTimeout(wait, 4000);
+                }
 
                 const checkAllHealth = () => {
                     if(player.currentHp === 0) {
                         console.log('Player loses.');
-                        return;
+                        getReturnHome();
                     }
                     if(computer.currentHp === 0) {
                         console.log('Computer loses.');
@@ -178,6 +180,10 @@
                     let wait = () => {  computerAttack(); };
                     const myTimeout = setTimeout(wait, 3000);
                 });
+                runButton.addEventListener('click', () => {
+                    console.log('Player runs away!');
+                    getReturnHome();
+                });
                 itemsContainer.addEventListener('click', (e) => {
                     if (e.target.classList.contains('item-button')) {
                         console.log(`Item (${e.target.innerHTML}) used.`);
@@ -188,6 +194,20 @@
                         const myTimeout = setTimeout(wait, 3000);
                     }
                 });
+
+                //--| Get Starting Turn |----------//
+                const checkFirstTurn = () => {
+                    let firstTurn = [[${turn}]];
+                    if (firstTurn === 'Player') {
+                        console.log(`Player starts first.`);
+                        return;
+                    } else {
+                        console.log(`Computer starts first.`);
+                        let wait = () => {  computerAttack(); };
+                        const myTimeout = setTimeout(wait, 3000);
+                    }
+                }
+                checkFirstTurn();
             })();
         </script>
     </body>
