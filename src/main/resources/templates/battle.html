@@ -35,17 +35,14 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="h-75 row" style="background: rgba(24, 24, 24, 0.5)">
+                                    <div class="h-75 row" style="background: rgba(24, 24, 24, 0.65)">
                                         <div class="col d-flex justify-content-center">
                                             <img width="250px" height="250px" th:src="*{image}"/>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="row justify-content-around">
-                                <button type="button" class="btn btn-dark w-25 mt-3">Item 1</button>
-                                <button type="button" class="btn btn-dark w-25 mt-3">Item 2</button>
-                                <button type="button" class="btn btn-dark w-25 mt-3">Item 3</button>
+                            <div id="items" class="row justify-content-around">
                             </div>
                         </div>
                     </div>
@@ -69,7 +66,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="h-75 row" style="background: rgba(24, 24, 24, 0.5)">
+                                    <div class="h-75 row" style="background: rgba(24, 24, 24, 0.65)">
                                         <div class="col d-flex justify-content-center">
                                             <img width="250px" height="250px" th:src="*{image}"/>
                                         </div>
@@ -95,37 +92,60 @@
 
         <script th:inline="javascript">
             (() => {
-
+                //--| Setup |----------//
                 let player = {
                     hp: [[${playerCard.hp}]],
+                    currentHp: [[${playerCard.hp}]],
+                    hpPercentage: 100,
                     attack: [[${playerCard.attack}]],
                     healthBar: document.querySelector('#player-health-bar'),
                     healthNumber: document.querySelector('#player-health-number')
                 }
-
-                player.healthNumber.innerHTML = player.hp;
-
-                console.log(player.hp);
-                console.log(player.attack);
-
                 let computer = {
                     hp: [[${computerCard.hp}]],
+                    currentHp: [[${computerCard.hp}]],
+                    hpPercentage: 100,
                     attack: [[${computerCard.attack}]],
                     healthBar: document.querySelector('#computer-health-bar'),
                     healthNumber: document.querySelector('#computer-health-number')
                 }
+                let items = JSON.parse([[${items}]]);
 
-                computer.healthNumber.innerHTML = computer.hp;
+                player.healthNumber.innerHTML = player.currentHp;
+                computer.healthNumber.innerHTML = computer.currentHp;
 
-                console.log(computer.hp);
-                console.log(computer.attack);
-
+                //--| Global Variables |----------//
                 let attackButton = document.querySelector('#attack-button');
+                let itemsContainer = document.querySelector('#items');
 
+                //--| Event Listeners |----------//
                 attackButton.addEventListener('click', () => {
-                    computer.healthBar.style = `width: 50%`;
+                    let newWidth, newHp;
+                    let percentDamage = Math.round((player.attack / computer.hp) * 100);
+                    if ((computer.hpPercentage - percentDamage) <= 0){
+                        newWidth = 0;
+                        newHp = 0;
+                    }
+                    else {
+                        computer.hpPercentage -= percentDamage;
+                        newWidth = computer.hpPercentage;
+
+                        computer.currentHp -= player.attack;
+                        newHp = computer.currentHp;
+                    }
+                    computer.healthBar.style = `width: ${newWidth}%`;
+                    computer.healthNumber.innerHTML = newHp;
                 })
 
+                let buildItemButtons = () => {
+                    let itemsOutput = "";
+                    for(let i = 0; i < items.length; i++) itemsOutput += `<button id="item${i}" type="button" class="btn btn-dark w-25 mt-3">${items[i].name}</button>`;
+                    itemsContainer.innerHTML = itemsOutput;
+                    for(let i = 0; i < items.length; i++) document.querySelector(`item${i}`).addEventListener('click', () => { console.log(this.innerHTML); });
+                }
+
+                buildItemButtons();
+                console.log(items);
             })();
         </script>
     </body>
