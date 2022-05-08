@@ -17,6 +17,7 @@ public class BattleController {
 
     private ItemRepository itemDao;
     private CardRepository cardDao;
+    private PouchRepository pouchDao;
 
     private boolean turn;
     private long playerCardId;
@@ -30,9 +31,10 @@ public class BattleController {
         public ResponseTransfer(String text) { this.text = text; }
     }
 
-    public BattleController(CardRepository cardDao, ItemRepository itemDao) {
+    public BattleController(CardRepository cardDao, ItemRepository itemDao, PouchRepository pouchDao) {
         this.itemDao = itemDao;
         this.cardDao = cardDao;
+        this.pouchDao = pouchDao;
     }
 
     @GetMapping("/battle")
@@ -72,8 +74,7 @@ public class BattleController {
 
     @PostMapping("/battle/remove/item")
     ResponseEntity<String> battleItemRemoval(@RequestParam(value = "id") long id){
-//        itemDao.deleteItemFromPouch(playerPouchId, id);
-
+        System.out.println("something");
         return ResponseEntity.ok().body("Item " + id + " deleted.");
     }
 
