@@ -157,8 +157,28 @@
                     console.log('----------------------------');
                 }
 
-                const postItemRemoval = () => {}
-                const postCardAddition = () => {}
+                const postItemRemoval = (id) => {
+                    $.ajax({
+                        type: "POST",
+                        url: "/battle/remove/item",
+                        data: {id: id},
+                        timeout: 100000,
+                        success: (message) => console.log("SUCCESS: ", message),
+                        error: (error) => console.log("ERROR: ", error),
+                        done: () => {}
+                    });
+                }
+                const postCardAddition = () => {
+                    $.ajax({
+                        type: "POST",
+                        url: "/battle/add/card",
+                        data: {id: [[${computerCard.id}]]},
+                        timeout: 100000,
+                        success: (message) => console.log("SUCCESS: ", message),
+                        error: (error) => console.log("ERROR: ", error),
+                        done: () => {}
+                    });
+                }
                 const getReturnHome = async () => {
                     gameover = true;
                     console.log('Gameover.');
@@ -173,6 +193,7 @@
                     }
                     if(computer.currentHp === 0) {
                         console.log('Computer loses.');
+                        postCardAddition();
                         getReturnHome();
                     }
                 }
@@ -199,6 +220,7 @@
                     adjustHealth(player, computer.attack);
                 }
                 const useItem = (item) => {
+                    console.log(`Item (${item.name}) used.`);
                     if (item.value > 0) adjustHealth(computer, item.value);
                     if (item.value === 0) applyStun(item.rounds);
                     if (item.value < 0) adjustHealth(player, item.value);
@@ -210,7 +232,7 @@
                     disableButtons();
                     playerAttack();
                     await delay(3000);
-                    computerAttack();
+                    if (!gameover) computerAttack();
                     if (!gameover) enableButtons();
                 });
 
@@ -223,12 +245,12 @@
                 itemsContainer.addEventListener('click', async (e) => {
                     if (e.target.classList.contains('item-button')) {
                         disableButtons();
-                        console.log(`Item (${e.target.innerHTML}) used.`);
                         e.target.style.display = 'none';
                         let item = items.find(element => element.name === e.target.innerHTML);
                         useItem(item);
+                        postItemRemoval(item.id);
                         await delay(3000);
-                        computerAttack();
+                        if (!gameover) computerAttack();
                         if (!gameover) enableButtons();
                     }
                 });
@@ -240,10 +262,10 @@
                         console.log(`Player starts first.`);
                         return;
                     } else {
-                        disableButtons();
                         console.log(`Computer starts first.`);
+                        disableButtons();
                         await delay(3000);
-                        computerAttack();
+                        if (!gameover) computerAttack();
                         if (!gameover) enableButtons();
                     }
                 }

@@ -3,6 +3,7 @@ package com.pokefight.pokefight.controllers;
 import com.google.gson.*;
 import com.pokefight.pokefight.models.*;
 import com.pokefight.pokefight.repositories.*;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -17,13 +18,17 @@ public class BattleController {
     private ItemRepository itemDao;
     private CardRepository cardDao;
 
-    boolean turn;
-    long playerCardId;
-    long playerPouchId;
-    long computerCardId;
+    private boolean turn;
+    private long playerCardId;
+    private long playerPouchId;
+    private long computerCardId;
 
     private boolean flipCoin() { return ThreadLocalRandom.current().nextBoolean(); }
-    private long getRandomCardId() { return (long)(Math.random() * 150) + 1; }
+
+    public class ResponseTransfer {
+        private String text;
+        public ResponseTransfer(String text) { this.text = text; }
+    }
 
     public BattleController(CardRepository cardDao, ItemRepository itemDao) {
         this.itemDao = itemDao;
@@ -41,7 +46,7 @@ public class BattleController {
         model.addAttribute("playerCard", playerCard);
         model.addAttribute("computerCard", computerCard);
 
-        List<Item> items = itemDao.getItemsbyPouchId(playerPouchId);
+        List<Item> items = itemDao.getItemsByPouchId(playerPouchId);
         String itemsString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(items);
         model.addAttribute("items", itemsString);
 
@@ -65,8 +70,16 @@ public class BattleController {
         return "redirect:/battle";
     }
 
-    @PostMapping("/battle")
-    public String battlePost(){
-        return "/battle";
+    @PostMapping("/battle/remove/item")
+    ResponseEntity<String> battleItemRemoval(@RequestParam(value = "id") long id){
+//        itemDao.deleteItemFromPouch(playerPouchId, id);
+
+        return ResponseEntity.ok().body("Item " + id + " deleted.");
+    }
+
+    @PostMapping("/battle/add/card")
+    ResponseEntity<String> battleCardAdder(@RequestParam(value = "id") long id){
+        System.out.println("id = " + id);
+        return ResponseEntity.ok().body("Card " + id + " added.");
     }
 }
