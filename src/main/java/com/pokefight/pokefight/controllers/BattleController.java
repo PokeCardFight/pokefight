@@ -1,14 +1,14 @@
 package com.pokefight.pokefight.controllers;
 
+import com.google.gson.*;
 import com.pokefight.pokefight.models.*;
-import com.pokefight.pokefight.repositories.CardRepository;
-import com.pokefight.pokefight.repositories.ItemRepository;
-import com.pokefight.pokefight.repositories.UserRepository;
+import com.pokefight.pokefight.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -42,8 +42,9 @@ public class BattleController {
         model.addAttribute("playerCard", playerCard);
         model.addAttribute("computerCard", computerCard);
 
-        List<Item> items = itemDao.getItemsbyPouchId(1);
-
+        List<Item> items = itemDao.getItemsbyPouchId(playerPouchId);
+        String itemsString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(items);
+        model.addAttribute("items", itemsString);
 
         return "/battle";
     }

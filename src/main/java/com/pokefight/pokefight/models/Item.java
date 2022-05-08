@@ -1,27 +1,35 @@
 package com.pokefight.pokefight.models;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name="items")
 public class Item {
+    @Expose(serialize = true, deserialize = true)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false, unique = true, length = 45)
     private String name;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false)
     private int value;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false)
     private int rounds;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false)
     private int cost;
 
+    @Expose(serialize = false, deserialize = false)
     @ManyToMany(mappedBy = "pouch_items")
     private List<Pouch> items_in_pouch;
 
@@ -41,8 +49,7 @@ public class Item {
         this.cost = item.cost;
     }
 
-    public Item() {
-    }
+    public Item() {}
 
     public long getId() {
         return id;
