@@ -13,7 +13,11 @@
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
               integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
               crossorigin="anonymous">
+<<<<<<< HEAD
         <!--CSS-->
+=======
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+>>>>>>> f66999ec4e5dec78e3d2e023eeb26e3c1826363a
         <link rel="stylesheet" href="/static/css/universal.css">
 
     </div>
@@ -55,7 +59,7 @@
             <!--only shows up after security login-->
             <a id="profile" th:href="@{/profile}"
                class="p-4 flex-fill" sec:authorize="isAuthenticated()"><span
-                    th:text="${#authentication.principal.username}"></span>
+                    th:text="${#authentication.principal.username}"></span> <!--intellij doesnt understand. ignore-->
                 <div class="indicator"></div>
             </a>
             <form th:action="@{/logout}" th:method="post" sec:authorize="isAuthenticated()">

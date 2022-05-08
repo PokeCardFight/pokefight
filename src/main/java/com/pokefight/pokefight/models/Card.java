@@ -31,15 +31,17 @@ public class Card {
     @Column(nullable = false)
     private String subtype;
 
-    @ManyToMany(mappedBy = "user_cards")
-    private List<User> user_cards;
+    @OneToMany(mappedBy = "card")
+    private List<UserCard> user_card;
 
-    public Card(String name, String type, int attack, int hp, String image) {
+    public Card(String name, String type, int attack, int hp, String image, String rarity, String subtype) {
         this.name = name;
         this.type = type;
         this.attack = attack;
         this.hp = hp;
         this.image = image;
+        this.rarity = rarity;
+        this.subtype = subtype;
     }
 
     public Card(Card card) {
@@ -49,7 +51,8 @@ public class Card {
         this.attack = card.attack;
         this.hp = card.hp;
         this.image = card.image;
-        this.user_cards = card.user_cards;
+        this.rarity = card.rarity;
+        this.subtype = card.subtype;
     }
 
     public Card() {
@@ -104,12 +107,27 @@ public class Card {
         this.image = image;
     }
 
-    public List<User> getUser_cards() {
-        return user_cards;
+    public String getRarity() {
+        return rarity;
     }
 
-    public void setUser_cards(List<User> user_cards) {
-        this.user_cards = user_cards;
+    public void setRarity(String rarity) {
+        this.rarity = rarity;
     }
 
+    public String getSubtype() {
+        return subtype;
+    }
+
+    public void setSubtype(String subtype) {
+        this.subtype = subtype;
+    }
+
+    public List<UserCard> getUser_card() {
+        return user_card;
+    }
+
+    public void setUser_card(List<UserCard> user_card) {
+        this.user_card = user_card;
+    }
 }

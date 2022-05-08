@@ -88,6 +88,23 @@ div.bat:hover {
     background-color: #80a3bb;
 
 }
+
+#player-health-bar {
+    background: rgb(110,0,0);
+    background: linear-gradient(90deg, rgba(110,0,0,1) 0%, rgba(255,0,0,1) 100%);
+    width: 100%;
+    height: 10px;
+    transition: 1s ease-in-out;
+}
+
+#computer-health-bar {
+    background: rgb(110,0,0);
+    background: linear-gradient(90deg, rgba(110,0,0,1) 0%, rgba(255,0,0,1) 100%);
+    width: 100%;
+    height: 10px;
+    transition: 1s ease-in-out;
+}
+
 /*div.bat{*/
 /*    background-color: orange;*/
 

@@ -41,9 +41,9 @@ public class RegisterController {
                 user.getEmail(),
                 hash,
                 "http:\\",
+                15,
                 0,
-                0,
-                0
+                1
         ));
 
         emailService.sendAccountCreatedMessage(user);

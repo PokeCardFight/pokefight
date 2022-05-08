@@ -31,23 +31,17 @@ public class User {
     @Column(nullable=false)
     private int level;
 
-    @ManyToMany(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(
-            name="user_pouches",
+            name="user_pouch",
             joinColumns={@JoinColumn(name="user_id")},
             inverseJoinColumns={@JoinColumn(name="pouch_id")},
             uniqueConstraints={@UniqueConstraint(columnNames={"user_id","pouch_id"})}
     )
-    private List<Pouch> user_pouches;
+    private List<Pouch> pouches;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(
-            name="user_cards",
-            joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns={@JoinColumn(name="card_id")},
-            uniqueConstraints={@UniqueConstraint(columnNames={"user_id","card_id"})}
-    )
-    private List<Card> user_cards;
+    @OneToMany(mappedBy = "user")
+    private List<UserCard> user_card;
 
     public User( String username, String email, String password, String profile_pic, int gold, int xp, int level) {
         this.username = username;
@@ -59,7 +53,6 @@ public class User {
         this.level = level;
 
     }
-
 
     public User(User user) {
         this.id = user.id;
@@ -141,19 +134,19 @@ public class User {
         this.level = level;
     }
 
-    public List<Pouch> getUser_pouches() {
-        return user_pouches;
+    public List<Pouch> getPouches() {
+        return pouches;
     }
 
-    public void setUser_pouches(List<Pouch> user_pouches) {
-        this.user_pouches = user_pouches;
+    public void setPouches(List<Pouch> pouches) {
+        this.pouches = pouches;
     }
 
-    public List<Card> getUser_cards() {
-        return user_cards;
+    public List<UserCard> getUser_card() {
+        return user_card;
     }
 
-    public void setUser_cards(List<Card> user_cards) {
-        this.user_cards = user_cards;
+    public void setUser_card(List<UserCard> user_card) {
+        this.user_card = user_card;
     }
 }
