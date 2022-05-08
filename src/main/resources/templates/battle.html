@@ -89,11 +89,7 @@
 
         <script th:inline="javascript">
             (() => {
-                //--| Document Accessors |----------//
-                let allButtons = document.getElementsByClassName('button');
-                let attackButton = document.querySelector('#attack-button');
-                let runButton = document.querySelector('#run-button');
-                let itemsContainer = document.querySelector('#items');
+                let gameover = false;
 
                 //--| Build & Set Player Data |----------//
                 let player = {
@@ -120,6 +116,7 @@
                 computer.healthNumber.innerHTML = computer.currentHp;
 
                 //--| Build & Set Item Data |----------//
+                let itemsContainer = document.querySelector('#items');
                 let items = JSON.parse([[${items}]]);
                 const buildItemButtons = () => {
                     let itemsOutput = "";
@@ -129,35 +126,55 @@
                 buildItemButtons();
 
                 //--| Game Play Functions |----------//
+                function delay(n) {
+                    n = n || 2000;
+                    return new Promise(done => {
+                        setTimeout(() => {
+                            done();
+                        }, n);
+                    });
+                }
+
+                let allButtons = document.getElementsByClassName('button');
                 const disableButtons = () => {
                     for(let i = 0; i < allButtons.length; i++) {
                         allButtons[i].classList.add('disabled');
                         allButtons[i].disabled = true;
                     }
+                    console.log('----------------------------');
+                    console.log('Disabled Buttons');
+                    for(let i = 0; i < allButtons.length; i++) console.log(allButtons[i]);
+                    console.log('----------------------------');
                 }
                 const enableButtons = () => {
                     for(let i = 0; i < allButtons.length; i++) {
                         allButtons[i].classList.remove('disabled');
                         allButtons[i].disabled = false;
                     }
+                    console.log('----------------------------');
+                    console.log('Enabled Buttons:');
+                    for(let i = 0; i < allButtons.length; i++) console.log(allButtons[i]);
+                    console.log('----------------------------');
                 }
 
                 const postItemRemoval = () => {}
                 const postCardAddition = () => {}
-                const getReturnHome = () => {
+                const getReturnHome = async () => {
+                    gameover = true;
                     console.log('Gameover.');
-                    let wait = () => {  window.location.replace(`/home`); };
-                    const myTimeout = setTimeout(wait, 3000);
+                    await delay(3000);
+                    window.location.replace(`/home`);
                 }
 
                 const checkAllHealth = () => {
                     if(player.currentHp === 0) {
                         console.log('Player loses.');
                         getReturnHome();
-                    } else if(computer.currentHp === 0) {
+                    }
+                    if(computer.currentHp === 0) {
                         console.log('Computer loses.');
                         getReturnHome();
-                    } else enableButtons();
+                    }
                 }
                 const applyStun = (rounds) => {}
                 const adjustHealth = (target, amount) => {
@@ -188,34 +205,36 @@
                 }
 
                 //--| Event Listeners (Game Logic) |----------//
-                attackButton.addEventListener('click', () => {
+                let attackButton = document.querySelector('#attack-button');
+                attackButton.addEventListener('click', async () => {
                     disableButtons();
                     playerAttack();
-                    let wait = () => {
-                        computerAttack();
-                    }
-                    const myTimeout = setTimeout(wait, 3000);
+                    await delay(3000);
+                    computerAttack();
+                    if (!gameover) enableButtons();
                 });
+
+                let runButton = document.querySelector('#run-button');
                 runButton.addEventListener('click', () => {
                     console.log('Player runs away!');
                     getReturnHome();
                 });
-                itemsContainer.addEventListener('click', (e) => {
+
+                itemsContainer.addEventListener('click', async (e) => {
                     if (e.target.classList.contains('item-button')) {
                         disableButtons();
                         console.log(`Item (${e.target.innerHTML}) used.`);
-                        e.target.style.display ='none';
+                        e.target.style.display = 'none';
                         let item = items.find(element => element.name === e.target.innerHTML);
                         useItem(item);
-                        let wait = () => {
-                            computerAttack();
-                        }
-                        const myTimeout = setTimeout(wait, 3000);
+                        await delay(3000);
+                        computerAttack();
+                        if (!gameover) enableButtons();
                     }
                 });
 
                 //--| Get Starting Turn |----------//
-                const checkFirstTurn = () => {
+                const checkFirstTurn = async () => {
                     let firstTurn = [[${turn}]];
                     if (firstTurn === 'Player') {
                         console.log(`Player starts first.`);
@@ -223,10 +242,9 @@
                     } else {
                         disableButtons();
                         console.log(`Computer starts first.`);
-                        let wait = () => {
-                            computerAttack();
-                        }
-                        const myTimeout = setTimeout(wait, 3000);
+                        await delay(3000);
+                        computerAttack();
+                        if (!gameover) enableButtons();
                     }
                 }
                 checkFirstTurn();
