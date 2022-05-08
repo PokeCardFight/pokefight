@@ -26,9 +26,9 @@
                                         <div class="col d-flex align-items-center">
                                             <div class="container">
                                                 <div class="row"><h3 class="m-0"><span th:text="*{name}"></span></h3></div>
-                                                <div class="row"><div class="player-health"></div></div>
+                                                <div class="row" style="background: black"><div id="player-health-bar"></div></div>
                                                 <div class="row">
-                                                    <h4 class="w-50 m-0">100/<span th:text="*{hp}"></span></h4>
+                                                    <h4 class="w-50 m-0"><span id="player-health-number"></span>/<span th:text="*{hp}"></span></h4>
                                                     <h6 class="w-25 m-0">ATK: <span th:text="*{attack}"></span></h6>
                                                     <h6 class="w-25 m-0"><span th:text="*{type}"></span></h6>
                                                 </div>
@@ -60,9 +60,9 @@
                                         <div class="col d-flex align-items-center">
                                             <div class="container">
                                                 <div class="row"><h3 class="m-0"><span th:text="*{name}"></span></h3></div>
-                                                <div class="row"><div class="player-health"></div></div>
+                                                <div class="row" style="background: black"><div id="computer-health-bar"></div></div>
                                                 <div class="row">
-                                                    <h4 class="w-50 m-0">100/<span th:text="*{hp}"></span></h4>
+                                                    <h4 class="w-50 m-0"><span id="computer-health-number"></span>/<span th:text="*{hp}"></span></h4>
                                                     <h6 class="w-25 m-0">ATK: <span th:text="*{attack}"></span></h6>
                                                     <h6 class="w-25 m-0"><span th:text="*{type}"></span></h6>
                                                 </div>
@@ -81,8 +81,8 @@
                     <div class="row h-25">
                         <div class="col-6"></div>
                         <div class="col-6">
-                            <div class="row"><button type="button" class="btn btn-dark btn-lg my-2 w-100">Attack!</button></div>
-                            <div class="row"><button type="button" class="btn btn-dark btn-lg my-2 w-100">Run!</button></div>
+                            <div class="row"><button id="attack-button" type="button" class="btn btn-dark btn-lg my-2 w-100">Attack!</button></div>
+                            <div class="row"><button id="run-button" type="button" class="btn btn-dark btn-lg my-2 w-100">Run!</button></div>
                         </div>
                     </div>
                 </div>
@@ -92,5 +92,41 @@
         <p class="text-white">Current Turn: <span th:text="${turn}"></span></p>
 
         <div th:include="partials/fragments :: footer"></div>
+
+        <script th:inline="javascript">
+            (() => {
+
+                let player = {
+                    hp: [[${playerCard.hp}]],
+                    attack: [[${playerCard.attack}]],
+                    healthBar: document.querySelector('#player-health-bar'),
+                    healthNumber: document.querySelector('#player-health-number')
+                }
+
+                player.healthNumber.innerHTML = player.hp;
+
+                console.log(player.hp);
+                console.log(player.attack);
+
+                let computer = {
+                    hp: [[${computerCard.hp}]],
+                    attack: [[${computerCard.attack}]],
+                    healthBar: document.querySelector('#computer-health-bar'),
+                    healthNumber: document.querySelector('#computer-health-number')
+                }
+
+                computer.healthNumber.innerHTML = computer.hp;
+
+                console.log(computer.hp);
+                console.log(computer.attack);
+
+                let attackButton = document.querySelector('#attack-button');
+
+                attackButton.addEventListener('click', () => {
+                    computer.healthBar.style = `width: 50%`;
+                })
+
+            })();
+        </script>
     </body>
 </html>
