@@ -40,14 +40,8 @@ public class User {
     )
     private List<Pouch> pouches;
 
-    @ManyToMany
-    @JoinTable(
-            name="user_card",
-            joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns={@JoinColumn(name="card_id")},
-            uniqueConstraints={@UniqueConstraint(columnNames={"user_id","card_id"})}
-    )
-    private List<Card> cards;
+    @OneToMany(mappedBy = "user")
+    private List<UserCard> user_card;
 
     public User( String username, String email, String password, String profile_pic, int gold, int xp, int level) {
         this.username = username;
@@ -148,11 +142,11 @@ public class User {
         this.pouches = pouches;
     }
 
-    public List<Card> getCards() {
-        return cards;
+    public List<UserCard> getUser_card() {
+        return user_card;
     }
 
-    public void setCards(List<Card> cards) {
-        this.cards = cards;
+    public void setUser_card(List<UserCard> user_card) {
+        this.user_card = user_card;
     }
 }

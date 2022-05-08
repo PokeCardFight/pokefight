@@ -18,6 +18,7 @@ public class BattleController {
     private ItemRepository itemDao;
     private CardRepository cardDao;
     private PouchItemRepository pouchItemDao;
+    private UserCardRepository userCardDao;
 
     private boolean turn;
     private long playerCardId;
@@ -26,10 +27,11 @@ public class BattleController {
 
     private boolean flipCoin() { return ThreadLocalRandom.current().nextBoolean(); }
 
-    public BattleController(CardRepository cardDao, ItemRepository itemDao, PouchItemRepository pouchItemDao) {
+    public BattleController(CardRepository cardDao, ItemRepository itemDao, PouchItemRepository pouchItemDao, UserCardRepository userCardDao) {
         this.itemDao = itemDao;
         this.cardDao = cardDao;
         this.pouchItemDao = pouchItemDao;
+        this.userCardDao = userCardDao;
     }
 
     @GetMapping("/battle")
@@ -75,7 +77,8 @@ public class BattleController {
 
     @PostMapping("/battle/add/card")
     ResponseEntity<String> battleCardAdder(@RequestParam(value = "id") long id){
-        System.out.println("id = " + id);
+        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        userCardDao.save(new UserCard(user, cardDao.getById(id)));
         return ResponseEntity.ok().body("Card " + id + " added.");
     }
 }

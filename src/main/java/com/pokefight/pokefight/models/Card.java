@@ -31,8 +31,8 @@ public class Card {
     @Column(nullable = false)
     private String subtype;
 
-    @ManyToMany(mappedBy = "cards")
-    private List<User> user;
+    @OneToMany(mappedBy = "card")
+    private List<UserCard> user_card;
 
     public Card(String name, String type, int attack, int hp, String image, String rarity, String subtype) {
         this.name = name;
@@ -123,11 +123,11 @@ public class Card {
         this.subtype = subtype;
     }
 
-    public List<User> getUser() {
-        return user;
+    public List<UserCard> getUser_card() {
+        return user_card;
     }
 
-    public void setUser(List<User> user) {
-        this.user = user;
+    public void setUser_card(List<UserCard> user_card) {
+        this.user_card = user_card;
     }
 }
