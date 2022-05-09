@@ -1,5 +1,6 @@
 package com.pokefight.pokefight.controllers;
 
+import com.google.gson.*;
 import com.pokefight.pokefight.models.*;
 import com.pokefight.pokefight.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -16,16 +17,14 @@ public class HomeController {
     private ItemRepository itemDao;
     private UserRepository userDao;
     private PouchItemRepository pouchItemDao;
-    private UserPouchRepository userPouchDao;
 
 
-    public HomeController(CardRepository cardDao, PouchRepository pouchDao, ItemRepository itemDao, UserRepository userDao, PouchItemRepository pouchItemDao, UserPouchRepository userPouchDao){
+    public HomeController(CardRepository cardDao, PouchRepository pouchDao, ItemRepository itemDao, UserRepository userDao, PouchItemRepository pouchItemDao){
         this.cardDao = cardDao;
         this.pouchDao = pouchDao;
         this.itemDao = itemDao;
         this.userDao = userDao;
         this.pouchItemDao = pouchItemDao;
-        this.userPouchDao = userPouchDao;
     }
 
     @GetMapping("/home")
@@ -47,11 +46,10 @@ public class HomeController {
         model.addAttribute("itemsInPouch2", itemsInPouch2);
         model.addAttribute("itemsInPouch3", itemsInPouch3);
 
-        List<Card> userCardInfo = cardDao.getUserCards();
-        model.addAttribute("userCardInfo", userCardInfo);
+        List<Card> userCard = cardDao.getUserCards();
+        String userCardString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(userCard);
+        model.addAttribute("cards", userCardString);
         return "/home";
-
-
     }
 
     @PostMapping("/home/addItems")
