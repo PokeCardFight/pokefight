@@ -47,8 +47,8 @@ public class HomeController {
         model.addAttribute("itemsInPouch1", itemsInPouch1);
         model.addAttribute("itemsInPouch2", itemsInPouch2);
         model.addAttribute("itemsInPouch3", itemsInPouch3);
-        List<String> userCardImage = cardDao.getUserCards();
-        model.addAttribute("userCardImage", userCardImage );
+        List<String> userCardInfo = cardDao.getUserCards();
+        model.addAttribute("userCardInfo", userCardInfo );
         return "/home";
 
     }
