@@ -33,16 +33,12 @@ public class ProfileController {
 
     @PostMapping("/profile/edit")
     public String submitEdit(@ModelAttribute User user, @RequestParam String password) {
-
         User oldUser = userDao.getById(user.getId());
         String hash = passwordEncoder.encode(password);
-
         if (!oldUser.getPassword().equals(hash)) {
-            JOptionPane.showMessageDialog(null, "new password already set to your password!");
-            System.out.println("password change to" + password + "!");
+            System.out.println("password change to " + password + "!");
             oldUser.setPassword(hash);
         }
-
         oldUser.setUsername(user.getUsername());
         oldUser.setEmail(user.getEmail());
         userDao.save(oldUser);

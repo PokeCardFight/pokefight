@@ -77,8 +77,6 @@ body{
     transition: all .2s ease-in-out;
     transform: scaleY(1.1) scaleX(1.1) translateX(15px);
 }
-
-
 .footer{
     background: black;
     text-decoration: white;
@@ -87,13 +85,3 @@ body{
     background: white;
     text-decoration: black;
 }
-
-/*div.active {
-    background-color: #2e2e2e !important;
-    color:white;
-}
-
-div.bat:hover {
-    background-color: #80a3bb;
-
-}*/
