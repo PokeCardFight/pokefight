@@ -106,12 +106,7 @@
         <div th:include="/partials/fragments :: footer"></div>
         <script>
             let activeCard = 0;
-            // let activeItem = 0;
-            // for (let i=1; i < 10; i++){
-            //     $("#item + i").click(function () {
-            //         activeItem +=i;
-            //     });
-            // }
+
             let itemsContainer = document.querySelector('#store');
             itemsContainer.addEventListener('click', (e) => {
                     let item = e.target.id;
