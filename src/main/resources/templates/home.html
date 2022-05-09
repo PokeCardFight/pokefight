@@ -35,8 +35,34 @@
             <div class="col">
                 <!--                card template for pokemon cards -->
                 <div  th:each="Card:${userCardInfo}">
-                    <span th: th:text="${Card.getImage()}" /></span></div>
-                <button type="button" class="btn btn-primary">I CHOSE YOU</button>
+                    <div class="card" style="width: 18rem;">
+                        <img th:src="${Card.getImage()}" class="card-img-top" alt="Profile Pic">
+                        <div class="card-body">
+                            <h5 th:text="${Card.getName()}" class="card-title">USER NAME HERE</h5>
+
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Type: <span th:text="*{Card.getType()}"></span></li>
+                            <li class="list-group-item"><span th:text="*{Card.getSubtype()}"></span></li>
+                            <li class="list-group-item" >Attack: <span th:text="*{Card.getAttack()}"></span></li>
+                            <li class="list-group-item">HP: <span th:text="*{Card.getHp()}"></span></li>
+                            <li class="list-group-item">Rarity: <span th:text="*{Card.getRarity()}"></span></li>
+                        </ul>
+                        <button type="button" class="btn btn-primary">I CHOSE YOU</button>
+
+                    </div>
+
+
+
+
+
+
+
+
+<!--                    <img th:src="${Card.getImage()}" alt="">-->
+
+                </div>
+
 
             </div>
 
