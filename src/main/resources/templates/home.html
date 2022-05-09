@@ -32,10 +32,10 @@
         <!--card section V1-->
 
         <div id="myCards" class="col col-4 border border-2">
-            <div class="col">
+            <div class="row">
                 <!--                card template for pokemon cards -->
                 <div  th:each="Card:${userCardInfo}">
-                    <div class="card" style="width: 18rem;">
+                    <div class="m-1 card" style="width: 10rem; height: 40rem">
                         <img th:src="${Card.getImage()}" class="card-img-top" alt="Profile Pic">
                         <div class="card-body">
                             <h5 th:text="${Card.getName()}" class="card-title">USER NAME HERE</h5>
