@@ -31,14 +31,8 @@ public class User {
     @Column(nullable=false)
     private int level;
 
-    @ManyToMany
-    @JoinTable(
-            name="user_pouch",
-            joinColumns={@JoinColumn(name="user_id")},
-            inverseJoinColumns={@JoinColumn(name="pouch_id")},
-            uniqueConstraints={@UniqueConstraint(columnNames={"user_id","pouch_id"})}
-    )
-    private List<Pouch> pouches;
+    @OneToMany(mappedBy = "user")
+    private List<UserPouch> user_pouch;
 
     @OneToMany(mappedBy = "user")
     private List<UserCard> user_card;
@@ -134,12 +128,12 @@ public class User {
         this.level = level;
     }
 
-    public List<Pouch> getPouches() {
-        return pouches;
+    public List<UserPouch> getUser_pouch() {
+        return user_pouch;
     }
 
-    public void setPouches(List<Pouch> pouches) {
-        this.pouches = pouches;
+    public void setUser_pouch(List<UserPouch> user_pouch) {
+        this.user_pouch = user_pouch;
     }
 
     public List<UserCard> getUser_card() {

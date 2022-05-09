@@ -48,8 +48,8 @@
                             <h5 class="text">Store</h5>
                             <div class="row" id="store">
 <!--                                <div id="storeItems" class="col-4 border border-2"></div>-->
-                                <div id="storeItems" class="item-button col-4 border border-2" th:each="item : ${items}"><a href="#" th:text="${item.name}"></a>
-                                    <input type="submit" th:id="item + ${item.id}" value="Buy for this pouch" class=" btn btn-sm"/>
+                                <div id="storeItems" class=" col-4 border border-2" th:each="item : ${items}"><a href="#" th:text="${item.name}"></a>
+                                    <input type="submit" th:id="${item.id}" value="Buy for this pouch" class="item-button btn btn-sm"/>
                                 </div>
                             <div class="row justify-content-md-center">
                                 total (insert total cost of selected items)
@@ -106,7 +106,6 @@
         <div th:include="/partials/fragments :: footer"></div>
         <script>
             let activeCard = 0;
-
             // let activeItem = 0;
             // for (let i=1; i < 10; i++){
             //     $("#item + i").click(function () {
@@ -114,24 +113,9 @@
             //     });
             // }
             let itemsContainer = document.querySelector('#store');
-            let items = JSON.parse([[${items}]]);
-            // const buildItemButtons = () => {
-            //     let itemsOutput = "";
-            //     for(let i = 0; i < items.length; i++) itemsOutput += `<button type="button" class="btn btn-dark w-25 mt-3 button item-button">${items[i].name}</button>`;
-            //     itemsContainer.innerHTML = itemsOutput;
-            // }
-            // buildItemButtons();
             itemsContainer.addEventListener('click', (e) => {
-                console.log("console");
-                console.log(e.target);
-                if (e.target.classList.contains('item-button')) {
-
-                    // disableButtons();
-                    // e.target.style.display = 'none';
-                    // let item = items.find(element => element.id === e.target.innerHTML);
-                    // passItem(item);
-
-                }
+                    let item = e.target.id;
+                    passItem(item);
             });
 
             let activePouch=0;

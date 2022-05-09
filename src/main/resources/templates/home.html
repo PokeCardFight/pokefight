@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="/partials/fragments :: header(title='splash')"></head>
+<head>
+    <div th:include="partials/fragments :: header(title='home')"></div>
+    <link rel="stylesheet" href="../static/css/homeview.css">
+
+
+</head>
 <body>
 <nav th:replace="/partials/fragments :: navbar"></nav>
 
@@ -9,7 +14,7 @@
 <div class="container">
     <div class="row">
 
-        <div id="myProfile" class="col-4 border-success">
+        <div id="myProfile" class="col-4 ">
             <div class="card" style="width: 18rem;">
                 <img src="..." class="card-img-top" alt="Profile Pic">
                 <div class="card-body">
@@ -31,18 +36,45 @@
         </div>
         <!--card section V1-->
 
-        <div id="myCards" class="col col-4 border border-2">
-            <div class="col">
+        <div id="myCards" class="col col-4 ">
+            <div class="row">
                 <!--                card template for pokemon cards -->
-                <div  th:text="${userCardInfo}"></div>
-                <button type="button" class="btn btn-primary">I CHOSE YOU</button>
+                <div  th:each="Card:${userCardInfo}">
+                    <div class="m-1 card" style="width: 10rem; height: 40rem">
+                        <img th:src="${Card.getImage()}" class="card-img-top" alt="Profile Pic">
+                        <div class="card-body">
+                            <h5 th:text="${Card.getName()}" class="card-title">USER NAME HERE</h5>
+
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Type: <span th:text="*{Card.getType()}"></span></li>
+                            <li class="list-group-item"><span th:text="*{Card.getSubtype()}"></span></li>
+                            <li class="list-group-item" >Attack: <span th:text="*{Card.getAttack()}"></span></li>
+                            <li class="list-group-item">HP: <span th:text="*{Card.getHp()}"></span></li>
+                            <li class="list-group-item">Rarity: <span th:text="*{Card.getRarity()}"></span></li>
+                        </ul>
+                        <button type="button" class="btn btn-primary">I CHOSE YOU</button>
+
+                    </div>
+
+
+
+
+
+
+
+
+<!--                    <img th:src="${Card.getImage()}" alt="">-->
+
+                </div>
+
 
             </div>
 
         </div>
         <!--        store and pouch section V1-->
 
-        <div class="col border border-2 col">
+        <div class="col ">
             <div class="container" id="items">
                 <div>
                     <h5 class="text">Store</h5>
