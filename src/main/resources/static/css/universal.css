@@ -1,8 +1,13 @@
 .hidden{
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity .3s;
 }
 .active{
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transition: opacity .3s;
+
 }
 .formBackground{
     position: fixed;
