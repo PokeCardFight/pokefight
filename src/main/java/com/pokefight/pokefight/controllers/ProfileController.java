@@ -8,6 +8,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.swing.*;
+
+import static javax.swing.JOptionPane.showMessageDialog;
+
 @Controller
 public class ProfileController {
 
@@ -23,36 +27,41 @@ public class ProfileController {
     public String getUsers(Model model) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         model.addAttribute("user", user);
-        System.out.println(user.getId());
         return "/profile";
     }
 
 
+    @PostMapping("/profile/edit")
+    public String submitEdit(@ModelAttribute User user, @RequestParam String password) {
 
-    @PostMapping("/profile/{id}")
-    public String submitEdit(@ModelAttribute User user, @RequestParam("password") String password) {
         User oldUser = userDao.getById(user.getId());
         String hash = passwordEncoder.encode(password);
-        oldUser.setPassword(hash);
+
+        if (!oldUser.getPassword().equals(hash)) {
+            JOptionPane.showMessageDialog(null, "new password already set to your password!");
+            System.out.println("password change to" + password + "!");
+            oldUser.setPassword(hash);
+        }
+
         oldUser.setUsername(user.getUsername());
         oldUser.setEmail(user.getEmail());
         userDao.save(oldUser);
-
         return "redirect:/profile";
     }
-//
+
+    //
 //     Receives String from JavaScript
     @ResponseBody
     @PostMapping("/search/api/getSearchResult")
-    public String getSearchResultViaAjax( @RequestParam(value = "url") String url) {
+    public String getSearchResultViaAjax(@RequestParam(value = "url") String url) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User oldUser = userDao.getById(user.getId());
         oldUser.setProfile_pic(url);
         System.out.println(url);
         userDao.save(oldUser);
-        System.out.println("Picture URL: "+ url);
+        System.out.println("Picture URL: " + url);
         return url;
-}
+    }
 
 
 }

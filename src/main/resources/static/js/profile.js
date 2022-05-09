@@ -41,3 +41,8 @@ $("#submit").click(function () {
         }
     });
 });
+const form = $("#edit_form")
+$("#submitEditform").click(()=>{
+
+    form.submit();
+});
