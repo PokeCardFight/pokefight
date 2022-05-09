@@ -48,7 +48,7 @@ public class HomeController {
         model.addAttribute("itemsInPouch2", itemsInPouch2);
         model.addAttribute("itemsInPouch3", itemsInPouch3);
 
-        List<String> userCardInfo = cardDao.getUserCards();
+        List<Card> userCardInfo = cardDao.getUserCards();
         model.addAttribute("userCardInfo", userCardInfo);
         return "/home";
 
