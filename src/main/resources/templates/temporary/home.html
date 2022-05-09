@@ -48,8 +48,8 @@
                             <h5 class="text">Store</h5>
                             <div class="row" id="store">
 <!--                                <div id="storeItems" class="col-4 border border-2"></div>-->
-                                <div id="storeItems" class="item-button col-4 border border-2" th:each="item : ${items}"><a href="#" th:text="${item.name}"></a>
-                                    <input type="submit" th:id="item + ${item.id}" value="Buy for this pouch" class=" btn btn-sm"/>
+                                <div id="storeItems" class=" col-4 border border-2" th:each="item : ${items}"><a href="#" th:text="${item.name}"></a>
+                                    <input type="submit" th:id="item + ${item.id}" value="Buy for this pouch" class="item-button btn btn-sm"/>
                                 </div>
                             <div class="row justify-content-md-center">
                                 total (insert total cost of selected items)
@@ -114,12 +114,6 @@
             //     });
             // }
             let itemsContainer = document.querySelector('#store');
-            // const buildItemButtons = () => {
-            //     let itemsOutput = "";
-            //     for(let i = 0; i < items.length; i++) itemsOutput += `<button type="button" class="btn btn-dark w-25 mt-3 button item-button">${items[i].name}</button>`;
-            //     itemsContainer.innerHTML = itemsOutput;
-            // }
-            // buildItemButtons();
             itemsContainer.addEventListener('click', (e) => {
                 console.log(e.target);
                 // if (e.target.classList.contains('item-button')) {
@@ -132,6 +126,19 @@
                 // }
             });
 
+            // itemsContainer.addEventListener('click', (e) => {
+            //     console.log("console");
+            //     console.log(e.target);
+            //     if (e.target.classList.contains('item-button')) {
+
+                    // disableButtons();
+                    // e.target.style.display = 'none';
+                    // let item = items.find(element => element.id === e.target.innerHTML);
+                    // passItem(item);
+            //
+            //     }
+            // });
+
             let activePouch=0;
             $("#pouch1").click(function() {
                 activePouch = 1;
@@ -143,12 +150,12 @@
                 activePouch = 3;
             });
 
-function passItem(item) {
+// function passItem(item) {
     $("#buy").click(function () {
         $.ajax({
             type: "POST",
             url: "/home/addItems",
-            data: {pouch_id: activePouch, item_id: item},
+            data: {pouch_id: activePouch, item_id: activeItem},
             timeout: 100000,
             success: function (imageURL) {
                 console.log("SUCCESS: ", imageURL);
@@ -161,7 +168,7 @@ function passItem(item) {
             }
         });
     });
-}
+// }
             $("#battle").click(function () {
                 $.ajax({
                     type: "POST",
