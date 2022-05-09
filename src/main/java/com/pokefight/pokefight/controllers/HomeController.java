@@ -49,7 +49,7 @@ public class HomeController {
         model.addAttribute("itemsInPouch3", itemsInPouch3);
         List<String> userCardImage = cardDao.getUserCards();
         model.addAttribute("userCardImage", userCardImage );
-        return "/home";
+        return "/temporary/home";
 
     }
   
