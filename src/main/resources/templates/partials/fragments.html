@@ -59,10 +59,10 @@
                     th:text="${#authentication.principal.username}"></span> <!--intellij doesnt understand. ignore-->
                 <div class="indicator"></div>
             </a>
-            <form th:action="@{/logout}" th:method="post" sec:authorize="isAuthenticated()">
-                <button class="btn-link btn p-4 flex-fill m-0 text-uppercase" style="margin-top: 8px">Logout
+            <form class="align-items-center" th:action="@{/logout}" th:method="post" sec:authorize="isAuthenticated()">
+                <a class="p-4 flex-fill" onclick="this.parentNode.submit()">Logout
                     <div class="indicator"></div>
-                </button>
+                </a>
             </form>
 
             <!--login form-->

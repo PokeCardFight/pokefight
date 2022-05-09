@@ -41,18 +41,18 @@ body{
     text-decoration: white;
     height: 100px;
 }
-.navbar > a{
+.navbar > a , .navbar > form > a{
     position: relative;
     text-decoration: none;
     color: white;
     font-weight: 300;
 }
-.navbar > a:hover{
+.navbar > a:hover, .navbar > form > a:hover {
     color: gold;
     transition: color .4s ease-in-out;
 
 }
-.navbar>a>.indicator{
+.navbar>a>.indicator, .navbar>form>a>.indicator{
     position: absolute;
     bottom: -18%;
     left: 30%;
@@ -61,7 +61,7 @@ body{
     background: gold;
     transition: height .2s ease-in-out;
 }
-.navbar >a:hover >.indicator{
+.navbar >a:hover >.indicator, .navbar>form>a:hover>.indicator{
     height: 5px;
     transition: height .2s ease-in-out;
 }
