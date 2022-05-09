@@ -1,3 +1,33 @@
+.hidden{
+    display: none;
+}
+.active{
+    display: flex;
+}
+.formBackground{
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background:   black;
+    opacity: 0.5;
+
+    z-index: 2;
+}
+.popup_loginForm{
+    background-color: black;
+    border: 3px solid black;
+    position: fixed;
+    top: 13%;
+    right: 0;
+    z-index: 3;
+}
+input{
+    text-align: center;
+}
 body{
     background: url("/static/img/samplebackground.png") no-repeat fixed;
 }
@@ -42,6 +72,7 @@ body{
     transition: all .2s ease-in-out;
     transform: scaleY(1.1) scaleX(1.1) translateX(15px);
 }
+
 
 .footer{
     background: black;
