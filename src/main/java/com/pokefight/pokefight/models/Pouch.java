@@ -16,8 +16,8 @@ public class Pouch {
     @OneToMany(mappedBy = "pouch")
     private List<PouchItem> pouch_item;
 
-    @ManyToMany(mappedBy = "pouches")
-    private List<User> users;
+    @OneToMany(mappedBy = "pouch")
+    private List<UserPouch> user_pouch;
 
     public Pouch(long quantity) {
         this.quantity = quantity;
@@ -56,11 +56,11 @@ public class Pouch {
         this.pouch_item = pouch_item;
     }
 
-    public List<User> getUsers() {
-        return users;
+    public List<UserPouch> getUser_pouch() {
+        return user_pouch;
     }
 
-    public void setUsers(List<User> users) {
-        this.users = users;
+    public void setUser_pouch(List<UserPouch> user_pouch) {
+        this.user_pouch = user_pouch;
     }
 }

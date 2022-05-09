@@ -1,13 +1,7 @@
 package com.pokefight.pokefight.controllers;
 
-import com.pokefight.pokefight.models.Card;
-import com.pokefight.pokefight.models.Item;
-import com.pokefight.pokefight.models.Pouch;
-import com.pokefight.pokefight.models.User;
-import com.pokefight.pokefight.repositories.CardRepository;
-import com.pokefight.pokefight.repositories.ItemRepository;
-import com.pokefight.pokefight.repositories.PouchRepository;
-import com.pokefight.pokefight.repositories.UserRepository;
+import com.pokefight.pokefight.models.*;
+import com.pokefight.pokefight.repositories.*;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.*;
 import org.springframework.ui.Model;
@@ -21,12 +15,17 @@ public class HomeController {
     private PouchRepository pouchDao;
     private ItemRepository itemDao;
     private UserRepository userDao;
+    private PouchItemRepository pouchItemDao;
+    private UserPouchRepository userPouchDao;
 
-    public HomeController(CardRepository cardDao, PouchRepository pouchDao, ItemRepository itemDao, UserRepository userDao) {
+
+    public HomeController(CardRepository cardDao, PouchRepository pouchDao, ItemRepository itemDao, UserRepository userDao, PouchItemRepository pouchItemDao, UserPouchRepository userPouchDao){
         this.cardDao = cardDao;
         this.pouchDao = pouchDao;
         this.itemDao = itemDao;
         this.userDao = userDao;
+        this.pouchItemDao = pouchItemDao;
+        this.userPouchDao = userPouchDao;
     }
 
     @GetMapping("/home")
@@ -56,17 +55,14 @@ public class HomeController {
     }
 
     @PostMapping("/home/addItems")
-    public String homePost(@RequestParam("pouch_id") int pouchId, @RequestParam("item_id") int itemId) {
-        System.out.println(itemId);
-        System.out.println(pouchId);
+    public String homePost(Model model, @RequestParam("pouch_id") long pouchId,@RequestParam("item_id") long itemId ){
+        Pouch tempPouch = pouchDao.getById(pouchId);
+        long quantity = tempPouch.getQuantity();
+        if (tempPouch.getQuantity()< 3) {
+            pouchItemDao.save(new PouchItem(pouchDao.getById(pouchId), itemDao.getById(itemId)));
+            tempPouch.setQuantity(quantity + 1);
+        }
         return "/temporary/home";
     }
 
-    @PostMapping("/home/items_in_pouch")
-    public String pouchItemPost(@ModelAttribute Item item, @RequestParam("pouchId") String id) {
-        long pouch_id = Long.parseLong(id);
-        System.out.println(pouch_id);
-        List<Long> items = pouchDao.findItemsInPouchById(pouch_id);
-        return "/temporary/home";
-    }
 }
