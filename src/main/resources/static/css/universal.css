@@ -1,8 +1,13 @@
 .hidden{
-    display: none;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 1s,opacity .3s;
 }
 .active{
-    display: flex;
+    visibility: visible;
+    opacity: 1;
+    transition: visibility .5s, opacity .3s;
+
 }
 .formBackground{
     position: fixed;
@@ -36,18 +41,18 @@ body{
     text-decoration: white;
     height: 100px;
 }
-.navbar > a{
+.navbar > a , .navbar > form > a{
     position: relative;
     text-decoration: none;
     color: white;
     font-weight: 300;
 }
-.navbar > a:hover{
+.navbar > a:hover, .navbar > form > a:hover {
     color: gold;
     transition: color .4s ease-in-out;
 
 }
-.navbar>a>.indicator{
+.navbar>a>.indicator, .navbar>form>a>.indicator{
     position: absolute;
     bottom: -18%;
     left: 30%;
@@ -56,7 +61,7 @@ body{
     background: gold;
     transition: height .2s ease-in-out;
 }
-.navbar >a:hover >.indicator{
+.navbar >a:hover >.indicator, .navbar>form>a:hover>.indicator{
     height: 5px;
     transition: height .2s ease-in-out;
 }
@@ -72,41 +77,11 @@ body{
     transition: all .2s ease-in-out;
     transform: scaleY(1.1) scaleX(1.1) translateX(15px);
 }
-
-
 .footer{
     background: black;
     text-decoration: white;
 }
-
-div.active {
-    background-color: #2e2e2e !important;
-    color:white;
+.readable-background{
+    background: white;
+    text-decoration: black;
 }
-
-div.bat:hover {
-    background-color: #80a3bb;
-
-}
-
-#player-health-bar {
-    background: rgb(110,0,0);
-    background: linear-gradient(90deg, rgba(110,0,0,1) 0%, rgba(255,0,0,1) 100%);
-    width: 100%;
-    height: 10px;
-    transition: 1s ease-in-out;
-}
-
-#computer-health-bar {
-    background: rgb(110,0,0);
-    background: linear-gradient(90deg, rgba(110,0,0,1) 0%, rgba(255,0,0,1) 100%);
-    width: 100%;
-    height: 10px;
-    transition: 1s ease-in-out;
-}
-
-/*div.bat{*/
-/*    background-color: orange;*/
-
-/*}*/
-

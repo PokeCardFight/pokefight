@@ -41,3 +41,18 @@ $("#submit").click(function () {
         }
     });
 });
+const form = $("#edit_form")
+$("#submitEditform").click((e)=>{
+    e.preventDefault();
+let pass = $("#password").val();
+let confirm = $("#confirmPass").val();
+
+    console.log("pass="+pass +" , confirm :" +confirm )
+    if (pass === confirm){
+     form.submit();
+    } else if(pass=== "") {
+        alert("password cannot be empty!");
+    } else {
+        alert("passwords do not match!");
+    }
+});

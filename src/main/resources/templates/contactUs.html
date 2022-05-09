@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <head th:replace="/partials/fragments :: header(title='Contact Us')"></head>
-    <body>
+<head>
+<div th:include="/partials/fragments :: header(title='Contact Us')"></div>
+</head>
+<body>
         <nav th:replace="partials/fragments :: navbar"></nav>
 
         <section class="mb-4">

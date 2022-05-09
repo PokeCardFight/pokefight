@@ -4,5 +4,13 @@
     position: fixed;
     top: 50px;
     left: 150px;
+    margin: auto;
     z-index: 3;
+}
+
+
+.X{
+    position: absolute;
+    right: 0;
+    z-index: 30;
 }

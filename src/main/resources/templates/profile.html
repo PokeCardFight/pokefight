@@ -14,7 +14,7 @@
 
 
 <!--base profile card-->
-<div class="container container-fluid border border-warning p-5 profile-card text-center">
+<div class="container container-fluid border border-warning p-5 profile-card text-center readable-background">
     <div class="top container col-12 align-items-center">
         <img src="/static/img/ph300.png" alt="profile image">
     </div>
@@ -22,36 +22,36 @@
         <button id="edit-pic">edit picture</button>
     </div>
     <div class="w-100 my-5"></div>
-    <div class="col-12 my-5">
-        Username:
-<!--        <h4 th:text="${user.getUsername()}">username here</h4>-->
+    <div class="row my-5">
+        <div class="col-3"></div>
+        <div class="col-3">
+            Username:<br>
+            <span th:text="${user.getUsername()}">username here</span>
+        </div>
+        <div class="col-3">
+            ID:<br>
+            <span th:text="${#authentication.principal.id}"></span>
+        </div>
+        <div class="col-3"></div>
     </div>
-    <div sec:authorize="isAuthenticated()">
-        <div class="col-12 my-3">
-<!--            User ID: <span th:text="${#authentication.principal.id}"></span>-->
-        </div>
-        <div class="col-12 my-3">
-            Password:
-<!--            <span th:text="${user.getPassword()}">password here</span>  &lt;!&ndash; dont want public to other users&ndash;&gt;-->
-        </div>
-        <div class="col-12 my-3">
-            Email:
-<!--            <span th:text="${#authentication.principal.email}">email here</span> &lt;!&ndash; dont want public to other users&ndash;&gt;-->
-        </div>
-        <div class="col-12 my-3">
+    <div class="col-12 my-3">
+        Email:<br>
+        <span th:text="${#authentication.principal.email}">email here</span>
+    </div>
+    <div class="row">
+        <div class="col-4 my-3">
             Gold:
-<!--            <h3 th:text="*{user.getGold()}"></h3>-->
+            <h3 th:text="*{user.getGold()}"></h3>
         </div>
-    </div>
-    <div class="col-12 my-3">
-        Level:
 
-<!--        <h3 th:text="*{user.getLevel()}"></h3>-->
-    </div>
-    <div class="col-12 my-3">
-        XP:
-<!--        <h3 th:text="*{user.getXp()}"></h3>-->
-
+        <div class="col-4 my-3">
+            Level:
+            <h3 th:text="*{user.getLevel()}"></h3>
+        </div>
+        <div class="col-4 my-3">
+            XP:
+            <h3 th:text="*{user.getXp()}"></h3>
+        </div>
     </div>
 
     <div class="col-12 my-3">
@@ -63,9 +63,9 @@
 <!--edit profile form-->
 <div id="edit-profile" class="hidden">
     <div class="formBackground"></div>
-    <div class="container container-fluid border border-warning p-5 profile-card popup_form text-center">
-        <div class="top container col-12 align-items-center">
-            <button id="close-edit" class="X p-2 float-right">X</button><!--close button will change-->
+    <div class="container container-fluid border border-warning p-0 profile-card popup_form text-center">
+        <button id="close-edit" class="X p-2">X</button><!--close button will change-->
+        <div class="top container col-12 mt-5 align-items-center">
             <img src="/static/img/ph300.png" alt="profile image">
         </div>
         <div class="col-12 my-2">
@@ -73,42 +73,18 @@
         </div>
         <div class="w-100 my-5"></div>
 
-        <form method="post">
-<!--        <form th:action="@{/profile/{id}(id=*{id})}" th:method="POST" th:object="${user}">-->
-<!--                        <label for="username">Username:</label>-->
-            Username:
-<!--            <input th:field="*{username}"/>-->
+
+        <form id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
+            <input th:field="*{id}" hidden>
+            <span>username:</span><br><input th:field="*{username}">
             <br>
-            <!--            <label for="username"></label>-->
-                        <input name="username" id="username" />
-            <!--            <br>-->
-            Change your password:
-
-            <input id="pass" name="password" type="password"/>
+            <span>password:</span><br><input id="password" name="password" type="password">
             <br>
-            Confirm password:
-
-            <input id="confirmPass" name="confirmPassword" type="password"/>
+            <span>confirm password:</span><br><input id="confirmPass" name="confirmPass" type="password">
             <br>
-
-
-<!--                        <label for="password">Password:</label>-->
-<!--                        <input  name="password" id="password" />-->
-
-            <!--            <br>-->
-            <!--            <label for="confirmPassword">Confirm Password:</label>-->
-            <!--            <input  name="confirmPassword" id="confirmPassword" />-->
-            <!--            <br>-->
-
-            Change your Email:
-
-<!--            <input th:field="*{email}"/>-->
-            <br/>
-                        <label for="email">Email:</label>
-                        <input  name="email" id="email" />
-
-
-            <input type="submit"/>
+            <span>email:</span><br><input th:field="*{email}">
+            <br>
+            <button id="submitEditform" class="my-3">Submit</button>
         </form>
     </div>
 </div>
@@ -117,9 +93,9 @@
 <!--edit picture form-->
 <div id="edit-picture" class="hidden">
     <div class="formBackground"></div>
-    <div class="container container-fluid border border-warning popup_form p-5 profile-card text-center">
-        <div class="top container col-12 align-items-center">
-            <button id="close-pic" class="X p-2 float-right">X</button><!--close button will change-->
+    <div class="container container-fluid border border-warning popup_form p-0 profile-card text-center">
+        <button id="close-pic" class="X p-2">X</button><!--close button will change-->
+        <div class="top container col-12 mt-5 align-items-center">
             <img src="/static/img/ph300.png" alt="profile image">
         </div>
         <div class="box">
@@ -134,14 +110,13 @@
                 </div>
                 <div class="field">
                     <div class="control">
-                        <input class="button" type="submit" value="Submit">
+                        <input class="button my-3" type="submit" value="Submit">
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-
 
 
 <!--<iframe width="560" height="315" src="../static/js/Filestack.js" allowfullscreen></iframe>-->
