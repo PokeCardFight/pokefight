@@ -1,36 +1,47 @@
 package com.pokefight.pokefight.models;
 
+import com.google.gson.annotations.Expose;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name="cards")
 public class Card {
+    @Expose(serialize = true, deserialize = true)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false, unique=true, length=50)
     private String name;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false, length=45)
     private String type;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false)
     private int attack;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false)
     private int hp;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false)
     private String image;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false)
     private String rarity;
 
+    @Expose(serialize = true, deserialize = true)
     @Column(nullable = false)
     private String subtype;
 
+    @Expose(serialize = false, deserialize = false)
     @OneToMany(mappedBy = "card")
     private List<UserCard> user_card;
 
