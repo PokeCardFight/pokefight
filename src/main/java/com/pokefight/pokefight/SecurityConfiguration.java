@@ -61,6 +61,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                             "/battle/{cardId}/{pouchId}/"
                     )
                 .authenticated()
+                .and()
+                .authorizeRequests()
+                .antMatchers( "/static/favicon.ico").permitAll()
         ;
     }
 }

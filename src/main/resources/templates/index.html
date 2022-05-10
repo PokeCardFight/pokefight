@@ -2,11 +2,15 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <div th:include="partials/fragments :: header(title='Splash')"></div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <!--favicon-->
+    <link rel="shortcut icon" th:href="@{/static/favicon.ico}" type="image/x-icon">
 </head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
 
+<div class="readable-background container text-center">
+    <h1>welcome to the Pokefight!</h1>
+</div>
 
 
 <div th:include="partials/fragments :: footer"></div>
