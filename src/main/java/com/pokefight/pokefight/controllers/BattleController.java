@@ -40,7 +40,6 @@ public class BattleController {
 
     @GetMapping("/battle")
     public String battleView(Model model){
-
         if (turn) model.addAttribute("turn", "Player");
         else model.addAttribute("turn", "Computer");
 
@@ -73,12 +72,16 @@ public class BattleController {
         else if(userLevel >= 6 && userLevel <= 10) computerCardId = cardDao.getRandomUncommonCard();
         else if(userLevel >= 11 && userLevel <= 15) computerCardId = cardDao.getRandomRareCard();
 
+        System.out.println("userLevel = " + userLevel);
+        System.out.println("computerCardId = " + computerCardId);
+
         return "redirect:/battle";
     }
 
     @PostMapping("/battle/remove/item")
     ResponseEntity<String> battleItemRemoval(@RequestParam(value = "id") long id){
-        pouchItemDao.delete(pouchItemDao.getByPouchIdAndItemId(playerPouchId, id));
+        PouchItem tempPouchItem = pouchItemDao.getByPouchIdAndItemId(playerPouchId, id).get(0);
+        pouchItemDao.delete(pouchItemDao.getByPouchIdAndItemId(playerPouchId, id).get(0));
         return ResponseEntity.ok().body("Item " + id + " deleted.");
     }
 
