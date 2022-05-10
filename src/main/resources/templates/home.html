@@ -1,197 +1,192 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <head>
-        <div th:include="partials/fragments :: header(title='home')"></div>
-        <link rel="stylesheet" href="/static/css/homeview.css">
-    </head>
-    <body>
-        <nav th:replace="/partials/fragments :: navbar"></nav>
+<head>
+    <div th:include="partials/fragments :: header(title='home')"></div>
+    <link rel="stylesheet" href="/static/css/homeview.css">
+</head>
+<body>
+<nav th:replace="/partials/fragments :: navbar"></nav>
 
-        <!-- Home Page Basic Shell -->
+<!-- Home Page Basic Shell -->
+<div class="container row">
+
+
+    <!-- Profile Section -->
+    <div id="myProfile" class="col-4 ">
         <div class="container">
             <div class="row">
-
-                <!-- Profile Section -->
-                <div id="myProfile" class="col-4 ">
-                    <div class="container">
-                        <div class="row">
-                            <div class="col my-2">
-                                <div class="card" style="width: 18rem;">
-                                    <img th:src="${user.getProfile_pic()}" width="10rem" class="card-img-top" alt="Profile Pic">
-                                    <div class="card-body">
-                                        <h5 th:text="${user.getUsername()}" class="card-title"></h5>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li class="list-group-item">Wins/losses: </li>
-                                        <li class="list-group-item">XP: <span th:text="*{user.getXp()}"></span></li>
-                                        <li class="list-group-item">Level: <span th:text="*{user.getLevel()}"></span></li>
-                                        <li class="list-group-item">Gold: <span th:text="*{user.getGold()}"></span></li>
-                                    </ul>
-                                </div>
-                            </div>
+                <div class="col my-2">
+                    <div class="card" style="width: 18rem;">
+                        <img th:src="${user.getProfile_pic()}" width="10rem" class="card-img-top" alt="Profile Pic">
+                        <div class="card-body">
+                            <h5 th:text="${user.getUsername()}" class="card-title"></h5>
                         </div>
-                        <div class="row">
-                            <div class="col my-2">
-                                <div class="card" style="width: 18rem;">
-                                    <div class="card-body">
-                                        <h5 id="pokemon-name" class="card-title">Pokemon - Name</h5>
-                                    </div>
-                                    <ul class="list-group list-group-flush">
-                                        <li id="pokemon-type" class="list-group-item">Pokemon - Type</li>
-                                        <li id="pokemon-subtype" class="list-group-item">Pokemon - Subtype</li>
-                                        <li id="pokemon-attack" class="list-group-item">Pokemon - Attack</li>
-                                        <li id="pokemon-hp" class="list-group-item">Pokemon - HP</li>
-                                        <li id="pokemon-rarity" class="list-group-item">Pokemon - Rarity</li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li class="list-group-item">Wins/losses:</li>
+                            <li class="list-group-item">XP: <span th:text="*{user.getXp()}"></span></li>
+                            <li class="list-group-item">Level: <span th:text="*{user.getLevel()}"></span></li>
+                            <li class="list-group-item">Gold: <span th:text="*{user.getGold()}"></span></li>
+                        </ul>
                     </div>
                 </div>
-
-                <!-- Card Section -->
-                <div class="col col-4 ">
-                    <div class="row" id="myCards">
-                    </div>
-                </div>
-
-                <!-- Store and Pouch Section -->
-                <div class="col ">
-                    <div class="container" id="items">
-                        <div>
-                            <h5 class="text">Store</h5>
-                            <div class="row" id="store">
-                                <div id="storeItems" class=" col-4 border border-2" th:each="item : ${items}">
-                                    <a href="#" th:text="${item.name}"></a>
-                                    <input type="submit" th:id="${item.id}" value="Select" class="item-button btn btn-sm"/>
-                                </div>
-                            </div>
-                            <div class="row justify-content-md-center">total (insert total cost of selected items)</div>
-                            <div class="row justify-content-md-center">
-                                <form action="/home/addItems" method="post">
-                                    <input id="buy" name="buy" type="submit" value="BUY">
-                                    <input id="pouchId" name="pouchId" value="" type="hidden">
-                                    <input id="itemId" name="itemId" value="" type="hidden">
-                                </form>
-                            </div>
-                            <hr>
-                            <h5>Pouches</h5>
-                            <div class="container">
-                                <div class="row" >
-                                    <div id="pouches" class="tab bat col-4 border border-2">
-                                        <div class=" col border border-2">
-                                            Pouch1
-                                            <input type="submit" th:id="${userPouchIds.get(0)}" value="Buy for pouch" class="btn btn-sm"/>
-                                            <div th:each="itemInPouch1 : ${itemsInPouch1}">
-                                                <h5 th:text="${itemInPouch1}"></h5>
-                                            </div>
-                                        </div>
-                                        <div class=" col border border-2">
-                                            Pouch2
-                                            <input type="submit" th:id="${userPouchIds.get(1)}" value="Buy for pouch" class="btn btn-sm"/>
-                                            <div th:each="itemInPouch2 : ${itemsInPouch2}">
-                                                <h5 th:text="${itemInPouch2}"></h5>
-                                            </div>
-                                        </div>
-                                        <div class=" col border border-2">
-                                            Pouch3
-                                            <input type="submit" th:id="${userPouchIds.get(2)}" value="Buy for pouch" class="btn btn-sm"/>
-                                            <div th:each="itemInPouch3 : ${itemsInPouch3}">
-                                                <h5 th:text="${itemInPouch3}"></h5>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-
             </div>
             <div class="row">
-                <div class="col">
-                    <div id="battle" class="mx-auto" style="width: 200px;">
-                        <input id="battle-button" type="submit" value="Battle"/>
+                <div class="col my-2">
+                    <div class="card" style="width: 18rem;">
+                        <div class="card-body">
+                            <h5 id="pokemon-name" class="card-title">Pokemon - Name</h5>
+                        </div>
+                        <ul class="list-group list-group-flush">
+                            <li id="pokemon-type" class="list-group-item">Pokemon - Type</li>
+                            <li id="pokemon-subtype" class="list-group-item">Pokemon - Subtype</li>
+                            <li id="pokemon-attack" class="list-group-item">Pokemon - Attack</li>
+                            <li id="pokemon-hp" class="list-group-item">Pokemon - HP</li>
+                            <li id="pokemon-rarity" class="list-group-item">Pokemon - Rarity</li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
 
-        <div th:include="/partials/fragments :: footer"></div>
+    <!-- Card Section -->
+    <div class="col col-4 ">
+        <div class="row" id="myCards">
+        </div>
+    </div>
 
-        <script th:inline="javascript">
-            let activeCard = 0;
+    <!-- Store and Pouch Section -->
+    <div class="container col readable-background" id="items">
+        <h5 class="text">Store</h5>
+        <div class="row" id="store">
+            <div id="storeItems" class=" col-4 border border-2 " th:each="item : ${items}">
+                <a href="#" th:text="${item.name}"></a>
+                <input type="submit" th:id="${item.id}" value="Select" class="item-button btn btn-sm"/>
+            </div>
+            <div class="row justify-content-md-center">total (insert total cost of selected items)<br>
+                <form th:action="@{/home/addItems}" method="post">
+                    <input id="buy" name="buy" type="submit" value="BUY">
+                    <input id="pouchId" name="pouchId" value="" type="hidden">
+                    <input id="itemId" name="itemId" value="" type="hidden">
+                </form>
+            </div>
+        </div>
+    </div> <!-- end of store-->
 
-            let cards = JSON.parse([[${cards}]]);
-            let cardsContainer = document.querySelector('#myCards');
-            let buildCards = () => {
-                cardsContainer.innerHTML = "";
-                cards.forEach(element => {
-                    cardsContainer.innerHTML += `
+
+        <div id="pouches" class="tab bat border border-2 container col readable-background text-center"> <!--pouches-->
+            <h5>Pouches</h5>
+
+            <div th:id="${userPouchIds.get(0)}" class="col border border-2">
+                Pouch1
+                <input type="submit" th:id="${userPouchIds.get(0)}" value="Buy for pouch"
+                       class="btn btn-sm"/>
+                <div th:each="itemInPouch1 : ${itemsInPouch1}">
+                    <h5 th:text="${itemInPouch1}"></h5>
+                </div>
+            </div>
+
+            <div th:id="${userPouchIds.get(1)}" class="col border border-2">
+                Pouch2
+                <input type="submit" th:id="${userPouchIds.get(1)}" value="Buy for pouch"
+                       class="btn btn-sm"/>
+                <div th:each="itemInPouch2 : ${itemsInPouch2}">
+                    <h5 th:text="${itemInPouch2}"></h5>
+                </div>
+            </div>
+
+            <div th:id="${userPouchIds.get(2)}" class="col border border-2">
+                Pouch3
+                <input type="submit" th:id="${userPouchIds.get(2)}" value="Buy for pouch"
+                       class="btn btn-sm"/>
+                <div th:each="itemInPouch3 : ${itemsInPouch3}">
+                    <h5 th:text="${itemInPouch3}"></h5>
+                </div>
+            </div>
+        </div> <!--end of pouches-->
+    </div> <!--end of container-->
+
+
+    <div class="row"> <!--battle button! need to make it more visible and put it somewhere everyone can see it without effort-->
+        <div id="battle" class="mx-auto" style="width: 200px;">
+            <input id="battle-button" type="submit" value="Battle"/>
+        </div>
+    </div>
+
+
+    <div th:include="/partials/fragments :: footer"></div>
+
+    <script th:inline="javascript">
+        let activeCard = 0;
+
+        let cards = JSON.parse([[${cards}]]);
+        let cardsContainer = document.querySelector('#myCards');
+        let buildCards = () => {
+            cardsContainer.innerHTML = "";
+            cards.forEach(element => {
+                cardsContainer.innerHTML += `
                         <div class="m-1 card pokemon-card" style="width: 10rem;">
                             <img src="${element.image}" data-id="${element.id}" class="card-img-top" alt="${element.name}">
                         </div>
                     `;
-                });
-            }
-            buildCards();
-            cardsContainer.addEventListener('click', (e) => {
-                let id = e.target.getAttribute('data-id');
-                let card = cards.filter(element => element.id === parseInt(id))[0];
-                document.querySelector('#pokemon-name').innerHTML = `Name: ${card.name}`;
-                document.querySelector('#pokemon-type').innerHTML = `Type: ${card.type}`;
-                document.querySelector('#pokemon-subtype').innerHTML = `Stage: ${card.subtype}`;
-                document.querySelector('#pokemon-attack').innerHTML = `Attack: ${card.attack}`;
-                document.querySelector('#pokemon-hp').innerHTML = `HP: ${card.hp}`;
-                document.querySelector('#pokemon-rarity').innerHTML = `Rarity: ${card.rarity}`;
-                activeCard = id;
             });
+        }
+        buildCards();
+        cardsContainer.addEventListener('click', (e) => {
+            let id = e.target.getAttribute('data-id');
+            let card = cards.filter(element => element.id === parseInt(id))[0];
+            document.querySelector('#pokemon-name').innerHTML = `Name: ${card.name}`;
+            document.querySelector('#pokemon-type').innerHTML = `Type: ${card.type}`;
+            document.querySelector('#pokemon-subtype').innerHTML = `Stage: ${card.subtype}`;
+            document.querySelector('#pokemon-attack').innerHTML = `Attack: ${card.attack}`;
+            document.querySelector('#pokemon-hp').innerHTML = `HP: ${card.hp}`;
+            document.querySelector('#pokemon-rarity').innerHTML = `Rarity: ${card.rarity}`;
+            activeCard = id;
+        });
 
-            $('.tab').click(function () {
-                $(this).addClass('active').siblings().removeClass('active');
-            });
+        $('.tab').click(function () {
+            $(this).addClass('active').siblings().removeClass('active');
+        });
 
-            var activeItem =0;
-            let itemsContainer = document.querySelector('#store');
-            itemsContainer.addEventListener('click', (e) => {
-                activeItem = e.target.id;
-            });
+        var activeItem = 0;
+        let itemsContainer = document.querySelector('#store');
+        itemsContainer.addEventListener('click', (e) => {
+            activeItem = e.target.id;
+        });
 
-            var activePouch = 0;
-            let pouchContainer = document.querySelector('#pouches');
-            pouchContainer.addEventListener('click', (e) => {
-                activePouch = e.target.id;
-            });
+        var activePouch = 0;
+        let pouchContainer = document.querySelector('#pouches');
+        pouchContainer.addEventListener('click', (e) => {
+            activePouch = e.target.id;
+        });
 
-                $("#buy").click(function () {
-                    $("#pouchId").val(activePouch)
-                    $("#itemId").val(activeItem)
+        $("#buy").click(function () {
+            $("#pouchId").val(activePouch)
+            $("#itemId").val(activeItem)
 
-                    // $.ajax({
-                    //     type: "POST",
-                    //     url: "/home/addItems",
-                    //     data: {pouch_id: activePouch, item_id: activeItem},
-                    //     timeout: 100000,
-                    //     success: function (imageURL) {
-                    //         console.log("SUCCESS: ", imageURL);
-                    //     },
-                    //     error: function (e) {
-                    //         console.log("ERROR: ", e);
-                    //     },
-                    //     done: function (e) {
-                    //         console.log("DONE");
-                    //     }
-                    // });
-                });
+            // $.ajax({
+            //     type: "POST",
+            //     url: "/home/addItems",
+            //     data: {pouch_id: activePouch, item_id: activeItem},
+            //     timeout: 100000,
+            //     success: function (imageURL) {
+            //         console.log("SUCCESS: ", imageURL);
+            //     },
+            //     error: function (e) {
+            //         console.log("ERROR: ", e);
+            //     },
+            //     done: function (e) {
+            //         console.log("DONE");
+            //     }
+            // });
+        });
 
 
-            let battleButton = document.querySelector('#battle-button');
-            battleButton.addEventListener('click', function (event) {
-                if (activeCard === 0 || activePouch === 0) alert("Pick a card and pouch");
-                else window.location.replace(`/battle/${activeCard}/${activePouch}/`);
-            });
-        </script>
-    </body>
+        let battleButton = document.querySelector('#battle-button');
+        battleButton.addEventListener('click', function (event) {
+            if (activeCard === 0 || activePouch === 0) alert("Pick a card and pouch");
+            else window.location.replace(`/battle/${activeCard}/${activePouch}/`);
+        });
+    </script>
+</body>
 </html>
