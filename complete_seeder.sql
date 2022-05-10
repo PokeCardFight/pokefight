@@ -1,5 +1,5 @@
 USE pokefight_db;
-INSERT INTO items(cost,name,rounds,value) VALUES
+INSERT INTO items (cost,name,rounds,value) VALUES
                                               ('2','Pebble','1','10'),
                                               ('4','Super Stone','1', '25'),
                                               ('6','Hyper Boulder','1','50'),
@@ -9,6 +9,15 @@ INSERT INTO items(cost,name,rounds,value) VALUES
                                               ('2','Potion','1','-20'),
                                               ('5','Super Potion','1','-50'),
                                               ('8','Hyper Potion','1','-100');
+
+INSERT INTO backgrounds (url, type) VALUES
+('/static/img/pokemon-grass-background.png','Grass'),
+('/static/img/pokemon-water-background.jpg','Water'),
+('/static/img/pokemon-fire-background.png','Fire'),
+('/static/img/pokemon-psychic-background.jpg','Psychic'),
+('/static/img/pokemon-lightning-background.png','Lightning'),
+('/static/img/pokemon-fighting-background.png','Fighting'),
+('/static/img/pokemon-colorless-background.png','Colorless');
 
 INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Bulbasaur',   40, 20, 'https://images.pokemontcg.io/base4/67.png', 'Grass', 'Common', 'Basic'),
