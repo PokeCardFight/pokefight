@@ -7,16 +7,7 @@
     <body>
         <nav th:replace="partials/fragments :: navbar"></nav>
 
-        <th:block th:switch="${computerCard.type}">
-            <th:block th:case="'Grass'"><div class="container" style="background: url('/static/img/pokemon-grass-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
-            <th:block th:case="'Water'"><div class="container" style="background: url('/static/img/pokemon-water-background.jpg') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
-            <th:block th:case="'Fire'"><div class="container" style="background: url('/static/img/pokemon-fire-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
-            <th:block th:case="'Psychic'"><div class="container" style="background: url('/static/img/pokemon-psychic-background.jpg') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
-            <th:block th:case="'Lightning'"><div class="container" style="background: url('/static/img/pokemon-lightning-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
-            <th:block th:case="'Fighting'"><div class="container" style="background: url('/static/img/pokemon-fighting-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
-            <th:block th:case="'Colorless'"><div class="container" style="background: url('/static/img/pokemon-colorless-background.png') no-repeat; background-size: cover; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
-            <th:block th:case="*"><div class="container" style="background: white; box-shadow: 0 0 24px 24px black; border-radius: 512px;"></th:block>
-        </th:block>
+        <div class="container battle-background">
             <div class="row">
                 <div class="col">
                     <div class="row h-25"></div>
@@ -91,6 +82,11 @@
 
         <script th:inline="javascript">
             (() => {
+                let background = [[${backgroundUrl}]];
+                console.log(background);
+                document.querySelector('.battle-background').style.background = `url("${background}") no-repeat`;
+                document.querySelector('.battle-background').style.backgroundSize = 'cover'
+
                 let gameover = false;
 
                 //--| Build & Set Player Data |----------//

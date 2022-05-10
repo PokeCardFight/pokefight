@@ -14,3 +14,9 @@
     height: 10px;
     transition: 1s ease-in-out;
 }
+
+.battle-background {
+    background-size: cover;
+    box-shadow: 0 0 24px 24px black;
+    border-radius: 512px;
+}
