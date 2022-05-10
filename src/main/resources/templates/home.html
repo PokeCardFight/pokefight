@@ -61,6 +61,7 @@
         <div class="row" id="store">
             <div id="storeItems" class=" col-4 border border-2 " th:each="item : ${items}">
                 <a href="#" th:text="${item.name}"></a>
+                <h5 th:text="${item.cost} + PokeDollas" ></h5>
                 <input type="submit" th:id="${item.id}" value="Select" class="item-button btn btn-sm"/>
             </div>
             <div class="row justify-content-md-center">total (insert total cost of selected items)<br>
@@ -160,6 +161,7 @@
         pouchContainer.addEventListener('click', (e) => {
             activePouch = e.target.id;
         });
+
 
         $("#buy").click(function () {
             $("#pouchId").val(activePouch)

@@ -57,13 +57,24 @@ public class HomeController {
 
     @PostMapping("/home/addItems")
     public String homePost(Model model, @RequestParam("pouchId") long pouchId,@RequestParam("itemId") long itemId ){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User cUser = userDao.getById(currentUser.getId());
+        int userMoney = cUser.getGold();
+        System.out.println("userMoney = " + userMoney);
+        Item tempItem = itemDao.getById(itemId);
+        int itemCost = tempItem.getCost();
+        System.out.println("itemCost = " + itemCost);
+        int moneyLeft = userMoney - itemCost;
+        System.out.println("moneyLeft = " + moneyLeft);
+        cUser.setGold(moneyLeft);
+        userDao.save(cUser);
         System.out.println("pouchId = " + pouchId);
         System.out.println("itemId = " + itemId);
         Pouch tempPouch = pouchDao.getById(pouchId);
         int quantity = pouchItemDao.getQuantityFromPouch(tempPouch.getId());
-        System.out.println("this is quantity: " + quantity);
         System.out.println("this is the pouchId : " + tempPouch.getId());
-        if (quantity < 3) pouchItemDao.save(new PouchItem(tempPouch, itemDao.getById(itemId)));
+        if (quantity < 3) pouchItemDao.save(new PouchItem(tempPouch, tempItem));
+        System.out.println("this is quantity: " + quantity);
         return "redirect:/home";
     }
 
