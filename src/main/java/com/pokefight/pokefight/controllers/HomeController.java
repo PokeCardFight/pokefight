@@ -29,7 +29,8 @@ public class HomeController {
 
     @GetMapping("/home")
     public String homeGet(Model model) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getById(currentUser.getId());
         model.addAttribute("user", user);
         List<Item> items = itemDao.findAll();
         model.addAttribute("items", items);
