@@ -25,6 +25,7 @@ $("#pic-from-edit").click(() => {
 
 $("#submit").click(function () {
     let imageURL = $("#fileupload").val();
+    console.log(imageURL);
     $.ajax({
         type: "POST",
         url: "/search/api/getSearchResult",
