@@ -68,7 +68,11 @@
                             </div>
                             <div class="row justify-content-md-center">total (insert total cost of selected items)</div>
                             <div class="row justify-content-md-center">
-                                <input id="buy" type="submit" value="BUY">
+                                <form action="/home/addItems" method="post">
+                                    <input id="buy" name="buy" type="submit" value="BUY">
+                                    <input id="pouchId" name="pouchId" value="" type="hidden">
+                                    <input id="itemId" name="itemId" value="" type="hidden">
+                                </form>
                             </div>
                             <hr>
                             <h5>Pouches</h5>
@@ -162,21 +166,24 @@
             });
 
                 $("#buy").click(function () {
-                    $.ajax({
-                        type: "POST",
-                        url: "/home/addItems",
-                        data: {pouch_id: activePouch, item_id: activeItem},
-                        timeout: 100000,
-                        success: function (imageURL) {
-                            console.log("SUCCESS: ", imageURL);
-                        },
-                        error: function (e) {
-                            console.log("ERROR: ", e);
-                        },
-                        done: function (e) {
-                            console.log("DONE");
-                        }
-                    });
+                    $("#pouchId").val(activePouch)
+                    $("#itemId").val(activeItem)
+
+                    // $.ajax({
+                    //     type: "POST",
+                    //     url: "/home/addItems",
+                    //     data: {pouch_id: activePouch, item_id: activeItem},
+                    //     timeout: 100000,
+                    //     success: function (imageURL) {
+                    //         console.log("SUCCESS: ", imageURL);
+                    //     },
+                    //     error: function (e) {
+                    //         console.log("ERROR: ", e);
+                    //     },
+                    //     done: function (e) {
+                    //         console.log("DONE");
+                    //     }
+                    // });
                 });
 
 
