@@ -82,12 +82,8 @@
 
         <script th:inline="javascript">
             (() => {
-                let background = [[${backgroundUrl}]];
-                console.log(background);
-                document.querySelector('.battle-background').style.background = `url("${background}") no-repeat`;
-                document.querySelector('.battle-background').style.backgroundSize = 'cover'
-
-                let gameover = false;
+                let isGameOver = false;
+                let stunnedCounter = 0;
 
                 //--| Build & Set Player Data |----------//
                 let player = {
@@ -122,6 +118,15 @@
                     itemsContainer.innerHTML = itemsOutput;
                 }
                 buildItemButtons();
+
+                //--| Set Background |----------//
+                let setBackground = () => {
+                    let background = [[${backgroundUrl}]];
+                    console.log(background);
+                    document.querySelector('.battle-background').style.background = `url("${background}") no-repeat`;
+                    document.querySelector('.battle-background').style.backgroundSize = 'cover';
+                }
+                setBackground();
 
                 //--| Game Play Functions |----------//
                 function delay(n) {
@@ -189,7 +194,7 @@
                     });
                 }
                 const getReturnHome = async () => {
-                    gameover = true;
+                    isGameOver = true;
                     console.log('Gameover.');
                     await delay(3000);
                     window.location.replace(`/home`);
@@ -207,7 +212,16 @@
                         getReturnHome();
                     }
                 }
-                const applyStun = (rounds) => {}
+                const applyStun = (rounds) => {
+                    stunnedCounter = rounds;
+                }
+                const isStunned = () => {
+                    if (stunnedCounter > 0) {
+                        console.log('Computer is stunned');
+                        stunnedCounter--;
+                        return true;
+                    } else return false;
+                }
                 const adjustHealth = (target, amount) => {
                     console.log(amount > 0 ? `${target.name} loses ${amount} health points.` : `${target.name} gains ${amount * -1} health points.`);
                     const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
@@ -231,9 +245,9 @@
                 }
                 const useItem = (item) => {
                     console.log(`Item (${item.name}) used.`);
-                    if (item.value > 0) adjustHealth(computer, item.value);
-                    if (item.value === 0) applyStun(item.rounds);
-                    if (item.value < 0) adjustHealth(player, item.value);
+                    if (item.value > 5) adjustHealth(computer, item.value);
+                    if (item.value === 5) applyStun(item.rounds);
+                    if (item.value < 5) adjustHealth(player, item.value);
                 }
 
                 //--| Event Listeners (Game Logic) |----------//
@@ -242,8 +256,8 @@
                     disableButtons();
                     playerAttack();
                     await delay(3000);
-                    if (!gameover) computerAttack();
-                    if (!gameover) enableButtons();
+                    if (!isGameOver && !isStunned()) computerAttack();
+                    if (!isGameOver) enableButtons();
                 });
 
                 let runButton = document.querySelector('#run-button');
@@ -260,8 +274,8 @@
                         useItem(item);
                         postItemRemoval(item.id);
                         await delay(3000);
-                        if (!gameover) computerAttack();
-                        if (!gameover) enableButtons();
+                        if (!isGameOver && !isStunned()) computerAttack();
+                        if (!isGameOver) enableButtons();
                     }
                 });
 
@@ -275,8 +289,8 @@
                         console.log(`Computer starts first.`);
                         disableButtons();
                         await delay(3000);
-                        if (!gameover) computerAttack();
-                        if (!gameover) enableButtons();
+                        if (!isGameOver) computerAttack();
+                        if (!isGameOver) enableButtons();
                     }
                 }
                 checkFirstTurn();
