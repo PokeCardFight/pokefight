@@ -15,6 +15,7 @@ import java.util.concurrent.ThreadLocalRandom;
 @Controller
 public class BattleController {
 
+    private UserRepository userDao;
     private ItemRepository itemDao;
     private CardRepository cardDao;
     private PouchItemRepository pouchItemDao;
@@ -27,7 +28,8 @@ public class BattleController {
 
     private boolean flipCoin() { return ThreadLocalRandom.current().nextBoolean(); }
 
-    public BattleController(CardRepository cardDao, ItemRepository itemDao, PouchItemRepository pouchItemDao, UserCardRepository userCardDao) {
+    public BattleController(UserRepository userDao, CardRepository cardDao, ItemRepository itemDao, PouchItemRepository pouchItemDao, UserCardRepository userCardDao) {
+        this.userDao = userDao;
         this.itemDao = itemDao;
         this.cardDao = cardDao;
         this.pouchItemDao = pouchItemDao;
@@ -77,10 +79,35 @@ public class BattleController {
         return ResponseEntity.ok().body("Item " + id + " deleted.");
     }
 
-    @PostMapping("/battle/add/card")
-    ResponseEntity<String> battleCardAdder(@RequestParam(value = "id") long id){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+    @PostMapping("/battle/lost")
+    ResponseEntity<String> battleLost(@RequestParam(value = "gold") int gold){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getById(currentUser.getId());
+        User oldUser = userDao.getById(user.getId());
+        oldUser.setGold(user.getGold() + gold);
+        userDao.save(oldUser);
+
+        return ResponseEntity.ok().body(gold + " pity gold given.");
+    }
+
+    @PostMapping("/battle/won")
+    ResponseEntity<String> battleWon(@RequestParam(value = "id") long id){
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getById(currentUser.getId());
         userCardDao.save(new UserCard(user, cardDao.getById(id)));
+
+        int percentage = (int)((1.0 / (user.getLevel() + 1.0)) * 100.0);
+        int xp = user.getXp() + percentage;
+
+        User oldUser = userDao.getById(user.getId());
+        oldUser.setGold(user.getGold() + 5);
+        if (xp >= 99) {
+            oldUser.setXp(0);
+            oldUser.setLevel(user.getLevel() + 1);
+        } else oldUser.setXp(xp);
+
+        userDao.save(oldUser);
+
         return ResponseEntity.ok().body("Card " + id + " added.");
     }
 }

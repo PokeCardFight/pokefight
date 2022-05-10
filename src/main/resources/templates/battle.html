@@ -170,11 +170,22 @@
                         done: () => {}
                     });
                 }
-                const postCardAddition = () => {
+                const postWin = () => {
                     $.ajax({
                         type: "POST",
-                        url: "/battle/add/card",
+                        url: "/battle/won",
                         data: {id: [[${computerCard.id}]]},
+                        timeout: 100000,
+                        success: (message) => console.log("SUCCESS: ", message),
+                        error: (error) => console.log("ERROR: ", error),
+                        done: () => {}
+                    });
+                }
+                const postLoss = () => {
+                    $.ajax({
+                        type: "POST",
+                        url: "/battle/lost",
+                        data: {gold: 1},
                         timeout: 100000,
                         success: (message) => console.log("SUCCESS: ", message),
                         error: (error) => console.log("ERROR: ", error),
@@ -191,11 +202,12 @@
                 const checkAllHealth = () => {
                     if(player.currentHp === 0) {
                         console.log('Player loses.');
+                        postLoss();
                         getReturnHome();
                     }
                     if(computer.currentHp === 0) {
                         console.log('Computer loses.');
-                        postCardAddition();
+                        postWin();
                         getReturnHome();
                     }
                 }
