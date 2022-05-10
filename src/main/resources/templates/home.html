@@ -64,7 +64,8 @@
                 <h5 th:text="${item.cost} + PokeDollas" ></h5>
                 <input type="submit" th:id="${item.id}" value="Select" class="item-button btn btn-sm"/>
             </div>
-            <div class="row justify-content-md-center">total (insert total cost of selected items)<br>
+            <div class="row justify-content-md-center">
+
                 <form th:action="@{/home/addItems}" method="post">
                     <input id="buy" name="buy" type="submit" value="BUY">
                     <input id="pouchId" name="pouchId" value="" type="hidden">
@@ -74,10 +75,10 @@
         </div> <!-- end of store-->
 
 
-        <div id="pouches" class="tab bat border border-2 container col readable-background text-center"> <!--pouches-->
+        <div id="pouches" class="border border-2 container col readable-background text-center"> <!--pouches-->
             <h5>Pouches</h5>
 
-            <div th:id="${userPouchIds.get(0)}" class="col border border-2">
+            <div th:id="${userPouchIds.get(0)}" class="tab bat col border border-2">
                 Pouch1
                 <input type="submit" th:id="${userPouchIds.get(0)}" value="Buy for pouch"
                        class="btn btn-sm"/>
@@ -86,7 +87,7 @@
                 </div>
             </div>
 
-            <div th:id="${userPouchIds.get(1)}" class="col border border-2">
+            <div th:id="${userPouchIds.get(1)}" class="tab bat col border border-2">
                 Pouch2
                 <input type="submit" th:id="${userPouchIds.get(1)}" value="Buy for pouch"
                        class="btn btn-sm"/>
@@ -95,7 +96,7 @@
                 </div>
             </div>
 
-            <div th:id="${userPouchIds.get(2)}" class="col border border-2">
+            <div th:id="${userPouchIds.get(2)}" class=" tab bat col border border-2">
                 Pouch3
                 <input type="submit" th:id="${userPouchIds.get(2)}" value="Buy for pouch"
                        class="btn btn-sm"/>
@@ -104,29 +105,33 @@
                 </div>
             </div>
         </div> <!--end of pouches-->
+
+
+
+        <div class="row text-center">
+            <!--battle button! need to make it more visible and put it somewhere everyone can see it without effort-->
+            <div id="battle" class="mx-auto" style="width: 200px;">
+                <input id="battle-button" type="submit" value="Battle"/>
+            </div>
+        </div>
     </div> <!--end of container-->
 
 
-    <div class="row text-center">
-        <!--battle button! need to make it more visible and put it somewhere everyone can see it without effort-->
-        <div id="battle" class="mx-auto" style="width: 200px;">
-            <input id="battle-button" type="submit" value="Battle"/>
-        </div>
-    </div>
+
 </div>
 
 
-    <div th:include="/partials/fragments :: footer"></div>
+<div th:include="/partials/fragments :: footer"></div>
 
-    <script th:inline="javascript">
-        let activeCard = 0;
+<script th:inline="javascript">
+    let activeCard = 0;
 
-        let cards = JSON.parse([[${cards}]]);
-        let cardsContainer = document.querySelector('#myCards');
-        let buildCards = () => {
-            cardsContainer.innerHTML = "";
-            cards.forEach(element => {
-                cardsContainer.innerHTML += `
+    let cards = JSON.parse([[${cards}]]);
+    let cardsContainer = document.querySelector('#myCards');
+    let buildCards = () => {
+        cardsContainer.innerHTML = "";
+        cards.forEach(element => {
+            cardsContainer.innerHTML += `
                         <div class="m-1 card pokemon-card" style="width: 10rem;">
                             <img src="${element.image}" data-id="${element.id}" class="card-img-top" alt="${element.name}">
                         </div>
@@ -189,7 +194,8 @@
         battleButton.addEventListener('click', function (event) {
             if (activeCard === 0 || activePouch === 0) alert("Pick a card and pouch");
             else window.location.replace(`/battle/${activeCard}/${activePouch}/`);
-        });
-    </script>
+
+    });
+</script>
 </body>
 </html>
