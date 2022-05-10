@@ -45,9 +45,11 @@ public class BattleController {
         model.addAttribute("playerCard", playerCard);
         model.addAttribute("computerCard", computerCard);
 
-        List<Item> items = itemDao.getItemsByPouchId(playerPouchId);
+        List<Item> items = itemDao.getItemsByPouch(playerPouchId);
         String itemsString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(items);
         model.addAttribute("items", itemsString);
+
+        System.out.println("------------------------------------- Processed");
 
         return "/battle";
     }

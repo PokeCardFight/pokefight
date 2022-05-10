@@ -10,24 +10,6 @@ INSERT INTO items(cost,name,rounds,value) VALUES
                                               ('5','Super Potion','1','-50'),
                                               ('8','Hyper Potion','1','-100');
 
-INSERT INTO pouches(quantity) VALUES
-                                (3),
-                                (2),
-                                (1);
-
-INSERT INTO user_pouch(user_id, pouch_id) VALUES
-                                                (1,1),
-                                                (1,2),
-                                                (1,3);
-
-INSERT INTO pouch_item(pouch_id, item_id) VALUES
-                                               (1,1),
-                                               (1,4),
-                                               (1,7),
-                                               (2,2),
-                                               (2,8),
-                                               (3,6);
-
 INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Bulbasaur',   40, 20, 'https://images.pokemontcg.io/base4/67.png', 'Grass', 'Common', 'Basic'),
                                                                        ('Ivysaur',     60, 30, 'https://images.pokemontcg.io/base4/44.png', 'Grass', 'Uncommon', 'Stage 1'),
@@ -179,11 +161,6 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Dragonair',   80, 30, 'https://images.pokemontcg.io/base4/22.png', 'Colorless', 'Rare', 'Stage 1'),
                                                                        ('Dragonite',   100, 40, 'https://images.pokemontcg.io/base3/4.png', 'Colorless', 'Rare', 'Stage 2'),
                                                                        ('Mewtwo',      60, 10, 'https://images.pokemontcg.io/base4/10.png', 'Psychic', 'Rare', 'Basic');
-
-INSERT INTO user_card(user_id, card_id) VALUES
-                                             (1,3),
-                                             (1,5),
-                                             (1,7);
 
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png' where id = 1;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/2.png' where id = 2;
