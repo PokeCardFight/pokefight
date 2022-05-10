@@ -8,3 +8,5 @@ passwordToggle.click(()=>{
     password.attr("type", type);
     passwordToggle.children().toggleClass("fa-eye fa-eye-slash")
 })
+
+// pull favicon -- faviconLnk = document.querySelector('link[rel*="icon"]');
