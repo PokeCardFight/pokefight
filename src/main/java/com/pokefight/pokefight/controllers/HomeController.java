@@ -41,6 +41,7 @@ public class HomeController {
 
         long userId = user.getId();
         List<Long> userPouchIds = pouchDao.findUserPouchesById(userId);
+        model.addAttribute("userPouchIds", userPouchIds);
         List<String> itemsInPouch1 = pouchItemDao.findItemById(userPouchIds.get(0));
         List<String> itemsInPouch2 = pouchItemDao.findItemById(userPouchIds.get(1));
         List<String> itemsInPouch3 = pouchItemDao.findItemById(userPouchIds.get(2));
@@ -56,10 +57,14 @@ public class HomeController {
 
     @PostMapping("/home/addItems")
     public String homePost(Model model, @RequestParam("pouch_id") long pouchId,@RequestParam("item_id") long itemId ){
+        System.out.println("pouchId = " + pouchId);
+        System.out.println("itemId = " + itemId);
         Pouch tempPouch = pouchDao.getById(pouchId);
         int quantity = pouchItemDao.getQuantityFromPouch(tempPouch.getId());
+        System.out.println("this is quantity: " + quantity);
+        System.out.println("this is the pouchId : " + tempPouch.getId());
         if (quantity < 3) pouchItemDao.save(new PouchItem(tempPouch, itemDao.getById(itemId)));
-        return "/temporary/home";
+        return "redirect:/home";
     }
 
 }
