@@ -54,7 +54,7 @@ public class RegisterController {
                 user.getUsername(),
                 user.getEmail(),
                 hash,
-                "../static/img/DefaultProfilePic.png",
+                "/static/img/DefaultProfilePic.png",
                 10,
                 0,
                 1

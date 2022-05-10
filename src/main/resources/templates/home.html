@@ -63,7 +63,7 @@
                             <div class="row" id="store">
                                 <div id="storeItems" class=" col-4 border border-2" th:each="item : ${items}">
                                     <a href="#" th:text="${item.name}"></a>
-                                    <input type="submit" th:id="${item.id}" value="Buy for this pouch" class="item-button btn btn-sm"/>
+                                    <input type="submit" th:id="${item.id}" value="Select" class="item-button btn btn-sm"/>
                                 </div>
                             </div>
                             <div class="row justify-content-md-center">total (insert total cost of selected items)</div>
@@ -73,25 +73,25 @@
                             <hr>
                             <h5>Pouches</h5>
                             <div class="container">
-                                <div class="row" id="pouches">
-                                    <div id="pouch1" class="  tab bat col-4 border border-2">
+                                <div class="row" >
+                                    <div id="pouches" class="tab bat col-4 border border-2">
                                         <div class=" col border border-2">
-                                            Pouch# 1
-                                            <input type="submit" id="pouch1" value="Buy for this pouch" class="btn btn-sm"/>
+                                            Pouch1
+                                            <input type="submit" th:id="${userPouchIds.get(0)}" value="Buy for pouch" class="btn btn-sm"/>
                                             <div th:each="itemInPouch1 : ${itemsInPouch1}">
                                                 <h5 th:text="${itemInPouch1}"></h5>
                                             </div>
                                         </div>
                                         <div class=" col border border-2">
-                                            POUCH# 2
-                                            <input type="submit" id="pouch2" value="Buy for this pouch" class="btn btn-sm"/>
+                                            Pouch2
+                                            <input type="submit" th:id="${userPouchIds.get(1)}" value="Buy for pouch" class="btn btn-sm"/>
                                             <div th:each="itemInPouch2 : ${itemsInPouch2}">
                                                 <h5 th:text="${itemInPouch2}"></h5>
                                             </div>
                                         </div>
                                         <div class=" col border border-2">
-                                            POUCH# 3
-                                            <input type="submit" id="pouch3" value="Buy for this pouch" class="btn btn-sm"/>
+                                            Pouch3
+                                            <input type="submit" th:id="${userPouchIds.get(2)}" value="Buy for pouch" class="btn btn-sm"/>
                                             <div th:each="itemInPouch3 : ${itemsInPouch3}">
                                                 <h5 th:text="${itemInPouch3}"></h5>
                                             </div>
@@ -149,12 +149,23 @@
                 $(this).addClass('active').siblings().removeClass('active');
             });
 
-            function passItem(item) {
+            var activeItem =0;
+            let itemsContainer = document.querySelector('#store');
+            itemsContainer.addEventListener('click', (e) => {
+                activeItem = e.target.id;
+            });
+
+            var activePouch = 0;
+            let pouchContainer = document.querySelector('#pouches');
+            pouchContainer.addEventListener('click', (e) => {
+                activePouch = e.target.id;
+            });
+
                 $("#buy").click(function () {
                     $.ajax({
                         type: "POST",
                         url: "/home/addItems",
-                        data: {pouch_id: activePouch, item_id: item},
+                        data: {pouch_id: activePouch, item_id: activeItem},
                         timeout: 100000,
                         success: function (imageURL) {
                             console.log("SUCCESS: ", imageURL);
@@ -167,24 +178,7 @@
                         }
                     });
                 });
-            }
-            let itemsContainer = document.querySelector('#store');
-            itemsContainer.addEventListener('click', (e) => {
-                let item = e.target.id;
-                passItem(item);
-            });
 
-            let activePouch = 0;
-
-            $("#pouch1").click(function () {
-                activePouch = 1;
-            });
-            $("#pouch2").click(function () {
-                activePouch = 2;
-            });
-            $("#pouch3").click(function () {
-                activePouch = 3;
-            });
 
             let battleButton = document.querySelector('#battle-button');
             battleButton.addEventListener('click', function (event) {
