@@ -35,30 +35,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 /* Login configuration */
                 .formLogin()
-                .loginPage("/")
-                .defaultSuccessUrl("/home") // user's home page, it can be any URL
-                .permitAll() // Anyone can go to the login page
+                    .loginPage("/")
+                    .defaultSuccessUrl("/home") // user's home page, it can be any URL
+                    .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
-                .logout()
-                .logoutSuccessUrl("/") // append a query string value
-                /* Pages that can be viewed without having to log in */
+                    .logout()
+                    .logoutSuccessUrl("/") // append a query string value
+                    /* Pages that can be viewed without having to log in */
                 .and()
-                .csrf()
-                .disable()
-                .authorizeRequests()
-                .antMatchers("/") // anyone can see the home and the ads pages
-                .permitAll()
+                    .csrf()
+                    .disable()
+                    .authorizeRequests()
+                    .antMatchers("/") // anyone can see the home and the ads pages
+                    .permitAll()
                 /* Pages that require authentication */
                 .and()
-                .authorizeRequests()
-                .antMatchers(
-                        "/about",
-                        "/contact",
-                        "/home",
-                        "/profile",
-                        "/battle"
-                )
+                    .authorizeRequests()
+                    .antMatchers(
+                            "/about",
+                            "/contact",
+                            "/home",
+                            "/profile",
+                            "/battle",
+                            "/battle/{cardId}/{pouchId}/"
+                    )
                 .authenticated()
         ;
     }
