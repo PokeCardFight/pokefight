@@ -10,26 +10,24 @@ public class Pouch {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @Column(nullable = false)
-    private long quantity;
+    @ManyToOne
+    @JoinColumn (name = "user_id")
+    private User user;
 
     @OneToMany(mappedBy = "pouch")
     private List<PouchItem> pouch_item;
 
-    @OneToMany(mappedBy = "pouch")
-    private List<UserPouch> user_pouch;
+    public Pouch() {
 
-    public Pouch(long quantity) {
-        this.quantity = quantity;
+    }
+
+    public Pouch(User user) {
+        this.user = user;
     }
 
     public Pouch(Pouch pouch) {
-        this.id = pouch.quantity;
-        this.quantity =  pouch.quantity;
-    }
-
-    public Pouch() {
-
+        this.id = pouch.id;
+        this.user = pouch.user;
     }
 
     public long getId() {
@@ -40,12 +38,12 @@ public class Pouch {
         this.id = id;
     }
 
-    public long getQuantity() {
-        return quantity;
+    public User getUser() {
+        return user;
     }
 
-    public void setQuantity(long quantity) {
-        this.quantity = quantity;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public List<PouchItem> getPouch_item() {
@@ -54,13 +52,5 @@ public class Pouch {
 
     public void setPouch_item(List<PouchItem> pouch_item) {
         this.pouch_item = pouch_item;
-    }
-
-    public List<UserPouch> getUser_pouch() {
-        return user_pouch;
-    }
-
-    public void setUser_pouch(List<UserPouch> user_pouch) {
-        this.user_pouch = user_pouch;
     }
 }

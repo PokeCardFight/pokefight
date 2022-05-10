@@ -31,13 +31,13 @@ public class User {
     @Column(nullable=false)
     private int level;
 
-    @OneToMany(mappedBy = "user")
-    private List<UserPouch> user_pouch;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Pouch> pouches;
 
     @OneToMany(mappedBy = "user")
     private List<UserCard> user_card;
 
-    public User( String username, String email, String password, String profile_pic, int gold, int xp, int level) {
+    public User(String username, String email, String password, String profile_pic, int gold, int xp, int level) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -128,12 +128,12 @@ public class User {
         this.level = level;
     }
 
-    public List<UserPouch> getUser_pouch() {
-        return user_pouch;
+    public List<Pouch> getPouches() {
+        return pouches;
     }
 
-    public void setUser_pouch(List<UserPouch> user_pouch) {
-        this.user_pouch = user_pouch;
+    public void setPouches(List<Pouch> pouches) {
+        this.pouches = pouches;
     }
 
     public List<UserCard> getUser_card() {

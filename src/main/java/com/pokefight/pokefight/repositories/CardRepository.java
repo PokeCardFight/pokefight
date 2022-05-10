@@ -14,7 +14,7 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
     @Query(value ="SELECT cards.id FROM cards WHERE rarity = 'Rare' ORDER BY RAND() LIMIT 1", nativeQuery = true)
     Long getRandomRareCard ();
-    @Query(value = "SELECT c.id, attack, hp, image, name, rarity, subtype, type FROM users JOIN user_card uc on users.id = uc.user_id JOIN cards c on c.id = uc.card_id;" , nativeQuery = true
-    )
-    List<Card> getUserCards ();
+
+    @Query(value = "SELECT c.id, attack, hp, image, name, rarity, subtype, type FROM users JOIN user_card uc on users.id = uc.user_id JOIN cards c on c.id = uc.card_id where users.id = ?;" , nativeQuery = true)
+    List<Card> getUserCards (long id);
 }
