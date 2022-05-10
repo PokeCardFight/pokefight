@@ -20,6 +20,7 @@ public class BattleController {
     private CardRepository cardDao;
     private PouchItemRepository pouchItemDao;
     private UserCardRepository userCardDao;
+    private BackgroundRepository backgroundDao;
 
     private boolean turn;
     private long playerCardId;
@@ -28,12 +29,13 @@ public class BattleController {
 
     private boolean flipCoin() { return ThreadLocalRandom.current().nextBoolean(); }
 
-    public BattleController(UserRepository userDao, CardRepository cardDao, ItemRepository itemDao, PouchItemRepository pouchItemDao, UserCardRepository userCardDao) {
+    public BattleController(BackgroundRepository backgroundDao, UserRepository userDao, CardRepository cardDao, ItemRepository itemDao, PouchItemRepository pouchItemDao, UserCardRepository userCardDao) {
         this.userDao = userDao;
         this.itemDao = itemDao;
         this.cardDao = cardDao;
         this.pouchItemDao = pouchItemDao;
         this.userCardDao = userCardDao;
+        this.backgroundDao = backgroundDao;
     }
 
     @GetMapping("/battle")
@@ -51,7 +53,8 @@ public class BattleController {
         String itemsString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(items);
         model.addAttribute("items", itemsString);
 
-        System.out.println("------------------------------------- Processed");
+        String url = backgroundDao.getBackgroundUrl(computerCard.getType());
+        model.addAttribute("backgroundUrl", url);
 
         return "/battle";
     }
