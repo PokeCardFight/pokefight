@@ -7,7 +7,7 @@
     <body>
         <nav th:replace="partials/fragments :: navbar"></nav>
 
-        <div class="container battle-background">
+        <div id="battle-background" class="container">
             <div class="row">
                 <div class="col">
                     <div class="row h-25"></div>
@@ -76,12 +76,19 @@
                     </div>
                 </div>
             </div>
-        </div>
 
+            <div id="text-box">
+                <div class="wrapper">
+                </div>
+            </div>
+        </div>
         <div th:include="partials/fragments :: footer"></div>
 
         <script th:inline="javascript">
             (() => {
+                let textBox = document.querySelector('.wrapper');
+                textBox.innerHTML = '';
+
                 let isGameOver = false;
                 let stunnedCounter = 0;
 
@@ -121,10 +128,13 @@
 
                 //--| Set Background |----------//
                 let setBackground = () => {
-                    let background = [[${backgroundUrl}]];
-                    console.log(background);
-                    document.querySelector('.battle-background').style.background = `url("${background}") no-repeat`;
-                    document.querySelector('.battle-background').style.backgroundSize = 'cover';
+                    let backgroundUrl = [[${backgroundUrl}]];
+                    let backgroundDiv = document.querySelector('#battle-background').style;
+                    backgroundDiv.background = `url("${backgroundUrl}") no-repeat`;
+                    backgroundDiv.backgroundSize = 'cover';
+                    backgroundDiv.boxShadow = '0 0 24px 24px black';
+                    backgroundDiv.borderRadius = '512px';
+                    backgroundDiv.position ='relative';
                 }
                 setBackground();
 
@@ -144,20 +154,12 @@
                         allButtons[i].classList.add('disabled');
                         allButtons[i].disabled = true;
                     }
-                    console.log('----------------------------');
-                    console.log('Disabled Buttons');
-                    for(let i = 0; i < allButtons.length; i++) console.log(allButtons[i]);
-                    console.log('----------------------------');
                 }
                 const enableButtons = () => {
                     for(let i = 0; i < allButtons.length; i++) {
                         allButtons[i].classList.remove('disabled');
                         allButtons[i].disabled = false;
                     }
-                    console.log('----------------------------');
-                    console.log('Enabled Buttons:');
-                    for(let i = 0; i < allButtons.length; i++) console.log(allButtons[i]);
-                    console.log('----------------------------');
                 }
 
                 const postItemRemoval = (id) => {
@@ -195,19 +197,19 @@
                 }
                 const getReturnHome = async () => {
                     isGameOver = true;
-                    console.log('Gameover.');
+                    textBox.innerHTML += 'Gameover.<br>';
                     await delay(3000);
                     window.location.replace(`/home`);
                 }
 
                 const checkAllHealth = () => {
                     if(player.currentHp === 0) {
-                        console.log('Player loses.');
+                        textBox.innerHTML += 'Player loses.<br>';
                         postLoss();
                         getReturnHome();
                     }
                     if(computer.currentHp === 0) {
-                        console.log('Computer loses.');
+                        textBox.innerHTML += 'Computer loses.<br>';
                         postWin();
                         getReturnHome();
                     }
@@ -217,13 +219,13 @@
                 }
                 const isStunned = () => {
                     if (stunnedCounter > 0) {
-                        console.log('Computer is stunned');
+                        textBox.innerHTML += 'Computer is stunned.<br>' + stunnedCounter + ' rounds left.<br>';
                         stunnedCounter--;
                         return true;
                     } else return false;
                 }
                 const adjustHealth = (target, amount) => {
-                    console.log(amount > 0 ? `${target.name} loses ${amount} health points.` : `${target.name} gains ${amount * -1} health points.`);
+                    textBox.innerHTML +=  amount > 0 ? `${target.name} loses ${amount} health points.<br>` : `${target.name} gains ${amount * -1} health points.<br>`;
                     const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
                     let percentDamage = Math.round((amount / target.hp) * 100);
                     target.hpPercentage -= percentDamage;
@@ -236,15 +238,15 @@
                     checkAllHealth();
                 }
                 const playerAttack = () => {
-                    console.log('Player attacked');
+                    textBox.innerHTML += 'Player attacked.<br>';
                     adjustHealth(computer, player.attack);
                 }
                 const computerAttack = () => {
-                    console.log('Computer attacked');
+                    textBox.innerHTML += 'Computer attacked.<br>';
                     adjustHealth(player, computer.attack);
                 }
                 const useItem = (item) => {
-                    console.log(`Item (${item.name}) used.`);
+                    textBox.innerHTML += `Item (${item.name}) used.<br>`;
                     if (item.value > 5) adjustHealth(computer, item.value);
                     if (item.value === 5) applyStun(item.rounds);
                     if (item.value < 5) adjustHealth(player, item.value);
@@ -262,7 +264,7 @@
 
                 let runButton = document.querySelector('#run-button');
                 runButton.addEventListener('click', () => {
-                    console.log('Player runs away!');
+                    textBox.innerHTML += 'Player runs away!<br>';
                     getReturnHome();
                 });
 
@@ -283,10 +285,10 @@
                 const checkFirstTurn = async () => {
                     let firstTurn = [[${turn}]];
                     if (firstTurn === 'Player') {
-                        console.log(`Player starts first.`);
+                        textBox.innerHTML += `Player starts first.<br>`;
                         return;
                     } else {
-                        console.log(`Computer starts first.`);
+                        textBox.innerHTML += `Computer starts first.<br>`;
                         disableButtons();
                         await delay(3000);
                         if (!isGameOver) computerAttack();
