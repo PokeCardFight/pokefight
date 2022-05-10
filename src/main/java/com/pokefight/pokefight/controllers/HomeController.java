@@ -56,7 +56,7 @@ public class HomeController {
     }
 
     @PostMapping("/home/addItems")
-    public String homePost(Model model, @RequestParam("pouch_id") long pouchId,@RequestParam("item_id") long itemId ){
+    public String homePost(Model model, @RequestParam("pouchId") long pouchId,@RequestParam("itemId") long itemId ){
         System.out.println("pouchId = " + pouchId);
         System.out.println("itemId = " + itemId);
         Pouch tempPouch = pouchDao.getById(pouchId);
