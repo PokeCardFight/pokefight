@@ -60,7 +60,8 @@ public class BattleController {
 
     @GetMapping("/battle/{cardId}/{pouchId}/")
     public String battleGet(@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getById(currentUser.getId());
 
         turn = flipCoin();
 
@@ -102,15 +103,20 @@ public class BattleController {
         User user = userDao.getById(currentUser.getId());
         userCardDao.save(new UserCard(user, cardDao.getById(id)));
 
-        int percentage = (int)((1.0 / (user.getLevel() + 1.0)) * 100.0);
+        int percentage = (int)Math.ceil((1.0 / (user.getLevel() + 1.0)) * 100.0);
         int xp = user.getXp() + percentage;
 
         User oldUser = userDao.getById(user.getId());
         oldUser.setGold(user.getGold() + 5);
-        if (xp >= 99) {
+        if (xp >= 100) {
             oldUser.setXp(0);
             oldUser.setLevel(user.getLevel() + 1);
         } else oldUser.setXp(xp);
+
+        System.out.println("percentage = " + percentage);
+        System.out.println("user.getXp() = " + user.getXp());
+        System.out.println("oldUser.getXp() = " + oldUser.getXp());
+        System.out.println("oldUser.getLevel() = " + oldUser.getLevel());
 
         userDao.save(oldUser);
 
