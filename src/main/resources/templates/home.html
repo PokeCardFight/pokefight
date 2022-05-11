@@ -61,8 +61,9 @@
     <div class="  container col-4 " id="items">
         <h5 class="text-center store-section">Store &#x20BD;</h5>
         <div class="row justify-content-center" id="store">
-            <div id="storeItems" class=" tap store-section m-1 col-4  " th:each="item : ${items}">
+            <div id="storeItems" class=" tap store-section m-1 col-3  " th:each="item : ${items}">
                 <h4 th:text="${item.name}"></h4>
+                <img th:src="${item.image}" th:alt="${item.name}">
                 <span>&#x20BD; <span th:text="${item.cost} "></span></span>
                 <input type="submit" th:id="${item.id}" value="Select" class=" select-btn item-button btn btn-sm"/>
             </div>
