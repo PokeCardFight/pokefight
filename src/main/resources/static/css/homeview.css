@@ -1,9 +1,34 @@
 div.active {
-    background-color: #2e2e2e !important;
+    background-color: #FFCB05 !important;
     color:white;
 }
 
 div.bat:hover {
     background-color: #80a3bb;
 
+}
+
+.store-section {
+    background-color:black ;
+    color: white;
+    border-radius: 25% 10%;
+    border: #FFCB05 ;
+}
+.select-btn{
+    background-color: black;
+    border-radius: 25% 10%;
+    color: white;
+    border: #FFCB05;
+}
+.select-btn:hover{
+    color: gold;
+    transition: color .4s ease-in-out;
+}
+
+.card-scroll{
+    overflow-scrolling: auto;
+
+}
+.card-radius{
+    border-radius: 25% 10%;
 }
