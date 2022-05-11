@@ -144,7 +144,7 @@
         cardsContainer.innerHTML = "";
         cards.forEach(element => {
             cardsContainer.innerHTML += `
-                        <div class="card-radius m-1 card pokemon-card" style="width: 10rem;">
+                        <div class="button m-1 card-radius m-1 card pokemon-card" title="A" data-id="1" style="width: 10rem;">
                             <img src="${element.image}" data-id="${element.id}" class="card-img-top" alt="${element.name}">
                         </div>
                     `;
@@ -190,10 +190,26 @@
 
 
     let battleButton = document.querySelector('#battle-button');
+
     battleButton.addEventListener('click', function (event) {
+        console.log(activeCard +" " + activePouch)
         if (activeCard === 0 || activePouch === 0) alert("Pick a card and pouch");
         else window.location.replace(`/battle/${activeCard}/${activePouch}/`);
 
+    });
+
+    <!-- Select By Class : Button -->
+    let button = document.getElementsByClassName('button');
+    let container = document.querySelector('#myCards');
+    container.addEventListener('click', (e) => {
+        for(let i = 0; i < 2; i++) {
+            if (button[i].contains(e.target)) {
+                let oldSelectedButton = document.querySelector('.button-selected');
+                if (oldSelectedButton) oldSelectedButton.classList.remove('button-selected');
+                button[i].classList.add('button-selected');
+                console.log(button[i].getAttribute('data-id'));
+            }
+        }
     });
 </script>
 </body>
