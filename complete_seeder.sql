@@ -1,14 +1,14 @@
 USE pokefight_db;
-INSERT INTO items (cost,name,rounds,value) VALUES
-                                              ('2','Pebble','1','15'),
-                                              ('4','Super Stone','1', '25'),
-                                              ('6','Hyper Boulder','1','55'),
-                                              ('2','Sandal','1','5'),
-                                              ('4','Super Boot', '2','5'),
-                                              ('6','Sleepy Slipper','3','5'),
-                                              ('2','Potion','1','-15'),
-                                              ('5','Super Potion','1','-25'),
-                                              ('8','Hyper Potion','1','-55');
+INSERT INTO items (cost,name,rounds,value, image) VALUES
+                                              ('2','Pebble','1','15',''),
+                                              ('4','Super Stone','1', '25',''),
+                                              ('6','Hyper Boulder','1','55',''),
+                                              ('2','Sandal','1','5',''),
+                                              ('4','Super Boot', '2','5',''),
+                                              ('6','Sleepy Slipper','3','5',''),
+                                              ('2','Potion','1','-15',''),
+                                              ('5','Super Potion','1','-25',''),
+                                              ('8','Hyper Potion','1','-55','');
 
 INSERT INTO backgrounds (url, type) VALUES
 ('/static/img/pokemon-grass-background.png','Grass'),
