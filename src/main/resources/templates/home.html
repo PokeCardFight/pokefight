@@ -23,7 +23,7 @@
                             <h5 th:text="${user.getUsername()}" class="card-title"></h5>
                         </div>
                         <ul class="list-group list-group-flush">
-                            <!--                            <li class="list-group-item">Wins/losses:</li>-->
+                            <li class="list-group-item">Wins/losses: <span th:text="*{user.getWins()}"></span>/<span th:text="*{user.getLosses()}"></span></li>
                             <li class="list-group-item">XP: <span th:text="*{user.getXp()}"></span></li>
                             <li class="list-group-item">Level: <span th:text="*{user.getLevel()}"></span></li>
                             <li class="list-group-item">PokeDollas: &#x20BD; <span th:text="*{user.getGold()}"></span>
