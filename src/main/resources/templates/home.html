@@ -1,5 +1,7 @@
+
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
+
 <head>
     <div th:include="partials/fragments :: header(title='home')"></div>
     <link rel="stylesheet" href="/static/css/homeview.css">
@@ -126,6 +128,11 @@
                 <input id="battle-button" type="submit" value="Battle"/>
             </div>
         </div>
+        <a id="attackH2L" th:href="@{/home/attackH2L}" class="p-4"><span>Order By Attack High to Low</span></a>
+        <a id="attackL2H" th:href="@{/home/attackL2H}" class="p-4 flex-fill"><span>Order By Attack Low to High</span></a>
+        <a id="nameA2Z" th:href="@{/home/nameA2Z}" class="p-4 flex-fill"><span>Order By Name A to Z</span></a>
+        <a id="nameZ2A" th:href="@{/home/nameZ2A}" class="p-4 flex-fill"><span>Order By Name Z to A</span></a>
+
     </div> <!--end of container-->
 
 </div>
