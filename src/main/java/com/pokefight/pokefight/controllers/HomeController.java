@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 public class HomeController {
@@ -17,18 +18,20 @@ public class HomeController {
     private ItemRepository itemDao;
     private UserRepository userDao;
     private PouchItemRepository pouchItemDao;
+    private UserCardRepository userCardDao;
 
 
-    public HomeController(CardRepository cardDao, PouchRepository pouchDao, ItemRepository itemDao, UserRepository userDao, PouchItemRepository pouchItemDao){
+    public HomeController(CardRepository cardDao, PouchRepository pouchDao, ItemRepository itemDao, UserRepository userDao, PouchItemRepository pouchItemDao, UserCardRepository userCardDao){
         this.cardDao = cardDao;
         this.pouchDao = pouchDao;
         this.itemDao = itemDao;
         this.userDao = userDao;
         this.pouchItemDao = pouchItemDao;
+        this.userCardDao = userCardDao;
     }
 
-    @GetMapping("/home")
-    public String homeGet(Model model) {
+    @GetMapping("/home/{order}")
+    public String homeGet(Model model, @PathVariable("order") String order, String sort) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(currentUser.getId());
         model.addAttribute("user", user);
@@ -48,12 +51,37 @@ public class HomeController {
         model.addAttribute("itemsInPouch1", itemsInPouch1);
         model.addAttribute("itemsInPouch2", itemsInPouch2);
         model.addAttribute("itemsInPouch3", itemsInPouch3);
-
         List<Card> userCard = cardDao.getUserCards(user.getId());
-        String userCardString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(userCard);
-        model.addAttribute("cards", userCardString);
+        List<Card> userCardOrderedAttackH2L = cardDao.OrderByAttackDesc(userId);
+        List<Card> userCardOrderedAttackL2H = cardDao.OrderByAttackAsc(userId);
+        List<Card> userCardOrderedNameZ2A = cardDao.OrderByNameDesc(userId);
+        List<Card> userCardOrderedNameA2Z = cardDao.OrderByNameAsc(userId);
+
+        switch (order){
+            case  "attackH2L" : {
+                String userCardString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(userCardOrderedAttackH2L);
+                model.addAttribute("cards", userCardString);
+            }break;
+            case  "attackL2H" : {
+                String userCardString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(userCardOrderedAttackL2H);
+                model.addAttribute("cards", userCardString);
+            }break;
+            case  "nameA2Z" : {
+                String userCardString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(userCardOrderedNameA2Z);
+                model.addAttribute("cards", userCardString);
+            }break;
+            case  "nameZ2A" : {
+                String userCardString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(userCardOrderedNameZ2A);
+                model.addAttribute("cards", userCardString);
+            }break;
+            default: {
+                String userCardString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(userCard);
+                model.addAttribute("cards", userCardString);
+            }break;
+        }
         return "/home";
     }
+
 
     @PostMapping("/home/addItems")
     public String homePost(Model model, @RequestParam("pouchId") long pouchId,@RequestParam("itemId") long itemId ){
@@ -72,5 +100,6 @@ public class HomeController {
         }
         return "redirect:/home";
     }
+
 
 }
