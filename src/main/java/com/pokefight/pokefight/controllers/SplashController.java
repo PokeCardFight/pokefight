@@ -10,4 +10,10 @@ public class SplashController {
         return "/index";
     }
 
+    @GetMapping("favicon.ico")
+    @ResponseBody
+    public void disableFavicon() {
+        //Method is void to avoid browser 404 issue by returning nothing in the response.
+    }
+
 }

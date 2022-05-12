@@ -1,15 +1,22 @@
-.hidden{
+body {
+    padding-top: 150px;
+    padding-bottom: 50px;
+}
+
+.hidden {
     visibility: hidden;
     opacity: 0;
-    transition: visibility 1s,opacity .3s;
+    transition: visibility 1s, opacity .3s;
 }
-.active{
+
+.active {
     visibility: visible;
     opacity: 1;
     transition: visibility .5s, opacity .3s;
 
 }
-.formBackground{
+
+.formBackground {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -17,12 +24,13 @@
     bottom: 0;
     left: 0;
     right: 0;
-    background:   black;
+    background: black;
     opacity: 0.5;
 
     z-index: 2;
 }
-.popup_loginForm{
+
+.popup_loginForm {
     background-color: black;
     border: 3px solid black;
     position: fixed;
@@ -30,29 +38,40 @@
     right: 0;
     z-index: 3;
 }
-input{
+
+input {
     text-align: center;
 }
-body{
+
+body {
     background: url("/static/img/samplebackground.png") no-repeat fixed;
 }
-.navbar{
+
+.unique-navbar {
     background: black;
     text-decoration: white;
     height: 100px;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
 }
-.navbar > a , .navbar > form > a{
+.navbar-items{
+    padding: 0.5rem 1rem;
+}
+.navbar-items > a {
     position: relative;
     text-decoration: none;
     color: white;
     font-weight: 300;
 }
-.navbar > a:hover, .navbar > form > a:hover {
+
+.navbar-items > a:hover {
     color: gold;
     transition: color .4s ease-in-out;
 
 }
-.navbar>a>.indicator, .navbar>form>a>.indicator{
+
+.navbar-items > a > .indicator {
     position: absolute;
     bottom: -18%;
     left: 30%;
@@ -61,27 +80,57 @@ body{
     background: gold;
     transition: height .2s ease-in-out;
 }
-.navbar >a:hover >.indicator, .navbar>form>a:hover>.indicator{
+
+.navbar-items > a:hover > .indicator {
     height: 5px;
     transition: height .2s ease-in-out;
 }
 
 
-#logo{
-    position: relative;
-    left: 20px;
+#logo {
     transition: all .2s ease-in-out;
-    transform: scaleY(1) scaleX(1) translateX(-15px);
+    transform: scaleY(1) scaleX(1) translateX(0);
 }
-#logo:hover{
+
+#logo:hover {
     transition: all .2s ease-in-out;
     transform: scaleY(1.1) scaleX(1.1) translateX(15px);
 }
-.footer{
+
+.footer {
     background: black;
     text-decoration: white;
 }
-.readable-background{
+
+.readable-background {
     background: white;
     text-decoration: black;
+}
+
+#navLinks > a {
+    padding: 25px 9px;
+
+}
+
+@media screen and (max-width: 425px) {
+
+}
+
+@media screen and (max-width: 803px) {
+    #navLinks {
+        display: none;
+    }
+    .unique-navbar{
+        justify-content: center;
+    }
+}
+
+@media screen and (min-width: 803px) {
+    #navLinks {
+        display: flex;
+    }
+
+    .unique-navbar{
+        justify-content: space-between;
+    }
 }

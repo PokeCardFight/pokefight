@@ -19,7 +19,7 @@ public class FaviconConfiguration {
         SimpleUrlHandlerMapping mapping = new SimpleUrlHandlerMapping();
         mapping.setOrder(Integer.MIN_VALUE);
         mapping.setUrlMap(Collections.singletonMap(
-                "/static/favicon.ico", faviconRequestHandler()));
+                "/favicon.ico", faviconRequestHandler()));
         return mapping;
     }
 
@@ -28,7 +28,7 @@ public class FaviconConfiguration {
         ResourceHttpRequestHandler requestHandler
                 = new ResourceHttpRequestHandler();
         ClassPathResource classPathResource
-                = new ClassPathResource("com/baeldung/images/");
+                = new ClassPathResource("/");
         List<Resource> locations = Arrays.asList(classPathResource);
         requestHandler.setLocations(locations);
         return requestHandler;

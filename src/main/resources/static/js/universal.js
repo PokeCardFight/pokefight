@@ -10,3 +10,12 @@ passwordToggle.click(()=>{
 })
 
 // pull favicon -- faviconLnk = document.querySelector('link[rel*="icon"]');
+
+//logo hyperlink cause anchor wanted to fight me
+/*$('#logo').click(function() {
+    window.location.href = '/';
+})*/
+//logout submission connector
+$("#logout").click(()=>{
+    $("form[name='logoutForm']").submit();
+})
