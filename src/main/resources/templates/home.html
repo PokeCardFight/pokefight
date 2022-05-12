@@ -32,18 +32,18 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col my-2">
-                    <div class="card" >
-                        <div class="card-body">
-                            <h5 id="pokemon-name" class="card-title">Pokemon - Name</h5>
-                        </div>
-                        <ul class="list-group list-group-flush">
-                            <li id="pokemon-type" class="list-group-item">Pokemon - Type</li>
-                            <li id="pokemon-subtype" class="list-group-item">Pokemon - Subtype</li>
-                            <li id="pokemon-attack" class="list-group-item">Pokemon - Attack</li>
-                            <li id="pokemon-hp" class="list-group-item">Pokemon - HP</li>
-                            <li id="pokemon-rarity" class="list-group-item">Pokemon - Rarity</li>
+            <div class="row justify-content-center">
+                <div class="store-section col my-2">
+                    <div class="m-1">
+<!--                        <div>-->
+                            <h5 class="text-center" id="pokemon-name" >Pokemon - Name</h5>
+<!--                        </div>-->
+                        <ul>
+                            <li id="pokemon-type" >Pokemon - Type</li>
+                            <li id="pokemon-subtype" >Pokemon - Subtype</li>
+                            <li id="pokemon-attack" >Pokemon - Attack</li>
+                            <li id="pokemon-hp" >Pokemon - HP</li>
+                            <li id="pokemon-rarity" >Pokemon - Rarity</li>
                         </ul>
                     </div>
                 </div>
@@ -60,12 +60,14 @@
     <!-- Store and Pouch Section -->
     <div class="  container col-4 " id="items">
         <h5 class="text-center store-section">Store &#x20BD;</h5>
-        <div class="row justify-content-center" id="store">
+        <div class=" store-scroll row justify-content-center" id="store">
             <div id="storeItems" class=" tap store-section m-1 col-3  " th:each="item : ${items}">
-                <h4 th:text="${item.name}"></h4>
+                <div class="m-1">
+                <p th:text="${item.name}"></p>
                 <img th:src="${item.image}" th:alt="${item.name}">
                 <span>&#x20BD; <span th:text="${item.cost} "></span></span>
-                <input type="submit" th:id="${item.id}" value="Select" class="golden-btn" style="font-size:.5em;"/>
+                <input type="submit" th:id="${item.id}" value="Select" class="golden-btn" style="clear: both; font-size:.5em;"/>
+                </div>
             </div>
 
         </div>
@@ -89,7 +91,7 @@
                     <input type="submit" th:id="${userPouchIds.get(0)}" value="Select"
                            class="golden-btn" style="font-size:.5em;">
                     <div th:each="itemInPouch1 : ${itemsInPouch1}">
-                        <h5 th:text="${itemInPouch1}"></h5>
+                        <p th:text="${itemInPouch1}"></p>
                     </div>
 
                 </div>
@@ -103,7 +105,7 @@
 
 
                     <div th:each="itemInPouch2 : ${itemsInPouch2}">
-                        <h5 th:text="${itemInPouch2}"></h5>
+                        <p th:text="${itemInPouch2}"></p>
                     </div>
 
                 </div>
@@ -113,7 +115,7 @@
                     <input type="submit" th:id="${userPouchIds.get(2)}" value="Select"
                            class="golden-btn" style="font-size:.5em;">
                     <div th:each="itemInPouch3 : ${itemsInPouch3}">
-                        <h5 th:text="${itemInPouch3}"></h5>
+                        <p th:text="${itemInPouch3}"></p>
                     </div>
 
                 </div>

@@ -31,6 +31,12 @@ div.bat:hover {
     overflow-y: auto;
 
 }
+.store-scroll{
+    height:445px;
+
+    overflow-y: auto;
+
+}
 .card-radius{
     border-radius: 25% 10%;
 }
@@ -94,4 +100,7 @@ div.bat:hover {
     box-shadow: 0 3px 6px rgba(0,0,0,.16), 0 3px 6px rgba(110,80,20,.4),
     inset 0 -2px 5px 1px #b17d10,
     inset 0 -1px 1px 3px rgba(250,227,133,1);
+}
+ul {
+    list-style-image: url('/static/img/pokeball-pokemon-svgrepo-com.svg');
 }
