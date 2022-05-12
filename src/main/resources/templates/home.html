@@ -65,7 +65,7 @@
                 <h4 th:text="${item.name}"></h4>
                 <img th:src="${item.image}" th:alt="${item.name}">
                 <span>&#x20BD; <span th:text="${item.cost} "></span></span>
-                <input type="submit" th:id="${item.id}" value="Select" class=" select-btn item-button btn btn-sm"/>
+                <input type="submit" th:id="${item.id}" value="Select" class="golden-btn" style="font-size:.5em;"/>
             </div>
 
         </div>
@@ -87,7 +87,7 @@
                 <div th:id="${userPouchIds.get(0)}" class=" store-section m-1 tab bat col-3 ">
                     <!--                Pouch1-->
                     <input type="submit" th:id="${userPouchIds.get(0)}" value="Select"
-                           class="btn select-btn btn-sm"/>
+                           class="golden-btn" style="font-size:.5em;">
                     <div th:each="itemInPouch1 : ${itemsInPouch1}">
                         <h5 th:text="${itemInPouch1}"></h5>
                     </div>
@@ -99,7 +99,7 @@
                     <input type="submit"
                            th:id="${userPouchIds.get(1)}"
                            value="Select"
-                           class="btn select-btn btn-sm"/>
+                           class="golden-btn" style="font-size:.5em;">
 
 
                     <div th:each="itemInPouch2 : ${itemsInPouch2}">
@@ -111,7 +111,7 @@
                 <div th:id="${userPouchIds.get(2)}" class=" store-section m-1 tab bat col-3 ">
                     <!--                Pouch3-->
                     <input type="submit" th:id="${userPouchIds.get(2)}" value="Select"
-                           class="btn select-btn btn-sm"/>
+                           class="golden-btn" style="font-size:.5em;">
                     <div th:each="itemInPouch3 : ${itemsInPouch3}">
                         <h5 th:text="${itemInPouch3}"></h5>
                     </div>
