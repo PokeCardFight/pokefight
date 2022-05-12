@@ -91,11 +91,13 @@ public class HomeController {
         Item tempItem = itemDao.getById(itemId);
         int itemCost = tempItem.getCost();
         int moneyLeft = userMoney - itemCost;
-        cUser.setGold(moneyLeft);
-        userDao.save(cUser);
-        Pouch tempPouch = pouchDao.getById(pouchId);
-        int quantity = pouchItemDao.getQuantityFromPouch(tempPouch.getId());
-        if (quantity < 3) pouchItemDao.save(new PouchItem(tempPouch, tempItem));
+        if (moneyLeft >= 0) {
+            cUser.setGold(moneyLeft);
+            userDao.save(cUser);
+            Pouch tempPouch = pouchDao.getById(pouchId);
+            int quantity = pouchItemDao.getQuantityFromPouch(tempPouch.getId());
+            if (quantity < 3) pouchItemDao.save(new PouchItem(tempPouch, tempItem));
+        }
         return "redirect:/home";
     }
 
