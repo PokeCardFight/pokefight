@@ -89,9 +89,6 @@
                 let textBox = document.querySelector('.wrapper');
                 textBox.innerHTML = '';
 
-                let isGameOver = false;
-                let stunnedCounter = 0;
-
                 //--| Build & Set Player Data |----------//
                 let player = {
                     name: [[${playerCard.name}]],
@@ -137,6 +134,11 @@
                     backgroundDiv.position ='relative';
                 }
                 setBackground();
+
+
+                //--| Game Play Modifiers |----------//
+                let isGameOver = false;
+                let stunnedCounter = 0;
 
                 //--| Game Play Functions |----------//
                 function delay(n) {
@@ -202,6 +204,14 @@
                     window.location.replace(`/home`);
                 }
 
+                const attackType = () => {
+                    let type = (Math.random() * (100 - 1) + 1);
+                    if (type <= 5) return 'missed';
+                    else if (type > 5 && type < 15) return 'grazed';
+                    else if (type > 15 && type < 85) return 'attacked';
+                    else if (type > 85 && type < 95) return 'power attacked';
+                    else return 'critically attack';
+                }
                 const checkAllHealth = () => {
                     if(player.currentHp === 0) {
                         textBox.innerHTML += 'Player loses.<br>';
@@ -225,7 +235,20 @@
                     } else return false;
                 }
                 const adjustHealth = (target, amount) => {
-                    textBox.innerHTML +=  amount > 0 ? `${target.name} loses ${amount} health points.<br>` : `${target.name} gains ${amount * -1} health points.<br>`;
+                    if (amount > 5) {
+                        let attack = attackType();
+                        switch(attack) {
+                            case 'missed': amount *= 0; break;
+                            case 'grazed': amount *= 0.5; break;
+                            case 'power attacked': amount *= 1.5; break;
+                            case 'critically attack': amount *= 2; break;
+                            default: break;
+                        }
+                        textBox.innerHTML += `${target.name} was ${attack}.<br>${target.name} loses ${amount} health points.<br>`;
+                    } else if (amount < 0) {
+                        textBox.innerHTML += `${target.name} gains ${amount * -1} health points.<br>`
+                    } else textBox.innerHTML += `${target.name} loses ${amount} health points.<br>`;
+
                     const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
                     let percentDamage = Math.round((amount / target.hp) * 100);
                     target.hpPercentage -= percentDamage;
@@ -248,7 +271,7 @@
                 const useItem = (item) => {
                     textBox.innerHTML += `Item (${item.name}) used.<br>`;
                     if (item.value > 5) adjustHealth(computer, item.value);
-                    if (item.value === 5) applyStun(item.rounds);
+                    if (item.value === 5) { adjustHealth(computer, item.value); applyStun(item.rounds); }
                     if (item.value < 5) adjustHealth(player, item.value);
                 }
 
