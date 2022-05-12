@@ -68,6 +68,35 @@
                                 <div class=" col-4 border border-2">
                                     Pouch# 1
                                     <input type="submit" id="pouch1" value="Buy for this pouch" class="btn btn-sm"/>
+
+                </div>
+                <!--        store and pouch section V1-->
+
+                <div class="col border border-2 col">
+                    <div class="container" id="items">
+                        <div>
+                            <h5 class="text">Store</h5>
+                            <div class="row" id="store">
+<!--                                <div id="storeItems" class="col-4 border border-2"></div>-->
+                                <div id="storeItems" class=" col-4 border border-2" th:each="item : ${items}"><a href="#" th:text="${item.name}"></a>
+                                    <input type="submit" th:id="item + ${item.id}" value="Buy for this pouch" class="item-button btn btn-sm"/>
+                                </div>
+                            <div class="row justify-content-md-center">
+                                total (insert total cost of selected items)
+                            </div>
+                            <div class="row justify-content-md-center">
+                                <input id="buy" type="submit" value="BUY">
+                            </div>
+
+
+                            <hr>
+                            <h5>Pouches</h5>
+                            <div class="row" id="pouches">
+                                <div class=" col border border-2">
+                                    <div class=" col border border-2">
+                                        Pouch# 1
+                                        <input type="submit" id="pouch1" value="Buy for this pouch" class="btn btn-sm"/>
+>>>>>>> 59636e7 (button)
                                     <div th:each="itemInPouch1 : ${itemsInPouch1}">
                                         <h5 th:text="${itemInPouch1}"></h5>
                                     </div>
@@ -105,69 +134,10 @@
     </div>
 </div>
 
+
 <div th:include="/partials/fragments :: footer"></div>
 <script>
-    let activeCard = 0;
 
-    let itemsContainer = document.querySelector('#store');
-    itemsContainer.addEventListener('click', (e) => {
-        let item = e.target.id;
-        passItem(item);
-    });
-
-    let activePouch = 0;
-    $("#pouch1").click(function () {
-        activePouch = 1;
-    });
-    $("#pouch2").click(function () {
-        activePouch = 2;
-    });
-    $("#pouch3").click(function () {
-        activePouch = 3;
-    });
-
-    function passItem(item) {
-        $("#buy").click(function () {
-            $.ajax({
-                type: "POST",
-                url: "/home/addItems",
-                data: {pouch_id: activePouch, item_id: item},
-                timeout: 100000,
-                success: function (imageURL) {
-                    console.log("SUCCESS: ", imageURL);
-                },
-                error: function (e) {
-                    console.log("ERROR: ", e);
-                },
-                done: function (e) {
-                    console.log("DONE");
-                }
-            });
-        });
-    }
-
-    $("#battle").click(function () {
-        $.ajax({
-            type: "POST",
-            url: "/pouch_and_card/id",
-            data: {pouch_id: 1, card_id: 1},
-            timeout: 100000,
-            success: function (imageURL) {
-                console.log("SUCCESS: ", imageURL);
-            },
-            error: function (e) {
-                console.log("ERROR: ", e);
-            },
-            done: function (e) {
-                console.log("DONE");
-            }
-        });
-    });
-
-    let battleButton = document.querySelector('#battle-button');
-    battleButton.addEventListener('click', function (event) {
-        window.location.replace(`/battle/${activeCard}/${activeItem}/`);
-    });
 </script>
 </body>
 </html>
