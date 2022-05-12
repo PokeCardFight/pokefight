@@ -212,7 +212,7 @@
     let button = document.getElementsByClassName('button');
     let container = document.querySelector('#myCards');
     container.addEventListener('click', (e) => {
-        for(let i = 0; i < 2; i++) {
+        for(let i = 0; i < 200; i++) {
             if (button[i].contains(e.target)) {
                 let oldSelectedButton = document.querySelector('.button-selected');
                 if (oldSelectedButton) oldSelectedButton.classList.remove('button-selected');
