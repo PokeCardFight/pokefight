@@ -92,6 +92,7 @@ public class BattleController {
         User user = userDao.getById(currentUser.getId());
         User oldUser = userDao.getById(user.getId());
         oldUser.setGold(user.getGold() + gold);
+        oldUser.setLosses(oldUser.getLosses() + 1);
         userDao.save(oldUser);
 
         return ResponseEntity.ok().body(gold + " pity gold given.");
@@ -112,11 +113,7 @@ public class BattleController {
             oldUser.setXp(0);
             oldUser.setLevel(user.getLevel() + 1);
         } else oldUser.setXp(xp);
-
-        System.out.println("percentage = " + percentage);
-        System.out.println("user.getXp() = " + user.getXp());
-        System.out.println("oldUser.getXp() = " + oldUser.getXp());
-        System.out.println("oldUser.getLevel() = " + oldUser.getLevel());
+        oldUser.setWins(oldUser.getWins() + 1);
 
         userDao.save(oldUser);
 

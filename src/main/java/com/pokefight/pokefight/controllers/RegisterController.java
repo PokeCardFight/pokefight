@@ -57,7 +57,9 @@ public class RegisterController {
                 "/static/img/DefaultProfilePic.png",
                 10,
                 0,
-                1
+                1,
+                0,
+                0
         ));
 
         poachDao.save(new Pouch(newUser));

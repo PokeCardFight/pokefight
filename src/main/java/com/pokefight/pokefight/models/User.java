@@ -31,13 +31,19 @@ public class User {
     @Column(nullable=false)
     private int level;
 
+    @Column(nullable=false)
+    private int wins;
+
+    @Column(nullable=false)
+    private int losses;
+
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Pouch> pouches;
 
     @OneToMany(mappedBy = "user")
     private List<UserCard> user_card;
 
-    public User(String username, String email, String password, String profile_pic, int gold, int xp, int level) {
+    public User(String username, String email, String password, String profile_pic, int gold, int xp, int level, int wins, int losses) {
         this.username = username;
         this.email = email;
         this.password = password;
@@ -45,7 +51,8 @@ public class User {
         this.gold = gold;
         this.xp = xp;
         this.level = level;
-
+        this.wins = wins;
+        this.losses = losses;
     }
 
     public User(User user) {
@@ -57,6 +64,8 @@ public class User {
         this.gold = user.gold;
         this.xp = user.xp;
         this.level = user.level;
+        this.wins = user.wins;
+        this.losses = user.losses;
     }
 
     public User() {
@@ -142,5 +151,21 @@ public class User {
 
     public void setUser_card(List<UserCard> user_card) {
         this.user_card = user_card;
+    }
+
+    public int getWins() {
+        return wins;
+    }
+
+    public void setWins(int wins) {
+        this.wins = wins;
+    }
+
+    public int getLosses() {
+        return losses;
+    }
+
+    public void setLosses(int losses) {
+        this.losses = losses;
     }
 }
