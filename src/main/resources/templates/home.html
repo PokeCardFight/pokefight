@@ -57,7 +57,19 @@
         </div>
 
         <!-- Card Section -->
+
         <div class="card-scroll col col-4 ">
+            <div class="dropdown">
+                <button class="btn golden-btn dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-expanded="false">
+                   Sort
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                    <a id="attackH2L" th:href="@{/home/attackH2L}" class="dropdown-item "><span>Order By Attack High to Low</span></a>
+                    <a id="attackL2H" th:href="@{/home/attackL2H}" class="dropdown-item "><span>Order By Attack Low to High</span></a>
+                    <a id="nameA2Z" th:href="@{/home/nameA2Z}" class="dropdown-item "><span>Order By Name A to Z</span></a>
+                    <a id="nameZ2A" th:href="@{/home/nameZ2A}" class="dropdown-item "><span>Order By Name Z to A</span></a>
+                </div>
+            </div>
             <div class="row" id="myCards">
             </div>
         </div>
@@ -137,10 +149,8 @@
             </div>
 
         </div>
-        <a id="attackH2L" th:href="@{/home/attackH2L}" class="p-4"><span>Order By Attack High to Low</span></a>
-        <a id="attackL2H" th:href="@{/home/attackL2H}" class="p-4 flex-fill"><span>Order By Attack Low to High</span></a>
-        <a id="nameA2Z" th:href="@{/home/nameA2Z}" class="p-4 flex-fill"><span>Order By Name A to Z</span></a>
-        <a id="nameZ2A" th:href="@{/home/nameZ2A}" class="p-4 flex-fill"><span>Order By Name Z to A</span></a>
+<!--        <a id="attackH2L" th:href="@{/home/attackH2L}" class="p-4"><span>Order By Attack High to Low</span></a>-->
+
 
     </div> <!--end of container-->
 
