@@ -1,12 +1,5 @@
-
-.footer{
-
-}
-#master-container{
-
-}
 h3{
-
+    color: white;
 }
 #master-container img{
     width: 200px;
@@ -18,18 +11,12 @@ h3{
     height: 203.62px;
     object-fit: cover;
 }
-.drop{
-    display: none;
-}
 .fullscreen{
-    position: absolute;
-    top: 125px;
+    position: fixed;
+    top:100px;
+    left:0;
     background: black;
-    color: #ffffff;
-    height: 85%;
-    width: 100%;
-    padding: 10px 90px;
-}
-#master-container img.profile-Pop{
-
+    color: white;
+    z-index: 4;
+    height: 100%;
 }

@@ -1,3 +1,7 @@
+$(document).ready(()=>{
+    setTimeout(()=>{$("#logInForm").removeClass("drop");},400);
+})
+
 $("#logIn, #logInM, #loginX").click((e) => {
     e.preventDefault()
     $("#logInForm").toggleClass("hidden active");
