@@ -2,6 +2,14 @@
 .footer{
 
 }
+#master-container img{
+    width: 200px;
+    height: auto;
+}
+#Noah > img{
+    height: 203.62px;
+    object-fit: cover;
+}
 
 .drop{
     display: none;
