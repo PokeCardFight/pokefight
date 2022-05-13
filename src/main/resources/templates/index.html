@@ -5,40 +5,40 @@
     <!--favicon-->
 </head>
 <body>
-<div id="loader"></div>
-<div id="content">
-<nav th:replace="partials/fragments :: navbar"></nav>
 
-<div class=" container text-center">
-    <h1 id="welcome" class="display-1">Welcome to the PokeFight!</h1>
-</div>
-<!--<img src="../favicon.png">-->
+    <div id="loader"></div>
 
-<div th:include="partials/fragments :: footer"></div>
-</div>
-<script>
-    var loader;
+        <nav th:replace="partials/fragments :: navbar"></nav>
 
-    function loadNow(opacity) {
-        if (opacity <= 0) {
-            displayContent();
-        } else {
-            loader.style.opacity = opacity;
-            window.setTimeout(function() {
-                loadNow(opacity - .15);
-            }, 250);
+        <div class=" container text-center">
+            <h1 id="welcome" class="display-1">Welcome to the PokeFight!</h1>
+        </div>
+        <!--<img src="../favicon.png">-->
+
+        <div th:include="partials/fragments :: footer"></div>
+    <script>
+        let loader;
+
+        function loadNow(opacity) {
+            if (opacity <= 0) {
+                displayContent();
+            } else {
+                loader.style.opacity = opacity;
+                window.setTimeout(function () {
+                    loadNow(opacity - .15);
+                }, 250);
+            }
         }
-    }
 
-    function displayContent() {
-        loader.style.display = 'none';
-        document.getElementById('content').style.display = 'block';
-    }
+        function displayContent() {
+            loader.style.display = 'none';
+            document.getElementById('content').style.display = 'block';
+        }
 
-    document.addEventListener("DOMContentLoaded", function() {
-        loader = document.getElementById('loader');
-        loadNow(1);
-    });
-</script>
+        document.addEventListener("DOMContentLoaded", function () {
+            loader = document.getElementById('loader');
+            loadNow(1);
+        });
+    </script>
 </body>
 </html>

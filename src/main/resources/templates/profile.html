@@ -10,120 +10,120 @@
 
 <body>
 
-<nav th:replace="partials/fragments :: navbar"></nav>
+    <nav th:replace="partials/fragments :: navbar"></nav>
 
 
-<!--base profile card-->
-<div class="container container-fluid border border-warning p-5 profile-card text-center readable-background">
-    <div class="top container col-12 align-items-center">
-        <img th:src="${user.getProfile_pic()}" alt="profile image">
-    </div>
-    <div class="col-12 my-2">
-        <button id="edit-pic">edit picture</button>
-    </div>
-    <div class="w-100 my-5"></div>
-    <div class="row my-5">
-        <div class="col-3"></div>
-        <div class="col-3">
-            Username:<br>
-            <span th:text="${user.getUsername()}">username here</span>
-        </div>
-        <div class="col-3">
-            ID:<br>
-            <span th:text="${#authentication.principal.id}"></span>
-        </div>
-        <div class="col-3"></div>
-    </div>
-    <div class="col-12 my-3">
-        Email:<br>
-        <span th:text="${#authentication.principal.email}">email here</span>
-    </div>
-    <div class="row">
-        <div class="col-4 my-3">
-            Gold:
-            <h3 th:text="*{user.getGold()}"></h3>
-        </div>
-
-        <div class="col-4 my-3">
-            Level:
-            <h3 th:text="*{user.getLevel()}"></h3>
-        </div>
-        <div class="col-4 my-3">
-            XP:
-            <h3 th:text="*{user.getXp()}"></h3>
-        </div>
-    </div>
-
-    <div class="col-12 my-3">
-        <button id="edit-prof">edit profile</button>
-    </div>
-</div>
-
-
-<!--edit profile form-->
-<div id="edit-profile" class="hidden">
-    <div class="formBackground"></div>
-    <div class="container container-fluid border border-warning p-0 profile-card popup_form text-center">
-        <button id="close-edit" class="X p-2">X</button><!--close button will change-->
-        <div class="top container col-12 mt-5 align-items-center">
-            <img src="/static/img/ph300.png" alt="profile image">
+    <!--base profile card-->
+    <div class="container container-fluid border border-warning p-5 profile-card text-center readable-background">
+        <div class="top container col-12 align-items-center">
+            <img th:src="${user.getProfile_pic()}" alt="profile image">
         </div>
         <div class="col-12 my-2">
-            <button id="pic-from-edit">edit picture</button>
+            <button id="edit-pic">edit picture</button>
         </div>
         <div class="w-100 my-5"></div>
-
-
-        <form id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
-            <input th:field="*{id}" hidden>
-            <span>username:</span><br><input th:field="*{username}">
-            <br>
-            <span>password:</span><br><input id="password" name="password" type="password">
-            <br>
-            <span>confirm password:</span><br><input id="confirmPass" name="confirmPass" type="password">
-            <br>
-            <span>email:</span><br><input th:field="*{email}">
-            <br>
-            <button id="submitEditform" class="my-3">Submit</button>
-        </form>
-    </div>
-</div>
-</div>
-
-<!--edit picture form-->
-<div id="edit-picture" class="hidden">
-    <div class="formBackground"></div>
-    <div class="container container-fluid border border-warning popup_form p-0 profile-card text-center">
-        <button id="close-pic" class="X p-2">X</button><!--close button will change-->
-        <div class="top container col-12 mt-5 align-items-center">
-            <img src="/static/img/ph300.png" alt="profile image">
+        <div class="row my-5">
+            <div class="col-3"></div>
+            <div class="col-3">
+                Username:<br>
+                <span th:text="${user.getUsername()}">username here</span>
+            </div>
+            <div class="col-3">
+                ID:<br>
+                <span th:text="${#authentication.principal.id}"></span>
+            </div>
+            <div class="col-3"></div>
         </div>
-        <div class="box">
-            <form id="pick-form">
-                <div class="field">
-                    <div class="control">
-                        <button class="button" type="button" id="picker">Pick file</button>
-                        <input type="hidden" id="fileupload">
-                    </div>
-                    <div class="control" id="nameBox"></div>
-                    <div class="control" id="urlBox"></div>
-                </div>
-                <div class="field">
-                    <div class="control">
-                        <input class="button my-3" type="submit" id="submit" value="Submit">
-                    </div>
-                </div>
+        <div class="col-12 my-3">
+            Email:<br>
+            <span th:text="${#authentication.principal.email}">email here</span>
+        </div>
+        <div class="row">
+            <div class="col-4 my-3">
+                Gold:
+                <h3 th:text="*{user.getGold()}"></h3>
+            </div>
+
+            <div class="col-4 my-3">
+                Level:
+                <h3 th:text="*{user.getLevel()}"></h3>
+            </div>
+            <div class="col-4 my-3">
+                XP:
+                <h3 th:text="*{user.getXp()}"></h3>
+            </div>
+        </div>
+
+        <div class="col-12 my-3">
+            <button id="edit-prof">edit profile</button>
+        </div>
+    </div>
+
+
+    <!--edit profile form-->
+    <div id="edit-profile" class="hidden">
+        <div class="formBackground"></div>
+        <div class="container container-fluid border border-warning p-0 profile-card popup_form text-center">
+            <button id="close-edit" class="X p-2">X</button><!--close button will change-->
+            <div class="top container col-12 mt-5 align-items-center">
+                <img src="/static/img/ph300.png" alt="profile image">
+            </div>
+            <div class="col-12 my-2">
+                <button id="pic-from-edit">edit picture</button>
+            </div>
+            <div class="w-100 my-5"></div>
+
+
+            <form id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
+                <input th:field="*{id}" hidden>
+                <span>username:</span><br><input th:field="*{username}">
+                <br>
+                <span>password:</span><br><input id="password" name="password" type="password">
+                <br>
+                <span>confirm password:</span><br><input id="confirmPass" name="confirmPass" type="password">
+                <br>
+                <span>email:</span><br><input th:field="*{email}">
+                <br>
+                <button id="submitEditform" class="my-3">Submit</button>
             </form>
         </div>
     </div>
-</div>
 
 
-<!--<iframe width="560" height="315" src="../static/js/Filestack.js" allowfullscreen></iframe>-->
+    <!--edit picture form-->
+    <div id="edit-picture" class="hidden">
+        <div class="formBackground"></div>
+        <div class="container container-fluid border border-warning popup_form p-0 profile-card text-center">
+            <button id="close-pic" class="X p-2">X</button><!--close button will change-->
+            <div class="top container col-12 mt-5 align-items-center">
+                <img src="/static/img/ph300.png" alt="profile image">
+            </div>
+            <div class="box">
+                <form id="pick-form">
+                    <div class="field">
+                        <div class="control">
+                            <button class="button" type="button" id="picker">Pick file</button>
+                            <input type="hidden" id="fileupload">
+                        </div>
+                        <div class="control" id="nameBox"></div>
+                        <div class="control" id="urlBox"></div>
+                    </div>
+                    <div class="field">
+                        <div class="control">
+                            <input class="button my-3" type="submit" id="submit" value="Submit">
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
 
-<div th:include="partials/fragments :: footer"></div>
+    <!--<iframe width="560" height="315" src="../static/js/Filestack.js" allowfullscreen></iframe>-->
 
+
+    <div th:include="partials/fragments :: footer"></div>
+<!--page specific files below-->
 <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
 <script src="/static/js/APIKEY.js"></script>
 <script src="/static/js/Filestack.js"></script>
