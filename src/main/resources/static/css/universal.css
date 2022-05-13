@@ -135,7 +135,6 @@ input {
 
 #navLinks > a {
     padding: 25px 9px;
-
 }
 
 #mobile-list {
@@ -247,6 +246,8 @@ input {
 @media screen and (min-width: 803px) {
     #navLinks {
         display: flex;
+        position: absolute;
+        right: 15px;
     }
 
     .unique-navbar {
