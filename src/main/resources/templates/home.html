@@ -57,7 +57,7 @@
 
         <!-- Card Section -->
 
-        <div class="card-scroll col-xs-4 col-md-4 col-lg-4 ">
+        <div class="  col-xs-4 col-md-4 col-lg-4 ">
             <div class="dropdown">
                 <button class="btn golden-btn dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-expanded="false">
@@ -70,7 +70,10 @@
                     <a id="nameZ2A" th:href="@{/home/nameZ2A}" class="dropdown-item "><span>Order By Name Z to A</span></a>
                 </div>
             </div>
-            <div class="row" id="myCards">
+            <div class="card-scroll">
+            <div class="row justify-content-center" id="myCards">
+
+            </div>
             </div>
         </div>
 
@@ -183,8 +186,10 @@
         cardsContainer.innerHTML = "";
         cards.forEach(element => {
             cardsContainer.innerHTML += `
-                        <div class="button m-1 store-section m-1 card pokemon-card" title="${element.name}" data-id="1" style="width: 10rem;">
-                            <img src="${element.image}" data-id="${element.id}" class="card-img-top" alt="${element.name}">
+                        <div class="button m-1 store-section  card " title="${element.name}" data-id="1" style="width: 10rem;">
+                             <h5  class="text-white text-center card-text">${element.name}</h5>
+                            <img src="${element.image}" data-id="${element.id}" class="card-img" alt="${element.name}">
+
                         </div>
                     `;
         });
