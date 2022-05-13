@@ -4,11 +4,10 @@ body {
     --nav-height: 100px;
     --logo-OGsize: 344px;
     background: url("/static/img/samplebackground.png") no-repeat fixed;
-}
-#pageContainer{
     position: relative;
-    height: 100vH;
+    min-height: 100vh;
 }
+
 
 .hidden {
     visibility: hidden;
@@ -122,6 +121,11 @@ input {
 .footer {
     background: black;
     text-decoration: white;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+
 }
 
 .readable-background {

@@ -55,5 +55,5 @@ $(window).scroll(() => {
 
 //logout submission connector
 $("#logout, #logoutM").click(() => {
-    $("form[name='logoutForm']").submit();
+    $("#logoutForm").submit();
 })

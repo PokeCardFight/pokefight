@@ -114,12 +114,12 @@
                     <div class="indicator"></div>
                 </a>
 
-                <a href="" id="logout" role="menuitem" class="" sec:authorize="isAuthenticated()"> Logout
+                <a href="#" id="logout" role="menuitem" class="" sec:authorize="isAuthenticated()"> Logout
                     <div class="indicator"></div>
                 </a>
 
                 <!--separated (hidden) logout form so the button can be uniform with rest of navbar-->
-                <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <form id="logoutForm" name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                     <input hidden type="submit" value="Sign Out"/>
                 </form>
 
