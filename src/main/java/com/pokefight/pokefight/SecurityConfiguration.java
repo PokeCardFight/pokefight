@@ -47,13 +47,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .csrf()
                     .disable()
                     .authorizeRequests()
-                    .antMatchers("/") // anyone can see the home and the ads pages
+                    .antMatchers("/","/about") // anyone can see the splash page and about us
                     .permitAll()
                 /* Pages that require authentication */
                 .and()
                     .authorizeRequests()
                     .antMatchers(
-                            "/about",
                             "/contact",
                             "/home",
                             "/profile",

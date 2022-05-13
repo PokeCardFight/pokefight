@@ -1,0 +1,10 @@
+#contactUs_Form {
+    width: 50%;
+}
+
+@media screen and (max-width: 803px) {
+    #contactUs_Form {
+        width: 75%;
+        margin: auto;
+    }
+}

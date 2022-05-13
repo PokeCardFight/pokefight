@@ -3,6 +3,9 @@
 
 }
 
+.drop{
+    display: none;
+}
 /*.image{*/
 /*    width:50vh;*/
 /*    height:50vh;*/
