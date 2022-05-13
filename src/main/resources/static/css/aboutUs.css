@@ -2,20 +2,34 @@
 .footer{
 
 }
+#master-container{
+
+}
+h3{
+
+}
 #master-container img{
     width: 200px;
     height: auto;
+    margin-top: 60px;
+
 }
 #Noah > img{
     height: 203.62px;
     object-fit: cover;
 }
-
 .drop{
     display: none;
 }
-/*.image{*/
-/*    width:50vh;*/
-/*    height:50vh;*/
-/*}*/
+.fullscreen{
+    position: absolute;
+    top: 125px;
+    background: black;
+    color: #ffffff;
+    height: 85%;
+    width: 100%;
+    padding: 10px 90px;
+}
+#master-container img.profile-Pop{
 
+}
