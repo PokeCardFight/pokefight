@@ -25,14 +25,15 @@ div.bat:hover {
     transition: color .4s ease-in-out;
 }
 
+
 .card-scroll{
-    height:890px;
+    height:600px;
 
     overflow-y: auto;
 
 }
 .store-scroll{
-    height:445px;
+    height:200px;
 
     overflow-y: auto;
 
