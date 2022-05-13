@@ -190,11 +190,22 @@ input {
     .unique-navbar {
         justify-content: left;
     }
-}
 
+}
+@media screen and (max-width: 400px){
+    #footerEmpty, #textFooter{
+        display: none;
+    }
+.footer{justify-content: center}
+}
 @media screen and (max-width: 576px) {
     #logo {
         width: calc(var(--logo-OGsize) / 2);
+    }
+}
+@media screen and (max-width: 694px) {
+    .footer{
+        max-height: 25px;
     }
 }
 
@@ -245,5 +256,8 @@ input {
 
     #loginX, #mobileLoginName, #dropDown {
         display: none;
+    }
+    .popup_loginForm{
+padding: 0 15px 10px 15px;
     }
 }

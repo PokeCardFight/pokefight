@@ -1,4 +1,10 @@
+$(".clickable").click(()=>{
+$(this).siblings().removeClass("drop");
+})
 
+
+
+/*
 $("#infoNoah").click(() => {
     $("#info").toggleClass("hidden");
 })
@@ -10,7 +16,7 @@ $("#infoMichael").click(() => {
 })
 $("#infoGerald").click(() => {
     $("#info4").toggleClass("hidden");
-})
+})*/
 //
 // $('#collapseExample').collapse({
 //     toggle: false

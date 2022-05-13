@@ -44,7 +44,7 @@ const nav = $(".unique-navbar");
 let lastScrollY = window.scrollY;
 
 $(window).scroll(() => {
-    if (lastScrollY > window.scrollY) {
+    if (lastScrollY >= window.scrollY) {
         nav.removeClass("nav--hidden");
     } else {
         nav.addClass("nav--hidden");
