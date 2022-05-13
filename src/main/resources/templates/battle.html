@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head>
-        <div th:include="/partials/fragments :: header(title='Battle!')"></div>
         <link rel="stylesheet" href="/static/css/battle.css">
+        <div th:include="/partials/fragments :: header(title='Battle!')"></div>
     </head>
     <body>
         <nav th:replace="partials/fragments :: navbar"></nav>
@@ -18,7 +18,7 @@
                                 <div class="health-bar-wrapper">
                                     <div id="computer-health-bar"></div>
                                 </div>
-                                <div class="attack">ATK : <span th:text="*{attack}"></span></div>
+                                <div class="attack">ATK:<span th:text="*{attack}"></span></div>
                                 <div class="counter">
                                     <div class="counter-left"><span id="computer-health-number"></span></div> /
                                     <div class="counter-right">
@@ -26,7 +26,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="shadow"></div>
                     </div>
@@ -45,7 +44,7 @@
                                 <div class="health-bar-wrapper">
                                     <div id="player-health-bar"></div>
                                 </div>
-                                <div class="attack">ATK : <span th:text="*{attack}"></span></div>
+                                <div class="attack">ATK:<span th:text="*{attack}"></span></div>
                                 <div class="counter">
                                     <div class="counter-left"><span id="player-health-number"></span></div> /
                                     <div class="counter-right">
@@ -63,13 +62,12 @@
                     </div>
                 </div>
             </div>
-
             <div id="input-output">
                 <div id="items">
                 </div>
-                <div id="game-dialog">
-                    <div class="box"></div>
-                </div>
+                    <div id="game-dialog">
+                        <div class="box"></div>
+                    </div>
                 <input type="button" class="button attack-button" value="Attack" />
                 <input type="button" class="button run-button" value="Run" />
             </div>
@@ -132,8 +130,6 @@
                     let backgroundDiv = document.querySelector('#battle-background').style;
                     backgroundDiv.background = `url("${backgroundUrl}") no-repeat`;
                     backgroundDiv.backgroundSize = 'cover';
-                    backgroundDiv.boxShadow = '0 0 24px 24px black';
-                    // backgroundDiv.borderRadius = '512px';
                 }
                 setBackground();
 
