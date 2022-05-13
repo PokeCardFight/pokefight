@@ -1,6 +1,10 @@
-$("#logIn, #logInM").click(() => {
+$("#logIn, #logInM, #loginX").click((e) => {
+    e.preventDefault()
     $("#logInForm").toggleClass("hidden active");
+    $(".dropbtn").toggleClass("hidden active")
+
 })
+
 const password = $("#loginPassword")
 const passwordToggle = $("#loginPasswordToggle")
 passwordToggle.click(() => {
@@ -17,20 +21,25 @@ const navLinksM = $("#navLinksM")
 $("#dropbtn").click(() => {
     /* When the user clicks on the button,
     toggle between hiding and showing the dropdown content */
-    navLinksM.toggleClass("show drop");
+    navLinksM.toggleClass("hidden active");
 })
 
-
+//mobile login name transition
+$("#logInM, #loginX").click(()=>{
+    $("#mobileLoginName").toggleClass("loginNameJump");
+})
 // Close the dropdown menu if the user clicks outside it
 $(window).click((event) => {
-    if (!event.target.matches(".dropbtn") && !event.target.matches(".dropDown-content") && !event.target.matches("#MListBackground") && !event.target.matches(".unique-navbar")) {
-        if (navLinksM.hasClass("show")) {
-            navLinksM.removeClass("show");
-            navLinksM.addClass("drop");
-        }
+    if (!event.target.matches(".unique-navbar *")) {
+
+            if (navLinksM.hasClass("active")) {
+                navLinksM.removeClass("active");
+                navLinksM.addClass("hidden");
+            }
+
     }
 })
-//navbar hider on bigger screens
+//navbar hider when scrolled down
 const nav = $(".unique-navbar");
 let lastScrollY = window.scrollY;
 
@@ -42,6 +51,7 @@ $(window).scroll(() => {
     }
     lastScrollY = window.scrollY;
 })
+
 
 //logout submission connector
 $("#logout, #logoutM").click(() => {
