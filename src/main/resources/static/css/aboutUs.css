@@ -1,21 +1,22 @@
-
-.footer{
-
+h3{
+    color: white;
 }
 #master-container img{
     width: 200px;
     height: auto;
+    margin-top: 60px;
+
 }
 #Noah > img{
     height: 203.62px;
     object-fit: cover;
 }
-
-.drop{
-    display: none;
+.fullscreen{
+    position: fixed;
+    top:100px;
+    left:0;
+    background: black;
+    color: white;
+    z-index: 4;
+    height: 100%;
 }
-/*.image{*/
-/*    width:50vh;*/
-/*    height:50vh;*/
-/*}*/
-

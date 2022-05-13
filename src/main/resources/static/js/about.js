@@ -1,20 +1,19 @@
-$(".clickable").click(()=>{
+function infoLoader(info){
+    $(info).toggleClass("drop");
+    $(info).parents(".profile").toggleClass("fullscreen");
+    $(info).parents(".profile").children("img").toggleClass("profile-Pop");
+}
 
-})
-
-
-
-/*
-$("#infoNoah").click(() => {
+/*$("#Noah > img").click(() => {
     $("#info").toggleClass("hidden");
 })
-$("#infoManuel").click(() => {
+$("#Manuel > img").click(() => {
     $("#info2").toggleClass("hidden");
 })
-$("#infoMichael").click(() => {
+$("#Michael > img").click(() => {
     $("#info3").toggleClass("hidden");
 })
-$("#infoGerald").click(() => {
+$("#Gerald > img").click(() => {
     $("#info4").toggleClass("hidden");
 })*/
 //
