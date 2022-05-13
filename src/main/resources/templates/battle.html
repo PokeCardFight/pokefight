@@ -8,19 +8,25 @@
         <nav th:replace="partials/fragments :: navbar"></nav>
 
         <main>
-            <div id="screen">
+            <div id="battle-background">
                 <div id="player-info">
                     <div class="card">
                         <div class="info">
-                            <div class="wrapper">
-                                <div class="name">Venusaur</div>
-                                <div class="type">Grass</div>
+                            <div class="wrapper" th:object = "${computerCard}">
+                                <span class="name" th:text="*{name}"></span>
+                                <span class="type" th:text="*{type}"></span>
                                 <div class="health-bar-wrapper">
-                                    <div class="health-bar"></div>
+                                    <div id="computer-health-bar"></div>
                                 </div>
-                                <div class="attack">ATK : 8</div>
-                                <div class="counter"><div class="counter-left">40</div>/<div class="counter-right">40</div></div>
+                                <div class="attack">ATK : <span th:text="*{attack}"></span></div>
+                                <div class="counter">
+                                    <div class="counter-left"><span id="computer-health-number"></span></div> /
+                                    <div class="counter-right">
+                                        <span th:text="*{hp}"></span>
+                                    </div>
+                                </div>
                             </div>
+
                         </div>
                         <div class="shadow"></div>
                     </div>
@@ -33,14 +39,19 @@
                 <div id="computer-info">
                     <div class="card">
                         <div class="info">
-                            <div class="wrapper">
-                                <div class="name">Charizard</div>
-                                <div class="type">Fire</div>
+                            <div class="wrapper" th:object = "${playerCard}">
+                                <span class="name" th:text="*{name}"></span>
+                                <span class="type" th:text="*{type}"></span>
                                 <div class="health-bar-wrapper">
-                                    <div class="health-bar"></div>
+                                    <div id="player-health-bar"></div>
                                 </div>
-                                <div class="attack">ATK : 8</div>
-                                <div class="counter"><div class="counter-left">40</div>/<div class="counter-right">40</div></div>
+                                <div class="attack">ATK : <span th:text="*{attack}"></span></div>
+                                <div class="counter">
+                                    <div class="counter-left"><span id="player-health-number"></span></div> /
+                                    <div class="counter-right">
+                                        <span th:text="*{hp}"></span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div class="shadow"></div>
@@ -54,10 +65,7 @@
             </div>
 
             <div id="input-output">
-                <div class="items">
-                    <input type="button" class="button item-button" value="Item 1" />
-                    <input type="button" class="button item-button" value="Item 2" />
-                    <input type="button" class="button item-button" value="Item 3" />
+                <div id="items">
                 </div>
                 <div id="game-dialog">
                     <div class="box"></div>
@@ -71,250 +79,249 @@
         <div th:include="partials/fragments :: footer"></div>
 
         <script th:inline="javascript">
-            // (() => {
-            //     let textBox = document.querySelector('.wrapper');
-            //     textBox.innerHTML = '';
-            //
-            //     //--| Build & Set Player Data |----------//
-            //     let player = {
-            //         name: [[${playerCard.name}]],
-            //         hp: [[${playerCard.hp}]],
-            //         currentHp: [[${playerCard.hp}]],
-            //         hpPercentage: 100,
-            //         attack: [[${playerCard.attack}]],
-            //         healthBar: document.querySelector('#player-health-bar'),
-            //         healthNumber: document.querySelector('#player-health-number')
-            //     }
-            //     player.healthNumber.innerHTML = player.currentHp;
-            //
-            //     //--| Build & Set Computer Data |----------//
-            //     let computer = {
-            //         name: [[${computerCard.name}]],
-            //         hp: [[${computerCard.hp}]],
-            //         currentHp: [[${computerCard.hp}]],
-            //         hpPercentage: 100,
-            //         attack: [[${computerCard.attack}]],
-            //         healthBar: document.querySelector('#computer-health-bar'),
-            //         healthNumber: document.querySelector('#computer-health-number')
-            //     }
-            //     computer.healthNumber.innerHTML = computer.currentHp;
-            //
-            //     //--| Build & Set Item Data |----------//
-            //     let itemsContainer = document.querySelector('#items');
-            //     let items = JSON.parse([[${items}]]);
-            //     const buildItemButtons = () => {
-            //         let itemsOutput = "";
-            //         for(let i = 0; i < items.length; i++) itemsOutput += `<button type="button" class="btn btn-dark w-25 mt-3 button item-button">${items[i].name}</button>`;
-            //         itemsContainer.innerHTML = itemsOutput;
-            //     }
-            //     buildItemButtons();
-            //
-            //     //--| Set Background |----------//
-            //     let setBackground = () => {
-            //         let backgroundUrl = [[${backgroundUrl}]];
-            //         let backgroundDiv = document.querySelector('#battle-background').style;
-            //         backgroundDiv.background = `url("${backgroundUrl}") no-repeat`;
-            //         backgroundDiv.backgroundSize = 'cover';
-            //         backgroundDiv.boxShadow = '0 0 24px 24px black';
-            //         backgroundDiv.borderRadius = '512px';
-            //         backgroundDiv.position ='relative';
-            //     }
-            //     setBackground();
-            //
-            //
-            //     //--| Game Play Modifiers |----------//
-            //     let isGameOver = false;
-            //     let stunnedCounter = 0;
-            //
-            //     //--| Game Play Functions |----------//
-            //     function delay(n) {
-            //         n = n || 2000;
-            //         return new Promise(done => {
-            //             setTimeout(() => {
-            //                 done();
-            //             }, n);
-            //         });
-            //     }
-            //
-            //     let allButtons = document.getElementsByClassName('button');
-            //     const disableButtons = () => {
-            //         for(let i = 0; i < allButtons.length; i++) {
-            //             allButtons[i].classList.add('disabled');
-            //             allButtons[i].disabled = true;
-            //         }
-            //     }
-            //     const enableButtons = () => {
-            //         for(let i = 0; i < allButtons.length; i++) {
-            //             allButtons[i].classList.remove('disabled');
-            //             allButtons[i].disabled = false;
-            //         }
-            //     }
-            //
-            //     const postItemRemoval = (id) => {
-            //         $.ajax({
-            //             type: "POST",
-            //             url: "/battle/remove/item",
-            //             data: {id: id},
-            //             timeout: 100000,
-            //             success: (message) => console.log("SUCCESS: ", message),
-            //             error: (error) => console.log("ERROR: ", error),
-            //             done: () => {}
-            //         });
-            //     }
-            //     const postWin = () => {
-            //         $.ajax({
-            //             type: "POST",
-            //             url: "/battle/won",
-            //             data: {id: [[${computerCard.id}]]},
-            //             timeout: 100000,
-            //             success: (message) => console.log("SUCCESS: ", message),
-            //             error: (error) => console.log("ERROR: ", error),
-            //             done: () => {}
-            //         });
-            //     }
-            //     const postLoss = () => {
-            //         $.ajax({
-            //             type: "POST",
-            //             url: "/battle/lost",
-            //             data: {gold: 1},
-            //             timeout: 100000,
-            //             success: (message) => console.log("SUCCESS: ", message),
-            //             error: (error) => console.log("ERROR: ", error),
-            //             done: () => {}
-            //         });
-            //     }
-            //     const getReturnHome = async () => {
-            //         isGameOver = true;
-            //         textBox.innerHTML += 'Gameover.<br>';
-            //         await delay(3000);
-            //         window.location.replace(`/home/default`);
-            //     }
-            //
-            //     const attackType = () => {
-            //         let type = (Math.random() * (100 - 1) + 1);
-            //         if (type <= 5) return 'missed';
-            //         else if (type > 5 && type < 15) return 'grazed';
-            //         else if (type > 15 && type < 85) return 'attacked';
-            //         else if (type > 85 && type < 95) return 'power attacked';
-            //         else return 'critically attack';
-            //     }
-            //     const checkAllHealth = () => {
-            //         if(player.currentHp === 0) {
-            //             textBox.innerHTML += 'Player loses.<br>';
-            //             postLoss();
-            //             getReturnHome();
-            //         }
-            //         if(computer.currentHp === 0) {
-            //             textBox.innerHTML += 'Computer loses.<br>';
-            //             postWin();
-            //             getReturnHome();
-            //         }
-            //     }
-            //     const applyStun = (rounds) => {
-            //         stunnedCounter = rounds;
-            //     }
-            //     const isStunned = () => {
-            //         if (stunnedCounter > 0) {
-            //             textBox.innerHTML += 'Computer is stunned.<br>' + stunnedCounter + ' rounds left.<br>';
-            //             stunnedCounter--;
-            //             return true;
-            //         } else return false;
-            //     }
-            //     const adjustHealth = (target, amount) => {
-            //         if (amount > 5) {
-            //             let attack = attackType();
-            //             switch(attack) {
-            //                 case 'missed': amount *= 0; break;
-            //                 case 'grazed': amount *= 0.5; break;
-            //                 case 'power attacked': amount *= 1.5; break;
-            //                 case 'critically attack': amount *= 2; break;
-            //                 default: break;
-            //             }
-            //             textBox.innerHTML += `${target.name} was ${attack}.<br>${target.name} loses ${amount} health points.<br>`;
-            //         } else if (amount < 0) {
-            //             textBox.innerHTML += `${target.name} gains ${amount * -1} health points.<br>`
-            //         } else textBox.innerHTML += `${target.name} loses ${amount} health points.<br>`;
-            //
-            //         const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
-            //         let percentDamage = Math.round((amount / target.hp) * 100);
-            //         target.hpPercentage -= percentDamage;
-            //         target.hpPercentage = clamp(target.hpPercentage, 0, 100);
-            //         target.currentHp -= amount;
-            //         target.currentHp = clamp(target.currentHp, 0, target.hp);
-            //         target.healthBar.style = `width: ${target.hpPercentage}%`;
-            //         target.healthNumber.innerHTML = target.currentHp;
-            //
-            //         checkAllHealth();
-            //     }
-            //     const playerAttack = () => {
-            //         textBox.innerHTML += 'Player attacked.<br>';
-            //         adjustHealth(computer, player.attack);
-            //     }
-            //     const computerAttack = () => {
-            //         textBox.innerHTML += 'Computer attacked.<br>';
-            //         adjustHealth(player, computer.attack);
-            //     }
-            //     const useItem = (item) => {
-            //         textBox.innerHTML += `Item (${item.name}) used.<br>`;
-            //         if (item.value > 5) adjustHealth(computer, item.value);
-            //         if (item.value === 5) { adjustHealth(computer, item.value); applyStun(item.rounds); }
-            //         if (item.value < 5) adjustHealth(player, item.value);
-            //     }
-            //
-            //     //--| Event Listeners (Game Logic) |----------//
-            //     let attackButton = document.querySelector('#attack-button');
-            //     attackButton.addEventListener('click', async () => {
-            //         disableButtons();
-            //         playerAttack();
-            //         await delay(3000);
-            //         if (!isGameOver && !isStunned()) computerAttack();
-            //         if (!isGameOver) enableButtons();
-            //     });
-            //
-            //     let runButton = document.querySelector('#run-button');
-            //     runButton.addEventListener('click', () => {
-            //         textBox.innerHTML += 'Player runs away!<br>';
-            //         getReturnHome();
-            //     });
-            //
-            //     itemsContainer.addEventListener('click', async (e) => {
-            //         if (e.target.classList.contains('item-button')) {
-            //             disableButtons();
-            //             e.target.style.display = 'none';
-            //             let item = items.find(element => element.name === e.target.innerHTML);
-            //             useItem(item);
-            //             postItemRemoval(item.id);
-            //             await delay(3000);
-            //             if (!isGameOver && !isStunned()) computerAttack();
-            //             if (!isGameOver) enableButtons();
-            //         }
-            //     });
-            //
-            //     //--| Get Starting Turn |----------//
-            //     const checkFirstTurn = async () => {
-            //         let firstTurn = [[${turn}]];
-            //         if (firstTurn === 'Player') {
-            //             textBox.innerHTML += `Player starts first.<br>`;
-            //             return;
-            //         } else {
-            //             textBox.innerHTML += `Computer starts first.<br>`;
-            //             disableButtons();
-            //             await delay(3000);
-            //             if (!isGameOver) computerAttack();
-            //             if (!isGameOver) enableButtons();
-            //         }
-            //     }
-            //     checkFirstTurn();
-            // })();
-        </script>
-        <script>
+            (() => {
+                let textBox = document.querySelector('#game-dialog .box ');
+                textBox.innerHTML = '';
 
-            let playerImgTag = document.querySelector('#player .pokemon');
-            playerImgTag.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon//versions/generation-v/black-white/animated/back/6.gif';
+                //--| Build & Set Player Data |----------//
+                let player = {
+                    id: [[${playerCard.id}]],
+                    name: [[${playerCard.name}]],
+                    hp: [[${playerCard.hp}]],
+                    currentHp: [[${playerCard.hp}]],
+                    hpPercentage: 100,
+                    attack: [[${playerCard.attack}]],
+                    healthBar: document.querySelector('#player-health-bar'),
+                    healthNumber: document.querySelector('#player-health-number')
+                }
+                player.healthNumber.innerHTML = player.currentHp;
 
-            let computerImgTag = document.querySelector('#computer .pokemon');
-            computerImgTag.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/3.gif';
+                //--| Build & Set Computer Data |----------//
+                let computer = {
+                    id: [[${computerCard.id}]],
+                    name: [[${computerCard.name}]],
+                    hp: [[${computerCard.hp}]],
+                    currentHp: [[${computerCard.hp}]],
+                    hpPercentage: 100,
+                    attack: [[${computerCard.attack}]],
+                    healthBar: document.querySelector('#computer-health-bar'),
+                    healthNumber: document.querySelector('#computer-health-number')
+                }
+                computer.healthNumber.innerHTML = computer.currentHp;
 
+                let playerImgTag = document.querySelector('#player .pokemon');
+                playerImgTag.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon//versions/generation-v/black-white/animated/back/${player.id}.gif`;
+
+                let computerImgTag = document.querySelector('#computer .pokemon');
+                computerImgTag.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${computer.id}.gif`;
+
+
+                //--| Build & Set Item Data |----------//
+                let itemsContainer = document.querySelector('#items');
+                let items = JSON.parse([[${items}]]);
+                const buildItemButtons = () => {
+                    let itemsOutput = "";
+                    for(let i = 0; i < items.length; i++) itemsOutput += `<button type="button" class="button item-button">${items[i].name}</button>`;
+                    itemsContainer.innerHTML = itemsOutput;
+                }
+                buildItemButtons();
+
+                //--| Set Background |----------//
+                let setBackground = () => {
+                    let backgroundUrl = [[${backgroundUrl}]];
+                    let backgroundDiv = document.querySelector('#battle-background').style;
+                    backgroundDiv.background = `url("${backgroundUrl}") no-repeat`;
+                    backgroundDiv.backgroundSize = 'cover';
+                    backgroundDiv.boxShadow = '0 0 24px 24px black';
+                    // backgroundDiv.borderRadius = '512px';
+                }
+                setBackground();
+
+
+                //--| Game Play Modifiers |----------//
+                let isGameOver = false;
+                let stunnedCounter = 0;
+
+                //--| Game Play Functions |----------//
+                function delay(n) {
+                    n = n || 2000;
+                    return new Promise(done => {
+                        setTimeout(() => {
+                            done();
+                        }, n);
+                    });
+                }
+
+                let allButtons = document.getElementsByClassName('button');
+                const disableButtons = () => {
+                    for(let i = 0; i < allButtons.length; i++) {
+                        allButtons[i].classList.add('disabled');
+                        allButtons[i].disabled = true;
+                    }
+                }
+                const enableButtons = () => {
+                    for(let i = 0; i < allButtons.length; i++) {
+                        allButtons[i].classList.remove('disabled');
+                        allButtons[i].disabled = false;
+                    }
+                }
+
+                const postItemRemoval = (id) => {
+                    $.ajax({
+                        type: "POST",
+                        url: "/battle/remove/item",
+                        data: {id: id},
+                        timeout: 100000,
+                        success: (message) => console.log("SUCCESS: ", message),
+                        error: (error) => console.log("ERROR: ", error),
+                        done: () => {}
+                    });
+                }
+                const postWin = () => {
+                    $.ajax({
+                        type: "POST",
+                        url: "/battle/won",
+                        data: {id: [[${computerCard.id}]]},
+                        timeout: 100000,
+                        success: (message) => console.log("SUCCESS: ", message),
+                        error: (error) => console.log("ERROR: ", error),
+                        done: () => {}
+                    });
+                }
+                const postLoss = () => {
+                    $.ajax({
+                        type: "POST",
+                        url: "/battle/lost",
+                        data: {gold: 1},
+                        timeout: 100000,
+                        success: (message) => console.log("SUCCESS: ", message),
+                        error: (error) => console.log("ERROR: ", error),
+                        done: () => {}
+                    });
+                }
+                const getReturnHome = async () => {
+                    isGameOver = true;
+                    textBox.innerHTML += 'Gameover.<br>';
+                    await delay(3000);
+                    window.location.replace(`/home/default`);
+                }
+
+                const attackType = () => {
+                    let type = (Math.random() * (100 - 1) + 1);
+                    if (type <= 5) return 'missed';
+                    else if (type > 5 && type < 15) return 'grazed';
+                    else if (type > 15 && type < 85) return 'attacked';
+                    else if (type > 85 && type < 95) return 'power attacked';
+                    else return 'critically attack';
+                }
+                const checkAllHealth = () => {
+                    if(player.currentHp === 0) {
+                        textBox.innerHTML += 'Player loses.<br>';
+                        postLoss();
+                        getReturnHome();
+                    }
+                    if(computer.currentHp === 0) {
+                        textBox.innerHTML += 'Computer loses.<br>';
+                        postWin();
+                        getReturnHome();
+                    }
+                }
+                const applyStun = (rounds) => {
+                    stunnedCounter = rounds;
+                }
+                const isStunned = () => {
+                    if (stunnedCounter > 0) {
+                        textBox.innerHTML += 'Computer is stunned.<br>' + stunnedCounter + ' rounds left.<br>';
+                        stunnedCounter--;
+                        return true;
+                    } else return false;
+                }
+                const adjustHealth = (target, amount) => {
+                    if (amount > 5) {
+                        let attack = attackType();
+                        switch(attack) {
+                            case 'missed': amount *= 0; break;
+                            case 'grazed': amount *= 0.5; break;
+                            case 'power attacked': amount *= 1.5; break;
+                            case 'critically attack': amount *= 2; break;
+                            default: break;
+                        }
+                        textBox.innerHTML += `${target.name} was ${attack}.<br>${target.name} loses ${amount} health points.<br>`;
+                    } else if (amount < 0) {
+                        textBox.innerHTML += `${target.name} gains ${amount * -1} health points.<br>`
+                    } else textBox.innerHTML += `${target.name} loses ${amount} health points.<br>`;
+
+                    const clamp = (num, min, max) => Math.min(Math.max(num, min), max);
+                    let percentDamage = Math.round((amount / target.hp) * 100);
+                    target.hpPercentage -= percentDamage;
+                    target.hpPercentage = clamp(target.hpPercentage, 0, 100);
+                    target.currentHp -= amount;
+                    target.currentHp = clamp(target.currentHp, 0, target.hp);
+                    target.healthBar.style = `width: ${target.hpPercentage}%`;
+                    target.healthNumber.innerHTML = target.currentHp;
+
+                    checkAllHealth();
+                }
+                const playerAttack = () => {
+                    textBox.innerHTML += 'Player attacked.<br>';
+                    adjustHealth(computer, player.attack);
+                }
+                const computerAttack = () => {
+                    textBox.innerHTML += 'Computer attacked.<br>';
+                    adjustHealth(player, computer.attack);
+                }
+                const useItem = (item) => {
+                    textBox.innerHTML += `Item (${item.name}) used.<br>`;
+                    if (item.value > 5) adjustHealth(computer, item.value);
+                    if (item.value === 5) { adjustHealth(computer, item.value); applyStun(item.rounds); }
+                    if (item.value < 5) adjustHealth(player, item.value);
+                }
+
+                //--| Event Listeners (Game Logic) |----------//
+                let attackButton = document.querySelector('.attack-button');
+                attackButton.addEventListener('click', async () => {
+                    disableButtons();
+                    playerAttack();
+                    await delay(3000);
+                    if (!isGameOver && !isStunned()) computerAttack();
+                    if (!isGameOver) enableButtons();
+                });
+
+                let runButton = document.querySelector('.run-button');
+                runButton.addEventListener('click', () => {
+                    textBox.innerHTML += 'Player runs away!<br>';
+                    getReturnHome();
+                });
+
+                itemsContainer.addEventListener('click', async (e) => {
+                    if (e.target.classList.contains('item-button')) {
+                        disableButtons();
+                        e.target.style.display = 'none';
+                        let item = items.find(element => element.name === e.target.innerHTML);
+                        useItem(item);
+                        postItemRemoval(item.id);
+                        await delay(3000);
+                        if (!isGameOver && !isStunned()) computerAttack();
+                        if (!isGameOver) enableButtons();
+                    }
+                });
+
+                //--| Get Starting Turn |----------//
+                const checkFirstTurn = async () => {
+                    let firstTurn = [[${turn}]];
+                    if (firstTurn === 'Player') {
+                        textBox.innerHTML += `Player starts first.<br>`;
+                        return;
+                    } else {
+                        textBox.innerHTML += `Computer starts first.<br>`;
+                        disableButtons();
+                        await delay(3000);
+                        if (!isGameOver) computerAttack();
+                        if (!isGameOver) enableButtons();
+                    }
+                }
+                checkFirstTurn();
+            })();
         </script>
     </body>
 </html>
