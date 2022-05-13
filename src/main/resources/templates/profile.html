@@ -1,132 +1,83 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
+    <head>
+        <div th:include="partials/fragments :: header(title='Profile')"></div>
 
-<head>
-    <div th:include="partials/fragments :: header(title='Profile')"></div>
+        <link rel="stylesheet" href="/static/css/profile.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    </head>
+    <body>
+        <nav th:replace="partials/fragments :: navbar"></nav>
 
-    <link rel="stylesheet" href="/static/css/profile.css">
-</head>
-
-<body>
-
-    <nav th:replace="partials/fragments :: navbar"></nav>
-
-
-    <!--base profile card-->
-    <div class="container container-fluid border border-warning p-5 profile-card text-center readable-background">
-        <div class="top container col-12 align-items-center">
-            <img th:src="${user.getProfile_pic()}" alt="profile image">
-        </div>
-        <div class="col-12 my-2">
-            <button id="edit-pic">edit picture</button>
-        </div>
-        <div class="w-100 my-5"></div>
-        <div class="row my-5">
-            <div class="col-3"></div>
-            <div class="col-3">
-                Username:<br>
-                <span th:text="${user.getUsername()}">username here</span>
-            </div>
-            <div class="col-3">
-                ID:<br>
-                <span th:text="${#authentication.principal.id}"></span>
-            </div>
-            <div class="col-3"></div>
-        </div>
-        <div class="col-12 my-3">
-            Email:<br>
-            <span th:text="${#authentication.principal.email}">email here</span>
-        </div>
-        <div class="row">
-            <div class="col-4 my-3">
-                Gold:
-                <h3 th:text="*{user.getGold()}"></h3>
-            </div>
-
-            <div class="col-4 my-3">
-                Level:
-                <h3 th:text="*{user.getLevel()}"></h3>
-            </div>
-            <div class="col-4 my-3">
-                XP:
-                <h3 th:text="*{user.getXp()}"></h3>
-            </div>
-        </div>
-
-        <div class="col-12 my-3">
-            <button id="edit-prof">edit profile</button>
-        </div>
-    </div>
-
-
-    <!--edit profile form-->
-    <div id="edit-profile" class="hidden">
-        <div class="formBackground"></div>
-        <div class="container container-fluid border border-warning p-0 profile-card popup_form text-center">
-            <button id="close-edit" class="X p-2">X</button><!--close button will change-->
-            <div class="top container col-12 mt-5 align-items-center">
-                <img src="/static/img/ph300.png" alt="profile image">
-            </div>
-            <div class="col-12 my-2">
-                <button id="pic-from-edit">edit picture</button>
-            </div>
-            <div class="w-100 my-5"></div>
-
-
-            <form id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
-                <input th:field="*{id}" hidden>
-                <span>username:</span><br><input th:field="*{username}">
-                <br>
-                <span>password:</span><br><input id="password" name="password" type="password">
-                <br>
-                <span>confirm password:</span><br><input id="confirmPass" name="confirmPass" type="password">
-                <br>
-                <span>email:</span><br><input th:field="*{email}">
-                <br>
-                <button id="submitEditform" class="my-3">Submit</button>
-            </form>
-        </div>
-    </div>
-
-
-    <!--edit picture form-->
-    <div id="edit-picture" class="hidden">
-        <div class="formBackground"></div>
-        <div class="container container-fluid border border-warning popup_form p-0 profile-card text-center">
-            <button id="close-pic" class="X p-2">X</button><!--close button will change-->
-            <div class="top container col-12 mt-5 align-items-center">
-                <img src="/static/img/ph300.png" alt="profile image">
-            </div>
-            <div class="box">
-                <form id="pick-form">
-                    <div class="field">
-                        <div class="control">
-                            <button class="button" type="button" id="picker">Pick file</button>
-                            <input type="hidden" id="fileupload">
+        <main>
+            <div class="main-container" th:object = "${user}">
+                <div class="header">
+                    <div class="picture">
+                        <div class="picture-wrapper">
+                            <img th:src="*{profile_pic}" alt="profile image">
+                            <div class="title font-shadow">Michael</div>
                         </div>
-                        <div class="control" id="nameBox"></div>
-                        <div class="control" id="urlBox"></div>
                     </div>
-                    <div class="field">
-                        <div class="control">
-                            <input class="button my-3" type="submit" id="submit" value="Submit">
+                    <div class="stats">
+                        <div class="stat">
+                            <div class="icon-number">
+                                <div><i class="fa fa-trophy font-shadow" style="color: gold"></i></div>
+                                <div id="wins" class="font-shadow" style="color: whitesmoke"><span th:text="*{wins}"></span></div>
+                            </div>
+                            <div class="text">Wins</div>
                         </div>
+                        <div class="stat">
+                            <div class="icon-number">
+                                <div><i class="fa fa-times font-shadow" style="color: red"></i></div>
+                                <div id="losses" class="font-shadow" style="color: whitesmoke"><span th:text="*{losses}"></span></div>
+                            </div>
+                            <div class="text">Losses</div>
+                        </div>
+                        <div class="stat">
+                            <div class="icon-number">
+                                <div><i class="fa fa-money font-shadow" style="color: green"></i></div>
+                                <div id="gold" class="font-shadow" style="color: whitesmoke"><span th:text="*{gold}"></span></div>
+                            </div>
+                            <div class="text">Gold</div>
+                        </div>
+                    </div>
+                </div>
+                <form class="body" id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
+                    <div class="information">
+                        <input th:field="*{id}" hidden>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Profile Picture</div>
+                            <input type="button" class="button font-shadow" value="Change" th:field="*{username}">
+                        </div>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Username</div>
+                            <input id="username" name="username" type="text" class="input-box font-shadow" placeholder="Type Here">
+                        </div>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Email</div>
+                            <input id="email" name="email" type="email" class="input-box font-shadow" placeholder="Type Here" th:field="*{email}">
+                        </div>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Password</div>
+                            <input id="password" name="password" type="password" class="input-box font-shadow" placeholder="Type Here">
+                        </div>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Confirm Password</div>
+                            <input id="confirmPass" name="confirmPass" type="password" class="input-box font-shadow" placeholder="Type Here">
+                        </div>
+                    </div>
+                    <div class="submit-wrapper">
+                        <input id="submitEditform" type="button" class="button font-shadow" value="Update">
                     </div>
                 </form>
             </div>
-        </div>
-    </div>
+        </main>
 
+        <div th:include="partials/fragments :: footer"></div>
 
-    <!--<iframe width="560" height="315" src="../static/js/Filestack.js" allowfullscreen></iframe>-->
-
-
-    <div th:include="partials/fragments :: footer"></div>
-<!--page specific files below-->
-<script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
-<script src="/static/js/APIKEY.js"></script>
-<script src="/static/js/Filestack.js"></script>
-<script src="/static/js/profile.js"></script>
-</body>
+        <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
+        <script src="/static/js/APIKEY.js"></script>
+        <script src="/static/js/Filestack.js"></script>
+        <script src="/static/js/profile.js"></script>
+    </body>
 </html>
