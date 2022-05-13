@@ -2,43 +2,17 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <div th:include="partials/fragments :: header(title='Splash')"></div>
-    <!--favicon-->
+    <link rel="stylesheet" href="/static/css/index.css">
 </head>
 <body>
+<nav th:replace="partials/fragments :: navbar"></nav>
 
-    <div id="loader"></div>
+<img id="loader" src="#" alt="opening gif" class="active">
 
-        <nav th:replace="partials/fragments :: navbar"></nav>
+<h1 id="welcome" class="display-1 text-center">Welcome to the PokeFight!</h1>
 
-        <div class=" container text-center">
-            <h1 id="welcome" class="display-1">Welcome to the PokeFight!</h1>
-        </div>
-        <!--<img src="../favicon.png">-->
 
-        <div th:include="partials/fragments :: footer"></div>
-    <script>
-        let loader;
-
-        function loadNow(opacity) {
-            if (opacity <= 0) {
-                displayContent();
-            } else {
-                loader.style.opacity = opacity;
-                window.setTimeout(function () {
-                    loadNow(opacity - .15);
-                }, 250);
-            }
-        }
-
-        function displayContent() {
-            loader.style.display = 'none';
-            document.getElementById('content').style.display = 'block';
-        }
-
-        document.addEventListener("DOMContentLoaded", function () {
-            loader = document.getElementById('loader');
-            loadNow(1);
-        });
-    </script>
+<div th:include="partials/fragments :: footer"></div>
+<script src="/static/js/index.js"></script>
 </body>
 </html>
