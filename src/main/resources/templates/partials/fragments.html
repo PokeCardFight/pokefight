@@ -25,14 +25,61 @@
 
 
 <div th:fragment="navbar">
-    <nav class="p-0 unique-navbar mb-5 fixed-top">
-            <a class="" th:href="@{/}"> <!--navbar brand-->
-                <img src="/static/img/Logo.png" id="logo" width="344" class="img-fluid" alt="logo.jpg">
-            </a>
+    <nav class="unique-navbar fixed-top">
 
-        <div id="mobileNavLinks"></div>
+        <a class="" th:href="@{/}"> <!--navbar brand-->
+            <img src="/static/img/Logo.png" id="logo" class="img-fluid" alt="logo.jpg">
+        </a>
+
+        <div id="dropDown">
+        <!--this button becomes the dropdown before a certain width and transforms the normal items into the dropdown items -->
+        <i id="dropbtn" class="fa fa-solid fa-bars dropbtn p-5"></i>
+            <div id="navLinksM" class="dropDown-content text-uppercase drop">
+                <ul id="mobile-list">
+                    <li class="mobile-item">
+                    <a id="aboutM" th:href="@{/about}">About us
+                    <div class="indicator"></div>
+                </a>
+                    </li>
+
+                    <li class="mobile-item">
+                    <a id="contactM" th:href="@{/contact}">Contact us
+                    <div class="indicator"></div></a>
+                    </li>
+
+                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                    <a id="homeM" th:href="@{/home}">Home
+                    <div class="indicator"></div></a>
+                    </li>
+
+                    <li class="mobile-item" sec:authorize="isAnonymous()">
+                    <a id="signUpM" th:href="@{/register}">Sign up
+                    <div class="indicator"></div></a>
+                    </li>
+
+                    <li class="mobile-item" sec:authorize="isAnonymous()">
+                    <a id="logInM" href="#">Log in
+                    <div class="indicator"></div></a>
+                    </li>
+
+                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                    <!--only shows up after security login-->
+                    <a id="profileM" th:href="@{/profile}">
+                    <span th:text="${#authentication.principal.username}"></span>
+                    <div class="indicator"></div></a>
+                    </li> <!--intellij doesnt understand. ignore sqigglys-->
+
+                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                    <a href="#" id="logoutM" role="menuitem"> Logout
+                    <div class="indicator"></div>
+                </a><!--logout form in full navbar, no need to dupe-->
+                    </li>
+                </ul>
+            </div> <!--mobile-sized navlinks-->
+        </div>
 
         <div id="navLinks" class="navbar-items row align-items-center justify-content-end text-uppercase">
+
             <a id="about" th:href="@{/about}" class="">About us
                 <div class="indicator"></div>
             </a>
@@ -59,9 +106,10 @@
                 <div class="indicator"></div>
             </a>
 
-            <a href="#" id="logout" role="menuitem" class="" sec:authorize="isAuthenticated()"> Logout
+            <a href="" id="logout" role="menuitem" class="" sec:authorize="isAuthenticated()"> Logout
                 <div class="indicator"></div>
             </a>
+
             <!--separated (hidden) logout form so the button can be uniform with rest of navbar-->
             <form name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
                 <input hidden type="submit" value="Sign Out"/>
@@ -92,20 +140,11 @@
             <!--login form-->
 
         </div> <!--normal sized navlinks-->
+
     </nav>
 </div> <!--fragment end-->
-<!--
-  <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Dropdown
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
-      </li>-->
+
+
 
 <div th:fragment="footer">
     <div class="footer row mt-5 p-0 fixed-bottom">
@@ -122,7 +161,7 @@
         <script src="/static/js/jquery-2.x-git.js"></script>
         <script src="/static/js/universal.js"></script>
     </div>
-
+</div>
 
 </body>
 </html>
