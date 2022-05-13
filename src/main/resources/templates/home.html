@@ -109,7 +109,8 @@
                         <input type="submit" th:id="${userPouchIds.get(0)}" value="Select"
                                class="golden-btn" style="font-size:.5em;">
                         <div th:each="itemInPouch1 : ${itemsInPouch1}">
-                            <p th:text="${itemInPouch1}"></p>
+<!--                            <p th:text="${itemInPouch1}"></p>-->
+                            <img th:src="${itemInPouch1}"/>
                         </div>
 
                     </div>
