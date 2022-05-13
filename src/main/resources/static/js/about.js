@@ -1,5 +1,5 @@
 $(".clickable").click(()=>{
-$(this).siblings().removeClass("drop");
+
 })
 
 

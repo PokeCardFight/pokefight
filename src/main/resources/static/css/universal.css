@@ -20,7 +20,8 @@ body {
     opacity: 1;
     /*transition: visibility 1s, opacity .3s;*/
 }
-.loginNameJump{
+
+.loginNameJump {
     transform: translateY(75px);
 
 }
@@ -38,9 +39,11 @@ body {
     transition: visibility 1s, opacity .3s;
     z-index: 2;
 }
-#logInForm{
+
+#logInForm {
     transition: all .5s;
 }
+
 .popup_loginForm {
     background-color: black;
     border: 3px solid black;
@@ -52,7 +55,8 @@ body {
     width: 25%;
 
 }
-.popup_loginForm #loginPassword{
+
+.popup_loginForm #loginPassword {
     padding-left: 50px;
 }
 
@@ -182,6 +186,7 @@ input {
     text-align: center;
     transition: all .5s;
 }
+
 .dropDown-content > a {
     padding: 0;
 }
@@ -192,20 +197,30 @@ input {
     }
 
 }
-@media screen and (max-width: 400px){
-    #footerEmpty, #textFooter{
+
+@media screen and (max-width: 400px) {
+    #footerEmpty, #textFooter {
         display: none;
     }
-.footer{justify-content: center}
+
+    .footer {
+        justify-content: center
+    }
 }
+
 @media screen and (max-width: 576px) {
     #logo {
         width: calc(var(--logo-OGsize) / 2);
     }
 }
+
 @media screen and (max-width: 694px) {
-    .footer{
+    .footer {
         max-height: 25px;
+    }
+
+    .footer > * {
+        white-space: nowrap
     }
 }
 
@@ -219,25 +234,30 @@ input {
     #navLinks {
         display: none;
     }
-    #loginX{
+
+    #loginX {
         position: absolute;
         right: 20px;
         z-index: 30;
     }
-    #mobileLoginName{
+
+    #mobileLoginName {
         color: white;
         font-size: 16px;
         transition: all 1s;
     }
+
     .popup_loginForm {
         width: 100%;
         height: 100%;
         padding: 20px 0;
     }
+
     .popup_loginForm > .form-group {
         margin: 30px 0;
     }
-    .popup_loginForm input{
+
+    .popup_loginForm input {
         height: 50px;
     }
 
@@ -257,7 +277,8 @@ input {
     #loginX, #mobileLoginName, #dropDown {
         display: none;
     }
-    .popup_loginForm{
-padding: 0 15px 10px 15px;
+
+    .popup_loginForm {
+        padding: 0 15px 10px 15px;
     }
 }
