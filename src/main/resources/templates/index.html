@@ -6,13 +6,40 @@
     <link rel="shortcut icon" th:href="@{/static/favicon.ico}" type="image/x-icon">
 </head>
 <body>
+<div id="loader"></div>
+<div id="content">
 <nav th:replace="partials/fragments :: navbar"></nav>
 
-<div class="readable-background container text-center">
-    <h1>welcome to the Pokefight!</h1>
+<div class=" container text-center">
+    <h1 id="welcome" class="display-1">Welcome to the PokeFight!</h1>
 </div>
 
 
 <div th:include="partials/fragments :: footer"></div>
+</div>
+<script>
+    var loader;
+
+    function loadNow(opacity) {
+        if (opacity <= 0) {
+            displayContent();
+        } else {
+            loader.style.opacity = opacity;
+            window.setTimeout(function() {
+                loadNow(opacity - .15);
+            }, 250);
+        }
+    }
+
+    function displayContent() {
+        loader.style.display = 'none';
+        document.getElementById('content').style.display = 'block';
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+        loader = document.getElementById('loader');
+        loadNow(1);
+    });
+</script>
 </body>
 </html>
