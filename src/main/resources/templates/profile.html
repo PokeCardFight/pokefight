@@ -15,7 +15,7 @@
                     <div class="picture">
                         <div class="picture-wrapper">
                             <img th:src="*{profile_pic}" alt="profile image">
-                            <div class="title font-shadow">Michael</div>
+                            <div class="title font-shadow font-color">Michael</div>
                         </div>
                     </div>
                     <div class="stats">
@@ -24,45 +24,51 @@
                                 <div><i class="fa fa-trophy font-shadow" style="color: gold"></i></div>
                                 <div id="wins" class="font-shadow" style="color: whitesmoke"><span th:text="*{wins}"></span></div>
                             </div>
-                            <div class="text">Wins</div>
+                            <div class="text font-color">Wins</div>
                         </div>
                         <div class="stat">
                             <div class="icon-number">
                                 <div><i class="fa fa-times font-shadow" style="color: red"></i></div>
                                 <div id="losses" class="font-shadow" style="color: whitesmoke"><span th:text="*{losses}"></span></div>
                             </div>
-                            <div class="text">Losses</div>
+                            <div class="text font-color">Losses</div>
                         </div>
                         <div class="stat">
                             <div class="icon-number">
                                 <div><i class="fa fa-money font-shadow" style="color: green"></i></div>
                                 <div id="gold" class="font-shadow" style="color: whitesmoke"><span th:text="*{gold}"></span></div>
                             </div>
-                            <div class="text">Gold</div>
+                            <div class="text font-color">Gold</div>
                         </div>
                     </div>
                 </div>
+                <form id="pick-form" class="filestack-wrapper">
+                    <div class="section">
+                        <div class="font-shadow info-font-size font-color">Profile Picture</div>
+                        <div class="filestack-buttons">
+                            <input type="button" class="btn-fs font-shadow" value="Pick File" id="picker">
+                            <input type="hidden" id="fileupload">
+                            <input type="button" class="btn-fs font-shadow" value="Submit" id="submit">
+                        </div>
+                    </div>
+                </form>
                 <form class="body" id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
                     <div class="information">
                         <input th:field="*{id}" hidden>
                         <div class="section">
-                            <div class="font-shadow info-font-size">Profile Picture</div>
-                            <input type="button" class="button font-shadow" value="Change" th:field="*{username}">
+                            <div class="font-shadow info-font-size font-color">Username</div>
+                            <input id="username" name="username" type="text" class="input-box font-shadow" placeholder="Type Here" th:field="*{username}">
                         </div>
                         <div class="section">
-                            <div class="font-shadow info-font-size">Username</div>
-                            <input id="username" name="username" type="text" class="input-box font-shadow" placeholder="Type Here">
-                        </div>
-                        <div class="section">
-                            <div class="font-shadow info-font-size">Email</div>
+                            <div class="font-shadow info-font-size font-color">Email</div>
                             <input id="email" name="email" type="email" class="input-box font-shadow" placeholder="Type Here" th:field="*{email}">
                         </div>
                         <div class="section">
-                            <div class="font-shadow info-font-size">Password</div>
+                            <div class="font-shadow info-font-size font-color">Password</div>
                             <input id="password" name="password" type="password" class="input-box font-shadow" placeholder="Type Here">
                         </div>
                         <div class="section">
-                            <div class="font-shadow info-font-size">Confirm Password</div>
+                            <div class="font-shadow info-font-size font-color">Confirm Password</div>
                             <input id="confirmPass" name="confirmPass" type="password" class="input-box font-shadow" placeholder="Type Here">
                         </div>
                     </div>
@@ -75,6 +81,7 @@
 
         <div th:include="partials/fragments :: footer"></div>
 
+        <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
         <script src="/static/js/APIKEY.js"></script>
         <script src="/static/js/Filestack.js"></script>
