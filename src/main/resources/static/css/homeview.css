@@ -12,7 +12,7 @@ div.bat:hover {
     background-color:black ;
     color: white;
     border-radius: 25% 10%;
-    border: thick #FFCB05;
+    border:inset thin  #FFCB05;
 }
 .select-btn{
     background-color: black;
