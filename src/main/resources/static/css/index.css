@@ -14,3 +14,10 @@
 #gameplay-idle{
     height: 600px;
 }
+#splash-main{
+    margin-right: -16px;
+}
+
+@media screen and (max-width: 710px){
+    #gameplay-idle
+}
