@@ -3,14 +3,17 @@
 <head>
     <div th:include="partials/fragments :: header(title='Splash')"></div>
     <link rel="stylesheet" href="/static/css/index.css">
+
 </head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
 
 <img id="loader" src="#" alt="opening gif" class="active">
 
-<h1 id="welcome" class="display-1 text-center">Welcome to the PokeFight!</h1>
-
+<div class="text-center">
+<h1 id="welcome" class="display-1">Welcome to PokeFight!</h1>
+<img src="/static/img/splash1.gif" id="gameplay-idle" alt="gameplay_idle" class="my-5">
+</div>
 
 <div th:include="partials/fragments :: footer"></div>
 <script src="/static/js/index.js"></script>
