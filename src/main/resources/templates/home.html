@@ -109,7 +109,6 @@
                         <input type="submit" th:id="${userPouchIds.get(0)}" value="Select"
                                class="golden-btn" style="font-size:.5em;">
                         <div th:each="itemInPouch1 : ${itemsInPouch1}">
-<!--                            <p th:text="${itemInPouch1}"></p>-->
                             <img th:src="${itemInPouch1}"/>
                         </div>
 
@@ -124,7 +123,7 @@
 
 
                         <div th:each="itemInPouch2 : ${itemsInPouch2}">
-                            <p th:text="${itemInPouch2}"></p>
+                            <img th:src="${itemInPouch2}"/>
                         </div>
 
                     </div>
@@ -134,7 +133,7 @@
                         <input type="submit" th:id="${userPouchIds.get(2)}" value="Select"
                                class="golden-btn" style="font-size:.5em;">
                         <div th:each="itemInPouch3 : ${itemsInPouch3}">
-                            <p th:text="${itemInPouch3}"></p>
+                            <img th:src="${itemInPouch3}"/>
                         </div>
 
                     </div>
