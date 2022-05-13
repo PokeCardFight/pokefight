@@ -10,11 +10,11 @@
         <nav th:replace="partials/fragments :: navbar"></nav>
 
         <main>
-            <div class="main-container">
+            <div class="main-container" th:object = "${user}">
                 <div class="header">
                     <div class="picture">
                         <div class="picture-wrapper">
-                            <img th:src="${user.getProfile_pic()}" alt="profile image">
+                            <img th:src="*{profile_pic}" alt="profile image">
                             <div class="title font-shadow">Michael</div>
                         </div>
                     </div>
@@ -22,51 +22,54 @@
                         <div class="stat">
                             <div class="icon-number">
                                 <div><i class="fa fa-trophy font-shadow" style="color: gold"></i></div>
-                                <div id="wins" class="font-shadow" style="color: whitesmoke">0</div>
+                                <div id="wins" class="font-shadow" style="color: whitesmoke"><span th:text="*{wins}"></span></div>
                             </div>
                             <div class="text">Wins</div>
                         </div>
                         <div class="stat">
                             <div class="icon-number">
                                 <div><i class="fa fa-times font-shadow" style="color: red"></i></div>
-                                <div id="losses" class="font-shadow" style="color: whitesmoke">0</div>
+                                <div id="losses" class="font-shadow" style="color: whitesmoke"><span th:text="*{losses}"></span></div>
                             </div>
                             <div class="text">Losses</div>
                         </div>
                         <div class="stat">
                             <div class="icon-number">
                                 <div><i class="fa fa-money font-shadow" style="color: green"></i></div>
-                                <div id="gold" class="font-shadow" style="color: whitesmoke">0</div>
+                                <div id="gold" class="font-shadow" style="color: whitesmoke"><span th:text="*{gold}"></span></div>
                             </div>
                             <div class="text">Gold</div>
                         </div>
                     </div>
                 </div>
-                <div class="information">
-                    <div class="section">
-                        <div class="font-shadow info-font-size">Profile Picture</div>
-                        <input type="button" class="button font-shadow" value="Change">
+                <form class="body" id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
+                    <div class="information">
+                        <input th:field="*{id}" hidden>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Profile Picture</div>
+                            <input type="button" class="button font-shadow" value="Change" th:field="*{username}">
+                        </div>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Username</div>
+                            <input id="username" name="username" type="text" class="input-box font-shadow" placeholder="Type Here">
+                        </div>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Email</div>
+                            <input id="email" name="email" type="email" class="input-box font-shadow" placeholder="Type Here" th:field="*{email}">
+                        </div>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Password</div>
+                            <input id="password" name="password" type="password" class="input-box font-shadow" placeholder="Type Here">
+                        </div>
+                        <div class="section">
+                            <div class="font-shadow info-font-size">Confirm Password</div>
+                            <input id="confirmPass" name="confirmPass" type="password" class="input-box font-shadow" placeholder="Type Here">
+                        </div>
                     </div>
-                    <div class="section">
-                        <div class="font-shadow info-font-size">Username</div>
-                        <input id="username" name="username" type="text" class="input-box font-shadow" placeholder="Type Here">
+                    <div class="submit-wrapper">
+                        <input id="submitEditform" type="button" class="button font-shadow" value="Update">
                     </div>
-                    <div class="section">
-                        <div class="font-shadow info-font-size">Email</div>
-                        <input id="email" name="email" type="text" class="input-box font-shadow" placeholder="Type Here">
-                    </div>
-                    <div class="section">
-                        <div class="font-shadow info-font-size">Password</div>
-                        <input id="password" name="password" type="text" class="input-box font-shadow" placeholder="Type Here">
-                    </div>
-                    <div class="section">
-                        <div class="font-shadow info-font-size">Confirm Password</div>
-                        <input id="confirm-password" name="confirm-password" type="text" class="input-box font-shadow" placeholder="Type Here">
-                    </div>
-                </div>
-                <div class="submit-wrapper">
-                    <input type="text" class="button font-shadow" value="Submit">
-                </div>
+                </form>
             </div>
         </main>
 
