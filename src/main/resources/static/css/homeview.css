@@ -32,6 +32,13 @@ div.bat:hover {
     overflow-y: auto;
 
 }
+@media screen and (max-width:375px ) {
+    .card-scroll{
+        height: 205px;
+        overflow-y: auto;
+    }
+
+}
 .store-scroll{
     height:200px;
 
