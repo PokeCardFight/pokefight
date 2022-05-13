@@ -17,4 +17,18 @@ public interface CardRepository extends JpaRepository<Card, Long> {
 
     @Query(value = "SELECT c.id, attack, hp, image, name, rarity, subtype, type FROM users JOIN user_card uc on users.id = uc.user_id JOIN cards c on c.id = uc.card_id where users.id = ?;" , nativeQuery = true)
     List<Card> getUserCards (long id);
+
+    @Query(value = "SELECT c.id, attack, hp, image, name, rarity, subtype, type FROM users JOIN user_card uc on users.id = uc.user_id JOIN cards c on c.id = uc.card_id where users.id = ? order by attack desc;" , nativeQuery = true)
+    List<Card> OrderByAttackDesc(long id);
+
+    @Query(value = "SELECT c.id, attack, hp, image, name, rarity, subtype, type FROM users JOIN user_card uc on users.id = uc.user_id JOIN cards c on c.id = uc.card_id where users.id = ? order by attack asc;" , nativeQuery = true)
+    List<Card> OrderByAttackAsc(long id);
+
+    @Query(value = "SELECT c.id, attack, hp, image, name, rarity, subtype, type FROM users JOIN user_card uc on users.id = uc.user_id JOIN cards c on c.id = uc.card_id where users.id = ? order by name desc;" , nativeQuery = true)
+    List<Card> OrderByNameDesc(long id);
+
+    @Query(value = "SELECT c.id, attack, hp, image, name, rarity, subtype, type FROM users JOIN user_card uc on users.id = uc.user_id JOIN cards c on c.id = uc.card_id where users.id = ? order by name asc;" , nativeQuery = true)
+    List<Card> OrderByNameAsc(long id);
+
+
 }

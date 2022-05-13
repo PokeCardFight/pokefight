@@ -40,7 +40,6 @@ public class BattleController {
 
     @GetMapping("/battle")
     public String battleView(Model model){
-
         if (turn) model.addAttribute("turn", "Player");
         else model.addAttribute("turn", "Computer");
 
@@ -61,7 +60,8 @@ public class BattleController {
 
     @GetMapping("/battle/{cardId}/{pouchId}/")
     public String battleGet(@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = userDao.getById(currentUser.getId());
 
         turn = flipCoin();
 
@@ -73,12 +73,16 @@ public class BattleController {
         else if(userLevel >= 6 && userLevel <= 10) computerCardId = cardDao.getRandomUncommonCard();
         else if(userLevel >= 11 && userLevel <= 15) computerCardId = cardDao.getRandomRareCard();
 
+        System.out.println("userLevel = " + userLevel);
+        System.out.println("computerCardId = " + computerCardId);
+
         return "redirect:/battle";
     }
 
     @PostMapping("/battle/remove/item")
     ResponseEntity<String> battleItemRemoval(@RequestParam(value = "id") long id){
-        pouchItemDao.delete(pouchItemDao.getByPouchIdAndItemId(playerPouchId, id));
+        PouchItem tempPouchItem = pouchItemDao.getByPouchIdAndItemId(playerPouchId, id).get(0);
+        pouchItemDao.delete(pouchItemDao.getByPouchIdAndItemId(playerPouchId, id).get(0));
         return ResponseEntity.ok().body("Item " + id + " deleted.");
     }
 
@@ -88,6 +92,7 @@ public class BattleController {
         User user = userDao.getById(currentUser.getId());
         User oldUser = userDao.getById(user.getId());
         oldUser.setGold(user.getGold() + gold);
+        oldUser.setLosses(oldUser.getLosses() + 1);
         userDao.save(oldUser);
 
         return ResponseEntity.ok().body(gold + " pity gold given.");
@@ -99,15 +104,16 @@ public class BattleController {
         User user = userDao.getById(currentUser.getId());
         userCardDao.save(new UserCard(user, cardDao.getById(id)));
 
-        int percentage = (int)((1.0 / (user.getLevel() + 1.0)) * 100.0);
+        int percentage = (int)Math.ceil((1.0 / (user.getLevel() + 1.0)) * 100.0);
         int xp = user.getXp() + percentage;
 
         User oldUser = userDao.getById(user.getId());
         oldUser.setGold(user.getGold() + 5);
-        if (xp >= 99) {
+        if (xp >= 100) {
             oldUser.setXp(0);
             oldUser.setLevel(user.getLevel() + 1);
         } else oldUser.setXp(xp);
+        oldUser.setWins(oldUser.getWins() + 1);
 
         userDao.save(oldUser);
 

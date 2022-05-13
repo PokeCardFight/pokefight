@@ -16,7 +16,7 @@
 <!--base profile card-->
 <div class="container container-fluid border border-warning p-5 profile-card text-center readable-background">
     <div class="top container col-12 align-items-center">
-        <img src="/static/img/ph300.png" alt="profile image">
+        <img th:src="${user.getProfile_pic()}" alt="profile image">
     </div>
     <div class="col-12 my-2">
         <button id="edit-pic">edit picture</button>
@@ -110,7 +110,7 @@
                 </div>
                 <div class="field">
                     <div class="control">
-                        <input class="button my-3" type="submit" value="Submit">
+                        <input class="button my-3" type="submit" id="submit" value="Submit">
                     </div>
                 </div>
             </form>

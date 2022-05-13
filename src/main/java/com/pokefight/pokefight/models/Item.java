@@ -29,16 +29,21 @@ public class Item {
     @Column(nullable = false)
     private int cost;
 
+    @Expose(serialize = true, deserialize = true)
+    @Column(nullable = false)
+    private String image;
+
     @Expose(serialize = false, deserialize = false)
     @OneToMany(mappedBy = "item")
     private List<PouchItem> pouch_item;
 
-    public Item(String name, int value, int rounds, int cost) {
+    public Item(String name, int value, int rounds, int cost, String image) {
         this.id = id;
         this.name = name;
         this.value = value;
         this.rounds = rounds;
         this.cost = cost;
+        this.image = image;
     }
 
     public Item(Item item) {
@@ -47,6 +52,7 @@ public class Item {
         this.value = item.value;
         this.rounds = item.rounds;
         this.cost = item.cost;
+        this.image = image;
     }
 
     public Item() {}
@@ -89,6 +95,14 @@ public class Item {
 
     public void setCost(int cost) {
         this.cost = cost;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public List<PouchItem> getPouch_item() {
