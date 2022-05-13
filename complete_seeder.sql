@@ -163,13 +163,13 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Kabutops',    75, 14, 'https://images.pokemontcg.io/base3/9.png', 'Fighting', 'Rare', 'Stage 2'),
                                                                        ('Aerodactyl',  75, 14, 'https://images.pokemontcg.io/base3/1.png', 'Fighting', 'Rare', 'Stage 1'),
                                                                        ('Snorlax',     100, 12, 'https://images.pokemontcg.io/base4/30.png', 'Colorless', 'Rare', 'Basic'),
-                                                                       ('Articuno',    95, 15, 'https://images.pokemontcg.io/base3/2.png', 'Water', 'Rare', 'Basic'),
-                                                                       ('Zapdos',      95, 15, 'https://images.pokemontcg.io/base4/20.png', 'Lightning', 'Rare', 'Basic'),
-                                                                       ('Moltres',     95, 15, 'https://images.pokemontcg.io/base3/12.png', 'Fire', 'Rare', 'Basic'),
+                                                                       ('Articuno',    95, 15, 'https://images.pokemontcg.io/base3/2.png', 'Water', 'Legendary', 'Basic'),
+                                                                       ('Zapdos',      95, 15, 'https://images.pokemontcg.io/base4/20.png', 'Lightning', 'Legendary', 'Basic'),
+                                                                       ('Moltres',     95, 15, 'https://images.pokemontcg.io/base3/12.png', 'Fire', 'Legendary', 'Basic'),
                                                                        ('Dratini',     40, 8, 'https://images.pokemontcg.io/base4/38.png', 'Colorless', 'Uncommon', 'Basic'),
                                                                        ('Dragonair',   65, 14, 'https://images.pokemontcg.io/base4/22.png', 'Colorless', 'Rare', 'Stage 1'),
-                                                                       ('Dragonite',   90, 15, 'https://images.pokemontcg.io/base3/4.png', 'Colorless', 'Rare', 'Stage 2'),
-                                                                       ('Mewtwo',      120, 14, 'https://images.pokemontcg.io/base4/10.png', 'Psychic', 'Rare', 'Basic');
+                                                                       ('Dragonite',   90, 15, 'https://images.pokemontcg.io/base3/4.png', 'Colorless', 'Legendary', 'Stage 2'),
+                                                                       ('Mewtwo',      120, 14, 'https://images.pokemontcg.io/base4/10.png', 'Psychic', 'Legendary', 'Basic');
 
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png' where id = 1;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/2.png' where id = 2;
