@@ -31,7 +31,7 @@ public class HomeController {
     }
 
     @GetMapping("/home/{order}")
-    public String homeGet(Model model, @PathVariable("order") String order, String sort) {
+    public String homeGet(Model model, @PathVariable("order") String order) {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(currentUser.getId());
         model.addAttribute("user", user);
@@ -41,7 +41,6 @@ public class HomeController {
         model.addAttribute("pouches", pouches);
         List<Card> cards = cardDao.findAll();
         model.addAttribute("cards", cards);
-
         long userId = user.getId();
         List<Long> userPouchIds = pouchDao.findUserPouchesById(userId);
         model.addAttribute("userPouchIds", userPouchIds);
