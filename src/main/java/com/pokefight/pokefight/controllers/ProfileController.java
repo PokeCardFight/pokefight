@@ -31,7 +31,6 @@ public class ProfileController {
         return "/profile";
     }
 
-
     @PostMapping("/profile/edit")
     public String submitEdit(@ModelAttribute User user, @RequestParam String password) {
         User oldUser = userDao.getById(user.getId());
