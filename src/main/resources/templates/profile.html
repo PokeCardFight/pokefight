@@ -45,11 +45,7 @@
                 <form id="pick-form" class="filestack-wrapper">
                     <div class="section">
                         <div class="font-shadow info-font-size font-color">Profile Picture</div>
-                        <div class="filestack-buttons">
-                            <input type="button" class="btn-fs font-shadow" value="Pick File" id="picker">
-                            <input type="hidden" id="fileupload">
-                            <input type="button" class="btn-fs font-shadow" value="Submit" id="submit">
-                        </div>
+                        <input type="button" class="button font-shadow" value="Change" id="picker">
                     </div>
                 </form>
                 <form class="body" id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
