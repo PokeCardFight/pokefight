@@ -32,11 +32,14 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
         http
                 /* Login configuration */
                 .formLogin()
                     .loginPage("/")
-                    .defaultSuccessUrl("/home/default") // user's home page, it can be any URL
+                    .loginProcessingUrl("/")
+                    .defaultSuccessUrl("/home/default", true) // user's home page, it can be any URL
+                    .failureUrl("/login.html?error=true")
                     .permitAll() // Anyone can go to the login page
                 /* Logout configuration */
                 .and()
@@ -44,10 +47,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                     .logoutSuccessUrl("/") // append a query string value
                     /* Pages that can be viewed without having to log in */
                 .and()
-                    .csrf()
-                    .disable()
                     .authorizeRequests()
-                    .antMatchers("/","/about") // anyone can see the splash page and about us
+                    .antMatchers("/","/about","/contact","/register") // anyone can see the splash page and about us
                     .permitAll()
                 /* Pages that require authentication */
                 .and()
