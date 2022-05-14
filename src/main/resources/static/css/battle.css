@@ -36,24 +36,9 @@
 
 body {
     width: 100%;
-    min-height: 100vh;
-    margin: 0;
+    height: 100vh;
     display: grid;
-    grid-template-rows: auto 1fr auto;
-}
-
-main {
-    margin:0 auto;
-}
-header {
-    background:lightcyan;
-    text-align: center;
-    height: 5rem;
-}
-footer {
-    background:PapayaWhip;
-    text-align: center;
-    height: 5rem;
+    place-items: center;
 }
 
 #battle-background {

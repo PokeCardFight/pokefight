@@ -43,7 +43,6 @@ $("#submit").click(function () {
     });
 });
 const form = $("#edit_form")
-
 $("#submitEditform").click((e)=>{
     e.preventDefault();
 let pass = $("#password").val();
