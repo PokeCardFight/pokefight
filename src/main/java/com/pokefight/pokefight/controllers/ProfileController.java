@@ -5,12 +5,8 @@ import com.pokefight.pokefight.repositories.UserRepository;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.ui.Model;
+import org.springframework.ui.*;
 import org.springframework.web.bind.annotation.*;
-
-import javax.swing.*;
-
-import static javax.swing.JOptionPane.showMessageDialog;
 
 @Controller
 public class ProfileController {
@@ -45,17 +41,13 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-    @ResponseBody
-    @PostMapping("/search/api/getSearchResult")
+    @PostMapping("/profile/picture")
     public String getSearchResultViaAjax(@RequestParam(value = "url") String url) {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User oldUser = userDao.getById(user.getId());
         oldUser.setProfile_pic(url);
-        System.out.println(url);
         userDao.save(oldUser);
-        System.out.println("Picture URL: " + url);
-        return url;
+        return "redirect:/home/default";
     }
-
 
 }
