@@ -28,6 +28,6 @@ public class ContactController {
     public String contactPost(@RequestParam Map<String, String> params){
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         emailService.sendContactReceivedMessage(user,  params.get("subject"),  params.get("message"));
-        return "redirect:/home";
+        return "redirect:/home/default";
     }
 }
