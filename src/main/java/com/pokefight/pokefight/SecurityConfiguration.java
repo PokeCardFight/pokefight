@@ -32,36 +32,31 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http
-                /* Login configuration */
-                .formLogin()
-                    .loginPage("/")
-                    .loginProcessingUrl("/")
-                    .defaultSuccessUrl("/home/default", true) // user's home page, it can be any URL
-                    .failureUrl("/login.html?error=true")
-                    .permitAll() // Anyone can go to the login page
-                /* Logout configuration */
-                .and()
-                    .logout()
-                    .logoutSuccessUrl("/") // append a query string value
-                    /* Pages that can be viewed without having to log in */
-                .and()
-                    .authorizeRequests()
-                    .antMatchers("/","/about","/contact","/register") // anyone can see the splash page and about us
-                    .permitAll()
-                /* Pages that require authentication */
-                .and()
-                    .authorizeRequests()
-                    .antMatchers(
-                            "/contact",
-                            "/home",
-                            "/profile",
-                            "/battle",
-                            "/battle/{cardId}/{pouchId}/"
-                    )
-                .authenticated()
-                .and().authorizeRequests().antMatchers("/static/favicon.ico").permitAll()
-        ;
+        http.formLogin()
+                .loginPage("/")
+                .loginProcessingUrl("/")
+                .defaultSuccessUrl("/home/default", true)
+                .failureUrl("/login.html?error=true")
+                .permitAll()
+            .and()
+                .logout()
+                .logoutSuccessUrl("/")
+            .and()
+                .authorizeRequests()
+                .antMatchers("/","/about","/contact","/register", "/static/favicon.ico").permitAll()
+                .antMatchers(
+                        "/home",
+                        "/home/{order}",
+                        "/home/addItems",
+                        "/profile",
+                        "/battle",
+                        "/battle/{cardId}/{pouchId}/", "/battle/remove/item",
+                        "/battle/lost",
+                        "/battle/won",
+                        "/profile/edit",
+                        "/search/api/getSearchResult").authenticated()
+            .and()
+                .csrf()
+                .disable();
     }
 }

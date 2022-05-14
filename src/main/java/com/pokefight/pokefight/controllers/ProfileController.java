@@ -45,8 +45,6 @@ public class ProfileController {
         return "redirect:/profile";
     }
 
-    //
-//     Receives String from JavaScript
     @ResponseBody
     @PostMapping("/search/api/getSearchResult")
     public String getSearchResultViaAjax(@RequestParam(value = "url") String url) {
