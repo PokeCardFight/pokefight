@@ -258,6 +258,7 @@ body {
         display: grid;
         grid-template-columns: repeat(9, var(--grid-spacing-columns));
         grid-template-rows: repeat(17, var(--grid-spacing-rows));
+        height: 100%!important;
     }
 
     .information {

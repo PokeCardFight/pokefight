@@ -2,6 +2,7 @@ function infoLoader(info){
     $(info).toggleClass("drop");
     $(info).parents(".profile").toggleClass("fullscreen");
     $(info).parents(".profile").children("img").toggleClass("profile-Pop");
+    $(info).parents(".profile").children(".links").toggleClass("drop");
 }
 
 /*$("#Noah > img").click(() => {
