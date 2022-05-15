@@ -40,6 +40,9 @@ body {
     display: grid;
     place-items: center;
 }
+footer{
+    display: none;
+}
 
 #battle-background {
     margin: 5px 0;

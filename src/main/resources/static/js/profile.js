@@ -1,46 +1,30 @@
-//edit profile form
+//--| Edits Profile Data
+const form = $("#edit_form");
+$("#submitEditform").click((e)=>{
+    e.preventDefault();
 
-$("#edit-prof").click(() => {
-    $("#edit-profile").toggleClass("hidden active");
-})
-$("#close-edit").click(() => {
-//these will make sure it's opened on click. not just toggled
-    $("#edit-profile").toggleClass("hidden active");
-})
+    let pass = $("#password").val();
+    let confirm = $("#confirmPass").val();
 
-//picture form
-$("#edit-pic").click(() => {
-    $("#edit-picture").toggleClass("hidden active");
-})
+    console.log("pass = " + pass + ", confirm = " + confirm);
+    if (pass === confirm) form.submit();
+    else if (pass === "") alert("password cannot be empty!");
+    else alert("Passwords do not match!");
+});
 
-$("#close-pic").click(() => {
-//these will make sure it's opened on click. not just toggled
-    $("#edit-picture").toggleClass("hidden active");
-})
-//this last one swaps between the two forms if chosen
-$("#pic-from-edit").click(() => {
-    $("#edit-profile").toggleClass("hidden active");
-    $("#edit-picture").toggleClass("hidden active");
-})
-
-$("#submit").click(function () {
-    let imageURL = $("#fileupload").val();
-    console.log(imageURL);
+//--| Edits Profile Picture
+const postProfileUrl = (data) => {
+    let url = data.filesUploaded[0].url;
     $.ajax({
         type: "POST",
-        url: "/search/api/getSearchResult",
-        data: {url: imageURL},
+        url: "/profile/picture",
+        data: {url: data.filesUploaded[0].url},
         timeout: 100000,
-        success: function (imageURL) {
-            console.log("SUCCESS: ", imageURL);
-        },
-        error: function (e) {
-            console.log("ERROR: ", e);
-        },
-        done: function (e) {
-            console.log("DONE");
-        }
+        success: url => window.location.reload(),
+        error: e => console.log("ERROR: ", e),
+        done: e => console.log('DONE: ', e)
     });
+<<<<<<< HEAD
 });
 const form = $("#edit_form")
 $("#submitEditform").click((e)=>{
@@ -57,3 +41,14 @@ let confirm = $("#confirmPass").val();
         alert("passwords do not match!");
     }
 });
+=======
+}
+const options = {
+    onUploadDone: postProfileUrl,
+    maxSize: 10 * 1024 * 1024,
+    accept: 'image/*',
+    uploadInBackground: false,
+};
+let btn = document.querySelector('#picker');
+btn.addEventListener('click', () => filestack.init(APIKEY).picker(options).open());
+>>>>>>> c422a23f75c0f98a7586973b9dae6a7820486936

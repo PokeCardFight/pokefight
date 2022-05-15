@@ -1,3 +1,5 @@
+
+
 :root {
     --grid-spacing-columns: 100px;
     --grid-spacing-rows: 50px;
@@ -19,7 +21,6 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Montserrat', sans-serif;
     text-transform: uppercase;
 }
 
@@ -50,7 +51,7 @@ body {
 
     display: grid;
     grid-template-columns: repeat(9, var(--grid-spacing-columns));
-    grid-template-rows: repeat(7, var(--grid-spacing-rows));
+    grid-template-rows: repeat(6, var(--grid-spacing-rows));
 }
 
 .picture {
@@ -71,6 +72,7 @@ body {
 
 .picture-wrapper img {
     background: whitesmoke;
+    border: 3px solid whitesmoke;
     border-radius: 50%;
     box-shadow: var(--box-shadow);
     width: 200px;
@@ -124,32 +126,6 @@ body {
     align-items: center;
 }
 
-.filestack-buttons{
-    width: 200px;
-    display: flex;
-    justify-content: space-between;
-    gap: 10px;
-}
-
-.btn-fs {
-    color: #d9d9d9;
-    width: 95px;
-    height: 40px;
-    background: black;
-    box-shadow: var(--box-shadow);
-    border: none;
-    text-align: center;
-}
-
-.btn-fs:hover {
-    background: #212121;
-}
-
-.btn-fs:active {
-    outline:0;
-    background: grey;
-}
-
 .body {
     grid-column: 1 / 10;
     grid-row: 9 / 17;
@@ -180,9 +156,22 @@ body {
 }
 
 .input-box {
+    border: none;
+    outline: none;
+    text-align: left;
+    background: whitesmoke;
     width: 200px;
     height: 40px;
     padding-left: 5px;
+}
+
+.input-box:hover {
+    background: #cbcbcb;
+}
+
+.input-box:active,
+.input-box:focus {
+    outline: 2px solid rgb(255, 203, 5);
 }
 
 .submit-wrapper {
@@ -221,7 +210,7 @@ body {
 
     .main-container {
         grid-template-columns: repeat(9, var(--grid-spacing-columns));
-        grid-template-rows: repeat(28, var(--grid-spacing-rows));
+        grid-template-rows: repeat(30, var(--grid-spacing-rows));
     }
 
     .header {
@@ -259,11 +248,7 @@ body {
 
     .filestack-wrapper {
         grid-column: 1 / 10;
-        grid-row: 12 / 14;
-    }
-
-    .btn-fs {
-        height: 30px;
+        grid-row: 13 / 15;
     }
 
     .body {
@@ -273,6 +258,7 @@ body {
         display: grid;
         grid-template-columns: repeat(9, var(--grid-spacing-columns));
         grid-template-rows: repeat(17, var(--grid-spacing-rows));
+        height: 100%!important;
     }
 
     .information {
@@ -314,3 +300,4 @@ body {
     }
 
 }
+

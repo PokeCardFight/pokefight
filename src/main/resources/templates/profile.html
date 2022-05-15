@@ -45,11 +45,7 @@
                 <form id="pick-form" class="filestack-wrapper">
                     <div class="section">
                         <div class="font-shadow info-font-size font-color">Profile Picture</div>
-                        <div class="filestack-buttons">
-                            <input type="button" class="btn-fs font-shadow" value="Pick File" id="picker">
-                            <input type="hidden" id="fileupload">
-                            <input type="button" class="btn-fs font-shadow" value="Submit" id="submit">
-                        </div>
+                        <input type="button" class="button font-shadow" value="Change" id="picker">
                     </div>
                 </form>
                 <form class="body" id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
@@ -79,12 +75,11 @@
             </div>
         </main>
 
-        <div th:include="partials/fragments :: footer"></div>
+        <div th:include="partials/fragments :: footer(footer=false)"></div>
 
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
         <script src="/static/js/APIKEY.js"></script>
-        <script src="/static/js/Filestack.js"></script>
         <script src="/static/js/profile.js"></script>
     </body>
 </html>

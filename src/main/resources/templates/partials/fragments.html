@@ -12,12 +12,14 @@
 
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-      
+
         <!--bootstrap-->
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
               integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn"
               crossorigin="anonymous">
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+                integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+                crossorigin="anonymous"></script>
 
         <!--CSS-->
         <link rel="stylesheet" href="/static/css/universal.css">
@@ -28,134 +30,135 @@
 
 
 <div th:fragment="navbar">
-        <nav class="unique-navbar fixed-top">
+    <nav class="unique-navbar fixed-top">
 
-            <a th:href="@{/}"> <!--navbar brand-->
-                <img src="/static/img/Logo.png" id="logo" class="img-fluid" alt="logo.jpg">
-            </a><!--logo-->
+        <a th:href="@{/}"> <!--navbar brand-->
+            <img src="/static/img/Logo.png" id="logo" class="img-fluid" alt="logo.jpg">
+        </a><!--logo-->
 
-            <div id="dropDown">
-                <!--this button becomes the dropdown before a certain width and transforms the normal items into the dropdown items -->
-                <i id="dropbtn" class="fa fa-solid fa-bars dropbtn p-4 active"></i>
-                <div id="navLinksM" class="dropDown-content text-uppercase hidden">
-                    <ul id="mobile-list">
-                        <li class="mobile-item">
-                            <a id="aboutM" th:href="@{/about}">About us
-                                <div class="indicator"></div>
-                            </a>
-                        </li>
+        <div id="dropDown">
+            <!--this button becomes the dropdown before a certain width and transforms the normal items into the dropdown items -->
+            <i id="dropbtn" class="fa fa-solid fa-bars dropbtn p-4 active"></i>
+            <div id="navLinksM" class="dropDown-content text-uppercase hidden">
+                <ul id="mobile-list">
+                    <li class="mobile-item">
+                        <a id="aboutM" th:href="@{/about}">About us
+                            <div class="indicator"></div>
+                        </a>
+                    </li>
 
-                        <li class="mobile-item">
-                            <a id="contactM" th:href="@{/contact}">Contact us
-                                <div class="indicator"></div>
-                            </a>
-                        </li>
+                    <li class="mobile-item">
+                        <a id="contactM" th:href="@{/contact}">Contact us
+                            <div class="indicator"></div>
+                        </a>
+                    </li>
 
-                        <li class="mobile-item" sec:authorize="isAuthenticated()">
-                            <a id="homeM" th:href="@{/home/default}">Home
-                                <div class="indicator"></div>
-                            </a>
-                        </li>
+                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                        <a id="homeM" th:href="@{/home/default}">Home
+                            <div class="indicator"></div>
+                        </a>
+                    </li>
 
-                        <li class="mobile-item" sec:authorize="isAnonymous()">
-                            <a id="signUpM" th:href="@{/register}">Sign up
-                                <div class="indicator"></div>
-                            </a>
-                        </li>
+                    <li class="mobile-item" sec:authorize="isAnonymous()">
+                        <a id="signUpM" th:href="@{/register}">Sign up
+                            <div class="indicator"></div>
+                        </a>
+                    </li>
 
-                        <li class="mobile-item" sec:authorize="isAnonymous()">
-                            <a id="logInM" href="#">Log in
-                                <div class="indicator"></div>
-                            </a>
-                        </li>
+                    <li class="mobile-item" sec:authorize="isAnonymous()">
+                        <a id="logInM" href="#">Log in
+                            <div class="indicator"></div>
+                        </a>
+                    </li>
 
-                        <li class="mobile-item" sec:authorize="isAuthenticated()">
-                            <!--only shows up after security login-->
-                            <a id="profileM" th:href="@{/profile}">
-                                <span th:text="${#authentication.principal.username}"></span>
-                                <div class="indicator"></div>
-                            </a>
-                        </li> <!--intellij doesnt understand. ignore sqigglys-->
+                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                        <!--only shows up after security login-->
+                        <a id="profileM" th:href="@{/profile}">
+                            <span th:text="${#authentication.principal.username}"></span>
+                            <div class="indicator"></div>
+                        </a>
+                    </li> <!--intellij doesnt understand. ignore sqigglys-->
 
-                        <li class="mobile-item" sec:authorize="isAuthenticated()">
-                            <a href="#" id="logoutM" role="menuitem"> Logout
-                                <div class="indicator"></div>
-                            </a><!--logout form in full navbar, no need to dupe-->
-                        </li>
-                    </ul>
-                </div>
-            </div><!--mobile-sized navlinks-->
-
-            <div id="navLinks" class="navbar-items row align-items-center justify-content-end text-uppercase">
-
-                <a id="about" th:href="@{/about}" class="">About us
-                    <div class="indicator"></div>
-                </a>
-
-                <a id="contact" th:href="@{/contact}" class="">Contact us
-                    <div class="indicator"></div>
-                </a>
-
-                <a id="home" th:href="@{/home/default}" class="" sec:authorize="isAuthenticated()">Home
-
-                    <div class="indicator"></div>
-                </a>
-
-                <a id="signUp" th:href="@{/register}" class="" sec:authorize="isAnonymous()">Sign up
-                    <div class="indicator"></div>
-                </a>
-
-                <a id="logIn" href="#" class="" sec:authorize="isAnonymous()">Log in
-                    <div class="indicator"></div>
-                </a>
-                <!--only shows up after security login-->
-                <a id="profile" th:href="@{/profile}" class="" sec:authorize="isAuthenticated()">
-                    <span th:text="${#authentication.principal.username}"></span>
-                    <!--intellij doesnt understand. ignore sqigglys-->
-                    <div class="indicator"></div>
-                </a>
-
-                <a href="#" id="logout" role="menuitem" class="" sec:authorize="isAuthenticated()"> Logout
-                    <div class="indicator"></div>
-                </a>
-
-                <!--separated (hidden) logout form so the button can be uniform with rest of navbar-->
-                <form id="logoutForm" name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
-                    <input hidden type="submit" value="Sign Out"/>
-                </form>
-
-            </div> <!--normal sized navlinks-->
-
-            <!--login form-->
-            <div id="logInForm" class="hidden drop">
-                <form class="popup_loginForm text-center" th:action="@{/}" method="post">
-                    <button id="loginX" class="p-2">X</button>
-                    <div id="mobileLoginName" class="p-2 loginNameJump">LOG IN</div>
-                    <div class="form-group">
-                        <div id="login-name" class="input-group mb-3">
-                            <!--<span class="input-group-text"><i class="fa fa-user"></i></span>-->
-                            <input type="text" class="mt-3 form-control" name="username" placeholder="Username">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group mb-3">
-                            <!--                            <span class="input-group-text"><i class="fa fa-key"></i></span>-->
-                            <input id="loginPassword" type="password" class="form-control" name="password"
-                                   placeholder="Password">
-                            <span id="loginPasswordToggle" class="input-group-text"><i
-                                    class="fa fa-solid fa-eye-slash"></i></span>
-                        </div>
-                    </div>
-                    <button id="submitLogin" type="submit" class="btn w-100 btn-primary">Submit</button>
-                </form>
+                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                        <a href="#" id="logoutM" role="menuitem"> Logout
+                            <div class="indicator"></div>
+                        </a><!--logout form in full navbar, no need to dupe-->
+                    </li>
+                </ul>
             </div>
-            <!--login form-->
+        </div><!--mobile-sized navlinks-->
 
-        </nav>
-    </div> <!--fragment end-->
+        <div id="navLinks" class="navbar-items row align-items-center justify-content-end text-uppercase">
+
+            <a id="about" th:href="@{/about}" class="">About us
+                <div class="indicator"></div>
+            </a>
+
+            <a id="contact" th:href="@{/contact}" class="">Contact us
+                <div class="indicator"></div>
+            </a>
+
+            <a id="home" th:href="@{/home/default}" class="" sec:authorize="isAuthenticated()">Home
+
+                <div class="indicator"></div>
+            </a>
+
+            <a id="signUp" th:href="@{/register}" class="" sec:authorize="isAnonymous()">Sign up
+                <div class="indicator"></div>
+            </a>
+
+            <a id="logIn" href="#" class="" sec:authorize="isAnonymous()">Log in
+                <div class="indicator"></div>
+            </a>
+            <!--only shows up after security login-->
+            <a id="profile" th:href="@{/profile}" class="" sec:authorize="isAuthenticated()">
+                <span th:text="${#authentication.principal.username}"></span>
+                <!--intellij doesnt understand. ignore sqigglys-->
+                <div class="indicator"></div>
+            </a>
+
+            <a href="#" id="logout" role="menuitem" class="" sec:authorize="isAuthenticated()"> Logout
+                <div class="indicator"></div>
+            </a>
+
+            <!--separated (hidden) logout form so the button can be uniform with rest of navbar-->
+            <form id="logoutForm" name="logoutForm" th:action="@{/logout}" method="post" th:hidden="true">
+                <input hidden type="submit" value="Sign Out"/>
+            </form>
+
+        </div> <!--normal sized navlinks-->
+
+        <!--login form-->
+        <div id="logInForm" class="hidden drop">
+            <form class="popup_loginForm text-center" th:action="@{/}" method="post">
+                <button id="loginX" class="p-2">X</button>
+                <div id="mobileLoginName" class="p-2 loginNameJump">LOG IN</div>
+                <div class="form-group">
+                    <div id="login-name" class="input-group mb-3">
+                        <!--<span class="input-group-text"><i class="fa fa-user"></i></span>-->
+                        <input type="text" class="mt-3 form-control" name="username" placeholder="Username">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="input-group mb-3">
+                        <!--                            <span class="input-group-text"><i class="fa fa-key"></i></span>-->
+                        <input id="loginPassword" type="password" class="form-control" name="password"
+                               placeholder="Password">
+                        <span id="loginPasswordToggle" class="input-group-text"><i
+                                class="fa fa-solid fa-eye-slash"></i></span>
+                    </div>
+                </div>
+                <button id="submitLogin" type="submit" class="btn w-100 btn-primary">Submit</button>
+            </form>
+        </div>
+        <!--login form-->
+
+    </nav>
+</div> <!--fragment end-->
 
 
-    <div th:fragment="footer">
+<div th:fragment="footer(footer)"> <!--made a param for when you dont want the footer bar, just the scripts-->
+    <div th:if="${footer==true}">
         <div class="footer row mt-5 p-0">
             <div id="footerLinks" class="col-3">
                 <span>Github Icon</span>
@@ -165,12 +168,20 @@
             <div id="textFooter" class="col-3 m-0">the footer appears!</div>
         </div>
 
-        <script src="/static/js/jquery-2.x-git.js"></script>
-        <script src="/static/js/universal.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    </div>
 
-        <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
+    <script src="/static/js/jquery-2.x-git.js"></script>
+    <script src="/static/js/universal.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"
+            integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF"
+            crossorigin="anonymous"></script>
 </div>
 
 </body>
