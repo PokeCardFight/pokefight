@@ -72,6 +72,7 @@ body {
 
 .picture-wrapper img {
     background: whitesmoke;
+    border: 3px solid whitesmoke;
     border-radius: 50%;
     box-shadow: var(--box-shadow);
     width: 200px;
