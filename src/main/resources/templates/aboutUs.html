@@ -10,11 +10,17 @@
 
 <div id="master-container">
     <div class="container-fluid align-items-center justify-content-around m-auto row">
+        <h3 class="m-5">click on our pictures to learn more about us!</h3>
+        <div class="w-100"></div>
         <div id="Noah" class="profile text-center" onclick="infoLoader(info);">
+            <h3 class="drop open">click on black space to exit</h3>
             <img src="/static/img/headshots/NoahBruno.jpg" class="img_fluid" alt="image">
             <h3>Noah Bruno</h3>
-            <div class="drop links" id="Noah_links"><div id="github" class="mx-5">github</div><div id="linkdin" class="mx-5">linkdin</div></div>
-            <p class="drop" id="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+            <div class="drop open" id="Noah_links">
+                <div id="github" class="mx-5">github</div>
+                <div id="linkdin" class="mx-5">linkdin</div>
+            </div>
+            <p class="drop open" id="info">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
                 consequuntur facere non provident reiciendis? Aliquid, autem cumque, debitis deserunt
                 dignissimos earum facere fuga ipsa maxime, mollitia odio officia quod reprehenderit sapiente
                 similique tempora velit veniam. Assumenda, commodi consequatur consequuntur deserunt dolore
@@ -25,10 +31,14 @@
                 necessitatibus nesciunt nihil nisi quaerat sapiente tenetur, velit veniam voluptatum.</p>
         </div>
         <div id="Manuel" class="profile text-center" onclick="infoLoader(info2);">
+            <h3 class="drop open">click on black space to exit</h3>
             <img src="/static/img/headshots/manuel.jpeg" class="img_fluid" alt="image">
             <h3>Manuel Dominguez</h3>
-            <div class="drop links" id="Manuel_links"><div id="github" class="mx-5">github</div><div id="linkdin" class="mx-5">linkdin</div></div>
-            <p class="drop" id="info2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+            <div class="drop open" id="Manuel_links">
+                <div id="github" class="mx-5">github</div>
+                <div id="linkdin" class="mx-5">linkdin</div>
+            </div>
+            <p class="drop open" id="info2">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                 Asperiores consequuntur facere non provident reiciendis? Aliquid, autem cumque, debitis
                 deserunt dignissimos earum facere fuga ipsa maxime, mollitia odio officia quod reprehenderit
                 sapiente similique tempora velit veniam. Assumenda, commodi consequatur consequuntur
@@ -42,10 +52,15 @@
     </div>
     <br class="w-100">
     <div class="container-fluid m-auto align-items-center justify-content-around row">
+        <h3 class="drop open">click on black space to exit</h3>
         <div id="Michael" class="profile text-center" onclick="infoLoader(info3);">
-            <img src="/static/img/headshots/Michael.jpg" class="img_fluid" alt="image" >
+            <img src="/static/img/headshots/Michael.jpg" class="img_fluid" alt="image">
             <h3>Michael Jones</h3>
-            <p class="drop" id="info3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+            <div class="drop open" id="Michael_links">
+                <div id="github" class="mx-5">github</div>
+                <div id="linkdin" class="mx-5">linkdin</div>
+            </div>
+            <p class="drop open" id="info3">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
                 consequuntur facere non provident reiciendis? Aliquid, autem cumque, debitis deserunt
                 dignissimos earum facere fuga ipsa maxime, mollitia odio officia quod reprehenderit sapiente
                 similique tempora velit veniam. Assumenda, commodi consequatur consequuntur deserunt dolore
@@ -54,12 +69,17 @@
                 atque cumque fuga, fugiat hic illo illum nam optio quisquam repellendus similique ullam velit
                 voluptatem. Autem eius eos ex expedita impedit laudantium nam necessitatibus nesciunt nihil nisi
                 quaerat sapiente tenetur, velit veniam voluptatum.</p>
-            <div class="drop links" id="Michael_links"><div id="github" class="mx-5">github</div><div id="linkdin" class="mx-5">linkdin</div></div>
+
         </div>
-        <div id="Gerald" class="profile text-center" onclick="infoLoader(info4);" >
-            <img src="/static/img/headshots/geraldHeadShot.jpg" class="img_fluid" alt="image" >
+        <div id="Gerald" class="profile text-center" onclick="infoLoader(info4);">
+            <h3 class="drop open">click on black space to exit</h3>
+            <img src="/static/img/headshots/geraldHeadShot.jpg" class="img_fluid" alt="image">
             <h3>Gerald Montero</h3>
-            <p class="drop" id="info4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
+            <div class="drop open" id="Gerald_links">
+                <div id="github" class="mx-5">github</div>
+                <div id="linkdin" class="mx-5">linkdin</div>
+            </div>
+            <p class="drop open" id="info4">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Asperiores
                 consequuntur facere non provident reiciendis? Aliquid, autem cumque, debitis deserunt
                 dignissimos earum facere fuga ipsa maxime, mollitia odio officia quod reprehenderit sapiente
                 similique tempora velit veniam. Assumenda, commodi consequatur consequuntur deserunt dolore
@@ -68,11 +88,10 @@
                 atque cumque fuga, fugiat hic illo illum nam optio quisquam repellendus similique ullam velit
                 voluptatem. Autem eius eos ex expedita impedit laudantium nam necessitatibus nesciunt nihil nisi
                 quaerat sapiente tenetur, velit veniam voluptatum.</p>
-            <div class="drop links" id="Gerald_links"><div id="github" class="mx-5">github</div><div id="linkdin" class="mx-5">linkdin</div></div>
         </div>
     </div>
 </div>
-    <div th:include="partials/fragments :: footer(footer=true)"></div>
-    <script src="/static/js/about.js"></script>
+<div th:include="partials/fragments :: footer(footer=true)"></div>
+<script src="/static/js/about.js"></script>
 </body>
 </html>
