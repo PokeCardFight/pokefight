@@ -1,5 +1,7 @@
 @import "universal.css";
-
+#navLinks #profile{
+    color: gold;
+}
 :root {
     --grid-spacing-columns: 100px;
     --grid-spacing-rows: 50px;

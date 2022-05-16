@@ -1,4 +1,7 @@
 @import "universal.css";
+#navLinks #about{
+    color: gold;
+}
 h3{
     color: white;
 }
