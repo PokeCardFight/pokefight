@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <div th:include="partials/fragments :: header(title='404 ERROR')"></div>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/css/errorCSS/error.css">
+<head th:replace="partials/fragments :: header(title='404 ERROR', css='/static/css/error.css')">
 </head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>

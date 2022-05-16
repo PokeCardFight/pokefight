@@ -1,9 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-    <head>
-        <div th:include="/partials/fragments :: header(title='Battle!')"></div>
-        <link rel="stylesheet" href="/static/css/battle.css">
-    </head>
+        <head th:replace="/partials/fragments :: header(title='Battle!', css='/static/css/battle.css')"></head>
+
     <body>
         <nav th:replace="partials/fragments :: navbar"></nav>
 

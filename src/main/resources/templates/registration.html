@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <div th:include="partials/fragments :: header(title='Register here!')"></div>
-
-</head>
+    <head th:replace="partials/fragments :: header(title='Register here!', css='/static/css/universal.css')"></head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
 

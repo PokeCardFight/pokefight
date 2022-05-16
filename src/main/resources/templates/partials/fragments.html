@@ -1,7 +1,6 @@
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-<head>
-    <div th:fragment="header(title)">
+<head th:fragment="header(title, css)">
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1">
         <title th:text="${title}">title</title>
@@ -9,7 +8,6 @@
         <!-- include universal stylesheets, etc here -->
 
         <!-- Font Awesome -->
-
         <link rel="stylesheet"
               href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
@@ -22,15 +20,12 @@
                 crossorigin="anonymous"></script>
 
         <!--CSS-->
-        <link rel="stylesheet" href="/static/css/universal.css">
-
-    </div>
+        <link rel="stylesheet" th:href="${css}">
 </head>
 <body>
 
 
-<div th:fragment="navbar">
-    <nav class="unique-navbar fixed-top">
+<nav th:fragment="navbar" class="unique-navbar fixed-top">
 
         <a th:href="@{/}"> <!--navbar brand-->
             <img src="/static/img/Logo.png" id="logo" class="img-fluid" alt="logo.jpg">
@@ -153,8 +148,7 @@
         </div>
         <!--login form-->
 
-    </nav>
-</div> <!--fragment end-->
+</nav> <!--fragment end-->
 
 
 <div th:fragment="footer(footer)"> <!--made a param for when you dont want the footer bar, just the scripts-->

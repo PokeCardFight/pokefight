@@ -1,9 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <div th:include="partials/fragments :: header(title='About us!')"></div>
-    <link rel="stylesheet" href="/static/css/aboutUs.css">
-</head>
+    <head th:replace="partials/fragments :: header(title='About us!', css='/static/css/aboutUs.css')"></head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
 
