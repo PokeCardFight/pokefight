@@ -199,6 +199,14 @@ input {
 .dropDown-content > a {
     padding: 0;
 }
+#textFooter a {
+    color: white;
+    text-decoration: none;
+}
+#textFooter a:hover {
+    color: gold;
+    transition: color .4s ease-in-out;
+}
 
 @media screen and (max-width: 350px) {
     .unique-navbar {
@@ -208,12 +216,14 @@ input {
 }
 
 @media screen and (max-width: 400px) {
-    #footerEmpty, #textFooter {
+    #footerEmpty, #footerLinks {
         display: none;
     }
-
     .footer {
         justify-content: center
+    }
+    #textFooter{
+        text-align: center;
     }
 }
 
@@ -223,15 +233,6 @@ input {
     }
 }
 
-@media screen and (max-width: 694px) {
-    .footer {
-        max-height: 25px;
-    }
-
-    .footer > * {
-        white-space: nowrap
-    }
-}
 
 @media screen and (min-width: 350px) and (max-width: 803px) {
     .unique-navbar {
@@ -240,6 +241,22 @@ input {
 }
 
 @media screen and (max-width: 803px) {
+
+    .footer {
+        max-height: 25px;
+    }
+
+    .footer > * {
+        white-space: nowrap
+    }
+
+    .footer {
+        justify-content: center
+    }
+    #textFooter{
+        text-align: center;
+    }
+
     #navLinks {
         display: none;
     }
