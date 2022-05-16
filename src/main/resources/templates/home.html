@@ -107,36 +107,36 @@
                 <h5 class="store-section">Pouches</h5>
                 <div class="row justify-content-center">
 
-                    <div th:id="${userPouchIds.get(0)}" class=" store-section m-1 tab bat col-3 ">
+                    <div th:id="${userPouchIds.get(0)}" class=" store-section m-1 tab bat col-3 " th:data-id="${userPouchIds.get(0)}">
                         <!--                Pouch1-->
-                        <input type="submit" th:id="${userPouchIds.get(0)}" value="Select"
+                        <input type="submit" th:data-id="${userPouchIds.get(0)}" value="Select"
                                class="golden-btn" style="font-size:.5em;">
                         <div th:each="itemInPouch1 : ${itemsInPouch1}">
-                            <img th:src="${itemInPouch1}"/>
+                            <img th:src="${itemInPouch1}" th:data-id="${userPouchIds.get(0)}"/>
                         </div>
 
                     </div>
 
-                    <div th:id="${userPouchIds.get(1)}" class="store-section m-1 tab bat col-3 ">
+                    <div th:id="${userPouchIds.get(1)}" class="store-section m-1 tab bat col-3" th:data-id="${userPouchIds.get(1)}">
                         <!--                Pouch2-->
                         <input type="submit"
-                               th:id="${userPouchIds.get(1)}"
+                               th:data-id="${userPouchIds.get(1)}"
                                value="Select"
                                class="golden-btn" style="font-size:.5em;">
 
 
                         <div th:each="itemInPouch2 : ${itemsInPouch2}">
-                            <img th:src="${itemInPouch2}"/>
+                            <img th:src="${itemInPouch2}" th:data-id="${userPouchIds.get(1)}"/>
                         </div>
 
                     </div>
 
-                    <div th:id="${userPouchIds.get(2)}" class=" store-section m-1 tab bat col-3 ">
+                    <div th:id="${userPouchIds.get(2)}" class="store-section m-1 tab bat col-3" th:data-id="${userPouchIds.get(2)}" >
                         <!--                Pouch3-->
-                        <input type="submit" th:id="${userPouchIds.get(2)}" value="Select"
+                        <input type="submit" th:data-id="${userPouchIds.get(2)}" value="Select"
                                class="golden-btn" style="font-size:.5em;">
                         <div th:each="itemInPouch3 : ${itemsInPouch3}">
-                            <img th:src="${itemInPouch3}"/>
+                            <img th:src="${itemInPouch3}" th:data-id="${userPouchIds.get(2)}"/>
                         </div>
 
                     </div>
@@ -186,10 +186,9 @@
         cardsContainer.innerHTML = "";
         cards.forEach(element => {
             cardsContainer.innerHTML += `
-                        <div class="button m-1 store-section  card " title="${element.name}" data-id="1" style="width: 10rem;">
-                             <h5  class="text-white text-center card-text">${element.name}</h5>
+                        <div class="button m-1 store-section  card " title="${element.name}" data-id="${element.id}" style="width: 10rem;">
+                             <h5  class="text-white text-center card-text" data-id="${element.id}">${element.name}</h5>
                             <img src="${element.image}" data-id="${element.id}" class="card-img" alt="${element.name}">
-
                         </div>
                     `;
         });
@@ -223,7 +222,7 @@
     var activePouch = 0;
     let pouchContainer = document.querySelector('#pouches');
     pouchContainer.addEventListener('click', (e) => {
-        activePouch = e.target.id;
+        activePouch = e.target.getAttribute('data-id');
     });
 
     let buyButton = document.querySelector('#buybutton');
