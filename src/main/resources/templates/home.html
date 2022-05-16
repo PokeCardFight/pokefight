@@ -79,11 +79,11 @@
             <h5 class="text-center store-section">Store &#x20BD;</h5>
             <div class=" store-scroll row justify-content-center" id="store">
                 <div id="storeItems" class=" tap store-section m-1 col-3  " th:each="item : ${items}">
-                    <div class="m-1">
-                        <p th:text="${item.name}"></p>
-                        <img th:src="${item.image}" th:alt="${item.name}">
-                        <span>&#x20BD; <span th:text="${item.cost} "></span></span>
-                        <input type="submit" th:id="${item.id}" value="Select" class="golden-btn"
+                    <div class="m-1" th:data-id="${item.id}">
+                        <p th:text="${item.name}" th:data-id="${item.id}"></p>
+                        <img th:src="${item.image}" th:alt="${item.name}" th:data-id="${item.id}">
+                        <span th:data-id="${item.id}">&#x20BD; <span th:text="${item.cost} "></span></span>
+                        <input type="submit" th:data-id="${item.id}" value="Select" class="golden-btn"
                                style="clear: both; font-size:.5em;"/>
                     </div>
                 </div>
@@ -213,7 +213,7 @@
     var activeItem = 0;
     let itemsContainer = document.querySelector('#store');
     itemsContainer.addEventListener('click', (e) => {
-        activeItem = e.target.id;
+        activeItem = e.target.getAttribute('data-id');
     });
 
     var activePouch = 0;
