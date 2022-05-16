@@ -1,3 +1,4 @@
+@import "universal.css";
 #loader{
     position: fixed;
     top: 0;
@@ -19,5 +20,10 @@
 }
 
 @media screen and (max-width: 710px){
-    #gameplay-idle
+    #gameplay-idle{
+        height: auto;
+    }
+    #welcome{
+        font-size: 2rem;
+    }
 }

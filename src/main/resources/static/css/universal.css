@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 body {
     padding-top: 100px;
     padding-bottom: 50px;
@@ -11,7 +12,6 @@ body {
 .drop{
     display: none;
 }
-
 
 .hidden {
     visibility: hidden;
@@ -78,6 +78,11 @@ input {
     flex-wrap: wrap;
     align-items: center;
     transition: transform 0.5s;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Press Start 2P', cursive;
+
 }
 
 .navbar-items {
@@ -276,6 +281,7 @@ input {
 
     .unique-navbar {
         justify-content: space-between;
+        font-size: 14px;
     }
 
     #loginX, #mobileLoginName, #dropDown {

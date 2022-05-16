@@ -1,11 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security" lang="en">
-    <head>
-        <div th:include="partials/fragments :: header(title='Profile')"></div>
-
-        <link rel="stylesheet" href="/static/css/profile.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    </head>
+        <head th:replace="partials/fragments :: header(title='Profile', css='/static/css/profile.css')"></head>
     <body>
         <nav th:replace="partials/fragments :: navbar"></nav>
 

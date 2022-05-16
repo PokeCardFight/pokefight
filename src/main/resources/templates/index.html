@@ -1,10 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <div th:include="partials/fragments :: header(title='Splash')"></div>
-    <link rel="stylesheet" href="/static/css/index.css">
-
-</head>
+    <head th:replace="partials/fragments :: header(title='Splash', css='/static/css/index.css')"></head>
 <body>
 <nav th:replace="partials/fragments :: navbar"></nav>
 
@@ -12,8 +8,9 @@
 
 <div id="splash-main" class="text-center">
     <h5 id="welcome" class="display-4 mb-2"><div>WELCOME TO...</div><span><img src="../static/img/Logo.png" alt="PokeFight" class="img-fluid" height="136" width="543"/></span></h5>
-    <div class="mt-5 readable-background"><h1></h1><p></p></div>
-    <img src="/static/img/splash1.gif" id="gameplay-idle" alt="gameplay_idle" class="img-fluid mt-5">
+    <div class="m-5 readable-background"><p>Pokemon gets a new mode in this website where on registration, you will be given a randomized pokemon and a pouch of items to start!</p></div>
+    <img src="/static/img/splash1.gif" id="gameplay-idle" alt="gameplay_idle" class="img-fluid">
+    <div class="m-5 readable-background"><p>after sign up, simply select your pokemon and a pouch to bring into battle. <br>Good luck!</p></div>
 
 </div>
 
