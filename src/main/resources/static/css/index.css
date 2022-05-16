@@ -19,5 +19,10 @@
 }
 
 @media screen and (max-width: 710px){
-    #gameplay-idle
+    #gameplay-idle{
+        height: auto;
+    }
+    #welcome{
+        font-size: 2rem;
+    }
 }

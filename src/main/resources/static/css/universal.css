@@ -282,6 +282,7 @@ input {
 
     .unique-navbar {
         justify-content: space-between;
+        font-size: 14px;
     }
 
     #loginX, #mobileLoginName, #dropDown {
