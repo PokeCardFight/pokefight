@@ -37,5 +37,6 @@ p{
 @media screen and (min-width:600px){
     #master-container .fullscreen img{
         width: 400px;
+        height: auto;
     }
 }
