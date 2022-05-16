@@ -55,6 +55,7 @@
         <!-- Card Section -->
 
         <div class="  col-xs-4 col-md-4 col-lg-4 ">
+
             <div class="dropdown">
                 <button class="btn golden-btn dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-expanded="false">
@@ -66,6 +67,7 @@
                     <a id="nameA2Z" th:href="@{/home/nameA2Z}" class="dropdown-item "><span>Order By Name A to Z</span></a>
                     <a id="nameZ2A" th:href="@{/home/nameZ2A}" class="dropdown-item "><span>Order By Name Z to A</span></a>
                 </div>
+                <h5 id="chosePokemon" >Chose your Pokemon</h5>
             </div>
             <div class="card-scroll">
             <div class="row justify-content-center" id="myCards">
@@ -101,7 +103,7 @@
 
             <!--pouches-->
             <div id="pouches" class=" container col  text-center">
-                <h5 class="store-section">Pouches</h5>
+                <h5 class="store-section">Select a Battle Pouch</h5>
                 <div class="row justify-content-center">
 
                     <div th:id="${userPouchIds.get(0)}" class=" store-section m-1 tab bat col-3 " th:data-id="${userPouchIds.get(0)}">
