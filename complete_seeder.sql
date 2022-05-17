@@ -25,7 +25,9 @@ INSERT INTO backgrounds (url, type) VALUES
 ('/static/img/Pokemon-Dark.jpeg','Dark'),
 ('/static/img/Pokemon-Dragon.jpeg','Dragon'),
 ('/static/img/Pokemon-Ice.jpeg','Ice'),
-('/static/img/Pokemon-Fairy.jpeg','Fairy');
+('/static/img/Pokemon-Fairy.jpeg','Fairy'),
+('/static/img/Pokemon-Steel.jpeg','Steel'),
+('/static/img/Bug-Pokemon.webp','Bug');
 
 INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Bulbasaur',   45, 10, 'https://images.pokemontcg.io/base4/67.png', 'Grass', 'Common', 'Basic'),
@@ -37,12 +39,12 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Squirtle',    45, 10, 'https://images.pokemontcg.io/base4/93.png', 'Water', 'Common', 'Basic'),
                                                                        ('Wartortle',   60, 12, 'https://images.pokemontcg.io/base4/63.png', 'Water', 'Uncommon', 'Stage 1'),
                                                                        ('Blastoise',   85, 16, 'https://images.pokemontcg.io/base1/2.png', 'Water', 'Rare', 'Stage 2'),
-                                                                       ('Caterpie',    45, 6, 'https://images.pokemontcg.io/base1/45.png', 'Grass', 'Common', 'Basic'),
-                                                                       ('Metapod',     50, 4, 'https://images.pokemontcg.io/base1/54.png', 'Grass', 'Uncommon', 'Stage 1'),
-                                                                       ('Butterfree',  65, 8, 'https://images.pokemontcg.io/base4/34.png', 'Grass', 'Rare', 'Stage 2'),
-                                                                       ('Weedle',      40, 6, 'https://images.pokemontcg.io/base4/100.png', 'Grass', 'Common', 'Basic'),
-                                                                       ('Kakuna',      45, 5, 'https://images.pokemontcg.io/base4/47.png', 'Grass', 'Uncommon', 'Stage 1'),
-                                                                       ('Beedrill',    65, 16, 'https://images.pokemontcg.io/base1/17.png', 'Grass', 'Rare', 'Stage 2'),
+                                                                       ('Caterpie',    45, 6, 'https://images.pokemontcg.io/base1/45.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Metapod',     50, 4, 'https://images.pokemontcg.io/base1/54.png', 'Bug', 'Uncommon', 'Stage 1'),
+                                                                       ('Butterfree',  65, 8, 'https://images.pokemontcg.io/base4/34.png', 'Bug', 'Rare', 'Stage 2'),
+                                                                       ('Weedle',      40, 6, 'https://images.pokemontcg.io/base4/100.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Kakuna',      45, 5, 'https://images.pokemontcg.io/base4/47.png', 'Bug', 'Uncommon', 'Stage 1'),
+                                                                       ('Beedrill',    65, 16, 'https://images.pokemontcg.io/base1/17.png', 'Bug', 'Rare', 'Stage 2'),
                                                                        ('Pidgey',      40, 9, 'https://images.pokemontcg.io/base1/57.png', 'Flying', 'Common', 'Basic'),
                                                                        ('Pidgeotto',   65, 12, 'https://images.pokemontcg.io/base1/22.png', 'Flying', 'Uncommon', 'Stage 1'),
                                                                        ('Pidgeot',     80, 16, 'https://images.pokemontcg.io/base4/14.png', 'Flying', 'Rare', 'Stage 2'),
@@ -73,8 +75,8 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Oddish',      40, 8, 'https://images.pokemontcg.io/base2/58.png', 'Grass', 'Common', 'Basic'),
                                                                        ('Gloom',       60, 10, 'https://images.pokemontcg.io/base2/37.png', 'Grass', 'Uncommon', 'Stage 1'),
                                                                        ('Vileplume',   80, 12, 'https://images.pokemontcg.io/base2/15.png', 'Grass', 'Rare', 'Stage 2'),
-                                                                       ('Paras',       40, 8, 'https://images.pokemontcg.io/base4/85.png', 'Grass', 'Common', 'Basic'),
-                                                                       ('Parasect',    65, 10, 'https://images.pokemontcg.io/base4/55.png', 'Grass', 'Uncommon', 'Stage 1'),
+                                                                       ('Paras',       40, 8, 'https://images.pokemontcg.io/base4/85.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Parasect',    65, 10, 'https://images.pokemontcg.io/base4/55.png', 'Bug', 'Uncommon', 'Stage 1'),
                                                                        ('Venonat',     40, 9, 'https://images.pokemontcg.io/base4/97.png', 'Poison', 'Common', 'Basic'),
                                                                        ('Venomoth',    75, 14, 'https://images.pokemontcg.io/base4/31.png', 'Poison', 'Rare', 'Stage 1'),
                                                                        ('Diglett',     35, 10, 'https://images.pokemontcg.io/base4/71.png', 'Ground', 'Common', 'Basic'),
@@ -150,11 +152,11 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Staryu',      40, 8, 'https://images.pokemontcg.io/base4/95.png', 'Water', 'Common', 'Basic'),
                                                                        ('Starmie',     60, 12, 'https://images.pokemontcg.io/base4/94.png', 'Water', 'Uncommon', 'Stage 1'),
                                                                        ('Mr. Mime',    65, 18, 'https://images.pokemontcg.io/base4/27.png', 'Psychic', 'Rare', 'Basic'),
-                                                                       ('Scyther',     70, 16, 'https://images.pokemontcg.io/base4/17.png', 'Grass', 'Rare', 'Basic'),
+                                                                       ('Scyther',     70, 16, 'https://images.pokemontcg.io/base4/17.png', 'Bug', 'Rare', 'Basic'),
                                                                        ('Jynx',        70, 11, 'https://images.pokemontcg.io/base4/45.png', 'Psychic', 'Uncommon', 'Stage 1'),
                                                                        ('Electabuzz',  70, 16, 'https://images.pokemontcg.io/base4/24.png', 'Electric', 'Rare', 'Stage 1'),
                                                                        ('Magmar',      70, 16, 'https://images.pokemontcg.io/base1/36.png', 'Fire', 'Rare', 'Stage 1'),
-                                                                       ('Pinsir',      65, 16, 'https://images.pokemontcg.io/base4/29.png', 'Grass', 'Rare', 'Basic'),
+                                                                       ('Pinsir',      65, 16, 'https://images.pokemontcg.io/base4/29.png', 'Bug', 'Rare', 'Basic'),
                                                                        ('Tauros',      60, 14, 'https://images.pokemontcg.io/base4/62.png', 'Normal', 'Uncommon', 'Basic'),
                                                                        ('Magikarp',    30, 6, 'https://images.pokemontcg.io/base4/50.png', 'Water', 'Common', 'Basic'),
                                                                        ('Gyarados',    85, 16, 'https://images.pokemontcg.io/base4/7.png', 'Water', 'Rare', 'Stage 1'),
@@ -192,10 +194,10 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Furret',   55, 11, 'https://images.pokemontcg.io/base1/38.png', 'Normal', 'Uncommon', 'Stage 1'),
                                                                        ('Hoothoot',   40, 8, 'https://images.pokemontcg.io/base1/13.png', 'Flying', 'Common', 'Basic'),
                                                                        ('Noctowl',        60, 12, 'https://images.pokemontcg.io/base1/43.png', 'Flying', 'Uncommon', 'Stage 1'),
-                                                                       ('Ledyba',     40, 8, 'https://images.pokemontcg.io/base1/32.png', 'Grass', 'Common', 'Basic'),
-                                                                       ('Ledian',    55, 11, 'https://images.pokemontcg.io/base1/1.png', 'Grass', 'Uncommon', 'Stage 1'),
-                                                                       ('Spinarak',      35, 8, 'https://images.pokemontcg.io/base1/52.png', 'Grass', 'Common', 'Basic'),
-                                                                       ('Ariados',     55, 13, 'https://images.pokemontcg.io/base1/34.png', 'Grass', 'Uncommon', 'Stage 1'),
+                                                                       ('Ledyba',     40, 8, 'https://images.pokemontcg.io/base1/32.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Ledian',    55, 11, 'https://images.pokemontcg.io/base1/1.png', 'Bug', 'Uncommon', 'Stage 1'),
+                                                                       ('Spinarak',      35, 8, 'https://images.pokemontcg.io/base1/52.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Ariados',     55, 13, 'https://images.pokemontcg.io/base1/34.png', 'Bug', 'Uncommon', 'Stage 1'),
                                                                        ('Crobat',     80, 14, 'https://images.pokemontcg.io/base1/8.png', 'Flying', 'Rare', 'Stage 2'),
                                                                        ('Chinchou',  40, 8, 'https://images.pokemontcg.io/base4/66.png', 'Water', 'Common', 'Basic'),
                                                                        ('Lanturn',  60, 12, 'https://images.pokemontcg.io/base4/64.png', 'Water', 'Uncommon', 'Stage 1'),
@@ -220,7 +222,7 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Aipom',         50, 10, 'https://images.pokemontcg.io/base3/13.png', 'Normal', 'Uncommon', 'Basic'),
                                                                        ('Sunkern',    40, 8, 'https://images.pokemontcg.io/base3/54.png', 'Grass', 'Common', 'Basic'),
                                                                        ('Sunflora',    65, 12, 'https://images.pokemontcg.io/base3/32.png', 'Grass', 'Uncommon', 'Stage 1'),
-                                                                       ('Yanma',      35, 10, 'https://images.pokemontcg.io/base1/50.png', 'Grass', 'Common', 'Basic'),
+                                                                       ('Yanma',      35, 10, 'https://images.pokemontcg.io/base1/50.png', 'Bug', 'Common', 'Basic'),
                                                                        ('Wooper',     40, 8, 'https://images.pokemontcg.io/base1/29.png', 'Water', 'Common', 'Basic'),
                                                                        ('Quagsire',      70, 10, 'https://images.pokemontcg.io/base3/20.png', 'Water', 'Uncommon', 'Stage 1'),
                                                                        ('Espeon',        75, 16, 'https://images.pokemontcg.io/base1/56.png', 'Psychic', 'Rare', 'Stage 2'),
@@ -231,17 +233,17 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Unknown',     40, 8, 'https://images.pokemontcg.io/base4/98.png', 'Psychic', 'Uncommon', 'Basic'),
                                                                        ('Wobbuffet',   80, 10, 'https://images.pokemontcg.io/base4/25.png', 'Psychic', 'Common', 'Basic'),
                                                                        ('Girafarig',   45, 8, 'https://images.pokemontcg.io/base4/74.png', 'Psychic', 'Common', 'Basic'),
-                                                                       ('Pineco',   45, 8, 'https://images.pokemontcg.io/base4/39.png', 'Grass', 'Common', 'Basic'),
-                                                                       ('Forretress',      95, 12, 'https://images.pokemontcg.io/base4/70.png', 'Grass', 'Rare', 'Stage 1'),
+                                                                       ('Pineco',   45, 8, 'https://images.pokemontcg.io/base4/39.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Forretress',      95, 12, 'https://images.pokemontcg.io/base4/70.png', 'Bug', 'Rare', 'Stage 1'),
                                                                        ('Dunsparce',     50, 8, 'https://images.pokemontcg.io/base4/52.png', 'Normal', 'Common', 'Basic'),
                                                                        ('Gligar',   45, 8, 'https://images.pokemontcg.io/base3/7.png', 'Ground', 'Common', 'Basic'),
                                                                        ('Steelix',  90, 14, 'https://images.pokemontcg.io/base4/8.png', 'Rock', 'Rare', 'Stage 1'),
                                                                        ('Snubbull',   40, 8, 'https://images.pokemontcg.io/base4/48.png', 'Fairy', 'Common', 'Basic'),
                                                                        ('Granbull',     75, 14, 'https://images.pokemontcg.io/base1/51.png', 'Fairy', 'Uncommon', 'Stage 1'),
                                                                        ('Qwilfish',     45, 8, 'https://images.pokemontcg.io/base3/45.png', 'Water', 'Common', 'Basic'),
-                                                                       ('Scizor',     80, 14, 'https://images.pokemontcg.io/base4/90.png', 'Grass', 'Rare', 'Stage 1'),
+                                                                       ('Scizor',     80, 14, 'https://images.pokemontcg.io/base4/90.png', 'Bug', 'Rare', 'Stage 1'),
                                                                        ('Shuckle',      50, 8, 'https://images.pokemontcg.io/base4/59.png', 'Rock', 'Common', 'Basic'),
-                                                                       ('Heracross',    80, 14, 'https://images.pokemontcg.io/base1/3.png', 'Grass', 'Rare', 'Basic'),
+                                                                       ('Heracross',    80, 14, 'https://images.pokemontcg.io/base1/3.png', 'Bug', 'Rare', 'Basic'),
                                                                        ('Sneasel',     45, 8, 'https://images.pokemontcg.io/base1/66.png', 'Dark', 'Common', 'Basic'),
                                                                        ('Teddiursa',  45, 8, 'https://images.pokemontcg.io/base4/26.png', 'Normal', 'Common', 'Basic'),
                                                                        ('Ursaring',      85, 16, 'https://images.pokemontcg.io/base3/49.png', 'Normal', 'Rare', 'Stage 1'),
@@ -278,7 +280,142 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Tyranitar',      90, 15, 'https://images.pokemontcg.io/base4/20.png', 'Rock', 'Legendary', 'Stage 2'),
                                                                        ('Lugia',     95, 16, 'https://images.pokemontcg.io/base3/12.png', 'Psychic', 'Legendary', 'Basic'),
                                                                        ('Ho-oh',     95, 16, 'https://images.pokemontcg.io/base4/38.png', 'Fire', 'Legendary', 'Basic'),
-                                                                       ('Celebi',   85, 15, 'https://images.pokemontcg.io/base4/22.png', 'Psychic', 'Legendary', 'Basic');
+                                                                       ('Celebi',   85, 15, 'https://images.pokemontcg.io/base4/22.png', 'Psychic', 'Legendary', 'Basic'),
+                                                                       ('Treeko',    65, 18, 'https://images.pokemontcg.io/base4/27.png', 'Grass', 'Common', 'Basic'),
+                                                                       ('Grovyle',     70, 16, 'https://images.pokemontcg.io/base4/17.png', 'Grass', 'Uncommon', 'Stage 1'),
+                                                                       ('Sceptile',        70, 11, 'https://images.pokemontcg.io/base4/45.png', 'Grass', 'Rare', 'Stage 2'),
+                                                                       ('Torchic',      40, 8, 'https://images.pokemontcg.io/base3/49.png', 'Fire', 'Common', 'Basic'),
+                                                                       ('Combusken',      60, 12, 'https://images.pokemontcg.io/base3/42.png', 'Fire', 'Uncommon', 'Stage 1'),
+                                                                       ('Blaziken',     40, 8, 'https://images.pokemontcg.io/base4/76.png', 'Fire', 'Rare', 'Stage 2'),
+                                                                       ('Mudkip',     60, 12, 'https://images.pokemontcg.io/base4/60.png', 'Water', 'Common', 'Basic'),
+                                                                       ('Marshtomp',      40, 8, 'https://images.pokemontcg.io/base4/95.png', 'Water', 'Uncommon', 'Stage 1'),
+                                                                       ('Swampert',    60, 12, 'https://images.pokemontcg.io/base4/94.png', 'Water', 'Rare', 'Stage 2'),
+                                                                       ('Poochena',  70, 16, 'https://images.pokemontcg.io/base4/24.png', 'Normal', 'Common', 'Basic'),
+                                                                       ('Mightyena',      70, 16, 'https://images.pokemontcg.io/base1/36.png', 'Normal', 'Rare', 'Stage 1'),
+                                                                       ('Zigzagon',      65, 16, 'https://images.pokemontcg.io/base4/29.png', 'Normal', 'Common', 'Basic'),
+                                                                       ('Linoone',      60, 14, 'https://images.pokemontcg.io/base4/62.png', 'Normal', 'Uncommon', 'Stage 1'),
+                                                                       ('Wurmple',    30, 6, 'https://images.pokemontcg.io/base4/50.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Silcoon',    85, 16, 'https://images.pokemontcg.io/base4/7.png', 'Bug', 'Uncommon', 'Stage 1'),
+                                                                       ('Beautifly',      85, 15, 'https://images.pokemontcg.io/base3/10.png', 'Bug', 'Rare', 'Stage 2'),
+                                                                       ('Cascoon',       45, 6, 'https://images.pokemontcg.io/base3/3.png', 'Bug', 'Uncommon', 'Basic'),
+                                                                       ('Dustox',       40, 8, 'https://images.pokemontcg.io/base2/51.png', 'Bug', 'Rare', 'Basic'),
+                                                                       ('Lotad',    80, 14, 'https://images.pokemontcg.io/base2/12.png', 'Water', 'Common', 'Stage 1'),
+                                                                       ('Lombre',     80, 14, 'https://images.pokemontcg.io/base2/20.png', 'Water', 'Uncommon', 'Stage 1'),
+                                                                       ('Ludicolo',     80, 14, 'https://images.pokemontcg.io/base2/3.png', 'Water', 'Rare', 'Stage 1'),
+                                                                       ('Seedot',     40, 8, 'https://images.pokemontcg.io/base1/39.png', 'Grass', 'Common', 'Basic'),
+                                                                       ('Nuzleaf',     40, 8, 'https://images.pokemontcg.io/base3/52.png', 'Grass', 'Uncommon', 'Stage 1'),
+                                                                       ('Shiftry',     70, 14, 'https://images.pokemontcg.io/base3/40.png', 'Grass', 'Rare', 'Stage 2'),
+                                                                       ('Tailow',      40, 8, 'https://images.pokemontcg.io/base3/50.png', 'Flying', 'Common', 'Stage 1'),
+                                                                       ('Swellow',    75, 14, 'https://images.pokemontcg.io/base3/9.png', 'Flying', 'Uncommon', 'Stage 2'),
+                                                                       ('Wingull',  75, 14, 'https://images.pokemontcg.io/base3/1.png', 'Flying', 'Common', 'Stage 1'),
+                                                                       ('Pelliper',     100, 12, 'https://images.pokemontcg.io/base4/30.png', 'Flying', 'Uncommon', 'Basic'),
+                                                                       ('Ralts',    95, 16, 'https://images.pokemontcg.io/base3/2.png', 'Psychic', 'Common', 'Basic'),
+                                                                       ('Kirlia',      95, 16, 'https://images.pokemontcg.io/base4/20.png', 'Psychic', 'Uncommon', 'Basic'),
+                                                                       ('Gardevoir',     95, 16, 'https://images.pokemontcg.io/base3/12.png', 'Psychic', 'Rare', 'Basic'),
+                                                                       ('Surskit',     40, 8, 'https://images.pokemontcg.io/base4/38.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Masquerain',   65, 14, 'https://images.pokemontcg.io/base4/22.png', 'Bug', 'Uncommon', 'Stage 1'),
+                                                                       ('Shroomish',   90, 15, 'https://images.pokemontcg.io/base3/4.png', 'Grass', 'Common', 'Stage 2'),
+                                                                       ('Breloom',      120, 14, 'https://images.pokemontcg.io/base4/10.png', 'Grass', 'Uncommon', 'Basic'),
+                                                                       ('Slakoth',     90, 12, 'https://images.pokemontcg.io/base4/71.png', 'Normal', 'Common', 'Basic'),
+                                                                       ('Vigoroth',     40, 10, 'https://images.pokemontcg.io/base4/23.png', 'Normal', 'Uncommon', 'Basic'),
+                                                                       ('Slaking',      65, 12, 'https://images.pokemontcg.io/base4/80.png', 'Normal', 'Rare', 'Stage 1'),
+                                                                       ('Nincada',     85, 16, 'https://images.pokemontcg.io/base4/56.png', 'Bug', 'Common', 'Stage 2'),
+                                                                       ('Ninjask',     40, 10, 'https://images.pokemontcg.io/base3/53.png', 'Bug', 'Uncommon', 'Basic'),
+                                                                       ('Shedinja',     60, 13, 'https://images.pokemontcg.io/base3/35.png', 'Bug', 'Rare', 'Stage 1'),
+                                                                       ('Whismur',      85, 16, 'https://images.pokemontcg.io/base2/55.png', 'Normal', 'Common', 'Stage 2'),
+                                                                       ('Loudred',    45, 10, 'https://images.pokemontcg.io/base2/43.png', 'Normal', 'Uncommon', 'Basic'),
+                                                                       ('Exploud',   65, 12, 'https://images.pokemontcg.io/base4/42.png', 'Normal', 'Rare', 'Stage 1'),
+                                                                       ('Makuhita',    85, 16, 'https://images.pokemontcg.io/base1/23.png', 'Fighting', 'Common', 'Stage 2'),
+                                                                       ('Hariyama',     40, 8, 'https://images.pokemontcg.io/base1/59.png', 'Fighting', 'Rare', 'Basic'),
+                                                                       ('Azurill',   55, 11, 'https://images.pokemontcg.io/base1/38.png', 'Fairy', 'Common', 'Stage 1'),
+                                                                       ('Nosepass',   40, 8, 'https://images.pokemontcg.io/base1/13.png', 'Rock', 'Uncommon', 'Basic'),
+                                                                       ('Skitty',        60, 12, 'https://images.pokemontcg.io/base1/43.png', 'Normal', 'Common', 'Stage 1'),
+                                                                       ('Delcatty',     40, 8, 'https://images.pokemontcg.io/base1/32.png', 'Normal', 'Uncommon', 'Basic'),
+                                                                       ('Sableye',    55, 11, 'https://images.pokemontcg.io/base1/1.png', 'Ghost', 'Uncommon', 'Stage 1'),
+                                                                       ('Mawile',      35, 8, 'https://images.pokemontcg.io/base1/52.png', 'Steel', 'Uncommon', 'Basic'),
+                                                                       ('Aron',     55, 13, 'https://images.pokemontcg.io/base1/34.png', 'Steel', 'Common', 'Stage 1'),
+                                                                       ('Lairon',     80, 14, 'https://images.pokemontcg.io/base1/8.png', 'Steel', 'Uncommon', 'Stage 2'),
+                                                                       ('Aggron',  40, 8, 'https://images.pokemontcg.io/base4/66.png', 'Steel', 'Rare', 'Basic'),
+                                                                       ('Meditite',  60, 12, 'https://images.pokemontcg.io/base4/64.png', 'Fighting', 'Common', 'Stage 1'),
+                                                                       ('Medicham',  35, 10, 'https://images.pokemontcg.io/base4/32.png', 'Fighting', 'Uncommon', 'Basic'),
+                                                                       ('Electrike',   35, 10, 'https://images.pokemontcg.io/base3/56.png', 'Electric', 'Common', 'Basic'),
+                                                                       ('Manectric',  35, 8, 'https://images.pokemontcg.io/base3/44.png', 'Electric', 'Uncommon', 'Basic'),
+                                                                       ('Plusle',     45, 10, 'https://images.pokemontcg.io/base3/47.png', 'Electric', 'Common', 'Basic'),
+                                                                       ('Minun',    75, 14, 'https://images.pokemontcg.io/base3/37.png', 'Electric', 'Common', 'Stage 1'),
+                                                                       ('Volbeat',      40, 8, 'https://images.pokemontcg.io/base3/36.png', 'Bug', 'Uncommon', 'Basic'),
+                                                                       ('Illumise',      60, 12, 'https://images.pokemontcg.io/base1/60.png', 'Bug', 'Uncommon', 'Stage 1'),
+                                                                       ('Roselia',    40, 8, 'https://images.pokemontcg.io/base2/44.png', 'Grass', 'Common', 'Basic'),
+                                                                       ('Gulpin',    55, 12, 'https://images.pokemontcg.io/base5/67.png', 'Poison', 'Common', 'Stage 1'),
+                                                                       ('Swalot',     85, 16, 'https://images.pokemontcg.io/base3/43.png', 'Poison', 'Uncommon', 'Stage 2'),
+                                                                       ('Carvanha',   55, 12, 'https://images.pokemontcg.io/base4/79.png', 'Grass', 'Common', 'Basic'),
+                                                                       ('Sharpedo',    40, 8, 'https://images.pokemontcg.io/base4/9.png', 'Water', 'Rare', 'Basic'),
+                                                                       ('Wailmer', 70, 14, 'https://images.pokemontcg.io/base4/40.png', 'Water', 'Common', 'Stage 1'),
+                                                                       ('Wailord',       55, 10, 'https://images.pokemontcg.io/base4/72.png', 'Water', 'Rare', 'Basic'),
+                                                                       ('Numel',      65, 12, 'https://images.pokemontcg.io/base4/37.png', 'Fire', 'Common', 'Stage 2'),
+                                                                       ('Camerupt',        40, 8, 'https://images.pokemontcg.io/base4/61.png', 'Fire', 'Uncommon', 'Basic'),
+                                                                       ('Torkoal',     60, 10, 'https://images.pokemontcg.io/base4/36.png', 'Fire', 'Uncommon', 'Stage 1'),
+                                                                       ('Spoink',      70, 12, 'https://images.pokemontcg.io/base5/57.png', 'Psychic', 'Common', 'Stage 2'),
+                                                                       ('Grumpig',         50, 10, 'https://images.pokemontcg.io/base3/13.png', 'Psychic', 'Uncommon', 'Basic'),
+                                                                       ('Spinda',    40, 8, 'https://images.pokemontcg.io/base3/54.png', 'Normal', 'Common', 'Basic'),
+                                                                       ('Trapinch',    65, 12, 'https://images.pokemontcg.io/base3/32.png', 'Ground', 'Common', 'Stage 1'),
+                                                                       ('Vibrava',      35, 10, 'https://images.pokemontcg.io/base1/50.png', 'Ground', 'Uncommon', 'Basic'),
+                                                                       ('Flygon',     40, 8, 'https://images.pokemontcg.io/base1/29.png', 'Dragon', 'Rare', 'Basic'),
+                                                                       ('Cacnea',      70, 10, 'https://images.pokemontcg.io/base3/20.png', 'Grass', 'Common', 'Stage 1'),
+                                                                       ('Cacturne',        75, 16, 'https://images.pokemontcg.io/base1/56.png', 'Grass', 'Uncommon', 'Stage 2'),
+                                                                       ('Swablu',     75, 16, 'https://images.pokemontcg.io/base1/49.png', 'Flying', 'Common', 'Stage 2'),
+                                                                       ('Altaria',       40, 8, 'https://images.pokemontcg.io/base3/8.png', 'Flying', 'Rare', 'Basic'),
+                                                                       ('Zangoose',      85, 16, 'https://images.pokemontcg.io/base3/51.png', 'Normal', 'Uncommon', 'Stage 2'),
+                                                                       ('Seviper',     40, 8, 'https://images.pokemontcg.io/base3/38.png', 'Poison', 'Uncommon', 'Basic'),
+                                                                       ('Lunatone',     40, 8, 'https://images.pokemontcg.io/base4/98.png', 'Rock', 'Uncommon', 'Basic'),
+                                                                       ('Solrock',   80, 10, 'https://images.pokemontcg.io/base4/25.png', 'Rock', 'Uncommon', 'Basic'),
+                                                                       ('Barboach',   45, 8, 'https://images.pokemontcg.io/base4/74.png', 'Water', 'Common', 'Basic'),
+                                                                       ('Whiscash',   45, 8, 'https://images.pokemontcg.io/base4/39.png', 'Water', 'Rare', 'Basic'),
+                                                                       ('Corphish',      95, 12, 'https://images.pokemontcg.io/base4/70.png', 'Water', 'Common', 'Stage 1'),
+                                                                       ('Crawdaunt',     50, 8, 'https://images.pokemontcg.io/base4/52.png', 'Water', 'Uncommon', 'Basic'),
+                                                                       ('Baltoy',   45, 8, 'https://images.pokemontcg.io/base3/7.png', 'Ground', 'Common', 'Basic'),
+                                                                       ('Claydol',  90, 14, 'https://images.pokemontcg.io/base4/8.png', 'Ground', 'Rare', 'Stage 1'),
+                                                                       ('Lileep',   40, 8, 'https://images.pokemontcg.io/base4/48.png', 'Rock', 'Common', 'Basic'),
+                                                                       ('Cradily',     75, 14, 'https://images.pokemontcg.io/base1/51.png', 'Rock', 'Rare', 'Stage 1'),
+                                                                       ('Anorith',     45, 8, 'https://images.pokemontcg.io/base3/45.png', 'Rock', 'Common', 'Basic'),
+                                                                       ('Armaldo',     80, 14, 'https://images.pokemontcg.io/base4/90.png', 'Rock', 'Rare', 'Stage 1'),
+                                                                       ('Feebas',      50, 8, 'https://images.pokemontcg.io/base4/59.png', 'Water', 'Common', 'Basic'),
+                                                                       ('Milotic',    80, 14, 'https://images.pokemontcg.io/base1/3.png', 'Water', 'Rare', 'Basic'),
+                                                                       ('Castform',     45, 8, 'https://images.pokemontcg.io/base1/66.png', 'Normal', 'Common', 'Basic'),
+                                                                       ('Kecleon',  45, 8, 'https://images.pokemontcg.io/base4/26.png', 'Normal', 'Uncommon', 'Basic'),
+                                                                       ('Shuppet',      85, 16, 'https://images.pokemontcg.io/base3/49.png', 'Ghost', 'Common', 'Stage 1'),
+                                                                       ('Banette',      40, 8, 'https://images.pokemontcg.io/base3/42.png', 'Ghost', 'Rare', 'Basic'),
+                                                                       ('Duskull',     65, 10, 'https://images.pokemontcg.io/base4/76.png', 'Ghost', 'Common', 'Stage 1'),
+                                                                       ('Dusclops',     45, 8, 'https://images.pokemontcg.io/base4/60.png', 'Ghost', 'Uncommon', 'Basic'),
+                                                                       ('Tropius',     80, 14, 'https://images.pokemontcg.io/base4/60.png', 'Grass', 'Uncommon', 'Stage 1'),
+                                                                       ('Chimecho',      45, 8, 'https://images.pokemontcg.io/base4/95.png', 'Psychic', 'Common', 'Basic'),
+                                                                       ('Absol',     40, 8, 'https://images.pokemontcg.io/base4/94.png', 'Dark', 'Uncommon', 'Basic'),
+                                                                       ('Wynaut',    75, 14, 'https://images.pokemontcg.io/base4/27.png', 'Psychic', 'Common', 'Stage 1'),
+                                                                       ('Snorunt',     70, 12, 'https://images.pokemontcg.io/base4/17.png', 'Ice', 'Common', 'Basic'),
+                                                                       ('Glalie',        60, 12, 'https://images.pokemontcg.io/base4/45.png', 'Ice', 'Rare', 'Basic'),
+                                                                       ('Spheal',  75, 10, 'https://images.pokemontcg.io/base4/24.png', 'Ice', 'Common', 'Basic'),
+                                                                       ('Sealeo',      40, 8, 'https://images.pokemontcg.io/base1/36.png', 'Ice', 'Uncommon', 'Basic'),
+                                                                       ('Walrein',      70, 14, 'https://images.pokemontcg.io/base4/29.png', 'Ice', 'Rare', 'Stage 1'),
+                                                                       ('Clamperl',      80, 16, 'https://images.pokemontcg.io/base4/62.png', 'Water', 'Uncommon', 'Stage 2'),
+                                                                       ('Huntail',    45, 8, 'https://images.pokemontcg.io/base4/50.png', 'Water', 'Rare', 'Basic'),
+                                                                       ('Gorebyss',    80, 14, 'https://images.pokemontcg.io/base4/7.png', 'Water', 'Rare', 'Stage 1'),
+                                                                       ('Relicanth',      65, 12, 'https://images.pokemontcg.io/base3/10.png', 'Water', 'Uncommon', 'Stage 1'),
+                                                                       ('Luvdisc',       50, 10, 'https://images.pokemontcg.io/base3/3.png', 'Water', 'Common', 'Basic'),
+                                                                       ('Bagon',       50, 8, 'https://images.pokemontcg.io/base2/51.png', 'Dragon', 'Common', 'Basic'),
+                                                                       ('Shellgon',    55, 14, 'https://images.pokemontcg.io/base2/12.png', 'Dragon', 'Uncommon', 'Basic'),
+                                                                       ('Salamence',     80, 16, 'https://images.pokemontcg.io/base2/20.png', 'Dragon', 'Rare', 'Stage 1'),
+                                                                       ('Beldum',     35, 8, 'https://images.pokemontcg.io/base2/3.png', 'Steel', 'Common', 'Basic'),
+                                                                       ('Metang',     40, 8, 'https://images.pokemontcg.io/base1/39.png', 'Steel', 'Uncommon', 'Basic'),
+                                                                       ('Metagross',     40, 8, 'https://images.pokemontcg.io/base3/52.png', 'Steel', 'Rare', 'Basic'),
+                                                                       ('Regirock',     90, 14, 'https://images.pokemontcg.io/base3/40.png', 'Rock', 'Legendary', 'Basic'),
+                                                                       ('Regice',     120, 11, 'https://images.pokemontcg.io/base3/40.png', 'Ice', 'Legendary', 'Stage 1'),
+                                                                       ('Registeel',      95, 16, 'https://images.pokemontcg.io/base3/50.png', 'Steel', 'Legendary', 'Basic'),
+                                                                       ('Latias',    95, 16, 'https://images.pokemontcg.io/base3/9.png', 'Dragon', 'Legendary', 'Basic'),
+                                                                       ('Latios',  95, 16, 'https://images.pokemontcg.io/base3/1.png', 'Dragon', 'Legendary', 'Basic'),
+                                                                       ('Kyogre',     45, 10, 'https://images.pokemontcg.io/base4/30.png', 'Water', 'Legendary', 'Basic'),
+                                                                       ('Groudon',    65, 12, 'https://images.pokemontcg.io/base3/2.png', 'Ground', 'Legendary', 'Basic'),
+                                                                       ('Rayquaza',      90, 15, 'https://images.pokemontcg.io/base4/20.png', 'Dragon', 'Legendary', 'Basic'),
+                                                                       ('Jirachi',     95, 16, 'https://images.pokemontcg.io/base3/12.png', 'Psychic', 'Legendary', 'Basic'),
+                                                                       ('Deoxys',     95, 16, 'https://images.pokemontcg.io/base4/38.png', 'Psychic', 'Legendary', 'Basic');
 
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/1.png' where id = 1;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/2.png' where id = 2;
@@ -531,3 +668,138 @@ update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/mast
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/249.png' where id = 249;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/250.png' where id = 250;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/251.png' where id = 251;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/252.png' where id = 252;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/253.png' where id = 253;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/254.png' where id = 254;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/255.png' where id = 255;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/256.png' where id = 256;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/257.png' where id = 257;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/258.png' where id = 258;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/259.png' where id = 259;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/260.png' where id = 260;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/261.png' where id = 261;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/262.png' where id = 262;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/263.png' where id = 263;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/264.png' where id = 264;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/265.png' where id = 265;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/266.png' where id = 266;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/267.png' where id = 267;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/268.png' where id = 268;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/269.png' where id = 269;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/270.png' where id = 270;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/271.png' where id = 271;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/272.png' where id = 272;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/273.png' where id = 273;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/274.png' where id = 274;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/275.png' where id = 275;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/276.png' where id = 276;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/277.png' where id = 277;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/278.png' where id = 278;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/279.png' where id = 279;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/280.png' where id = 280;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/281.png' where id = 281;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/282.png' where id = 282;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/283.png' where id = 283;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/284.png' where id = 284;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/285.png' where id = 285;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/286.png' where id = 286;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/287.png' where id = 287;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/288.png' where id = 288;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/289.png' where id = 289;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/290.png' where id = 290;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/291.png' where id = 291;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/292.png' where id = 292;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/293.png' where id = 293;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/294.png' where id = 294;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/295.png' where id = 295;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/296.png' where id = 296;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/297.png' where id = 297;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/298.png' where id = 298;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/299.png' where id = 299;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/300.png' where id = 300;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/301.png' where id = 301;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/302.png' where id = 302;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/303.png' where id = 303;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/304.png' where id = 304;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/305.png' where id = 305;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/306.png' where id = 306;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/307.png' where id = 307;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/308.png' where id = 308;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/309.png' where id = 309;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/310.png' where id = 310;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/311.png' where id = 311;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/312.png' where id = 312;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/313.png' where id = 313;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/314.png' where id = 314;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/315.png' where id = 315;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/316.png' where id = 316;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/317.png' where id = 317;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/318.png' where id = 318;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/319.png' where id = 319;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/320.png' where id = 320;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/321.png' where id = 321;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/322.png' where id = 322;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/323.png' where id = 323;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/324.png' where id = 324;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/325.png' where id = 325;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/326.png' where id = 326;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/327.png' where id = 327;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/328.png' where id = 328;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/329.png' where id = 329;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/330.png' where id = 330;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/331.png' where id = 331;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/332.png' where id = 332;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/333.png' where id = 333;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/334.png' where id = 334;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/335.png' where id = 335;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/336.png' where id = 336;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/337.png' where id = 337;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/338.png' where id = 338;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/339.png' where id = 339;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/340.png' where id = 340;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/341.png' where id = 341;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/342.png' where id = 242;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/343.png' where id = 343;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/344.png' where id = 344;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/345.png' where id = 345;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/346.png' where id = 346;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/347.png' where id = 347;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/348.png' where id = 348;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/349.png' where id = 349;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/350.png' where id = 350;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/351.png' where id = 351;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/352.png' where id = 352;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/353.png' where id = 353;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/354.png' where id = 354;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/355.png' where id = 355;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/356.png' where id = 356;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/357.png' where id = 357;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/358.png' where id = 358;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/359.png' where id = 359;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/360.png' where id = 360;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/361.png' where id = 361;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/362.png' where id = 362;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/363.png' where id = 363;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/364.png' where id = 364;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/365.png' where id = 365;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/366.png' where id = 366;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/367.png' where id = 367;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/368.png' where id = 368;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/369.png' where id = 369;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/370.png' where id = 370;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/371.png' where id = 371;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/372.png' where id = 372;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/373.png' where id = 373;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/374.png' where id = 374;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/375.png' where id = 375;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/376.png' where id = 376;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/377.png' where id = 377;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/378.png' where id = 378;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/379.png' where id = 379;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/380.png' where id = 380;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/381.png' where id = 381;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/382.png' where id = 382;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/383.png' where id = 383;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/384.png' where id = 384;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/385.png' where id = 385;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/386.png' where id = 386;
