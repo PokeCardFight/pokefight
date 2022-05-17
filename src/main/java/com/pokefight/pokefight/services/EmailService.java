@@ -17,7 +17,7 @@ public class EmailService {
 
     private EmailService() {
         message = new SimpleMailMessage();
-        message.setFrom("noreply@pokefight.com");
+        message.setFrom("noreply@pokefight.quest");
     }
 
     public void sendGeneralMessage(User user, String subject, String body) {
