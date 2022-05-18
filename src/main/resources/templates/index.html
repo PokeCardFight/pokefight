@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
     <head th:replace="partials/fragments :: header(title='Splash', css='/static/css/index.css')"></head>
 <body>
-<nav th:replace="partials/fragments :: navbar"></nav>
+<nav th:replace="partials/fragments :: navbar(location='notHome')"></nav>
 
 <img id="loader" src="#" alt="opening gif" class="active">
 
@@ -13,10 +13,17 @@
     </div>
     <img src="/static/img/splash1.gif" id="gameplay-idle" alt="gameplay_idle" class="img-fluid">
     <div class="w-100"></div>
-    <audio id="music" controls autoplay src="" type="audio/mpeg">
+    <div class="readable-background mx-5">now playing: <span id="currently-playing"></span></div>
+    <audio id="music" controls autoplay src="">
 </audio>
-    <div class="m-5 readable-background"><p>after sign up, simply select your pokemon and a pouch to bring into battle. <br>Good luck!</p></div>
-
+    <div class="readable-background mx-5">reload to get a different song. or pick <span id="theList" onclick="list()" style="text-decoration: underline; color: blue;">here!
+    <div id="playlist" class="hidden">
+    <ul class="songs">
+    </ul>
+</div>
+    </span>
+        <div class="w-100 my-1"></div>
+    <p>after sign up, simply select your pokemon and a pouch to bring into battle. <br>Good luck!</p></div>
 </div>
 
 <div th:include="partials/fragments :: footer(footer=true)"></div>

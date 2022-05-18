@@ -18,6 +18,32 @@
 #splash-main{
     margin-right: -16px;
 }
+#theList{
+position: relative;
+}
+#playlist{
+    position: absolute;
+    right: 0;
+    bottom: 100%;
+    z-index: 3;
+    background: black;
+    color: white;
+    text-decoration: white;
+    transition: all .5s ease-in-out;
+    border: 1px solid gold ;
+}
+#playlist ul{
+    list-style: none;
+    padding: 7px;
+    margin: 3px;
+}
+#playlist li:hover{
+    color: gold;
+    transition: color .4s ease-in-out;
+}
+#playlist li:active{
+    color: red;
+}
 
 @media screen and (max-width: 710px){
     #gameplay-idle{

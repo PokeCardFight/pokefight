@@ -1,5 +1,5 @@
 $(document).ready(()=>{
-    setTimeout(()=>{$("#logInForm").removeClass("drop");},400);
+    setTimeout(()=>{$("#logInForm").removeClass("drop");$("#how-toForm").removeClass("drop")},400);
 })
 
 $("#logIn, #logInM, #loginX").click((e) => {
@@ -7,6 +7,12 @@ $("#logIn, #logInM, #loginX").click((e) => {
     $("#logInForm").toggleClass("hidden active");
     $(".dropbtn").toggleClass("hidden active")
 
+})
+$("#how-toFormX, #how-to, #how-toM").click((e) => {
+    e.preventDefault()
+    $("#how-toForm").toggleClass("hidden active");
+    $(".dropbtn").toggleClass("hidden active");
+    $("#how-to, #how-toM").toggleClass("highlighted")
 })
 
 const password = $("#loginPassword")
