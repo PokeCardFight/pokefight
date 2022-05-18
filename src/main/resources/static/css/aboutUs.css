@@ -9,13 +9,15 @@ h3{
     width: 200px;
     height: auto;
     margin-top: 60px;
-
+    transition: transform .2s ease-in-out;
 }
 #master-container img:hover{
     transform: scale(1.2);
-    transition: scale .5s ease-in-out;
-
 }
+#master-container img:active{
+    transform: scale(2) translatey(-50%) translateX(50%);
+}
+
 #Noah > img{
     height: 203.62px;
     object-fit: cover;

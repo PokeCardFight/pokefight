@@ -303,4 +303,8 @@ body {
     }
 
 }
-
+@media screen and (min-height: 1100px){
+    .main-container {
+        margin: 0;
+    }
+}
