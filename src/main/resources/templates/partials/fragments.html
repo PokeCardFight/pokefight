@@ -25,7 +25,7 @@
 <body>
 
 
-<nav th:fragment="navbar" class="unique-navbar fixed-top">
+<nav th:fragment="navbar(location)" class="unique-navbar fixed-top">
 
         <a th:href="@{/}"> <!--navbar brand-->
             <img src="/static/img/Logo.png" id="logo" class="img-fluid" alt="logo.jpg">
@@ -44,6 +44,12 @@
 
                     <li class="mobile-item">
                         <a id="contactM" th:href="@{/contact}">Contact us
+                            <div class="indicator"></div>
+                        </a>
+                    </li>
+
+                    <li class="mobile-item">
+                        <a id="how-toM" href="#">How-to
                             <div class="indicator"></div>
                         </a>
                     </li>
@@ -93,6 +99,10 @@
                 <div class="indicator"></div>
             </a>
 
+            <a id="how-to" href="#" class="">How-to
+                <div class="indicator"></div>
+            </a>
+
             <a id="home" th:href="@{/home/default}" class="" sec:authorize="isAuthenticated()">Home
 
                 <div class="indicator"></div>
@@ -123,7 +133,6 @@
 
         </div> <!--normal sized navlinks-->
 
-        <!--login form-->
         <div id="logInForm" class="hidden drop">
             <form class="popup_loginForm text-center" th:action="@{/}" method="post">
                 <button id="loginX" class="p-2">X</button>
@@ -145,8 +154,28 @@
                 </div>
                 <button id="submitLogin" type="submit" class="btn w-100 btn-primary">Submit</button>
             </form>
+        </div><!--login form-->
+
+
+    <div id="how-toForm" class="hidden drop">
+        <div class="navbar-readable popup_HowToForm"> <!--plan to make multiple dividers to explain what to do on each page. keeing items list there in case they need it to see what does what-->
+            <button id="how-toFormX" class="p-2">X</button>
+            <h1 class="text-center">How to play</h1>
+            <p sec:authorize="isAnonymous()">To begin, please sign up with the form! this pop-up will update as you go to help guide you to the battle screen!</p>
+            <p sec:authorize="isAuthenticated()" th:if="${location=='notHome'}">Now that you are signed in, go to home to see your pokemon!</p>
+            <p th:if="${location=='error'}">WHAT??? why are you looking at me???? i dont know what happened! Quick, go back to the home screen and try again by clicking the logo!</p>
+            <p th:if="${location=='home'}"> on this page, select your pokemon to go into battle with, as well as a pouch. this pouch can hold up to three items to take into your next battle!</p>
+            <p th:if="${location=='battle'}">this is the battle page, a hidden coin flip will determine who goes first, show in the console below. on your turn, you may choose to fight, run, or use an item. running will end the battle immediately. fighting will use your attack number with a change to critical hit!, and items each vary on their uses.</p>
+            <h1 class="text-center">ITEMS</h1>
+            <p>pebble / super stone / hyper boulder</p>
+            <p> deal 15/25/55 damage to the pokemon this turn!</p>
+            <p>sandal / super boot / sleepy slipper</p>
+            <p>deal 5 damage, then put the opponent to sleep for 1/2/3 turns!</p>
+            <p>potion / super potion / hyper potion</p>
+            <p>heal your pokemon for 15/25/55 damage!</p>
         </div>
-        <!--login form-->
+
+    </div><!--how to play popup-->
 
 </nav> <!--fragment end-->
 
