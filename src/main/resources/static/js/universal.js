@@ -8,9 +8,11 @@ $("#logIn, #logInM, #loginX").click((e) => {
     $(".dropbtn").toggleClass("hidden active")
 
 })
+
+let howtoForm= $("#how-toForm");
 $("#how-toFormX, #how-to, #how-toM").click((e) => {
     e.preventDefault()
-    $("#how-toForm").toggleClass("hidden active");
+    howtoForm.toggleClass("hidden active");
     $(".dropbtn").toggleClass("hidden active");
     $("#how-to, #how-toM").toggleClass("highlighted")
 })
@@ -46,6 +48,18 @@ $(window).click((event) => {
                 navLinksM.removeClass("active");
                 navLinksM.addClass("hidden");
             }
+
+    }
+})
+// Close the how to popup if the user clicks anywhere
+
+$(window).click((event) => {
+
+    if (!event.target.matches("#how-to, #how-toM")) {
+        if (howtoForm.hasClass("active")) {
+            howtoForm.removeClass("active");
+            howtoForm.addClass("hidden");
+        }
 
     }
 })
