@@ -59,6 +59,7 @@ $(window).click((event) => {
         if (howtoForm.hasClass("active")) {
             howtoForm.removeClass("active");
             howtoForm.addClass("hidden");
+            $("#how-to, #how-toM").removeClass("highlighted")
         }
 
     }

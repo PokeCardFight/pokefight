@@ -91,11 +91,11 @@
 
         <div id="navLinks" class="navbar-items row align-items-center justify-content-end text-uppercase">
 
-            <a id="about" th:href="@{/about}" class="">About us
+            <a id="about" th:href="@{/about}" class="" th:if="${location!='battle'}">About us
                 <div class="indicator"></div>
             </a>
 
-            <a id="contact" th:href="@{/contact}" class="">Contact us
+            <a id="contact" th:href="@{/contact}" class="" th:if="${location!='battle'}">Contact us
                 <div class="indicator"></div>
             </a>
 
@@ -103,8 +103,7 @@
                 <div class="indicator"></div>
             </a>
 
-            <a id="home" th:href="@{/home/default}" class="" sec:authorize="isAuthenticated()">Home
-
+            <a id="home" th:href="@{/home/default}" class="" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">Home
                 <div class="indicator"></div>
             </a>
 
@@ -116,13 +115,13 @@
                 <div class="indicator"></div>
             </a>
             <!--only shows up after security login-->
-            <a id="profile" th:href="@{/profile}" class="" sec:authorize="isAuthenticated()">
+            <a id="profile" th:href="@{/profile}" class="" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
                 <span th:text="${#authentication.principal.username}"></span>
                 <!--intellij doesnt understand. ignore sqigglys-->
                 <div class="indicator"></div>
             </a>
 
-            <a href="#" id="logout" role="menuitem" class="" sec:authorize="isAuthenticated()"> Logout
+            <a href="#" id="logout" role="menuitem" class="" sec:authorize="isAuthenticated()" th:if="${location!='battle'}"> Logout
                 <div class="indicator"></div>
             </a>
 
@@ -173,7 +172,7 @@
             <p>deal 5 damage, then put the opponent to sleep for 1/2/3 turns!</p>
             <p>potion / super potion / hyper potion</p>
             <p>heal your pokemon for 15/25/55 damage!</p>
-            <p class="my-2 pulsate">click anywhere to close this page</p>
+            <p class="my-2 pulsate text-center text-uppercase">click anywhere to close this page!</p>
         </div>
 
     </div><!--how to play popup-->
