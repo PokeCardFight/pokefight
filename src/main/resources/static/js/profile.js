@@ -24,9 +24,8 @@ const postProfileUrl = (data) => {
         error: e => console.log("ERROR: ", e),
         done: e => console.log('DONE: ', e)
     });
-<<<<<<< HEAD
-});
-const form = $("#edit_form")
+
+    const form = $("#edit_form")
 $("#submitEditform").click((e)=>{
     e.preventDefault();
 let pass = $("#password").val();
@@ -41,7 +40,7 @@ let confirm = $("#confirmPass").val();
         alert("passwords do not match!");
     }
 });
-=======
+
 }
 const options = {
     onUploadDone: postProfileUrl,
@@ -51,4 +50,3 @@ const options = {
 };
 let btn = document.querySelector('#picker');
 btn.addEventListener('click', () => filestack.init(APIKEY).picker(options).open());
->>>>>>> c422a23f75c0f98a7586973b9dae6a7820486936
