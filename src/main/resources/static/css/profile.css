@@ -45,6 +45,7 @@ body {
     display: grid;
     grid-template-columns: repeat(9, var(--grid-spacing-columns));
     grid-template-rows: repeat(16, var(--grid-spacing-rows));
+    margin: 75px 0 0 0;
 }
 
 .header {
@@ -302,4 +303,8 @@ body {
     }
 
 }
-
+@media screen and (min-height: 1100px){
+    .main-container {
+        margin: 0;
+    }
+}

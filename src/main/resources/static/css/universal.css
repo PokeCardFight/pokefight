@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
 body {
-    padding-top: 100px;
+    padding-top: 150px;
     padding-bottom: 50px;
     --nav-height: 100px;
     --logo-OGsize: 344px;
@@ -275,13 +275,13 @@ input {
 }
 
 
-@media screen and (min-width: 350px) and (max-width: 803px) {
+@media screen and (min-width: 350px) and (max-width: 1020px) { /*803*/
     .unique-navbar {
         justify-content: center;
     }
 }
 
-@media screen and (max-width: 803px) {
+@media screen and (max-width: 1020px) {
 
     .footer {
         max-height: 25px;
@@ -335,7 +335,7 @@ input {
 
 }
 
-@media screen and (min-width: 803px) {
+@media screen and (min-width: 1020px) {
     #navLinks {
         display: flex;
         position: absolute;
@@ -355,3 +355,4 @@ input {
         padding: 0 15px 10px 15px;
     }
 }
+
