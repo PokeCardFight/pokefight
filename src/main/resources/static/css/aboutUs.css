@@ -11,6 +11,11 @@ h3{
     margin-top: 60px;
 
 }
+#master-container img:hover{
+    transform: scale(1.2);
+    transition: scale .5s ease-in-out;
+
+}
 #Noah > img{
     height: 203.62px;
     object-fit: cover;
