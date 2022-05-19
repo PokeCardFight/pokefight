@@ -85,7 +85,7 @@ public class BattleController {
         System.out.println("userLevel = " + userLevel);
         System.out.println("computerCardId = " + computerCardId);
 
-        return "redirect:battle";
+        return "redirect:home/default";
     }
 
     @PostMapping("/battle/remove/item")
