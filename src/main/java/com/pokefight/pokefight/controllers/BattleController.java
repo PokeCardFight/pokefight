@@ -61,7 +61,7 @@ public class BattleController {
 
             battleFlag = false;
             return "battle";
-        } else return "redirect:/home/default";
+        } else return "redirect:home/default";
 
     }
 
@@ -85,7 +85,7 @@ public class BattleController {
         System.out.println("userLevel = " + userLevel);
         System.out.println("computerCardId = " + computerCardId);
 
-        return "redirect:/battle";
+        return "redirect:battle";
     }
 
     @PostMapping("/battle/remove/item")
