@@ -40,8 +40,8 @@ public class BattleController {
         this.backgroundDao = backgroundDao;
     }
 
-    @GetMapping("/battle")
-    public String battleView(Model model){
+    @GetMapping("/battle/{cardId}/{pouchId}/battle")
+    public String battleView(Model model,@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
         System.out.println("i got here");
         if (resetProtectionFlag) {
             if (turn) model.addAttribute("turn", "Player");
@@ -85,7 +85,7 @@ public class BattleController {
         System.out.println("userLevel = " + userLevel);
         System.out.println("computerCardId = " + computerCardId);
 
-        return "redirect:/";
+        return "redirect:battle";
     }
 
     @PostMapping("/battle/remove/item")
