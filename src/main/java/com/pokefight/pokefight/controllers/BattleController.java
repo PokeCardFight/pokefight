@@ -65,7 +65,7 @@ public class BattleController {
 
     }
 
-    @GetMapping("/battle/{cardId}/{pouchId}")
+    @GetMapping("/battle/{cardId}/{pouchId}/battle")
     public String battleGet(@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
         battleFlag = true;
 
