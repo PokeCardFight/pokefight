@@ -239,7 +239,7 @@
                             case 'missed': amount *= 0; break;
                             case 'grazed': amount *= 0.5; break;
                             case 'power attacked': amount *= 1.5; break;
-                            case 'critically attack': amount *= 2; break;
+                            case 'critically attacked': amount *= 2; break;
                             default: break;
                         }
                         textBox.innerHTML += `${target.name} was ${attack}.<br>${target.name} loses ${amount} health points.<br>`;
