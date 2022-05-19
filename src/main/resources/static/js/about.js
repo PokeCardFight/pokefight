@@ -4,7 +4,9 @@ function infoLoader(info){
     parent.toggleClass("fullscreen");
     // parent.children("img").toggleClass("profile-Pop"); useless now
     parent.children(".open").toggleClass("drop");
-    parent.children("section").children(".card").toggleClass("drop");
+    // parent.children("section").children(".card").toggleClass("drop");
+    parent.children("section").children().toggleClass("drop");
+    parent.children("h4").toggleClass("drop");
     let name= "#"+parent.attr("id")+"_full";
     $(name).toggleClass("move-up");
 
