@@ -97,7 +97,7 @@ public class HomeController {
             int quantity = pouchItemDao.getQuantityFromPouch(tempPouch.getId());
             if (quantity < 3) pouchItemDao.save(new PouchItem(tempPouch, tempItem));
         }
-        return "redirect:home/{order}";
+        return "redirect:home/{default}";
     }
 
 
