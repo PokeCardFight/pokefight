@@ -38,7 +38,7 @@ public class RegisterController {
     public String registerGet(Model model){
         model.addAttribute("user", new User());
 
-        return "/registration";
+        return "registration";
     }
 
     @PostMapping("/register")
