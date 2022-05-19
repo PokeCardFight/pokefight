@@ -43,11 +43,12 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .logoutSuccessUrl("/")
             .and()
                 .authorizeRequests()
-                .antMatchers("/","/about","/contact","/register", "/static/favicon.ico").permitAll()
+                .antMatchers("/","/about","/register", "/static/favicon.ico").permitAll()
                 .antMatchers(
                         "/home",
                         "/home/{order}",
                         "/home/addItems",
+                        "/contact",
                         "/profile",
                         "/battle",
                         "/battle/{cardId}/{pouchId}/", "/battle/remove/item",
