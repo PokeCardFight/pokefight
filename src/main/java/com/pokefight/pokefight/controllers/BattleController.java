@@ -22,6 +22,8 @@ public class BattleController {
     private UserCardRepository userCardDao;
     private BackgroundRepository backgroundDao;
 
+    private boolean battleFlag;
+
     private boolean turn;
     private long playerCardId;
     private long playerPouchId;
@@ -40,26 +42,33 @@ public class BattleController {
 
     @GetMapping("/battle")
     public String battleView(Model model){
-        if (turn) model.addAttribute("turn", "Player");
-        else model.addAttribute("turn", "Computer");
 
-        Card playerCard = cardDao.getById(playerCardId);
-        Card computerCard = cardDao.getById(computerCardId);
-        model.addAttribute("playerCard", playerCard);
-        model.addAttribute("computerCard", computerCard);
+        if (battleFlag) {
+            if (turn) model.addAttribute("turn", "Player");
+            else model.addAttribute("turn", "Computer");
 
-        List<Item> items = itemDao.getItemsByPouch(playerPouchId);
-        String itemsString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(items);
-        model.addAttribute("items", itemsString);
+            Card playerCard = cardDao.getById(playerCardId);
+            Card computerCard = cardDao.getById(computerCardId);
+            model.addAttribute("playerCard", playerCard);
+            model.addAttribute("computerCard", computerCard);
 
-        String url = backgroundDao.getBackgroundUrl(computerCard.getType());
-        model.addAttribute("backgroundUrl", url);
+            List<Item> items = itemDao.getItemsByPouch(playerPouchId);
+            String itemsString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(items);
+            model.addAttribute("items", itemsString);
 
-        return "/battle";
+            String url = backgroundDao.getBackgroundUrl(computerCard.getType());
+            model.addAttribute("backgroundUrl", url);
+
+            battleFlag = false;
+            return "/battle";
+        } else return "redirect:/home/default";
+
     }
 
     @GetMapping("/battle/{cardId}/{pouchId}/")
     public String battleGet(@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
+        battleFlag = true;
+
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(currentUser.getId());
 
