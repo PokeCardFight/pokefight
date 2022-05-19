@@ -43,7 +43,7 @@ let confirm = $("#confirmPass").val();
 
 }
 function upload() {
-    const apiKey = [[${apiKey}]];
+    const apiKey = ([[${apiKey}]]);
     const options = {
         onUploadDone: postProfileUrl,
         maxSize: 10 * 1024 * 1024,
