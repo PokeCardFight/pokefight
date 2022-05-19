@@ -40,8 +40,8 @@ public class BattleController {
         this.backgroundDao = backgroundDao;
     }
 
-    @GetMapping("/activeBattle/{cardId}/{pouchId}/")
-    public String battleView(Model model,@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
+    @GetMapping("/activeBattle/")
+    public String battleView(Model model){
         System.out.println("i got here");
         if (resetProtectionFlag) {
             if (turn) model.addAttribute("turn", "Player");
