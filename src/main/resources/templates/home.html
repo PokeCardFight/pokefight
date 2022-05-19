@@ -200,7 +200,7 @@
     cardsContainer.addEventListener('click', (e) => {
         let id = e.target.getAttribute('data-id');
         let card = cards.filter(element => element.id === parseInt(id))[0];
-        document.querySelector('#pokemon-name').innerHTML = `Name: ${card.name}`;
+        document.querySelector('#pokemon-name').innerHTML = ` ${card.name}`;
         document.querySelector('#pokemon-type').innerHTML = `Type: ${card.type}`;
         document.querySelector('#pokemon-subtype').innerHTML = `Stage: ${card.subtype}`;
         document.querySelector('#pokemon-attack').innerHTML = `Attack: ${card.attack}`;
