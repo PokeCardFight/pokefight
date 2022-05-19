@@ -6,7 +6,7 @@ target/
 !**/src/test/**/target/
 src/main/resources/application.properties
 src/main/resources/static/js/APIKEY.js
-
+src/main/resources/templates/test.html
 ### STS ###
 .apt_generated
 .classpath

@@ -1,9 +1,51 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/fragments :: header(title='About us!', css='/static/css/aboutUs.css')"></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>test about us</title>
+    <link rel="stylesheet" href="test.css">
+</head>
 <body>
-<nav th:replace="partials/fragments :: navbar(location='notHome')"></nav>
+<!DOCTYPE html>
+<div class="contain">
+<div class="flip-card">
+    <div class="inner">
+        <div class="front">
+            <img
+                src="../../static/img/pokemon_card_back.png"
+                alt="back of card"
+                style="width: 432px;height: 600px"
+            />
+        </div>
+        <div class="back">
 
+            <img
+                    src="/static/img/headshots/manuel.jpeg"
+                    alt="Daily Dev Tips"
+                    style="width:300px;height:300px;"
+            />
+            <h3>Manuel Dominguez</h3>
+            <h3>Manuel Dominguez</h3>
+            <div class="" id="Manuel_links">
+                <a href="https://github.com/Manueldominguez1113" class="mx-5">https://github.com/Manueldominguez1113</a>
+                <a href="https://www.linkedin.com/in/manueladominguez13" class="mx-5">https://www.linkedin.com/in/manueladominguez13</a>
+            </div>
+
+        </div>
+    </div>
+</div>
+</div>
+
+
+<p>Air Force Veteran and Software Developer experience with critical
+    problem-solving skills. A lifelong passion to code and a deep desire to gain an understanding of
+    software development led me to develop my full-stack skills. Ever enthusiastic to leverage my technical
+    and problem-solving skills to develop software that can be supportive and appealing.</p>
+
+
+
+
+<!--
 
 <div id="master-container">
     <div class="container-fluid align-items-center justify-content-around m-auto row">
@@ -11,15 +53,11 @@
         <div class="w-100"></div>
         <div id="Noah" class="profile text-center" onclick="infoLoader(info);">
             <h3 class="drop open">click on black space to exit</h3>
-<!--            <img src="/static/img/headshots/NoahBruno.jpg" class="img_fluid" alt="image">-->
-            <section class="cards"> <!--test-->
-                <div class="card noah animated"></div>
-                <div id="Noah_full" class="drop card noah animated full-card"></div>
-            </section>
+            <img src="/static/img/headshots/NoahBruno.jpg" class="img_fluid" alt="image">
             <h3>Noah Bruno</h3>
             <div class="drop open" id="Noah_links">
-                <a href="https://github.com/NoahBruno" class="mx-5"><i class="fa fa-brands fa-github"></i>https://github.com/NoahBruno</a>
-                <a href="https://www.linkedin.com/in/noahbruno" class="mx-5"><i class="fa fa-brands fa-linkedin"></i>https://www.linkedin.com/in/noahbruno</a>
+                <a href="https://github.com/NoahBruno" class="mx-5">https://github.com/NoahBruno</a>
+                <a href="https://www.linkedin.com/in/noahbruno" class="mx-5">https://www.linkedin.com/in/noahbruno</a>
             </div>
             <p class="drop open" id="info">Motivated full-stack software developer with a passion for developing new
                 code and technology. Successful working in both team and self-directed settings. Eager to use my
@@ -27,11 +65,7 @@
         </div>
         <div id="Manuel" class="profile text-center" onclick="infoLoader(info2);">
             <h3 class="drop open">click on black space to exit</h3>
-            <!--<img src="/static/img/headshots/manuel.jpeg" class="img_fluid" alt="image">-->
-            <section class="cards"> <!--test-->
-                <div class="card manuel animated"></div>
-                <div id="Manuel_full" class="drop card manuel animated full-card"></div>
-            </section>
+            <img src="/static/img/headshots/manuel.jpeg" class="img_fluid" alt="image">
             <h3>Manuel Dominguez</h3>
             <div class="drop open" id="Manuel_links">
                 <a href="https://github.com/Manueldominguez1113" class="mx-5">https://github.com/Manueldominguez1113</a>
@@ -47,11 +81,7 @@
     <div class="container-fluid m-auto align-items-center justify-content-around row">
         <div id="Michael" class="profile text-center" onclick="infoLoader(info3);">
             <h3 class="drop open">click on black space to exit</h3>
-            <!--<img src="/static/img/headshots/Michael.jpg" class="img_fluid" alt="image">-->
-            <section class="cards"> <!--test-->
-                <div class="card michael animated"></div>
-                <div id="Micheal_full" class="drop card michael animated full-card"></div>
-            </section>
+            <img src="/static/img/headshots/Michael.jpg" class="img_fluid" alt="image">
             <h3>Michael Jones</h3>
             <div class="drop open" id="Michael_links">
                 <a href="https://github.com/MichaelKeithJones" class="mx-5">https://github.com/MichaelKeithJones</a>
@@ -65,11 +95,7 @@
         </div>
         <div id="Gerald" class="profile text-center" onclick="infoLoader(info4);">
             <h3 class="drop open">click on black space to exit</h3>
-            <!--<img src="/static/img/headshots/geraldHeadShot.jpg" class="img_fluid" alt="image">-->
-            <section class="cards"> <!--test-->
-                <div class="card gerald animated"></div>
-                <div id="Gerald_full" class="drop card gerald animated full-card"></div>
-            </section>
+            <img src="/static/img/headshots/geraldHeadShot.jpg" class="img_fluid" alt="image">
             <h3>Gerald Montero</h3>
             <div class="drop open" id="Gerald_links">
                 <a href="https://github.com/geraldmontero" class="mx-5">https://github.com/geraldmontero</a>
@@ -80,14 +106,9 @@
                 unique perspectives to my work.</p>
         </div>
     </div>
-
-
-
-
-
-
 </div>
-<div th:include="partials/fragments :: footer(footer=true)"></div>
-<script src="/static/js/about.js"></script>
+-->
+
+<script src="test.js"></script>
 </body>
 </html>
