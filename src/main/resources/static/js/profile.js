@@ -42,6 +42,7 @@ let confirm = $("#confirmPass").val();
 });
 
 }
+const apiKey = [[${apiKey}]]
 const options = {
     onUploadDone: postProfileUrl,
     maxSize: 10 * 1024 * 1024,
@@ -49,4 +50,4 @@ const options = {
     uploadInBackground: false,
 };
 let btn = document.querySelector('#picker');
-btn.addEventListener('click', () => filestack.init(APIKEY).picker(options).open());
+btn.addEventListener('click', () => filestack.init(apiKey).picker(options).open());

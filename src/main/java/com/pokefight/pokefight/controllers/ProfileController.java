@@ -2,6 +2,7 @@ package com.pokefight.pokefight.controllers;
 
 import com.pokefight.pokefight.models.User;
 import com.pokefight.pokefight.repositories.UserRepository;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -18,6 +19,9 @@ public class ProfileController {
         this.userDao = userDao;
         this.passwordEncoder = passwordEncoder;
     }
+
+    @Value("${filestack.apikey}")
+    private String apiKey;
 
     @GetMapping("/profile")
     public String getUsers(Model model) {
