@@ -95,7 +95,7 @@
                 <div class="indicator"></div>
             </a>
 
-            <a id="contact" th:href="@{/contact}" class="" th:if="${location!='battle'}">Contact us
+            <a id="contact" th:href="@{/contact}" class="" th:if="${location!='battle'}" sec:authorize="isAuthenticated()">Contact us
                 <div class="indicator"></div>
             </a>
 
