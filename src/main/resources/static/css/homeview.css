@@ -31,7 +31,7 @@ div.bat:hover {
 
 
 .card-scroll{
-    height:600px;
+    height:515px;
 
     overflow-y: auto;
 
@@ -44,7 +44,7 @@ div.bat:hover {
 
 }
 .store-scroll{
-    height:200px;
+    height:175px;
 
     overflow-y: auto;
 

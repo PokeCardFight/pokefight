@@ -24,7 +24,7 @@ public class ProfileController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(currentUser.getId());
         model.addAttribute("user", user);
-        return "/profile";
+        return "profile";
     }
 
     @PostMapping("/profile/edit")
@@ -38,7 +38,7 @@ public class ProfileController {
         oldUser.setUsername(user.getUsername());
         oldUser.setEmail(user.getEmail());
         userDao.save(oldUser);
-        return "redirect:/profile";
+        return "redirect:profile";
     }
 
     @PostMapping("/profile/picture")
@@ -47,7 +47,7 @@ public class ProfileController {
         User oldUser = userDao.getById(user.getId());
         oldUser.setProfile_pic(url);
         userDao.save(oldUser);
-        return "redirect:/home/default";
+        return "redirect:home/default";
     }
 
 }

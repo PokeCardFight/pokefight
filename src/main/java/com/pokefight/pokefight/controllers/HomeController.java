@@ -78,7 +78,7 @@ public class HomeController {
                 model.addAttribute("cards", userCardString);
             }break;
         }
-        return "/home";
+        return "home";
     }
 
 
@@ -97,7 +97,7 @@ public class HomeController {
             int quantity = pouchItemDao.getQuantityFromPouch(tempPouch.getId());
             if (quantity < 3) pouchItemDao.save(new PouchItem(tempPouch, tempItem));
         }
-        return "redirect:/home/default";
+        return "redirect:home/default";
     }
 
 

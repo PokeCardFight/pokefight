@@ -65,7 +65,7 @@ public class BattleController {
 
     }
 
-    @GetMapping("/battle/{cardId}/{pouchId}/")
+    @GetMapping("/battle/{cardId}/{pouchId}/battle")
     public String battleGet(@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
         resetProtectionFlag = true;
 
@@ -85,7 +85,7 @@ public class BattleController {
         System.out.println("userLevel = " + userLevel);
         System.out.println("computerCardId = " + computerCardId);
 
-        return "redirect:/battle";
+        return "redirect:battle";
     }
 
     @PostMapping("/battle/remove/item")
