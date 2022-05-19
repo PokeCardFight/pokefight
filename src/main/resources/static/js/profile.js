@@ -42,14 +42,13 @@ let confirm = $("#confirmPass").val();
 });
 
 }
-function upload() {
-    const apiKey = ([[${apiKey}]]);
-    const options = {
-        onUploadDone: postProfileUrl,
-        maxSize: 10 * 1024 * 1024,
-        accept: 'image/*',
-        uploadInBackground: false,
-    };
-    let btn = document.querySelector('#picker');
-    btn.addEventListener('click', () => filestack.init(apiKey).picker(options).open());
-}
+
+
+const options = {
+    onUploadDone: postProfileUrl, maxSize: 10 * 1024 * 1024,
+    accept: 'image/*',
+    uploadInBackground: false,
+};
+const apiKey = [[${apiKey}]];
+let btn = document.querySelector('#picker');
+btn.addEventListener('click', () => filestack.init(apiKey).picker(options).open());
