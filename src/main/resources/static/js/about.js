@@ -1,19 +1,31 @@
 function infoLoader(info){
-    $(info).parents(".profile").toggleClass("fullscreen");
-    $(info).parents(".profile").children("img").toggleClass("profile-Pop");
-    $(info).parents(".profile").children(".open").toggleClass("drop");
+    let parent= $(info).parents(".profile");
+
+    parent.toggleClass("fullscreen");
+    // parent.children("img").toggleClass("profile-Pop"); useless now
+    parent.children(".open").toggleClass("drop");
+    parent.children("section").children(".card").toggleClass("drop");
+    let name= "#"+parent.attr("id")+"_full";
+    $(name).toggleClass("move-up");
+
+    if($(info).parents(".profile").hasClass("fullscreen")){
+        $(window).scrollTop(0);
+    }
+
 }
 
+
+
+
 /*
-
-/!*
-
+ works but makes the picture disappear, might as well just keep it shiny no hover
   using
     - an animated gif of sparkles.
     - an animated gradient as a holo effect.
     - color-dodge mix blend mode
 
-*!/
+*/
+/*
 var x;
 var $cards = $(".card");
 var $style = $(".hover");

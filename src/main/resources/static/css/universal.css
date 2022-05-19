@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 body {
     padding-top: 150px;
     padding-bottom: 50px;
@@ -9,7 +10,7 @@ body {
     min-height: 100vh;
 }
 
-.drop{
+.drop {
     display: none;
 }
 
@@ -24,9 +25,19 @@ body {
     opacity: 1;
     /*transition: visibility 1s, opacity .3s;*/
 }
-.navbar-items > a.highlighted{
+
+.hide-behind {
+    z-index: -30000
+}
+
+.move-up {
+    z-index: 30000
+}
+
+.navbar-items > a.highlighted {
     color: gold;
 }
+
 .loginNameJump {
     transform: translateY(75px);
 
@@ -45,6 +56,7 @@ body {
     transition: visibility 1s, opacity .3s;
     z-index: 2;
 }
+
 .popup_HowToForm {
     background-color: black;
     border: 3px solid black;
@@ -59,9 +71,11 @@ body {
 
 
 }
-.pulsate{
+
+.pulsate {
     animation: pulse 1.5s infinite;
 }
+
 @keyframes pulse {
     0% {
         /*transform: scale(0.95);*/
@@ -177,7 +191,8 @@ input {
     right: 0;
 
 }
-.navbar-readable{
+
+.navbar-readable {
     background: black;
     color: white;
 }
@@ -240,10 +255,12 @@ input {
 .dropDown-content > a {
     padding: 0;
 }
+
 #textFooter a {
     color: white;
     text-decoration: none;
 }
+
 #textFooter a:hover {
     color: gold;
     transition: color .4s ease-in-out;
@@ -260,10 +277,12 @@ input {
     #footerEmpty, #footerLinks {
         display: none;
     }
+
     .footer {
         justify-content: center
     }
-    #textFooter{
+
+    #textFooter {
         text-align: center;
     }
 }
@@ -275,7 +294,8 @@ input {
 }
 
 
-@media screen and (min-width: 350px) and (max-width: 1020px) { /*803*/
+@media screen and (min-width: 350px) and (max-width: 1020px) {
+    /*803*/
     .unique-navbar {
         justify-content: center;
     }
@@ -294,7 +314,8 @@ input {
     .footer {
         justify-content: center
     }
-    #textFooter{
+
+    #textFooter {
         text-align: center;
     }
 
@@ -307,6 +328,7 @@ input {
         right: 20px;
         z-index: 30;
     }
+
     #how-toFormX {
         position: absolute;
         right: 20px;

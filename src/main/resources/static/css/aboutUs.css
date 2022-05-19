@@ -36,38 +36,44 @@ p{
     height: 100%;
     width: 100%;
 }
-/*!*attempt at poke flashy cards*!
+.cards .full-card{
+    width: 432px;
+    height: 600px;
+
+}
+
+/*attempt at poke flashy cards*/
 :root {
     --color1: rgb(0, 231, 255);
     --color2: rgb(255, 0, 231);
     --back: url(https://cdn2.bulbagarden.net/upload/1/17/Cardback.jpg);
     --charizard1: #fac;
     --charizard2: #ddccaa;
-    --charizardfront: url(https://assets.codepen.io/13471/charizard-gx.webp);
+    --charizardfront: url(/static/img/headshots/manuel.jpeg);
     --pika1: #54a29e;
     --pika2: #a79d66;
-    --pikafront: url(https://assets.codepen.io/13471/pikachu-gx.webp);
+    --pikafront: url(/static/img/headshots/michael.jpeg);
     --eevee1: #efb2fb;
     --eevee2: #acc6f8;
-    --eeveefront: url(https://assets.codepen.io/13471/eevee-gx.webp);
+    --eeveefront: url(/static/img/headshots/geraldHeadShot.jpg);
     --mewtwo1: #efb2fb;
     --mewtwo2: #acc6f8;
-    --mewtwofront: url(https://assets.codepen.io/13471/mewtwo-gx.webp);
+    --mewtwofront: url(/static/img/headshots/NoahBruno.jpg);
 }
-
+/*https://assets.codepen.io/13471/mewtwo-gx.webp*/
 
 
 .card {
 
     width: 71.5vw;
     height: 100vw;
-!*! / width: clamp(200 px, 61 vh, 18 vw);
-/ / height: clamp(280 px, 85 vh, 25.2 vw);*!
+/* / width: clamp(200 px, 61 vh, 18 vw);
+/ / height: clamp(280 px, 85 vh, 25.2 vw);*/
 
 position: relative;
 overflow: hidden;
 margin: 20px;
-z-index: 10;
+/*z-index: 10;*/
 touch-action: none;
 
 border-radius: 5% / 3.5%;
@@ -91,12 +97,12 @@ transform-origin: center;
 
 }
 
-!*card media query*!
+/*card media query*/
 @media screen and (min-width: 600px) {
-.card{!*!/ width: 61vh;
+.card{/* width: 61vh;
 // height: 85vh;
 // max-width: 500px;
-// max-height: 700px;*!
+// max-height: 700px;*/
     width: clamp(12.9vw, 61vh, 18vw);
     height: clamp(18vw, 85vh, 25.2vw);
 }
@@ -164,7 +170,7 @@ transform-origin: center;
     );
     opacity: .5;
     filter: brightness(.5) contrast(1);
-    z-index: 1;
+    /*z-index: 1;*/
 }
 
 .card:after {
@@ -348,7 +354,7 @@ transform-origin: center;
 .demo .card:nth-of-type(2):after,
 .demo .card:nth-of-type(3):after{
                animation: none;
-           !* opacity: 1;*!
+           /* opacity: 1;*/
            }
 
 .demo .card:nth-of-type(1):before, .demo .card:nth-of-type(1):after { display: none; }
@@ -370,35 +376,6 @@ transform-origin: center;
 }
 
 
-
-
-
-
-html, body {
-    height: 100%;
-    background-color: #333844;
-    padding: 0;
-    z-index: 1;
-    transform: translate3d(0,0,0.1px);
-}
-body {
-    color: white;
-    background-color: #333844;
-    font-family: "Heebo", sans-serif;
-    text-align: center;
-}
-h1 {
-    display: block;
-    margin: 30px 0;
-}
-p {
-    margin-top: 5px;
-    font-weight: 200;
-}
-#app {
-    position: relative;
-}
-
 .demo,
 .cards {
     display: flex;
@@ -407,18 +384,8 @@ p {
     justify-content: space-evenly;
     perspective: 2000px;
     position: relative;
-    z-index: 1;
-    transform: translate3d(0.1px, 0.1px, 0.1px )
-}
-.demo {
-    flex-direction: row;
-    justify-content: center;
-}
 
-@media screen and (min-width: 600px) {
-    .cards {
-        flex-direction: row;
-    }
+    transform: translate3d(0.1px, 0.1px, 0.1px )
 }
 
 
@@ -440,7 +407,7 @@ p {
 
 
 
-!*attempt end*!*/
+/*attempt end*/
 
 /*.flip-card {
     background-color: transparent;
