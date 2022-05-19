@@ -65,7 +65,7 @@ public class BattleController {
 
     }
 
-    @GetMapping("/battle/{cardId}/{pouchId}/battle")
+    @GetMapping("/battle/{cardId}/{pouchId}/")
     public String battleGet(@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
         resetProtectionFlag = true;
 
