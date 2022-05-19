@@ -42,7 +42,7 @@ public class BattleController {
 
     @GetMapping("/battle")
     public String battleView(Model model){
-
+        System.out.println("i got here");
         if (resetProtectionFlag) {
             if (turn) model.addAttribute("turn", "Player");
             else model.addAttribute("turn", "Computer");
@@ -60,8 +60,8 @@ public class BattleController {
             model.addAttribute("backgroundUrl", url);
 
             resetProtectionFlag = false;
-            return "/battle";
-        } else return "redirect:/home/default";
+            return "battlePage";
+        } else return "redirect:home/default";
 
     }
 
