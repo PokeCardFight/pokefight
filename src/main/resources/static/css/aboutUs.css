@@ -47,18 +47,16 @@ p{
     --color1: rgb(0, 231, 255);
     --color2: rgb(255, 0, 231);
     --back: url(https://cdn2.bulbagarden.net/upload/1/17/Cardback.jpg);
-    --charizard1: #fac;
-    --charizard2: #ddccaa;
-    --charizardfront: url(/static/img/headshots/manuel.jpeg);
-    --pika1: #54a29e;
-    --pika2: #a79d66;
-    --pikafront: url(/static/img/headshots/michael.jpeg);
-    --eevee1: #efb2fb;
-    --eevee2: #acc6f8;
-    --eeveefront: url(/static/img/headshots/geraldHeadShot.jpg);
-    --mewtwo1: #efb2fb;
-    --mewtwo2: #acc6f8;
-    --mewtwofront: url(/static/img/headshots/NoahBruno.jpg);
+    --manuel1: #fac;
+    --manuel2: #ddccaa;
+    --manuelfront: url(/static/img/headshots/manuel.jpeg);
+    --mike1: #54a29e;
+    --mike2: #a79d66;
+    --michaelfront: url(/static/img/headshots/michael.jpeg);
+    --geraldfront: url(/static/img/headshots/geraldHeadShot.jpg);
+    --noah1: #efb2fb;
+    --noah2: #acc6f8;
+    --noahfront: url(/static/img/headshots/NoahBruno.jpg);
 }
 /*https://assets.codepen.io/13471/mewtwo-gx.webp*/
 
@@ -118,28 +116,28 @@ transform-origin: center;
             0 55px 35px -20px rgba(0, 0, 0, 0.5);
 }
 
-.card.charizard {
-    --color1: var(--charizard1);
-    --color2: var(--charizard2);
-    --front: var(--charizardfront);
+.card.manuel {
+    --color1: var(--manuel1);
+    --color2: var(--manuel2);
+    --front: var(--manuelfront);
 }
-.card.pika {
-    --color1: var(--pika1);
-    --color2: var(--pika2);
-    --front: var(--pikafront);
+.card.michael {
+    --color1: var(--mike1);
+    --color2: var(--mike2);
+    --front: var(--michaelfront);
 }
-.card.mewtwo {
-    --color1: var(--mewtwo1);
-    --color2: var(--mewtwo2);
-    --front: var(--mewtwofront);
+.card.noah {
+    --color1: var(--noah1);
+    --color2: var(--noah2);
+    --front: var(--noahfront);
 }
-.card.eevee {
+.card.gerald {
     --color1: #ec9bb6;
     --color2: #ccac6f;
     --color3: #69e4a5;
     --color4: #8ec5d6;
     --color5: #b98cce;
-    --front: var(--eeveefront);
+    --front: var(--geraldfront);
 }
 
 .card:before,
