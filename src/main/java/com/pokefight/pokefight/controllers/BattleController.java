@@ -22,7 +22,7 @@ public class BattleController {
     private UserCardRepository userCardDao;
     private BackgroundRepository backgroundDao;
 
-    private boolean battleFlag;
+    private boolean resetProtectionFlag;
 
     private boolean turn;
     private long playerCardId;
@@ -43,7 +43,7 @@ public class BattleController {
     @GetMapping("/battle")
     public String battleView(Model model){
 
-        if (battleFlag) {
+        if (resetProtectionFlag) {
             if (turn) model.addAttribute("turn", "Player");
             else model.addAttribute("turn", "Computer");
 
@@ -59,7 +59,7 @@ public class BattleController {
             String url = backgroundDao.getBackgroundUrl(computerCard.getType());
             model.addAttribute("backgroundUrl", url);
 
-            battleFlag = false;
+            resetProtectionFlag = false;
             return "/battle";
         } else return "redirect:/home/default";
 
@@ -67,7 +67,7 @@ public class BattleController {
 
     @GetMapping("/battle/{cardId}/{pouchId}/")
     public String battleGet(@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
-        battleFlag = true;
+        resetProtectionFlag = true;
 
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(currentUser.getId());
