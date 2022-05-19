@@ -248,7 +248,7 @@
     battleButton.addEventListener('click', function (event) {
         console.log(activeCard + " " + activePouch)
         if (activeCard === 0 || activePouch === 0) alert("Pick a card and pouch");
-        else window.location.replace(`/battle/${activeCard}/${activePouch}/battle`);
+        else window.location.replace(`/battle/${activeCard}/${activePouch}/`);
 
     });
 
