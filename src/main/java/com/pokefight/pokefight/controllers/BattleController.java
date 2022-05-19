@@ -60,7 +60,7 @@ public class BattleController {
             model.addAttribute("backgroundUrl", url);
 
             battleFlag = false;
-            return "/battle";
+            return "battle";
         } else return "redirect:/home/default";
 
     }

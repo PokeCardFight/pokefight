@@ -24,7 +24,7 @@ public class ProfileController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(currentUser.getId());
         model.addAttribute("user", user);
-        return "/profile";
+        return "profile";
     }
 
     @PostMapping("/profile/edit")
