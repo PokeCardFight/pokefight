@@ -26,20 +26,20 @@ const postProfileUrl = (data) => {
     });
 
     const form = $("#edit_form")
-$("#submitEditform").click((e)=>{
-    e.preventDefault();
-let pass = $("#password").val();
-let confirm = $("#confirmPass").val();
+    $("#submitEditform").click((e)=>{
+        e.preventDefault();
+        let pass = $("#password").val();
+        let confirm = $("#confirmPass").val();
 
-    console.log("pass="+pass +" , confirm :" +confirm )
-    if (pass === confirm){
-     form.submit();
-    } else if(pass=== "") {
-        alert("password cannot be empty!");
-    } else {
-        alert("passwords do not match!");
-    }
-});
+        console.log("pass="+pass +" , confirm :" +confirm )
+        if (pass === confirm){
+            form.submit();
+        } else if(pass=== "") {
+            alert("password cannot be empty!");
+        } else {
+            alert("passwords do not match!");
+        }
+    });
 
 }
 
@@ -49,6 +49,7 @@ const options = {
     accept: 'image/*',
     uploadInBackground: false,
 };
-// const apiKey = [[${apiKey}]];
+const apiKey = [[${apiKey}]];
+console.log(apiKey);
 let btn = document.querySelector('#picker');
 btn.addEventListener('click', () => filestack.init(APIKEY).picker(options).open());

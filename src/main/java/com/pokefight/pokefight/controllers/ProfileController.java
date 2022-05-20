@@ -28,6 +28,8 @@ public class ProfileController {
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(currentUser.getId());
         model.addAttribute("user", user);
+        model.addAttribute("apiKey", apiKey);
+        System.out.println(apiKey);
         return "profile";
     }
 
