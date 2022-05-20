@@ -248,13 +248,13 @@ body {
     align-self: end;
 }
 #computer-info .wrapper .type {
-    flex: 1 1 70%;
+    flex: 1 1 60%;
 
     text-shadow: var(--font-shadow);
     font-size: var(--type-size);
 }
 #computer-info .wrapper .counter {
-    flex: 0 1 30%;
+    flex: 0 1 40%;
     font-size: var(--type-size);
     display: flex;
 }
@@ -489,6 +489,18 @@ body {
         grid-column: 11 / 17;
         grid-row: 10 / 13;
         margin: 5px 0;
+    }
+    #computer-info .wrapper .name {
+        flex: 0 1 60%;
+    }
+    #computer-info .wrapper .attack {
+        flex: 0 1 30%;
+    }
+    #computer-info .wrapper .type {
+        flex:0 1 50%;
+    }
+    #computer-info .wrapper .counter {
+        flex: 0 1 40%;
     }
 }
 

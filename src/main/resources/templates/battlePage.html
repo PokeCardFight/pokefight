@@ -30,6 +30,7 @@
                                 <div class="attack">ATK:<span th:text="*{attack}"></span></div>
                                 <span class="type" th:text="*{type}"></span>
                                 <div class="counter">
+                                    HP:
                                     <div class="counter-left">
                                         <span id="player-health-number"></span>
                                     </div>
@@ -208,7 +209,7 @@
                     else if (type > 5 && type < 15) return 'grazed';
                     else if (type > 15 && type < 85) return 'attacked';
                     else if (type > 85 && type < 95) return 'power attacked';
-                    else return 'critically attack';
+                    else return 'critically attacked';
                 }
                 const checkAllHealth = () => {
                     if(player.currentHp === 0) {
@@ -242,7 +243,7 @@
                             case 'critically attacked': amount *= 2; break;
                             default: break;
                         }
-                        textBox.innerHTML += `${target.name} was ${attack}.<br>${target.name} loses ${amount} health points.<br>`;
+                        textBox.innerHTML = `${target.name} was ${attack}.<br>${target.name} loses ${amount} health points.<br>`;
 
                         target.avatar.classList.add('shake');
                         let wait = () => target.avatar.classList.remove('shake');
@@ -269,11 +270,9 @@
                     checkAllHealth();
                 }
                 const playerAttack = () => {
-                    textBox.innerHTML = 'Player attacked.<br>';
                     adjustHealth(computer, player.attack);
                 }
                 const computerAttack = () => {
-                    textBox.innerHTML = 'Computer attacked.<br>';
                     adjustHealth(player, computer.attack);
                 }
                 const useItem = (item) => {
