@@ -33,17 +33,17 @@
 
         <div id="dropDown">
             <!--this button becomes the dropdown before a certain width and transforms the normal items into the dropdown items -->
-            <i id="dropbtn" class="fa fa-solid fa-bars dropbtn p-4 active"></i>
+            <i id="dropbtn" class="pulsate fa fa-solid fa-bars dropbtn p-4 active"></i>
             <div id="navLinksM" class="dropDown-content text-uppercase hidden">
                 <ul id="mobile-list">
                     <li class="mobile-item">
-                        <a id="aboutM" th:href="@{/about}">About us
+                        <a id="aboutM" th:href="@{/about}" th:if="${location!='battle'}">About us
                             <div class="indicator"></div>
                         </a>
                     </li>
 
                     <li class="mobile-item">
-                        <a id="contactM" th:href="@{/contact}">Contact us
+                        <a id="contactM" th:href="@{/contact}" th:if="${location!='battle'}">Contact us
                             <div class="indicator"></div>
                         </a>
                     </li>
@@ -54,25 +54,25 @@
                         </a>
                     </li>
 
-                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                    <li class="mobile-item" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
                         <a id="homeM" th:href="@{/home/default}">Home
                             <div class="indicator"></div>
                         </a>
                     </li>
 
-                    <li class="mobile-item" sec:authorize="isAnonymous()">
+                    <li class="mobile-item" sec:authorize="isAnonymous()" th:if="${location!='battle'}">
                         <a id="signUpM" th:href="@{/register}">Sign up
                             <div class="indicator"></div>
                         </a>
                     </li>
 
-                    <li class="mobile-item" sec:authorize="isAnonymous()">
+                    <li class="mobile-item" sec:authorize="isAnonymous()" th:if="${location!='battle'}">
                         <a id="logInM" href="#">Log in
                             <div class="indicator"></div>
                         </a>
                     </li>
 
-                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                    <li class="mobile-item" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
                         <!--only shows up after security login-->
                         <a id="profileM" th:href="@{/profile}">
                             <span th:text="${#authentication.principal.username}"></span>
@@ -80,7 +80,7 @@
                         </a>
                     </li> <!--intellij doesnt understand. ignore sqigglys-->
 
-                    <li class="mobile-item" sec:authorize="isAuthenticated()">
+                    <li class="mobile-item" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
                         <a href="#" id="logoutM" role="menuitem"> Logout
                             <div class="indicator"></div>
                         </a><!--logout form in full navbar, no need to dupe-->
