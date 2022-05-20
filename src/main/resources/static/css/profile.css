@@ -180,7 +180,7 @@ body {
 .submit-wrapper {
     grid-column: 3 / 10;
     grid-row: 8 / 9;
-
+    gap: 10px;
     display: flex;
     justify-content: center;
     align-items: center;

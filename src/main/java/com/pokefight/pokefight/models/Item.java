@@ -34,7 +34,7 @@ public class Item {
     private String image;
 
     @Expose(serialize = false, deserialize = false)
-    @OneToMany(mappedBy = "item")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "item")
     private List<PouchItem> pouch_item;
 
     public Item(String name, int value, int rounds, int cost, String image) {
