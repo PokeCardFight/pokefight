@@ -53,7 +53,7 @@ public class ProfileController {
         User oldUser = userDao.getById(user.getId());
         oldUser.setProfile_pic(url);
         userDao.save(oldUser);
-        return "redirect:home/default";
+        return "redirect:/home/default";
     }
 
 }

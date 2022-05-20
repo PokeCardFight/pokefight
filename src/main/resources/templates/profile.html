@@ -98,8 +98,7 @@
                     url: "/profile/picture",
                     data: {url: data.filesUploaded[0].url},
                     timeout: 100000,
-                    // success: url => window.location.reload(),
-                    success: url => window.location.replace('/profile'),
+                    success: url => window.location.reload(),
                     error: e => console.log("ERROR: ", e),
                     done: e => console.log('DONE: ', e)
                 });
