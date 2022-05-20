@@ -5,6 +5,10 @@
 h3{
     color: white;
 }
+#master-container{
+    width: 80%;
+    margin: auto;
+}
 
 #Noah > img{
     height: 203.62px;
@@ -39,13 +43,17 @@ p{
     --manuel1: #fac;
     --manuel2: #ddccaa;
     --manuelfront: url(/static/img/headshots/manuel.jpeg);
+    --manuelfull:url(/static/img/headshots/manuelfull.png);
     --mike1: #54a29e;
     --mike2: #a79d66;
     --michaelfront: url(/static/img/headshots/michael.jpeg);
+    --michaelfull:url(/static/img/headshots/michaelfull.png);
     --geraldfront: url(/static/img/headshots/geraldHeadShot.jpg);
+    --geraldfull:url(/static/img/headshots/geraldfull.png);
     --noah1: #efb2fb;
     --noah2: #acc6f8;
     --noahfront: url(/static/img/headshots/NoahBruno.jpg);
+    --noahfull:url(/static/img/headshots/noahfull.png);
 }
 /*https://assets.codepen.io/13471/mewtwo-gx.webp*/
 
@@ -110,15 +118,30 @@ transform-origin: center;
     --color2: var(--manuel2);
     --front: var(--manuelfront);
 }
+.card.manuelfull {
+    --color1: var(--manuel1);
+    --color2: var(--manuel2);
+    --front: var(--manuelfull);
+}
 .card.michael {
     --color1: var(--mike1);
     --color2: var(--mike2);
     --front: var(--michaelfront);
 }
+.card.michaelfull {
+    --color1: var(--mike1);
+    --color2: var(--mike2);
+    --front: var(--michaelfull);
+}
 .card.noah {
     --color1: var(--noah1);
     --color2: var(--noah2);
     --front: var(--noahfront);
+}
+.card.noahfull {
+    --color1: var(--noah1);
+    --color2: var(--noah2);
+    --front: var(--noahfull);
 }
 .card.gerald {
     --color1: #ec9bb6;
@@ -129,6 +152,14 @@ transform-origin: center;
     --front: var(--geraldfront);
 }
 
+.card.geraldfull {
+    --color1: #ec9bb6;
+    --color2: #ccac6f;
+    --color3: #69e4a5;
+    --color4: #8ec5d6;
+    --color5: #b98cce;
+    --front: var(--geraldfull);
+}
 .card:before,
 .card:after {
     content: "";
@@ -301,6 +332,26 @@ transform-origin: center;
 }
 .card.gerald:hover:before,
 .card.gerald.active:before {
+    background-image: linear-gradient(
+            115deg,
+            transparent 20%,
+            var(--color1) 36%,
+            var(--color2) 43%,
+            var(--color3) 50%,
+            var(--color4) 57%,
+            var(--color5) 64%,
+            transparent 80%
+    );
+}
+
+.card.geraldfull:hover {
+    box-shadow:
+            0 0 30px -5px white,
+            0 0 10px -2px white,
+            0 55px 35px -20px rgba(0, 0, 0, 0.5);
+}
+.card.geraldfull:hover:before,
+.card.geraldfull.active:before {
     background-image: linear-gradient(
             115deg,
             transparent 20%,
