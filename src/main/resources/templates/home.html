@@ -78,7 +78,9 @@
 
         <!-- Store and Pouch Section -->
         <div class="  container col-xs-4 col-md-4 col-lg-4 " id="items">
-            <h5 class="text-center store-section">Store &#x20BD;</h5>
+
+            <h5 class="text-center store-section">Store <span>&nbsp &nbsp  My &#x20BD;</span>&nbsp : &nbsp<span th:text="*{user.getGold()}"></span></h5>
+
             <div class=" store-scroll row justify-content-center" id="store">
                 <div id="storeItems" class=" tap store-section m-1 col-3  " th:each="item : ${items}">
                     <div class="m-1" th:data-id="${item.id}">
