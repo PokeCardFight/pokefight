@@ -49,6 +49,6 @@ const options = {
     accept: 'image/*',
     uploadInBackground: false,
 };
-const apiKey = [[${apiKey}]];
+// const apiKey = [[${apiKey}]];
 let btn = document.querySelector('#picker');
-btn.addEventListener('click', () => filestack.init(apiKey).picker(options).open());
+btn.addEventListener('click', () => filestack.init(APIKEY).picker(options).open());
