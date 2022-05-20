@@ -117,7 +117,7 @@ div.bat:hover {
 ul {
     list-style-image: url('/static/img/pokeball-pokemon-svgrepo-com.svg');
 }
-#chosePokemon{
+.mainColor{
     color: #FFCB05;
 }
 .pouch-height{
