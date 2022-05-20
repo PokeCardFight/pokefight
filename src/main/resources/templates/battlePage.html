@@ -98,11 +98,20 @@
                 computer.healthBar.style.background = 'linear-gradient(rgb(0, 100, 0), rgb(0, 255, 0) 100%)';
 
                 let playerImgTag = document.querySelector('#player .pokemon');
-                playerImgTag.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon//versions/generation-v/black-white/animated/back/${player.id}.gif`;
+                fetch(`https://pokeapi.co/api/v2/pokemon/${player.id}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        let front = data.sprites.versions['generation-v']
+                        playerImgTag.src = front['black-white'].animated.back_default;
+                    });
 
                 let computerImgTag = document.querySelector('#computer .pokemon');
-                computerImgTag.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/${computer.id}.gif`;
-
+                fetch(`https://pokeapi.co/api/v2/pokemon/${computer.id}`)
+                    .then(res => res.json())
+                    .then(data => {
+                        let front = data.sprites.versions['generation-v']
+                        computerImgTag.src = front['black-white'].animated.front_default;
+                    });
 
                 //--| Build & Set Item Data |----------//
                 let itemsContainer = document.querySelector('#items');
