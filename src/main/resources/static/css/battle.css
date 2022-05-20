@@ -191,6 +191,7 @@ body {
 
     background-color: black;
     border-radius: 50%;
+    box-shadow: inset 0 0 20px #707070;
 }
 
 #computer-info {
@@ -323,6 +324,7 @@ body {
 
     background-color: black;
     border-radius: 50%;
+    box-shadow: inset 0 0 20px #707070;
 }
 
 .pokemon {
