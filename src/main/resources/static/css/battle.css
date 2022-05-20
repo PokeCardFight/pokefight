@@ -50,13 +50,6 @@ body {
 }
 
 #battle-background {
-    /* --------------------------Delete on Transfer-----------------*/
-    background-image: url("/img/pokemon-grass-background.png");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    /* --------------------------Delete on Transfer-----------------*/
-
     margin: 5px 0;
     border: solid 5px rgb(255, 203, 5);
     box-shadow: var(--font-shadow);
