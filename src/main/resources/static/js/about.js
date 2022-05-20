@@ -11,7 +11,7 @@ function infoLoader(info){
     // $(name).toggleClass("move-up");
 
     if($(info).parents(".profile").hasClass("fullscreen")){
-        $(window).scrollTop(100);
+        $(window).scrollTop(0);
     }
 
 }
