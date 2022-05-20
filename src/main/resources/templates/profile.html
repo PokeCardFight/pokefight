@@ -43,7 +43,7 @@
                         <input type="button" class="button font-shadow" value="Change" id="picker">
                     </div>
                 </form>
-                <form class="body" id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
+                <form class="body" id="edit_form" th:action="@{/profile/edit}"th:method="POST" th:object="${user}">
                     <div class="information">
                         <input th:field="*{id}" hidden>
                         <div class="section">
@@ -64,7 +64,8 @@
                         </div>
                     </div>
                     <div class="submit-wrapper">
-                        <input id="submitEditform" type="button" class="button font-shadow" value="Update">
+                        <input id="submitEditform" type="submit" class="button font-shadow" value="Update" />
+                        <input id="deleteUser" th:formaction="@{/profile/delete}" type="submit" class="button font-shadow" value="Delete" />
                     </div>
                 </form>
             </div>
@@ -101,22 +102,6 @@
                     success: url => window.location.reload(),
                     error: e => console.log("ERROR: ", e),
                     done: e => console.log('DONE: ', e)
-                });
-
-                const form = $("#edit_form")
-                $("#submitEditform").click((e)=>{
-                    e.preventDefault();
-                    let pass = $("#password").val();
-                    let confirm = $("#confirmPass").val();
-
-                    console.log("pass="+pass +" , confirm :" +confirm )
-                    if (pass === confirm){
-                        form.submit();
-                    } else if(pass=== "") {
-                        alert("password cannot be empty!");
-                    } else {
-                        alert("passwords do not match!");
-                    }
                 });
 
             }
