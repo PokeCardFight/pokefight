@@ -27,6 +27,7 @@ INSERT INTO backgrounds (url, type) VALUES
 ('/static/img/Pokemon-Ice.jpeg','Ice'),
 ('/static/img/Pokemon-Fairy.jpeg','Fairy'),
 ('/static/img/Pokemon-Steel.jpeg','Steel'),
+('/static/img/Pokemon-Ghost.jpeg','Ghost'),
 ('/static/img/Bug-Pokemon.webp','Bug');
 
 INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
