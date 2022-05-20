@@ -44,7 +44,7 @@ public class ProfileController {
         oldUser.setUsername(user.getUsername());
         oldUser.setEmail(user.getEmail());
         userDao.save(oldUser);
-        return "redirect:profile";
+        return "redirect:/profile";
     }
 
     @PostMapping("/profile/picture")
