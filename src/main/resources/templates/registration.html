@@ -10,8 +10,8 @@
 <div class="container container-fluid justify-content-center col-12 row align-items-center text-center">
     <h2 class="h1-responsive font-weight-bold text-center my-4" style="color: white">Register here!</h2>
     <div class="w-100"></div>
-    <form class="w-25" th:action="@{/register}" method="POST" th:object="${user}">
-        <div class="form-group">
+    <form class=" " th:action="@{/register}" method="POST" th:object="${user}">
+        <div class=" form-group">
             <div class="input-group mb-3">
                 <span class="input-group-text"><i class="fa fa-user"></i></span>
                 <input type="text" class="form-control" name="username" placeholder="Username" th:field="*{username}">
@@ -39,7 +39,7 @@
                        placeholder="Confirm Password">
             </div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="golden-btn ">Submit</button>
     </form>
 </div>
 <!-- Delete these later -->
