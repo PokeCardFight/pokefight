@@ -13,38 +13,27 @@
                             <div class="wrapper" th:object = "${computerCard}">
                                 <span class="name" th:text="*{name}"></span>
                                 <span class="type" th:text="*{type}"></span>
-                                <div class="health-bar-wrapper">
-                                    <div id="computer-health-bar"></div>
-                                </div>
-                                <div class="attack">ATK:<span th:text="*{attack}"></span></div>
-                                <div class="counter">
-                                    <div class="counter-left"><span id="computer-health-number"></span></div> /
-                                    <div class="counter-right">
-                                        <span th:text="*{hp}"></span>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                         <div class="shadow"></div>
                     </div>
                 </div>
                 <div id="player">
-                    <div class="oval">
-                        <img class="pokemon" src="" alt="Pokemon">
-                    </div>
+                    <div class="player-oval"></div>
+                    <img class="pokemon" src="" alt="Pokemon">
                 </div>
                 <div id="computer-info">
                     <div class="card">
                         <div class="info">
                             <div class="wrapper" th:object = "${playerCard}">
                                 <span class="name" th:text="*{name}"></span>
-                                <span class="type" th:text="*{type}"></span>
-                                <div class="health-bar-wrapper">
-                                    <div id="player-health-bar"></div>
-                                </div>
                                 <div class="attack">ATK:<span th:text="*{attack}"></span></div>
+                                <span class="type" th:text="*{type}"></span>
                                 <div class="counter">
-                                    <div class="counter-left"><span id="player-health-number"></span></div> /
+                                    <div class="counter-left">
+                                        <span id="player-health-number"></span>
+                                    </div>
+                                    /
                                     <div class="counter-right">
                                         <span th:text="*{hp}"></span>
                                     </div>
@@ -55,17 +44,15 @@
                     </div>
                 </div>
                 <div id="computer">
-                    <div class="oval">
-                        <img class="pokemon" src="" alt="Pokemon">
-                    </div>
+                    <div class="computer-oval"></div>
+                    <img class="pokemon" src="" alt="Pokemon">
                 </div>
             </div>
             <div id="input-output">
-                <div id="items">
+                <div id="items"></div>
+                <div id="game-dialog">
+                    <div class="box"></div>
                 </div>
-                    <div id="game-dialog">
-                        <div class="box"></div>
-                    </div>
                 <input type="button" class="button attack-button" value="Attack" />
                 <input type="button" class="button run-button" value="Run" />
             </div>
@@ -82,29 +69,33 @@
 
                 //--| Build & Set Player Data |----------//
                 let player = {
+                    type: '--player-bar-percentage',
                     id: [[${playerCard.id}]],
                     name: [[${playerCard.name}]],
                     hp: [[${playerCard.hp}]],
                     currentHp: [[${playerCard.hp}]],
                     hpPercentage: 100,
                     attack: [[${playerCard.attack}]],
-                    healthBar: document.querySelector('#player-health-bar'),
+                    avatar: document.querySelector('#player'),
+                    healthBar: document.querySelector('.player-oval'),
                     healthNumber: document.querySelector('#player-health-number')
                 }
                 player.healthNumber.innerHTML = player.currentHp;
+                player.healthBar.style.background = 'linear-gradient(rgb(0, 100, 0), rgb(0, 255, 0) 100%)';
 
-                //--| Build & Set Computer Data |----------//
                 let computer = {
+                    type: '--computer-bar-percentage',
                     id: [[${computerCard.id}]],
                     name: [[${computerCard.name}]],
                     hp: [[${computerCard.hp}]],
                     currentHp: [[${computerCard.hp}]],
                     hpPercentage: 100,
                     attack: [[${computerCard.attack}]],
-                    healthBar: document.querySelector('#computer-health-bar'),
+                    avatar: document.querySelector('#computer'),
+                    healthBar: document.querySelector('.computer-oval'),
                     healthNumber: document.querySelector('#computer-health-number')
                 }
-                computer.healthNumber.innerHTML = computer.currentHp;
+                computer.healthBar.style.background = 'linear-gradient(rgb(0, 100, 0), rgb(0, 255, 0) 100%)';
 
                 let playerImgTag = document.querySelector('#player .pokemon');
                 playerImgTag.src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon//versions/generation-v/black-white/animated/back/${player.id}.gif`;
@@ -212,12 +203,12 @@
                 }
                 const checkAllHealth = () => {
                     if(player.currentHp === 0) {
-                        textBox.innerHTML += 'Player loses.<br>';
+                        textBox.innerHTML = 'Player loses.<br>';
                         postLoss();
                         getReturnHome();
                     }
                     if(computer.currentHp === 0) {
-                        textBox.innerHTML += 'Computer loses.<br>';
+                        textBox.innerHTML = 'PLayer wins!.<br>';
                         postWin();
                         getReturnHome();
                     }
@@ -243,6 +234,11 @@
                             default: break;
                         }
                         textBox.innerHTML += `${target.name} was ${attack}.<br>${target.name} loses ${amount} health points.<br>`;
+
+                        target.avatar.classList.add('shake');
+                        let wait = () => target.avatar.classList.remove('shake');
+                        const delay = setTimeout(wait, 2000);
+
                     } else if (amount < 0) {
                         textBox.innerHTML += `${target.name} gains ${amount * -1} health points.<br>`
                     } else textBox.innerHTML += `${target.name} loses ${amount} health points.<br>`;
@@ -253,21 +249,26 @@
                     target.hpPercentage = clamp(target.hpPercentage, 0, 100);
                     target.currentHp -= amount;
                     target.currentHp = clamp(target.currentHp, 0, target.hp);
-                    target.healthBar.style = `width: ${target.hpPercentage}%`;
-                    target.healthNumber.innerHTML = target.currentHp;
+
+                    if (target.type === '--player-bar-percentage') target.healthNumber.innerHTML = target.currentHp;
+
+                    target.healthBar.style.setProperty(`${target.type}`, `${(100-target.hpPercentage) / 100}`);
+                    if (target.hpPercentage < 33) { target.healthBar.style.background = 'linear-gradient(rgb(0, 33, 0), rgb(255, 0, 0) 33%)'; }
+                    else if (target.hpPercentage < 66) { target.healthBar.style.background = 'linear-gradient(rgb(66, 66, 0), rgb(255, 255, 0) 66%)'; }
+                    else { target.healthBar.style.background = 'linear-gradient(rgb(0, 100, 0), rgb(0, 255, 0) 100%)'; }
 
                     checkAllHealth();
                 }
                 const playerAttack = () => {
-                    textBox.innerHTML += 'Player attacked.<br>';
+                    textBox.innerHTML = 'Player attacked.<br>';
                     adjustHealth(computer, player.attack);
                 }
                 const computerAttack = () => {
-                    textBox.innerHTML += 'Computer attacked.<br>';
+                    textBox.innerHTML = 'Computer attacked.<br>';
                     adjustHealth(player, computer.attack);
                 }
                 const useItem = (item) => {
-                    textBox.innerHTML += `Item (${item.name}) used.<br>`;
+                    textBox.innerHTML = `Item (${item.name}) used.<br>`;
                     if (item.value > 5) adjustHealth(computer, item.value);
                     if (item.value === 5) { adjustHealth(computer, item.value); applyStun(item.rounds); }
                     if (item.value < 5) adjustHealth(player, item.value);
@@ -285,7 +286,8 @@
 
                 let runButton = document.querySelector('.run-button');
                 runButton.addEventListener('click', () => {
-                    textBox.innerHTML += 'Player runs away!<br>';
+                    disableButtons();
+                    textBox.innerHTML = 'Player runs away!<br>';
                     getReturnHome();
                 });
 
