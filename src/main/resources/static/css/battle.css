@@ -467,7 +467,7 @@ body {
         grid-template-columns: repeat(18, var(--grid-spacing-io));
         grid-template-rows: repeat(12, var(--grid-spacing-io));
     }
-    #input-output .items {
+    #input-output #items {
         grid-column: 1 / 19;
         grid-row: 1 / 4;
         flex-direction: row;
