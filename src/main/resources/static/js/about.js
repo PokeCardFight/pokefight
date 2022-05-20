@@ -6,12 +6,12 @@ function infoLoader(info){
     parent.children(".open").toggleClass("drop");
     // parent.children("section").children(".card").toggleClass("drop");
     parent.children("section").children().toggleClass("drop");
-    parent.children("h4").toggleClass("drop");
+    // parent.children("h4").toggleClass("drop");
     let name= "#"+parent.attr("id")+"_full";
     // $(name).toggleClass("move-up");
 
     if($(info).parents(".profile").hasClass("fullscreen")){
-        $(window).scrollTop(0);
+        $(window).scrollTop(100);
     }
 
 }
