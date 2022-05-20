@@ -41,7 +41,9 @@ div.bat:hover {
         height: 260px;
         overflow-y: auto;
     }
-
+.sort-btn{
+    text-align: center;
+}
 }
 .store-scroll{
     height:175px;
@@ -123,3 +125,4 @@ ul {
 .pouch-height{
     min-height: 40px;
 }
+
