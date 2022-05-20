@@ -27,11 +27,13 @@ body {
 }
 
 .hide-behind {
-    z-index: -30000
+    z-index: -30000;
+    -webkit-transform: translateZ(-30000px);
 }
 
 .move-up {
-    z-index: 30000
+    z-index: 30000;
+    -webkit-transform: translateZ(30000px);
 }
 
 .navbar-items > a.highlighted {
