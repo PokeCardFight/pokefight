@@ -8,7 +8,7 @@ function infoLoader(info){
     parent.children("section").children().toggleClass("drop");
     parent.children("h4").toggleClass("drop");
     let name= "#"+parent.attr("id")+"_full";
-    $(name).toggleClass("move-up");
+    // $(name).toggleClass("move-up");
 
     if($(info).parents(".profile").hasClass("fullscreen")){
         $(window).scrollTop(0);
