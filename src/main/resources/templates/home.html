@@ -106,7 +106,7 @@
                 <h5 class="store-section">Select a Battle Pouch</h5>
                 <div class="row justify-content-center">
 
-                    <div th:id="${userPouchIds.get(0)}" class=" store-section m-1 tab bat col-3 "
+                    <div th:id="${userPouchIds.get(0)}" class=" pouch-height store-section m-1 tab bat col-3 "
                          th:data-id="${userPouchIds.get(0)}">
                         <!--                Pouch1-->
                         <input type="submit" th:data-id="${userPouchIds.get(0)}" value="Select"
@@ -117,7 +117,7 @@
 
                     </div>
 
-                    <div th:id="${userPouchIds.get(1)}" class="store-section m-1 tab bat col-3"
+                    <div th:id="${userPouchIds.get(1)}" class=" pouch-height store-section m-1 tab bat col-3"
                          th:data-id="${userPouchIds.get(1)}">
                         <!--                Pouch2-->
                         <input type="submit"
@@ -132,7 +132,7 @@
 
                     </div>
 
-                    <div th:id="${userPouchIds.get(2)}" class="store-section m-1 tab bat col-3"
+                    <div th:id="${userPouchIds.get(2)}" class="pouch-height store-section m-1 tab bat col-3"
                          th:data-id="${userPouchIds.get(2)}">
                         <!--                Pouch3-->
                         <input type="submit" th:data-id="${userPouchIds.get(2)}" value="Select"
@@ -265,6 +265,7 @@
             }
         }
     });
+
 </script>
 </body>
 </html>

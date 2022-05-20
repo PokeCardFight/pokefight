@@ -120,3 +120,6 @@ ul {
 #chosePokemon{
     color: #FFCB05;
 }
+.pouch-height{
+    min-height: 40px;
+}
