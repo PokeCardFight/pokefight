@@ -91,6 +91,11 @@
                 else alert("Passwords do not match!");
             });
 
+            $("#deleteUser").click((e)=>{
+                if(confirm("Do you want to delete your account?")) console.log('Deleting');
+                else { alert("Profile deletion cancelled."); e.preventDefault(); }
+            });
+
             //--| Edits Profile Picture
             const postProfileUrl = (data) => {
                 let url = data.filesUploaded[0].url;
