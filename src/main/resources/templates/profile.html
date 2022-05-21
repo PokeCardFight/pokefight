@@ -7,11 +7,9 @@
         <main>
             <div class="main-container" th:object = "${user}">
                 <div class="header">
-                    <div class="picture">
-                        <div class="picture-wrapper">
-                            <img th:src="*{profile_pic}" alt="profile image">
-                            <div class="title font-shadow font-color"><span th:text="*{username}"></span></div>
-                        </div>
+                    <div class="picture-wrapper">
+                        <img th:src="*{profile_pic}" alt="profile image">
+                        <div class="title font-shadow font-color"><span th:text="*{username}"></span></div>
                     </div>
                     <div class="stats">
                         <div class="stat">
