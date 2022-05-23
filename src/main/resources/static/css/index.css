@@ -18,6 +18,16 @@
 #splash-main{
     margin-right: -16px;
 }
+.paddingup{
+    padding: 45px 8% 0 8%;
+    position: relative;
+}
+#music {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
 #theList{
 position: relative;
 }

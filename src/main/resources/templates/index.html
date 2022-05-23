@@ -9,21 +9,23 @@
 <div id="splash-main" class="text-center">
     <h5 id="welcome" class="display-4 mb-2"><div>WELCOME TO...</div><span><img src="../static/img/Logo.png" alt="PokeFight" class="img-fluid" height="136" width="543"/></span></h5>
 
-    <div class="m-5 readable-background"><p>Pokemon gets a new mode in this website where on registration, you will be given a randomized pokemon and a pouch of items to start!</p>
+    <div class="m-5 readable-background"><p>Pokemon gets a new mode in this website where you will be given a randomized Pokemon and a pouch of items to start!</p>
     </div>
     <img src="/static/img/splash1.gif" id="gameplay-idle" alt="gameplay_idle" class="img-fluid">
     <div class="w-100"></div>
-    <div class="readable-background mx-5">now playing: <span id="currently-playing"></span></div>
+    <div class="readable-background mx-5 paddingup">Now playing: <span id="currently-playing"></span>
+        <div class="w-100 my-3"></div>
     <audio id="music" controls autoplay src="">
 </audio>
-    <div class="readable-background mx-5">reload to get a different song. or pick <span id="theList" onclick="list()" style="text-decoration: underline; color: blue;">here!
+        <div class="w-100"></div>
+    Reload to get a different song. Or pick one song <span id="theList" onclick="list()" style="text-decoration: underline; color: blue;">here!
     <div id="playlist" class="hidden">
     <ul class="songs">
     </ul>
 </div>
     </span>
-        <div class="w-100 my-1"></div>
-    <p>after sign up, simply select your pokemon and a pouch to bring into battle. As you play, you can obtain new pokemon by defeating them, and have a chance at more rare Pokemon by leveling up! <br>Good luck!</p></div>
+    <p>After sign up, simply select your Pokemon and a pouch to bring into battle. As you play, you can obtain new Pokemon by defeating them, and have a higher chance at legendary Pokemon by leveling up! <br>Good luck!</p>
+    </div>
 </div>
 
 <div th:include="partials/fragments :: footer(footer=true)"></div>

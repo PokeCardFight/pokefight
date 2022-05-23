@@ -40,6 +40,17 @@ body {
     color: gold;
 }
 
+.top-border::before {
+    border-top: 1px solid gold;
+    width: 90%;
+    position: absolute;
+    content: "";
+    left: 5%;
+    top: 67%;
+}
+.left-border{
+    border-left: 1px solid gold;
+}
 .loginNameJump {
     transform: translateY(75px);
 
@@ -69,7 +80,7 @@ body {
     right: 0;
     left: 0;
     z-index: 3;
-    padding: 10px 60px;
+    padding: 10px 14%;
     overflow-y: scroll;
 
 
@@ -379,5 +390,6 @@ input {
     .popup_loginForm {
         padding: 0 15px 10px 15px;
     }
+
 }
 
