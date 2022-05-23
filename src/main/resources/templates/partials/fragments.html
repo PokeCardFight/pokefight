@@ -74,7 +74,7 @@
 
                     <li class="mobile-item" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
                         <!--only shows up after security login-->
-                        <a id="profileM" th:href="@{/profile}">
+                        <a id="profileM" class="top-border" th:href="@{/profile}">
                             <span th:text="${#authentication.principal.username}"></span>
                             <div class="indicator"></div>
                         </a>
@@ -115,7 +115,7 @@
                 <div class="indicator"></div>
             </a>
             <!--only shows up after security login-->
-            <a id="profile" th:href="@{/profile}" class="" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
+            <a id="profile" th:href="@{/profile}" class="left-border" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
                 <span th:text="${#authentication.principal.username}"></span>
                 <!--intellij doesnt understand. ignore sqigglys-->
                 <div class="indicator"></div>
