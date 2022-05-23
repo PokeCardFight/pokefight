@@ -42,7 +42,7 @@ p{
 :root {
     --color1: rgb(0, 231, 255);
     --color2: rgb(255, 0, 231);
-    --back: url(https://cdn2.bulbagarden.net/upload/1/17/Cardback.jpg);
+    --back: url(/static/img/pokemon_card_back.png);
     --manuel1: #fac;
     --manuel2: #ddccaa;
     --manuelfront: url(/static/img/headshots/manuel.jpeg);
@@ -50,13 +50,13 @@ p{
     --mike1: #54a29e;
     --mike2: #a79d66;
     --michaelfront: url(/static/img/headshots/michael.jpeg);
-    --michaelfull:url(/static/img/headshots/michaelfull.png);
+    --michaelfull:url(/static/img/headshots/michaelfullpreference.png);
     --geraldfront: url(/static/img/headshots/geraldHeadShot.jpg);
-    --geraldfull:url(/static/img/headshots/geraldfull.png);
+    --geraldfull:url(/static/img/headshots/geraldfullpreference.png);
     --noah1: #efb2fb;
     --noah2: #acc6f8;
     --noahfront: url(/static/img/headshots/NoahBruno.jpg);
-    --noahfull:url(/static/img/headshots/noahfull.png);
+    --noahfull:url(/static/img/headshots/noahfullpreference.png);
 }
 /*https://assets.codepen.io/13471/mewtwo-gx.webp*/
 
