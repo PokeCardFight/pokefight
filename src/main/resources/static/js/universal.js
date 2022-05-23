@@ -76,7 +76,12 @@ $(window).scroll(() => {
     }
     lastScrollY = window.scrollY;
 })
-
+//login on enter
+password.keydown(function (e){
+    if(e.keyCode===13){
+        $(".popup_loginForm").submit();
+    }
+})
 
 //logout submission connector
 $("#logout, #logoutM").click(() => {

@@ -49,7 +49,7 @@ body {
     top: 67%;
 }
 .left-border{
-    border-left: 1px solid gold;
+    border-left: 2px solid gold;
 }
 .loginNameJump {
     transform: translateY(75px);
