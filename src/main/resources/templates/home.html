@@ -15,7 +15,7 @@
             <div class="container">
                 <div class="d-none d-lg-block justify-content-center row">
                     <div class="col store-section my-2">
-                        <div class=" m-2">
+                        <div >
                             <img th:src="${user.getProfile_pic()}" width="10rem" style="border-radius: 50%" class="card-img-top" alt="Profile Pic">
                             <div>
                                 <h5 th:text="${user.getUsername()}" class="text-center"></h5>
@@ -81,7 +81,7 @@
         <!-- Store and Pouch Section -->
         <div class="  container col-xs-4 col-md-4 col-lg-4 " id="items">
 
-            <h5 class="text-center store-section">Store <span>&nbsp &nbsp  My &#x20BD;</span>&nbsp : &nbsp<span th:text="*{user.getGold()}"></span></h5>
+            <h5 class="text-center store-section">&nbsp Store &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span>&nbsp&nbsp  My &#x20BD;</span>&nbsp : &nbsp<span th:text="*{user.getGold()}"></span></h5>
 
             <div class=" store-scroll row justify-content-center" id="store">
                 <div id="storeItems" class=" tap store-section m-1 col-3  " th:each="item : ${items}">
@@ -164,7 +164,7 @@
 
 
                     <!--battle button! need to make it more visible and put it somewhere everyone can see it without effort-->
-                    <div id="battle" class="col m-1 text-center" style="width: 200px;">
+                    <div id="battle" class="col m-1 " style="width: 200px;">
                         <input class="golden-btn" style="font-size:1.3em;" id="battle-button" type="submit"
                                value="Battle"/>
                     </div>
