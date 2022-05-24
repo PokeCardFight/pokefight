@@ -86,16 +86,23 @@ public class HomeController {
     public String homePost(Model model, @RequestParam("pouchId") long pouchId,@RequestParam("itemId") long itemId ){
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User cUser = userDao.getById(currentUser.getId());
-        int userMoney = cUser.getGold();
-        Item tempItem = itemDao.getById(itemId);
-        int itemCost = tempItem.getCost();
-        int moneyLeft = userMoney - itemCost;
-        if (moneyLeft >= 0) {
+        Pouch tempPouch = pouchDao.getById(pouchId);
+        int quantity = pouchItemDao.getQuantityFromPouch(tempPouch.getId());
+        System.out.println("quantity = " + quantity);
+        if ( quantity <= 2) {
+            int userMoney = cUser.getGold();
+            Item tempItem = itemDao.getById(itemId);
+            int itemCost = tempItem.getCost();
+            int moneyLeft = userMoney - itemCost;
             cUser.setGold(moneyLeft);
             userDao.save(cUser);
-            Pouch tempPouch = pouchDao.getById(pouchId);
-            int quantity = pouchItemDao.getQuantityFromPouch(tempPouch.getId());
-            if (quantity < 3) pouchItemDao.save(new PouchItem(tempPouch, tempItem));
+            if (moneyLeft >= 0) {
+                pouchItemDao.save(new PouchItem(tempPouch, tempItem));
+            }
+            else{
+                return "redirect:/home/default";
+            }
+
         }
         return "redirect:/home/default";
     }
