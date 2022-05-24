@@ -21,7 +21,7 @@ public class ContactController {
 
     @GetMapping("/contact")
     public String contactGet(){
-        return "contactUs";
+        return "/contactUs";
     }
 
     @PostMapping("/contact")

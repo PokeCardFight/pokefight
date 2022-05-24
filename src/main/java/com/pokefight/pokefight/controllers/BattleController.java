@@ -60,7 +60,7 @@ public class BattleController {
             model.addAttribute("backgroundUrl", url);
 
             resetProtectionFlag = false;
-            return "battlePage";
+            return "/battlePage";
         } else return "redirect:/home/default";
 
     }
