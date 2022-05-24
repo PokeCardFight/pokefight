@@ -1,13 +1,13 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head th:replace="partials/fragments :: header(title='500 ERROR STATUS',css='/static/css/errorCSS/error.css')">
+<head th:replace="partials/fragments :: header(title='Pokefight | 500 ERROR STATUS',css='/static/css/errorCSS/error.css')">
 </head>
 <body>
 <nav th:replace="partials/fragments :: navbar(location='error')"></nav>
 
 <div id="main" class="container container-fluid text-center">
   <h1>Not Allowed!</h1>
-  <p>authenication error 500, you should see mainly on security issues or authentication fails
+  <p>authenication error 500! you are most likely seeing this page because the username you registered is already in use!
   </p>
 </div>
 <div th:include="partials/fragments :: footer(footer=true)"></div>
