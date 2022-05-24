@@ -36,14 +36,9 @@
             <i id="dropbtn" class="pulsate fa fa-solid fa-bars dropbtn p-4 active"></i>
             <div id="navLinksM" class="dropDown-content text-uppercase hidden">
                 <ul id="mobile-list">
-                    <li class="mobile-item">
-                        <a id="aboutM" th:href="@{/about}" th:if="${location!='battle'}">About us
-                            <div class="indicator"></div>
-                        </a>
-                    </li>
 
-                    <li class="mobile-item">
-                        <a id="contactM" th:href="@{/contact}" th:if="${location!='battle'}">Contact us
+                    <li class="mobile-item" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
+                        <a id="homeM" th:href="@{/home/default}">Home
                             <div class="indicator"></div>
                         </a>
                     </li>
@@ -54,20 +49,26 @@
                         </a>
                     </li>
 
-                    <li class="mobile-item" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">
-                        <a id="homeM" th:href="@{/home/default}">Home
+                    <li class="mobile-item" th:if="${location!='battle'}">
+                        <a id="aboutM" th:href="@{/about}">About
+                            <div class="indicator"></div>
+                        </a>
+                    </li>
+
+                    <li class="mobile-item" th:if="${location!='battle'}">
+                        <a id="contactM" th:href="@{/contact}">Contact
                             <div class="indicator"></div>
                         </a>
                     </li>
 
                     <li class="mobile-item" sec:authorize="isAnonymous()" th:if="${location!='battle'}">
-                        <a id="signUpM" th:href="@{/register}">Sign up
+                        <a id="signUpM" class="top-border-signup" th:href="@{/register}">Sign up
                             <div class="indicator"></div>
                         </a>
                     </li>
 
                     <li class="mobile-item" sec:authorize="isAnonymous()" th:if="${location!='battle'}">
-                        <a id="logInM" href="#">Log in
+                        <a id="logInM" href="#">Login
                             <div class="indicator"></div>
                         </a>
                     </li>
@@ -91,11 +92,7 @@
 
         <div id="navLinks" class="navbar-items row align-items-center justify-content-end text-uppercase">
 
-            <a id="about" th:href="@{/about}" class="" th:if="${location!='battle'}">About us
-                <div class="indicator"></div>
-            </a>
-
-            <a id="contact" th:href="@{/contact}" class="" th:if="${location!='battle'}" sec:authorize="isAuthenticated()">Contact us
+            <a id="home" th:href="@{/home/default}" class="" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">Home
                 <div class="indicator"></div>
             </a>
 
@@ -103,15 +100,20 @@
                 <div class="indicator"></div>
             </a>
 
-            <a id="home" th:href="@{/home/default}" class="" sec:authorize="isAuthenticated()" th:if="${location!='battle'}">Home
+            <a id="about" th:href="@{/about}" class="" th:if="${location!='battle'}">About
                 <div class="indicator"></div>
             </a>
 
-            <a id="signUp" th:href="@{/register}" class="" sec:authorize="isAnonymous()">Sign up
+            <a id="contact" th:href="@{/contact}" class="" th:if="${location!='battle'}" sec:authorize="isAuthenticated()">Contact
                 <div class="indicator"></div>
             </a>
 
-            <a id="logIn" href="#" class="" sec:authorize="isAnonymous()">Log in
+
+            <a id="signUp" th:href="@{/register}" class="left-border" sec:authorize="isAnonymous()">Sign up
+                <div class="indicator"></div>
+            </a>
+
+            <a id="logIn" href="#" class="" sec:authorize="isAnonymous()">Login
                 <div class="indicator"></div>
             </a>
             <!--only shows up after security login-->
@@ -135,7 +137,7 @@
         <div id="logInForm" class="hidden drop">
             <form class="popup_loginForm text-center" th:action="@{/}" method="post">
                 <button id="loginX" class="p-2">X</button>
-                <div id="mobileLoginName" class="p-2 loginNameJump">LOG IN</div>
+                <div id="mobileLoginName" class="p-2 loginNameJump">LOGIN</div>
                 <div class="form-group">
                     <div id="login-name" class="input-group mb-3">
                         <!--<span class="input-group-text"><i class="fa fa-user"></i></span>-->
@@ -163,8 +165,16 @@
             <p sec:authorize="isAnonymous()">To begin, please sign up with the form! this pop-up will update as you go to help guide you to the battle screen!</p>
             <p sec:authorize="isAuthenticated()" th:if="${location=='notHome'}">Now that you are signed in, go to home to see your pokemon!</p>
             <p th:if="${location=='error'}">WHAT??? why are you looking at me???? i dont know what happened! Quick, go back to the home screen and try again by clicking the logo!</p>
-            <p th:if="${location=='home'}"> on this page, select your pokemon to go into battle with, as well as a pouch. this pouch can hold up to three items to take into your next battle!</p>
-            <p th:if="${location=='battle'}">this is the battle page, a hidden coin flip will determine who goes first, show in the console below. on your turn, you may choose to fight, run, or use an item. running will end the battle immediately. fighting will use your attack number with a change to critical hit!, and items each vary on their uses.</p>
+            <p th:if="${location=='home'}"> on this page, select your pokemon to go into battle with, as well as a pouch. Selected pokemon and pouch will glow gold(see below) this pouch can hold up to three items to take into your next battle!</p>
+            <img alt="example home" class="how-to-Pic" src="/static/img/example_home.png" th:if="${location=='home'}">
+            <div class="row justify-content-center" th:if="${location=='home'}">
+            <img alt="example home 1" class="how-to-PicM" src="/static/img/example_homeM1.png"><!--mobile-->
+            <img alt="example home 2" class="how-to-PicM" src="/static/img/example_homeM2.png"><!--mobile-->
+        </div>
+
+            <p th:if="${location=='battle'}">this is the battle page, a hidden coin flip will determine who goes first, show in the console below. on your turn, you may choose to fight, run, or use an item. running will end the battle immediately. fighting will use your attack number with a chance to critical hit! Watch the HP Ring of your opponent to gauge how strong they still are!</p>
+            <img alt="example battle" src="/static/img/example_battle.png" class="how-to-Pic" th:if="${location=='battle'}">
+            <img alt="example battle" src="/static/img/example_battleM.png" class="how-to-PicM" th:if="${location=='battle'}"><!--mobile-->
             <h1 class="text-center">ITEMS</h1>
             <p>pebble / super stone / hyper boulder</p>
             <p> deal 15/25/55 damage to the pokemon this turn!</p>
