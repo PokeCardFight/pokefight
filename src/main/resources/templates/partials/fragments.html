@@ -49,14 +49,14 @@
                         </a>
                     </li>
 
-                    <li class="mobile-item">
-                        <a id="aboutM" th:href="@{/about}" th:if="${location!='battle'}">About
+                    <li class="mobile-item" th:if="${location!='battle'}">
+                        <a id="aboutM" th:href="@{/about}">About
                             <div class="indicator"></div>
                         </a>
                     </li>
 
-                    <li class="mobile-item">
-                        <a id="contactM" th:href="@{/contact}" th:if="${location!='battle'}">Contact
+                    <li class="mobile-item" th:if="${location!='battle'}">
+                        <a id="contactM" th:href="@{/contact}">Contact
                             <div class="indicator"></div>
                         </a>
                     </li>
@@ -165,8 +165,16 @@
             <p sec:authorize="isAnonymous()">To begin, please sign up with the form! this pop-up will update as you go to help guide you to the battle screen!</p>
             <p sec:authorize="isAuthenticated()" th:if="${location=='notHome'}">Now that you are signed in, go to home to see your pokemon!</p>
             <p th:if="${location=='error'}">WHAT??? why are you looking at me???? i dont know what happened! Quick, go back to the home screen and try again by clicking the logo!</p>
-            <p th:if="${location=='home'}"> on this page, select your pokemon to go into battle with, as well as a pouch. this pouch can hold up to three items to take into your next battle!</p>
-            <p th:if="${location=='battle'}">this is the battle page, a hidden coin flip will determine who goes first, show in the console below. on your turn, you may choose to fight, run, or use an item. running will end the battle immediately. fighting will use your attack number with a change to critical hit!, and items each vary on their uses.</p>
+            <p th:if="${location=='home'}"> on this page, select your pokemon to go into battle with, as well as a pouch. Selected pokemon and pouch will glow gold(see below) this pouch can hold up to three items to take into your next battle!</p>
+            <img alt="example home" class="how-to-Pic" src="/static/img/example_home.png" th:if="${location=='home'}">
+            <div class="row justify-content-center" th:if="${location=='home'}">
+            <img alt="example home 1" class="how-to-PicM" src="/static/img/example_homeM1.png"><!--mobile-->
+            <img alt="example home 2" class="how-to-PicM" src="/static/img/example_homeM2.png"><!--mobile-->
+        </div>
+
+            <p th:if="${location=='battle'}">this is the battle page, a hidden coin flip will determine who goes first, show in the console below. on your turn, you may choose to fight, run, or use an item. running will end the battle immediately. fighting will use your attack number with a chance to critical hit! Watch the HP Ring of your opponent to gauge how strong they still are!</p>
+            <img alt="example battle" src="/static/img/example_battle.png" class="how-to-Pic" th:if="${location=='battle'}">
+            <img alt="example battle" src="/static/img/example_battleM.png" class="how-to-PicM" th:if="${location=='battle'}"><!--mobile-->
             <h1 class="text-center">ITEMS</h1>
             <p>pebble / super stone / hyper boulder</p>
             <p> deal 15/25/55 damage to the pokemon this turn!</p>

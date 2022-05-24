@@ -93,6 +93,16 @@ body {
 
 
 }
+.how-to-Pic{
+    width: 100%;
+    height: auto;
+}
+.how-to-PicM{
+    width: 50%;
+    height: auto;
+    margin: 10px;
+}
+
 
 .pulsate {
     animation: pulse 1.5s infinite;
@@ -376,6 +386,9 @@ input {
     .popup_loginForm input {
         height: 50px;
     }
+    .how-to-Pic{
+        display: none;
+    }
 
 }
 
@@ -398,6 +411,8 @@ input {
     .popup_loginForm {
         padding: 0 15px 10px 15px;
     }
-
+    .how-to-PicM{
+        display: none;
+    }
 }
 
