@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, shrink-to-fit=no">
+
+    <title>PokeFight Battle Page</title>
+
+    <!-- Delete these later -->
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+        :root {
+            --screen-width: 900px;
+            --screen-height: 600px;
+            --oval-length: 400px;
+            --oval-height: calc(var(--oval-length) / 4);
+            --pokemon-scale: 3;
+            --oval-to-pokemon: 0.9;
+            --grid-spacing: 100px;
+            --grid-spacing-io: 50px;
+
+            --info-width: 400px;
+            --dialog-width: 420px;
+            --font-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075),
+            0 2px 2px hsl(0deg 0% 0% / 0.075),
+            0 4px 4px hsl(0deg 0% 0% / 0.075),
+            0 8px 8px hsl(0deg 0% 0% / 0.075),
+            0 16px 16px hsl(0deg 0% 0% / 0.075);
+            --name-size: clamp(14px, 3vw, 18px);
+            --type-size: clamp(10px, 3vw, 12px);
+            --attack-size: clamp(12px, 5vw, 14px);
+            --hp-size: clamp(12px, 5vw, 16px);
+            --big-button-size: clamp(8px, 3vw, 13px);
+            --small-button-size: clamp(10px, 4vw, 12px);
+            --dialog-text: clamp(10px, 4vw, 14px);
+
+            --player-bar-location: -100px;
+            --player-bar-percentage: 0;
+            --computer-bar-location: -100px;
+            --computer-bar-percentage: 0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Press Start 2P', cursive;
+        }
+
+        body {
+            width: 100%;
+            height: 100vh;
+            display: grid;
+            place-items: center;
+        }
+
+        #battle-background {
+            /* --------------------------Delete on Transfer-----------------*/
+            background-image: url("/img/pokemon-grass-background.png");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            /* --------------------------Delete on Transfer-----------------*/
+
+            margin: 5px 0;
+            border: solid 5px rgb(255, 203, 5);
+            box-shadow: var(--font-shadow);
+
+            z-index: 0;
+
+            display: grid;
+            grid-template-columns: repeat(9, var(--grid-spacing));
+            grid-template-rows: repeat(6, var(--grid-spacing));
+        }
+
+        #player-info {
+            grid-column: 1 / 5;
+            grid-row: 1 / 3;
+
+            position: relative;
+            z-index: 1;
+        }
+        #player-info .card {
+            position: absolute;
+            bottom: 0;
+
+            z-index: 2;
+        }
+        #player-info .info {
+            background: rgb(248, 221, 119);
+
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+
+            width: var(--info-width);
+            height: calc(var(--info-width) * 0.3);
+
+            border: 8px solid rgba(4, 85, 105);
+            border-radius: 40px 10px 40px 10px;
+
+            z-index: 4;
+
+            display: grid;
+            place-items: center;
+        }
+        #player-info .wrapper {
+            width: calc(var(--info-width) * 0.75);
+            height: calc(var(--info-width) * 0.25);
+            font-weight: 500;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #player-info .wrapper .name {
+            text-shadow: var(--font-shadow);
+            font-size: var(--name-size);
+            align-self: end;
+        }
+        #player-info .wrapper .type {
+            text-shadow: var(--font-shadow);
+            font-size: var(--type-size);
+            align-self: end;
+            padding-left: 20px;
+            padding-bottom: 2px;
+        }
+        #player-info .wrapper .health-bar-wrapper {
+            flex: 100%;
+            background: black;
+            border-radius: 5px;
+            height: 15px;
+        }
+        #player-info .wrapper .health-bar {
+            flex: 100%;
+            background: rgb(115,0,0);
+            background: linear-gradient(90deg, rgba(115,0,0,1) 0%, rgba(255,5,5,1) 50%);
+            border-radius: 5px;
+            box-shadow: inset 0 0 4px 2px #696969;
+            width: 100%;
+            height: 15px;
+            transition: 1s ease-in-out;
+        }
+        #player-info .wrapper .attack {
+            text-shadow: var(--font-shadow);
+            font-size: var(--attack-size);
+
+            flex: 50%;
+        }
+        #player-info .wrapper .counter {
+            flex: 50%;
+            display: flex;
+            justify-content: end;
+        }
+        #player-info .wrapper .counter-left {
+            text-shadow: var(--font-shadow);
+            font-size: var(--hp-size);
+            display: inline-block;
+        }
+        #player-info .wrapper .counter-right {
+            text-shadow: var(--font-shadow);
+            font-size: var(--hp-size);
+            display: inline-block;
+        }
+        #player-info .shadow {
+            background: rgba(4, 85, 105);
+
+            position: absolute;
+            bottom: 0;
+            left: 40px;
+
+            width: var(--info-width);
+            height: calc(var(--info-width) * 0.15);
+            transform: skew(45deg);
+
+            z-index: 3;
+        }
+
+        #player {
+            grid-column: 1 / 5;
+            grid-row: 4 / 7;
+
+            position: relative;
+            left: 15px;
+            bottom: 15px;
+            z-index: 1;
+        }
+
+        .player-oval {
+            position: absolute;
+            bottom: 0;
+
+            width: var(--oval-length);
+            height: var(--oval-height);
+
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .player-oval:before {
+            content: "";
+            position: absolute;
+            top: calc(var(--player-bar-location) - (var(--player-bar-location) * var(--player-bar-percentage)));
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-color: black;
+            transition: 3s;
+        }
+        .player-oval:after {
+            content: "";
+            position: absolute;
+            top: 7.5%;
+            left: 7.5%;
+
+            width: 85%;
+            height: 85%;
+
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        #computer-info {
+            grid-column: 6 / 10;
+            grid-row: 5 / 7;
+
+            position: relative;
+            z-index: 1;
+        }
+        #computer-info .card {
+            position: absolute;
+            top: 0;
+
+            z-index: 2;
+        }
+        #computer-info .info {
+            color: black;
+            background: rgb(248, 221, 119);
+
+            position: absolute;
+            top: 0;
+            left: -10px;
+
+            width: var(--info-width);
+            height: calc(var(--info-width) * 0.3);
+
+            border: 8px solid rgba(4, 85, 105);
+            border-radius: 40px 10px 40px 10px;
+
+            z-index: 4;
+
+            display: grid;
+            place-items: center;
+        }
+        #computer-info .wrapper {
+            width: calc(var(--info-width) * 0.75);
+            height: calc(var(--info-width) * 0.25);
+            font-weight: 500;
+            display: flex;
+            flex-wrap: wrap;
+        }
+        #computer-info .wrapper .name {
+            text-shadow: var(--font-shadow);
+            font-size: var(--name-size);
+            align-self: end;
+        }
+        #computer-info .wrapper .type {
+            text-shadow: var(--font-shadow);
+            font-size: var(--type-size);
+            align-self: end;
+            padding-left: 20px;
+            padding-bottom: 2px;
+        }
+        #computer-info .wrapper .health-bar-wrapper {
+            flex: 100%;
+            background: black;
+            border-radius: 5px;
+            height: 15px;
+        }
+        #computer-info .wrapper .health-bar {
+            flex: 100%;
+            background: rgb(115,0,0);
+            background: linear-gradient(90deg, rgba(115,0,0,1) 0%, rgba(255,5,5,1) 50%);
+            border-radius: 8px;
+            box-shadow: inset 0 0 4px 2px #696969;
+            width: 100%;
+            height: 15px;
+            transition: 1s ease-in-out;
+        }
+        #computer-info .wrapper .attack {
+            text-shadow: var(--font-shadow);
+            font-size: var(--attack-size);
+
+            flex: 50%;
+        }
+        #computer-info .wrapper .counter {
+            flex: 50%;
+            display: flex;
+            justify-content: end;
+        }
+        #computer-info .wrapper .counter-left {
+            text-shadow: var(--font-shadow);
+            font-size: var(--hp-size);
+            display: inline-block;
+        }
+        #computer-info .wrapper .counter-right {
+            text-shadow: var(--font-shadow);
+            font-size: var(--hp-size);
+            display: inline-block;
+        }
+        #computer-info .shadow {
+            background: rgba(4, 85, 105);
+
+            position: absolute;
+            top: 80px;
+            left: -40px;
+
+            width: var(--info-width);
+            height: calc(var(--info-width) * 0.15);
+            transform: skew(-45deg);
+
+            z-index: 3;
+        }
+
+        #computer {
+            grid-column: 6 / 10;
+            grid-row: 1 / 4;
+
+            position: relative;
+            right: 15px;
+            z-index: 1;
+        }
+
+        .computer-oval {
+            position: absolute;
+            bottom: 0;
+
+            width: var(--oval-length);
+            height: var(--oval-height);
+
+            border-radius: 50%;
+            overflow: hidden;
+        }
+        .computer-oval:before {
+            content: "";
+            position: absolute;
+            top: calc(var(--computer-bar-location) - (var(--computer-bar-location) * var(--computer-bar-percentage)));
+            left: 0;
+
+            width: 100%;
+            height: 100%;
+
+            background-color: black;
+            transition: 3s;
+        }
+        .computer-oval:after {
+            content: "";
+            position: absolute;
+            top: 7.5%;
+            left: 7.5%;
+
+            width: 85%;
+            height: 85%;
+
+            background-color: black;
+            border-radius: 50%;
+        }
+
+        .pokemon {
+            position: absolute;
+            bottom: calc(var(--oval-height) / var(--oval-to-pokemon));
+            left: 50%;
+            transform: translateX(-50%) scale(var(--pokemon-scale));
+            z-index: 3;
+        }
+
+        #input-output {
+            z-index: 0;
+
+            margin-bottom: 15px;
+
+            display: grid;
+            grid-template-columns: repeat(18, var(--grid-spacing-io));
+            grid-template-rows: repeat(3, var(--grid-spacing-io));
+        }
+        #input-output .items {
+            grid-column: 1 / 4;
+            grid-row: 1 / 4;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+        }
+        #input-output .item-button {
+            padding: 5px 16px;
+            font-size: var(--small-button-size);
+            text-shadow: var(--font-shadow);
+            flex-basis: 40px;
+            border-radius: 20px;
+            margin: 0 10px;
+        }
+        #game-dialog {
+            background: rgba(4, 85, 105);
+            grid-column: 4 / 13;
+            grid-row: 1 / 4;
+
+            border: 6px solid rgba(255, 203, 5, 1);
+            border-radius: 5px;
+            display: grid;
+            place-items: center;
+        }
+        #game-dialog .box {
+            font-size: var(--dialog-text);
+            background: whitesmoke;
+            width: var(--dialog-width);
+            height: calc(var(--dialog-width) * 0.3);
+            overflow: auto;
+            padding: 0 5px;
+        }
+        #input-output .attack-button {
+            text-shadow: var(--font-shadow);
+            font-size: var(--big-button-size);
+            grid-column: 13 / 16;
+            grid-row: 1 / 3;
+            margin: 6px;
+            border-radius: 50px;
+        }
+        #input-output .run-button {
+            text-shadow: var(--font-shadow);
+            font-size: var(--big-button-size);
+            grid-column: 16 / 19;
+            grid-row: 1 / 3;
+            margin: 6px;
+            border-radius: 50px;
+        }
+
+        .button {
+            border: none;
+            color: black;
+            background: white;
+            box-shadow:  6px 6px rgba(255, 203, 5, 1);
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+        }
+        .button:hover {
+            color: white;
+            background-color: #181818;
+        }
+        .disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+        }
+
+        @media only screen and (max-width: 900px) {
+            :root {
+                --screen-width: 360px;
+                --oval-length: 160px;                           /* Original multiplied by * 0.4 */
+                --oval-height: calc(var(--oval-length) / 4);
+                --pokemon-scale: 1.2;                           /* Original multiplied by 0.4 */
+                --oval-to-pokemon: 2.25;                        /* Original divided by 0.4 */
+                --grid-spacing: 40px;                           /* Original multiplied by 0.4 */
+                --grid-spacing-io: 20px;
+                --info-width: 280px;                            /* Original multiplied by * 0.4 */
+                --dialog-width: 340px;                           /* Original multiplied by * 0.4 */
+
+                --player-bar-location: -40px;
+                --computer-bar-location: -40px;
+            }
+            #battle-background {
+                border: none;
+                box-shadow: none;
+                grid-template-columns: repeat(9, var(--grid-spacing));
+                grid-template-rows: repeat(12, var(--grid-spacing));
+            }
+            #player-info {
+                grid-column: 1 / 10;
+                grid-row: 1 / 4;
+            }
+            #player {
+                grid-column: 1 / 5;
+                grid-row: 7 / 10;
+            }
+            #computer-info {
+                grid-column: 3 / 10;
+                grid-row: 10 / 13;
+            }
+            #computer {
+                grid-column: 6 / 10;
+                grid-row: 4 / 7;
+            }
+            #computer-info .shadow {
+                top: 50px;
+                left: -40px;
+            }
+            #input-output {
+                grid-template-columns: repeat(18, var(--grid-spacing-io));
+                grid-template-rows: repeat(12, var(--grid-spacing-io));
+            }
+            #input-output .items {
+                grid-column: 1 / 19;
+                grid-row: 1 / 4;
+                flex-direction: row;
+            }
+            #input-output .item-button {
+                margin: 5px 0 10px;
+                flex-basis: 100px;
+                border-radius: 50px;
+            }
+            #game-dialog {
+                grid-column: 1 / 19;
+                grid-row: 4 / 10;
+            }
+            #game-dialog .box {
+                width: var(--dialog-width);
+                height: calc(var(--dialog-width) * 0.3);
+            }
+            #input-output .attack-button {
+                grid-column: 3 / 9;
+                grid-row: 10 / 13;
+                margin: 5px 0;
+            }
+            #input-output .run-button {
+                grid-column: 11 / 17;
+                grid-row: 10 / 13;
+                margin: 5px 0;
+            }
+        }
+
+        @keyframes shake {
+            0%, 7% {
+                transform: translateX(0);
+            }
+            15% {
+                transform: translateX(-15px);
+            }
+            20% {
+                transform: translateX(10px);
+            }
+            25% {
+                transform: translateX(-10px);
+            }
+            30% {
+                transform: translateX(6px);
+                opacity: 0.65;
+            }
+            35% {
+                transform: translateX(-4px);
+            }
+            40%, 100% {
+                transform: translateX(0);
+            }
+        }
+        .shake { animation: shake 2s linear; }
+
+    </style>
+</head>
+<body>
+
+<main>
+    <div id="battle-background">
+        <div id="player-info">
+            <div class="card">
+                <div class="info">
+                    <div class="wrapper">
+                        <div class="name">Venusaur</div>
+                        <div class="type">Grass</div>
+                        <div class="health-bar-wrapper">
+                            <div class="health-bar"></div>
+                        </div>
+                        <div class="attack">ATK : 8</div>
+                        <div class="counter"><div class="counter-left">40</div>/<div class="counter-right">40</div></div>
+                    </div>
+                </div>
+                <div class="shadow"></div>
+            </div>
+        </div>
+        <div id="player">
+            <div class="player-oval"></div>
+            <img class="pokemon" src="" alt="Pokemon">
+        </div>
+        <div id="computer-info">
+            <div class="card">
+                <div class="info">
+                    <div class="wrapper">
+                        <div class="name">Charizard</div>
+                        <div class="type">Fire</div>
+                        <div class="health-bar-wrapper">
+                            <div class="health-bar"></div>
+                        </div>
+                        <div class="attack">ATK : 8</div>
+                        <div class="counter"><div class="counter-left">40</div>/<div class="counter-right">40</div></div>
+                    </div>
+                </div>
+                <div class="shadow"></div>
+            </div>
+        </div>
+        <div id="computer">
+            <div class="computer-oval"></div>
+            <img class="pokemon" src="" alt="Pokemon">
+        </div>
+    </div>
+
+    <div id="input-output">
+        <div class="items">
+            <input type="button" class="button item-button" value="Item 1" />
+            <input type="button" class="button item-button" value="Item 2" />
+            <input type="button" class="button item-button" value="Item 3" />
+        </div>
+        <div id="game-dialog">
+            <div class="box"></div>
+        </div>
+        <input type="button" class="button attack-button" value="Attack" />
+        <input type="button" class="button run-button" value="Run" />
+    </div>
+
+</main>
+
+<script>
+
+    let playerImgTag = document.querySelector('#player .pokemon');
+    playerImgTag.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon//versions/generation-v/black-white/animated/back/6.gif';
+
+    let computerImgTag = document.querySelector('#computer .pokemon');
+    computerImgTag.src = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/3.gif';
+
+    let player = document.querySelector('#player');
+
+    let playerHealth = 100;
+    let playerHealthBar = document.querySelector('.player-oval');
+    playerHealthBar.style.background = 'linear-gradient(rgb(0, 100, 0), rgb(0, 255, 0) 100%)';
+
+    player.addEventListener('click', e => {
+        player.classList.add('shake');
+        let wait = () => player.classList.remove('shake');
+        const delay = setTimeout(wait, 2000);
+
+        playerHealth -= 20;
+        console.log(playerHealth);
+        playerHealthBar.style.setProperty('--player-bar-percentage', `${(100-playerHealth) / 100}`);
+        if (playerHealth < 33) { playerHealthBar.style.background = 'linear-gradient(rgb(0, 33, 0), rgb(255, 0, 0) 33%)'; }
+        else if (playerHealth < 66) { playerHealthBar.style.background = 'linear-gradient(rgb(66, 66, 0), rgb(255, 255, 0) 66%)'; }
+        else { playerHealthBar.style.background = 'linear-gradient(rgb(0, 100, 0), rgb(0, 255, 0) 100%)'; }
+    });
+
+    let computer = document.querySelector('#computer');
+
+    let computerHealth = 100;
+    let computerHealthBar = document.querySelector('.computer-oval');
+    computerHealthBar.style.background = 'linear-gradient(rgb(0, 100, 0), rgb(0, 255, 0) 100%)';
+
+    computer.addEventListener('click', e => {
+        computer.classList.add('shake');
+        let wait = () => computer.classList.remove('shake');
+        const delay = setTimeout(wait, 2000);
+
+        computerHealth -= 20;
+        console.log(computerHealth);
+        computerHealthBar.style.setProperty('--computer-bar-percentage', `${(100-computerHealth) / 100}`);
+        if (computerHealth < 33) { computerHealthBar.style.background = 'linear-gradient(rgb(0, 33, 0), rgb(255, 0, 0) 33%)'; }
+        else if (computerHealth < 66) { computerHealthBar.style.background = 'linear-gradient(rgb(66, 66, 0), rgb(255, 255, 0) 66%)'; }
+        else { computerHealthBar.style.background = 'linear-gradient(rgb(0, 100, 0), rgb(0, 255, 0) 100%)'; }
+    });
+
+</script>
+
+</body>
+</html>

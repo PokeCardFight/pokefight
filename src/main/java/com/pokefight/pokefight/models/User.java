@@ -40,7 +40,7 @@ public class User {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Pouch> pouches;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<UserCard> user_card;
 
     public User(String username, String email, String password, String profile_pic, int gold, int xp, int level, int wins, int losses) {

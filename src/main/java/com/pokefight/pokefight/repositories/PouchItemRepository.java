@@ -14,4 +14,7 @@ public interface PouchItemRepository extends JpaRepository<PouchItem, Long> {
 
     @Query(value="select count(*) from pouch_item where pouch_id = ?",nativeQuery = true)
     int getQuantityFromPouch(long id);
+
+    @Query(value="select * from pouch_item where pouch_id =  ?", nativeQuery = true)
+    List<PouchItem> getByPouchId(long pouchId);
 }

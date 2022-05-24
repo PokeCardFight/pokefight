@@ -31,7 +31,7 @@ div.bat:hover {
 
 
 .card-scroll{
-    height:600px;
+    height:515px;
 
     overflow-y: auto;
 
@@ -44,7 +44,7 @@ div.bat:hover {
 
 }
 .store-scroll{
-    height:200px;
+    height:165px;
 
     overflow-y: auto;
 
@@ -116,7 +116,18 @@ div.bat:hover {
 }
 ul {
     list-style-image: url('/static/img/pokeball-pokemon-svgrepo-com.svg');
+
 }
-#chosePokemon{
+.mainColor{
     color: #FFCB05;
+}
+.pouch-height{
+    min-height: 40px;
+}
+.sort-btn{
+    text-align: center;
+}
+.store-img{
+    height:60px ;
+    width: 60px;
 }

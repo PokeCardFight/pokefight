@@ -7,11 +7,9 @@
         <main>
             <div class="main-container" th:object = "${user}">
                 <div class="header">
-                    <div class="picture">
-                        <div class="picture-wrapper">
-                            <img th:src="*{profile_pic}" alt="profile image">
-                            <div class="title font-shadow font-color"><span th:text="*{username}"></span></div>
-                        </div>
+                    <div class="picture-wrapper">
+                        <img th:src="*{profile_pic}" alt="profile image">
+                        <div class="title font-shadow font-color"><span th:text="*{username}"></span></div>
                     </div>
                     <div class="stats">
                         <div class="stat">
@@ -43,7 +41,7 @@
                         <input type="button" class="button font-shadow" value="Change" id="picker">
                     </div>
                 </form>
-                <form class="body" id="edit_form" th:action="@{/profile/edit}" th:method="POST" th:object="${user}">
+                <form class="body" id="edit_form" th:action="@{/profile/edit}"th:method="POST" th:object="${user}">
                     <div class="information">
                         <input th:field="*{id}" hidden>
                         <div class="section">
@@ -64,7 +62,8 @@
                         </div>
                     </div>
                     <div class="submit-wrapper">
-                        <input id="submitEditform" type="button" class="button font-shadow" value="Update">
+                        <input id="submitEditform" type="submit" class="button font-shadow" value="Update" />
+                        <input id="deleteUser" th:formaction="@{/profile/delete}" type="submit" class="button font-shadow" value="Delete" />
                     </div>
                 </form>
             </div>
@@ -75,6 +74,50 @@
         <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
         <script src="//static.filestackapi.com/filestack-js/3.x.x/filestack.min.js" crossorigin="anonymous"></script>
         <script src="/static/js/APIKEY.js"></script>
-        <script src="/static/js/profile.js"></script>
+        <script th:inline="javascript">
+            //--| Edits Profile Data
+            const form = $("#edit_form");
+            $("#submitEditform").click((e)=>{
+                e.preventDefault();
+
+                let pass = $("#password").val();
+                let confirm = $("#confirmPass").val();
+
+                console.log("pass = " + pass + ", confirm = " + confirm);
+                if (pass === confirm) form.submit();
+                else if (pass === "") alert("password cannot be empty!");
+                else alert("Passwords do not match!");
+            });
+
+            $("#deleteUser").click((e)=>{
+                if(confirm("Do you want to delete your account?")) console.log('Deleting');
+                else { alert("Profile deletion cancelled."); e.preventDefault(); }
+            });
+
+            //--| Edits Profile Picture
+            const postProfileUrl = (data) => {
+                let url = data.filesUploaded[0].url;
+                $.ajax({
+                    type: "POST",
+                    url: "/profile/picture",
+                    data: {url: data.filesUploaded[0].url},
+                    timeout: 100000,
+                    success: url => window.location.reload(),
+                    error: e => console.log("ERROR: ", e),
+                    done: e => console.log('DONE: ', e)
+                });
+
+            }
+
+
+            const options = {
+                onUploadDone: postProfileUrl, maxSize: 10 * 1024 * 1024,
+                accept: 'image/*',
+                uploadInBackground: false,
+            };
+            const apiKey = [[${apiKey}]];
+            let btn = document.querySelector('#picker');
+            btn.addEventListener('click', () => filestack.init(apiKey).picker(options).open());
+        </script>
     </body>
 </html>

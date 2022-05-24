@@ -78,7 +78,7 @@ public class HomeController {
                 model.addAttribute("cards", userCardString);
             }break;
         }
-        return "/home";
+        return "home";
     }
 
 

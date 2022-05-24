@@ -22,6 +22,8 @@ public class BattleController {
     private UserCardRepository userCardDao;
     private BackgroundRepository backgroundDao;
 
+    private boolean resetProtectionFlag;
+
     private boolean turn;
     private long playerCardId;
     private long playerPouchId;
@@ -38,28 +40,35 @@ public class BattleController {
         this.backgroundDao = backgroundDao;
     }
 
-    @GetMapping("/battle")
+    @GetMapping("/activeBattle/")
     public String battleView(Model model){
-        if (turn) model.addAttribute("turn", "Player");
-        else model.addAttribute("turn", "Computer");
+        System.out.println("i got here");
+        if (resetProtectionFlag) {
+            if (turn) model.addAttribute("turn", "Player");
+            else model.addAttribute("turn", "Computer");
 
-        Card playerCard = cardDao.getById(playerCardId);
-        Card computerCard = cardDao.getById(computerCardId);
-        model.addAttribute("playerCard", playerCard);
-        model.addAttribute("computerCard", computerCard);
+            Card playerCard = cardDao.getById(playerCardId);
+            Card computerCard = cardDao.getById(computerCardId);
+            model.addAttribute("playerCard", playerCard);
+            model.addAttribute("computerCard", computerCard);
 
-        List<Item> items = itemDao.getItemsByPouch(playerPouchId);
-        String itemsString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(items);
-        model.addAttribute("items", itemsString);
+            List<Item> items = itemDao.getItemsByPouch(playerPouchId);
+            String itemsString = new GsonBuilder().excludeFieldsWithoutExposeAnnotation().create().toJson(items);
+            model.addAttribute("items", itemsString);
 
-        String url = backgroundDao.getBackgroundUrl(computerCard.getType());
-        model.addAttribute("backgroundUrl", url);
+            String url = backgroundDao.getBackgroundUrl(computerCard.getType());
+            model.addAttribute("backgroundUrl", url);
 
-        return "/battle";
+            resetProtectionFlag = false;
+            return "battlePage";
+        } else return "redirect:home/default";
+
     }
 
     @GetMapping("/battle/{cardId}/{pouchId}/")
     public String battleGet(@PathVariable(value = "cardId") long cardId, @PathVariable(value = "pouchId") long pouchId){
+        resetProtectionFlag = true;
+
         User currentUser = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         User user = userDao.getById(currentUser.getId());
 
@@ -76,7 +85,7 @@ public class BattleController {
         System.out.println("userLevel = " + userLevel);
         System.out.println("computerCardId = " + computerCardId);
 
-        return "redirect:/battle";
+        return "redirect:/activeBattle/";
     }
 
     @PostMapping("/battle/remove/item")

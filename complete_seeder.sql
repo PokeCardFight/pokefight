@@ -27,6 +27,7 @@ INSERT INTO backgrounds (url, type) VALUES
 ('/static/img/Pokemon-Ice.jpeg','Ice'),
 ('/static/img/Pokemon-Fairy.jpeg','Fairy'),
 ('/static/img/Pokemon-Steel.jpeg','Steel'),
+('/static/img/Pokemon-Ghost.jpeg','Ghost'),
 ('/static/img/Bug-Pokemon.webp','Bug');
 
 INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
@@ -39,7 +40,7 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Squirtle',    45, 10, 'https://images.pokemontcg.io/base4/93.png', 'Water', 'Common', 'Basic'),
                                                                        ('Wartortle',   60, 12, 'https://images.pokemontcg.io/base4/63.png', 'Water', 'Uncommon', 'Stage 1'),
                                                                        ('Blastoise',   85, 16, 'https://images.pokemontcg.io/base1/2.png', 'Water', 'Rare', 'Stage 2'),
-                                                                       ('Caterpie',    45, 6, 'https://images.pokemontcg.io/base1/45.png', 'Bug', 'Common', 'Basic'),
+                                                                       ('Caterpie',    40, 6, 'https://images.pokemontcg.io/base1/45.png', 'Bug', 'Common', 'Basic'),
                                                                        ('Metapod',     50, 4, 'https://images.pokemontcg.io/base1/54.png', 'Bug', 'Uncommon', 'Stage 1'),
                                                                        ('Butterfree',  65, 8, 'https://images.pokemontcg.io/base4/34.png', 'Bug', 'Rare', 'Stage 2'),
                                                                        ('Weedle',      40, 6, 'https://images.pokemontcg.io/base4/100.png', 'Bug', 'Common', 'Basic'),
@@ -56,19 +57,19 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Arbok',       60, 16, 'https://images.pokemontcg.io/base3/31.png', 'Poison', 'Uncommon', 'Stage 1'),
                                                                        ('Pikachu',     40, 11, 'https://images.pokemontcg.io/base4/87.png', 'Electric', 'Common', 'Stage 1'),
                                                                        ('Raichu',      65, 18, 'https://images.pokemontcg.io/base4/16.png', 'Electric', 'Rare', 'Stage 2'),
-                                                                       ('Sandshrew',   50, 10, 'https://images.pokemontcg.io/base4/91.png', 'Ground', 'Common', 'Basic'),
+                                                                       ('Sandshrew',   40, 10, 'https://images.pokemontcg.io/base4/91.png', 'Ground', 'Common', 'Basic'),
                                                                        ('Sandslash',   75, 16, 'https://images.pokemontcg.io/base3/41.png', 'Ground', 'Rare', 'Stage 1'),
-                                                                       ('Nidoran ♀',   50, 8, 'https://images.pokemontcg.io/base4/82.png', 'Poison', 'Common', 'Basic'),
+                                                                       ('Nidoran ♀',   40, 8, 'https://images.pokemontcg.io/base4/82.png', 'Poison', 'Common', 'Basic'),
                                                                        ('Nidorina',    65, 12, 'https://images.pokemontcg.io/base4/53.png', 'Poison', 'Uncommon', 'Stage 1'),
                                                                        ('Nidoqueen',   90, 15, 'https://images.pokemontcg.io/base4/12.png', 'Poison', 'Rare', 'Stage 2'),
-                                                                       ('Nidoran ♂',   45, 9, 'https://images.pokemontcg.io/base4/83.png', 'Poison', 'Common', 'Basic'),
+                                                                       ('Nidoran ♂',   40, 9, 'https://images.pokemontcg.io/base4/83.png', 'Poison', 'Common', 'Basic'),
                                                                        ('Nidorino',    65, 12, 'https://images.pokemontcg.io/base4/54.png', 'Poison', 'Uncommon', 'Stage 1'),
                                                                        ('Nidoking',    95, 15, 'https://images.pokemontcg.io/base4/11.png', 'Poison', 'Rare', 'Stage 2'),
                                                                        ('Clefairy',    70, 8, 'https://images.pokemontcg.io/base1/5.png', 'Fairy', 'Uncommon', 'Stage 1'),
                                                                        ('Clefable',    95, 13, 'https://images.pokemontcg.io/base4/5.png', 'Fairy', 'Rare', 'Stage 2'),
                                                                        ('Vulpix',      40, 8, 'https://images.pokemontcg.io/base4/99.png', 'Fire', 'Common', 'Basic'),
                                                                        ('Ninetales',   75, 14, 'https://images.pokemontcg.io/base4/13.png', 'Fire', 'Rare', 'Stage 1'),
-                                                                       ('Jigglypuff',  50, 8, 'https://images.pokemontcg.io/base4/77.png', 'Fairy', 'Common', 'Stage 1'),
+                                                                       ('Jigglypuff',  45, 8, 'https://images.pokemontcg.io/base4/77.png', 'Fairy', 'Common', 'Stage 1'),
                                                                        ('Wigglytuff',  80, 12, 'https://images.pokemontcg.io/base4/19.png', 'Fairy', 'Rare', 'Stage 2'),
                                                                        ('Zubat',       40, 8, 'https://images.pokemontcg.io/base5/70.png', 'Flying', 'Common', 'Basic'),
                                                                        ('Golbat',      75, 14, 'https://images.pokemontcg.io/base3/34.png', 'Flying', 'Rare', 'Stage 1'),
@@ -108,9 +109,9 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Golem',      80, 15, 'https://images.pokemontcg.io/base3/36.png', 'Rock', 'Rare', 'Stage 2'),
                                                                        ('Ponyta',      40, 8, 'https://images.pokemontcg.io/base1/60.png', 'Fire', 'Common', 'Basic'),
                                                                        ('Rapidash',    70, 14, 'https://images.pokemontcg.io/base2/44.png', 'Fire', 'Rare', 'Stage 1'),
-                                                                       ('Slowpoke',    50, 8, 'https://images.pokemontcg.io/base5/67.png', 'Psychic', 'Common', 'Basic'),
+                                                                       ('Slowpoke',    45, 8, 'https://images.pokemontcg.io/base5/67.png', 'Psychic', 'Common', 'Basic'),
                                                                        ('Slowbro',     80, 14, 'https://images.pokemontcg.io/base3/43.png', 'Psychic', 'Rare', 'Stage 1'),
-                                                                       ('Magnemite',   50, 8, 'https://images.pokemontcg.io/base4/79.png', 'Electric', 'Common', 'Basic'),
+                                                                       ('Magnemite',   45, 8, 'https://images.pokemontcg.io/base4/79.png', 'Electric', 'Common', 'Basic'),
                                                                        ('Magneton',    75, 14, 'https://images.pokemontcg.io/base4/9.png', 'Electric', 'Rare', 'Stage 1'),
                                                                        ('Farfetch''d', 55, 12, 'https://images.pokemontcg.io/base4/40.png', 'Flying', 'Uncommon', 'Basic'),
                                                                        ('Doduo',       40, 8, 'https://images.pokemontcg.io/base4/72.png', 'Flying', 'Common', 'Basic'),
@@ -242,7 +243,7 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Granbull',     75, 14, 'https://images.pokemontcg.io/base1/51.png', 'Fairy', 'Uncommon', 'Stage 1'),
                                                                        ('Qwilfish',     45, 8, 'https://images.pokemontcg.io/base3/45.png', 'Water', 'Common', 'Basic'),
                                                                        ('Scizor',     80, 14, 'https://images.pokemontcg.io/base4/90.png', 'Bug', 'Rare', 'Stage 1'),
-                                                                       ('Shuckle',      50, 8, 'https://images.pokemontcg.io/base4/59.png', 'Rock', 'Common', 'Basic'),
+                                                                       ('Shuckle',      45, 8, 'https://images.pokemontcg.io/base4/59.png', 'Rock', 'Common', 'Basic'),
                                                                        ('Heracross',    80, 14, 'https://images.pokemontcg.io/base1/3.png', 'Bug', 'Rare', 'Basic'),
                                                                        ('Sneasel',     45, 8, 'https://images.pokemontcg.io/base1/66.png', 'Dark', 'Common', 'Basic'),
                                                                        ('Teddiursa',  45, 8, 'https://images.pokemontcg.io/base4/26.png', 'Normal', 'Common', 'Basic'),
@@ -295,9 +296,9 @@ INSERT INTO cards (name, hp, attack, image, type, rarity, subtype) VALUES
                                                                        ('Zigzagon',      40, 8, 'https://images.pokemontcg.io/base4/29.png', 'Normal', 'Common', 'Basic'),
                                                                        ('Linoone',      60, 12, 'https://images.pokemontcg.io/base4/62.png', 'Normal', 'Uncommon', 'Stage 1'),
                                                                        ('Wurmple',    35, 6, 'https://images.pokemontcg.io/base4/50.png', 'Bug', 'Common', 'Basic'),
-                                                                       ('Silcoon',    55, 10, 'https://images.pokemontcg.io/base4/7.png', 'Bug', 'Uncommon', 'Stage 1'),
+                                                                       ('Silcoon',    55, 8, 'https://images.pokemontcg.io/base4/7.png', 'Bug', 'Uncommon', 'Stage 1'),
                                                                        ('Beautifly',      65, 16, 'https://images.pokemontcg.io/base3/10.png', 'Bug', 'Rare', 'Stage 2'),
-                                                                       ('Cascoon',       55, 10, 'https://images.pokemontcg.io/base3/3.png', 'Bug', 'Uncommon', 'Stage 1'),
+                                                                       ('Cascoon',       55, 8, 'https://images.pokemontcg.io/base3/3.png', 'Bug', 'Uncommon', 'Stage 1'),
                                                                        ('Dustox',       65, 16, 'https://images.pokemontcg.io/base2/51.png', 'Bug', 'Rare', 'Stage 2'),
                                                                        ('Lotad',    40, 10, 'https://images.pokemontcg.io/base2/12.png', 'Water', 'Common', 'Basic'),
                                                                        ('Lombre',     60, 12, 'https://images.pokemontcg.io/base2/20.png', 'Water', 'Uncommon', 'Stage 1'),
@@ -758,7 +759,7 @@ update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/mast
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/339.png' where id = 339;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/340.png' where id = 340;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/341.png' where id = 341;
-update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/342.png' where id = 242;
+update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/342.png' where id = 342;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/343.png' where id = 343;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/344.png' where id = 344;
 update cards set image = 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/home/shiny/345.png' where id = 345;

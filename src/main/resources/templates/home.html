@@ -3,7 +3,7 @@
 
     <head th:replace="partials/fragments :: header(title='Pokefight | Home', css='/static/css/homeview.css')"></head>
 <body>
-<nav th:replace="/partials/fragments :: navbar(location='home')"></nav>
+<nav th:replace="partials/fragments :: navbar(location='home')"></nav>
 
 <!-- Home Page Basic Shell -->
 <div class="container">
@@ -11,12 +11,13 @@
 
 
         <!-- Profile Section -->
-        <div id="myProfile" class="d-none d-lg-block col-xs-4 col-md-4 col-lg-4 ">
+        <div id="myProfile" class=" col-xs-4 col-md-4 col-lg-4 ">
             <div class="container">
-                <div class="justify-content-center row">
+                <div class="d-none d-lg-block justify-content-center row">
                     <div class="col store-section my-2">
-                        <div class=" m-2">
-                            <img th:src="${user.getProfile_pic()}" width="10rem" class="card-img-top" alt="Profile Pic">
+                        <div>
+                            <img th:src="${user.getProfile_pic()}" width="10rem" style="border-radius: 50%"
+                                 class="card-img-top" alt="Profile Pic">
                             <div>
                                 <h5 th:text="${user.getUsername()}" class="text-center"></h5>
                             </div>
@@ -24,7 +25,7 @@
                                 <ul>
                                     <li>Wins/losses: <span th:text="*{user.getWins()}"></span>/<span
                                             th:text="*{user.getLosses()}"></span></li>
-                                    <li>XP: <span th:text="*{user.getXp()}"></span></li>
+                                    <li>XP: <span th:text="*{user.getXp()}"></span><span> / 100</span></li>
                                     <li>Level: <span th:text="*{user.getLevel()}"></span></li>
                                     <li>PokeDollas: &#x20BD; <span th:text="*{user.getGold()}"></span>
                                     </li>
@@ -56,8 +57,8 @@
 
         <div class="  col-xs-4 col-md-4 col-lg-4 ">
 
-            <div class="dropdown">
-                <button class="btn golden-btn dropdown-toggle" type="button" id="dropdownMenuButton"
+            <div class="sort-btn dropdown">
+                <button class=" btn golden-btn dropdown-toggle" type="button" id="dropdownMenuButton"
                         data-toggle="dropdown" aria-expanded="false">
                     Sort
                 </button>
@@ -67,26 +68,39 @@
                     <a id="nameA2Z" th:href="@{/home/nameA2Z}" class="dropdown-item "><span>Order By Name A to Z</span></a>
                     <a id="nameZ2A" th:href="@{/home/nameZ2A}" class="dropdown-item "><span>Order By Name Z to A</span></a>
                 </div>
-                <h5 id="chosePokemon" >Chose your Pokemon</h5>
+                <h5 class="mainColor">Choose your Pokemon</h5>
+                <h5 class="d-lg-none mainColor">My XP &nbsp<span th:text="*{user.getXp()}"></span><span> / 100</span>
+                </h5>
+                <h5 class="d-lg-none mainColor">My Level &nbsp<span th:text="*{user.getLevel()}"></span></h5>
             </div>
             <div class="card-scroll">
-            <div class="row justify-content-center" id="myCards">
+                <div class="row justify-content-center" id="myCards">
 
-            </div>
+                </div>
             </div>
         </div>
 
         <!-- Store and Pouch Section -->
         <div class="  container col-xs-4 col-md-4 col-lg-4 " id="items">
-            <h5 class="text-center store-section">Store &#x20BD;</h5>
+
+            <h5 class="text-center store-section">&nbsp Store &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <span>&nbsp&nbsp  My &#x20BD;</span>&nbsp
+                : &nbsp<span th:text="*{user.getGold()}"></span></h5>
+
             <div class=" store-scroll row justify-content-center" id="store">
                 <div id="storeItems" class=" tap store-section m-1 col-3  " th:each="item : ${items}">
                     <div class="m-1" th:data-id="${item.id}">
-                        <p th:text="${item.name}" th:data-id="${item.id}"></p>
-                        <img th:src="${item.image}" th:alt="${item.name}" th:data-id="${item.id}">
-                        <span th:data-id="${item.id}">&#x20BD; <span th:text="${item.cost} "></span></span>
-                        <input type="submit" th:data-id="${item.id}" value="Select" class="golden-btn"
-                               style="clear: both; font-size:.5em;"/>
+                        <img class="store-img" th:src="${item.image}" th:alt="${item.name}" th:data-id="${item.id}">
+                        <div>
+
+                            <div class="text-center"><span th:data-id="${item.id}">&#x20BD; <span
+                                    th:text="${item.cost} "></span></span>
+                            </div>
+                            <p th:text="${item.name}" th:data-id="${item.id}"></p>
+
+
+                        </div>
+                        <input type="submit" th:data-id="${item.id}" value="Select"
+                               style="display: none"/>
                     </div>
                 </div>
 
@@ -106,22 +120,24 @@
                 <h5 class="store-section">Select a Battle Pouch</h5>
                 <div class="row justify-content-center">
 
-                    <div th:id="${userPouchIds.get(0)}" class=" store-section m-1 tab bat col-3 " th:data-id="${userPouchIds.get(0)}">
+                    <div th:id="${userPouchIds.get(0)}" class=" pouch-height store-section m-1 tab bat col-3 "
+                         th:data-id="${userPouchIds.get(0)}">
                         <!--                Pouch1-->
                         <input type="submit" th:data-id="${userPouchIds.get(0)}" value="Select"
-                               class="golden-btn" style="font-size:.5em;">
+                               class="golden-btn" style="display: none">
                         <div th:each="itemInPouch1 : ${itemsInPouch1}">
                             <img th:src="${itemInPouch1}" th:data-id="${userPouchIds.get(0)}"/>
                         </div>
 
                     </div>
 
-                    <div th:id="${userPouchIds.get(1)}" class="store-section m-1 tab bat col-3" th:data-id="${userPouchIds.get(1)}">
+                    <div th:id="${userPouchIds.get(1)}" class=" pouch-height store-section m-1 tab bat col-3"
+                         th:data-id="${userPouchIds.get(1)}">
                         <!--                Pouch2-->
                         <input type="submit"
                                th:data-id="${userPouchIds.get(1)}"
                                value="Select"
-                               class="golden-btn" style="font-size:.5em;">
+                               class="golden-btn" style="display: none;">
 
 
                         <div th:each="itemInPouch2 : ${itemsInPouch2}">
@@ -130,10 +146,11 @@
 
                     </div>
 
-                    <div th:id="${userPouchIds.get(2)}" class="store-section m-1 tab bat col-3" th:data-id="${userPouchIds.get(2)}" >
+                    <div th:id="${userPouchIds.get(2)}" class="pouch-height store-section m-1 tab bat col-3"
+                         th:data-id="${userPouchIds.get(2)}">
                         <!--                Pouch3-->
                         <input type="submit" th:data-id="${userPouchIds.get(2)}" value="Select"
-                               class="golden-btn" style="font-size:.5em;">
+                               class="golden-btn" style="display: none;">
                         <div th:each="itemInPouch3 : ${itemsInPouch3}">
                             <img th:src="${itemInPouch3}" th:data-id="${userPouchIds.get(2)}"/>
                         </div>
@@ -141,26 +158,27 @@
                     </div>
                 </div>
             </div> <!--end of pouches-->
-            <div class="row justify-content-center">
-                <div class="col-6 text-center">
-                    <div class="mx-auto">
+            <div class="container">
+                <div class="row justify-content-center ">
+                    <div class="col-6 m-1 text-center">
+
 
                         <form id="buybutton" th:action="@{/home/addItems}" method="post">
-                            <input class="golden-btn" style="font-size:1.3em;" id="buy" name="buy" type="submit"
-                                   value="BUY">
+                            <input class="golden-btn" style="width:119px;  font-size:1.3em;" id="buy" name="buy"
+                                   type="submit"
+                                   value=" BUY ">
                             <input id="pouchId" name="pouchId" value="" type="hidden">
                             <input id="itemId" name="itemId" value="" type="hidden">
                         </form>
                     </div>
 
-                </div>
 
-                <div class="col text-center">
                     <!--battle button! need to make it more visible and put it somewhere everyone can see it without effort-->
-                    <div id="battle" class="mx-auto" style="width: 200px;">
+                    <div id="battle" class="col m-1 text-left" style="width: 200px;">
                         <input class="golden-btn" style="font-size:1.3em;" id="battle-button" type="submit"
                                value="Battle"/>
                     </div>
+
                 </div>
             </div>
 
@@ -174,7 +192,7 @@
 </div>
 
 
-<div th:include="/partials/fragments :: footer(footer=true)"></div>
+<div th:include="partials/fragments :: footer(footer=true)"></div>
 
 <script th:inline="javascript">
     let activeCard = 0;
@@ -196,7 +214,7 @@
     cardsContainer.addEventListener('click', (e) => {
         let id = e.target.getAttribute('data-id');
         let card = cards.filter(element => element.id === parseInt(id))[0];
-        document.querySelector('#pokemon-name').innerHTML = `Name: ${card.name}`;
+        document.querySelector('#pokemon-name').innerHTML = ` ${card.name}`;
         document.querySelector('#pokemon-type').innerHTML = `Type: ${card.type}`;
         document.querySelector('#pokemon-subtype').innerHTML = `Stage: ${card.subtype}`;
         document.querySelector('#pokemon-attack').innerHTML = `Attack: ${card.attack}`;
@@ -261,6 +279,7 @@
             }
         }
     });
+
 </script>
 </body>
 </html>
