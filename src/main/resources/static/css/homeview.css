@@ -44,7 +44,7 @@ div.bat:hover {
 
 }
 .store-scroll{
-    height:175px;
+    height:165px;
 
     overflow-y: auto;
 
@@ -126,4 +126,8 @@ ul {
 }
 .sort-btn{
     text-align: center;
+}
+.store-img{
+    height:60px ;
+    width: 60px;
 }
