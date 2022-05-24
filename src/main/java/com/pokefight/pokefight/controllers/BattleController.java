@@ -61,7 +61,7 @@ public class BattleController {
 
             resetProtectionFlag = false;
             return "battlePage";
-        } else return "redirect:home/default";
+        } else return "redirect:/home/default";
 
     }
 
