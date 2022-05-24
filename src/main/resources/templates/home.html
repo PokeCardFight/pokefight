@@ -87,7 +87,7 @@
                 : &nbsp<span th:text="*{user.getGold()}"></span></h5>
 
             <div class=" store-scroll row justify-content-center" id="store">
-                <div id="storeItems" class=" tap store-section m-1 col-3  " th:each="item : ${items}">
+                <div id="storeItems" class=" tap store-section m-1 col-3  " th:each="item : ${items}" th:data-id="${item.id}">
                     <div class="m-1" th:data-id="${item.id}">
                         <img class="store-img" th:src="${item.image}" th:alt="${item.name}" th:data-id="${item.id}">
                         <div>
@@ -213,14 +213,16 @@
     buildCards();
     cardsContainer.addEventListener('click', (e) => {
         let id = e.target.getAttribute('data-id');
-        let card = cards.filter(element => element.id === parseInt(id))[0];
-        document.querySelector('#pokemon-name').innerHTML = ` ${card.name}`;
-        document.querySelector('#pokemon-type').innerHTML = `Type: ${card.type}`;
-        document.querySelector('#pokemon-subtype').innerHTML = `Stage: ${card.subtype}`;
-        document.querySelector('#pokemon-attack').innerHTML = `Attack: ${card.attack}`;
-        document.querySelector('#pokemon-hp').innerHTML = `HP: ${card.hp}`;
-        document.querySelector('#pokemon-rarity').innerHTML = `Rarity: ${card.rarity}`;
-        activeCard = id;
+        if(id!==null) {
+            let card = cards.filter(element => element.id === parseInt(id))[0];
+            document.querySelector('#pokemon-name').innerHTML = ` ${card.name}`;
+            document.querySelector('#pokemon-type').innerHTML = `Type: ${card.type}`;
+            document.querySelector('#pokemon-subtype').innerHTML = `Stage: ${card.subtype}`;
+            document.querySelector('#pokemon-attack').innerHTML = `Attack: ${card.attack}`;
+            document.querySelector('#pokemon-hp').innerHTML = `HP: ${card.hp}`;
+            document.querySelector('#pokemon-rarity').innerHTML = `Rarity: ${card.rarity}`;
+            activeCard = id;
+        }
     });
 
     $('.tab').click(function () {
@@ -233,7 +235,9 @@
     var activeItem = 0;
     let itemsContainer = document.querySelector('#store');
     itemsContainer.addEventListener('click', (e) => {
-        activeItem = e.target.getAttribute('data-id');
+        if(e.target.getAttribute('data-id') !==null) {
+            activeItem = e.target.getAttribute('data-id');
+        }
     });
 
     var activePouch = 0;
@@ -260,7 +264,7 @@
     let battleButton = document.querySelector('#battle-button');
 
     battleButton.addEventListener('click', function (event) {
-        console.log(activeCard + " " + activePouch)
+        /*console.log(activeCard + " " + activePouch)*/
         if (activeCard === 0 || activePouch === 0) alert("Pick a card and pouch");
         else window.location.replace(`/battle/${activeCard}/${activePouch}/`);
 
@@ -270,12 +274,12 @@
     let button = document.getElementsByClassName('button');
     let container = document.querySelector('#myCards');
     container.addEventListener('click', (e) => {
-        for (let i = 0; i < 200; i++) {
+        for (let i = 0; i < button.length; i++) {
             if (button[i].contains(e.target)) {
                 let oldSelectedButton = document.querySelector('.button-selected');
                 if (oldSelectedButton) oldSelectedButton.classList.remove('button-selected');
                 button[i].classList.add('button-selected');
-                console.log(button[i].getAttribute('data-id'));
+                /*console.log(button[i].getAttribute('data-id'));*/
             }
         }
     });
